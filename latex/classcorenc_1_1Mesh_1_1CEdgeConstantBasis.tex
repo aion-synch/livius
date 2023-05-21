@@ -1,0 +1,163 @@
+\hypertarget{classcorenc_1_1Mesh_1_1CEdgeConstantBasis}{}\doxysection{corenc\+::Mesh\+::CEdge\+Constant\+Basis Class Reference}
+\label{classcorenc_1_1Mesh_1_1CEdgeConstantBasis}\index{corenc::Mesh::CEdgeConstantBasis@{corenc::Mesh::CEdgeConstantBasis}}
+
+
+{\ttfamily \#include $<$Edge.\+h$>$}
+
+Inheritance diagram for corenc\+::Mesh\+::CEdge\+Constant\+Basis\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classcorenc_1_1Mesh_1_1CEdgeConstantBasis}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcorenc_1_1Mesh_1_1CEdgeConstantBasis_a1bc9bce65d8df67935f99f81f3514f20}{CEdge\+Constant\+Basis}} ()
+\item 
+\mbox{\hyperlink{classcorenc_1_1Mesh_1_1CEdgeConstantBasis_ae47a9559e0614747e48c2ae947b14add}{CEdge\+Constant\+Basis}} (const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} \&, const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} \&)
+\item 
+\mbox{\hyperlink{classcorenc_1_1Mesh_1_1CEdgeConstantBasis_abd8d08d107520ea1eb9d2c34cfcf6d7b}{CEdge\+Constant\+Basis}} (const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} $\ast$)
+\item 
+\mbox{\hyperlink{classcorenc_1_1Mesh_1_1CEdgeConstantBasis_acf56fa17b959902d2046a6cd1a4cb62a}{CEdge\+Constant\+Basis}} (const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CEdgeConstantBasis}{CEdge\+Constant\+Basis}} \&)
+\item 
+\mbox{\hyperlink{classcorenc_1_1Mesh_1_1CEdgeConstantBasis}{CEdge\+Constant\+Basis}} \& \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CEdgeConstantBasis_a782e1e633f30c664540149106aa607ab}{operator=}} (const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CEdgeConstantBasis}{CEdge\+Constant\+Basis}} \&e)
+\item 
+\mbox{\hyperlink{classcorenc_1_1Mesh_1_1CEdgeConstantBasis_afd4dbeb723761bafedd2ae8717214f8a}{$\sim$\+CEdge\+Constant\+Basis}} ()
+\item 
+const int \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CEdgeConstantBasis_a2c0425efa492c7ebca36549ff1be1df7}{Get\+Number\+Of\+Shape\+Functions}} () const
+\item 
+const double \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CEdgeConstantBasis_ab31a38f244c30671b05b99edda0fc6a4}{Get\+Shape\+Function}} (const int, const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} \&) const
+\item 
+const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CEdgeConstantBasis_a7932dded1cafca5c4e6df1c22e6ec5ef}{Get\+Grad\+Shape\+Function}} (const int, const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} \&) const
+\item 
+const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CEdgeConstantBasis_a79d69ae2e268116f4e43e20881834a58}{Get\+Normal}} () const
+\item 
+void \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CEdgeConstantBasis_ae9af3f3ed0543d596e50e0c20d0f2338}{Reverse\+Normal}} ()
+\item 
+const double \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CEdgeConstantBasis_ad226aad71de62514faabe6b2bdfdae11}{Get\+Weight}} (const int node, const std\+::vector$<$ \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} $>$ \&verts, const std\+::function$<$ const double(const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} \&)$>$ \&f) const
+\item 
+const int \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CEdgeConstantBasis_a1a9e27aeaf22bdbcd015abd4e6bb1c14}{Increase\+Order}} ()
+\item 
+const double \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CEdgeConstantBasis_aad1e04b406799c8933cbe63d687b212a}{Get\+Measure}} () const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CEdgeConstantBasis_a1bc9bce65d8df67935f99f81f3514f20}\label{classcorenc_1_1Mesh_1_1CEdgeConstantBasis_a1bc9bce65d8df67935f99f81f3514f20}} 
+\index{corenc::Mesh::CEdgeConstantBasis@{corenc::Mesh::CEdgeConstantBasis}!CEdgeConstantBasis@{CEdgeConstantBasis}}
+\index{CEdgeConstantBasis@{CEdgeConstantBasis}!corenc::Mesh::CEdgeConstantBasis@{corenc::Mesh::CEdgeConstantBasis}}
+\doxysubsubsection{\texorpdfstring{CEdgeConstantBasis()}{CEdgeConstantBasis()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily CEdge\+Constant\+Basis\+::\+CEdge\+Constant\+Basis (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CEdgeConstantBasis_ae47a9559e0614747e48c2ae947b14add}\label{classcorenc_1_1Mesh_1_1CEdgeConstantBasis_ae47a9559e0614747e48c2ae947b14add}} 
+\index{corenc::Mesh::CEdgeConstantBasis@{corenc::Mesh::CEdgeConstantBasis}!CEdgeConstantBasis@{CEdgeConstantBasis}}
+\index{CEdgeConstantBasis@{CEdgeConstantBasis}!corenc::Mesh::CEdgeConstantBasis@{corenc::Mesh::CEdgeConstantBasis}}
+\doxysubsubsection{\texorpdfstring{CEdgeConstantBasis()}{CEdgeConstantBasis()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily CEdge\+Constant\+Basis\+::\+CEdge\+Constant\+Basis (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} \&}]{p0,  }\item[{const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} \&}]{p1 }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CEdgeConstantBasis_abd8d08d107520ea1eb9d2c34cfcf6d7b}\label{classcorenc_1_1Mesh_1_1CEdgeConstantBasis_abd8d08d107520ea1eb9d2c34cfcf6d7b}} 
+\index{corenc::Mesh::CEdgeConstantBasis@{corenc::Mesh::CEdgeConstantBasis}!CEdgeConstantBasis@{CEdgeConstantBasis}}
+\index{CEdgeConstantBasis@{CEdgeConstantBasis}!corenc::Mesh::CEdgeConstantBasis@{corenc::Mesh::CEdgeConstantBasis}}
+\doxysubsubsection{\texorpdfstring{CEdgeConstantBasis()}{CEdgeConstantBasis()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily CEdge\+Constant\+Basis\+::\+CEdge\+Constant\+Basis (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} $\ast$}]{p }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CEdgeConstantBasis_acf56fa17b959902d2046a6cd1a4cb62a}\label{classcorenc_1_1Mesh_1_1CEdgeConstantBasis_acf56fa17b959902d2046a6cd1a4cb62a}} 
+\index{corenc::Mesh::CEdgeConstantBasis@{corenc::Mesh::CEdgeConstantBasis}!CEdgeConstantBasis@{CEdgeConstantBasis}}
+\index{CEdgeConstantBasis@{CEdgeConstantBasis}!corenc::Mesh::CEdgeConstantBasis@{corenc::Mesh::CEdgeConstantBasis}}
+\doxysubsubsection{\texorpdfstring{CEdgeConstantBasis()}{CEdgeConstantBasis()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily CEdge\+Constant\+Basis\+::\+CEdge\+Constant\+Basis (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CEdgeConstantBasis}{CEdge\+Constant\+Basis}} \&}]{e }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CEdgeConstantBasis_afd4dbeb723761bafedd2ae8717214f8a}\label{classcorenc_1_1Mesh_1_1CEdgeConstantBasis_afd4dbeb723761bafedd2ae8717214f8a}} 
+\index{corenc::Mesh::CEdgeConstantBasis@{corenc::Mesh::CEdgeConstantBasis}!````~CEdgeConstantBasis@{$\sim$CEdgeConstantBasis}}
+\index{````~CEdgeConstantBasis@{$\sim$CEdgeConstantBasis}!corenc::Mesh::CEdgeConstantBasis@{corenc::Mesh::CEdgeConstantBasis}}
+\doxysubsubsection{\texorpdfstring{$\sim$CEdgeConstantBasis()}{~CEdgeConstantBasis()}}
+{\footnotesize\ttfamily corenc\+::\+Mesh\+::\+CEdge\+Constant\+Basis\+::$\sim$\+CEdge\+Constant\+Basis (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CEdgeConstantBasis_a7932dded1cafca5c4e6df1c22e6ec5ef}\label{classcorenc_1_1Mesh_1_1CEdgeConstantBasis_a7932dded1cafca5c4e6df1c22e6ec5ef}} 
+\index{corenc::Mesh::CEdgeConstantBasis@{corenc::Mesh::CEdgeConstantBasis}!GetGradShapeFunction@{GetGradShapeFunction}}
+\index{GetGradShapeFunction@{GetGradShapeFunction}!corenc::Mesh::CEdgeConstantBasis@{corenc::Mesh::CEdgeConstantBasis}}
+\doxysubsubsection{\texorpdfstring{GetGradShapeFunction()}{GetGradShapeFunction()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} CEdge\+Constant\+Basis\+::\+Get\+Grad\+Shape\+Function (\begin{DoxyParamCaption}\item[{const int}]{,  }\item[{const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} \&}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CShapeFunction_ae4e0205b8c97a3bc321b3f6f61ed7403}{corenc\+::\+Mesh\+::\+CShape\+Function$<$ double $>$}}.
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CEdgeConstantBasis_aad1e04b406799c8933cbe63d687b212a}\label{classcorenc_1_1Mesh_1_1CEdgeConstantBasis_aad1e04b406799c8933cbe63d687b212a}} 
+\index{corenc::Mesh::CEdgeConstantBasis@{corenc::Mesh::CEdgeConstantBasis}!GetMeasure@{GetMeasure}}
+\index{GetMeasure@{GetMeasure}!corenc::Mesh::CEdgeConstantBasis@{corenc::Mesh::CEdgeConstantBasis}}
+\doxysubsubsection{\texorpdfstring{GetMeasure()}{GetMeasure()}}
+{\footnotesize\ttfamily const double corenc\+::\+Mesh\+::\+CEdge\+Constant\+Basis\+::\+Get\+Measure (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CShapeFunction_a6c850b856bd07fca32d2a55c47dee9bd}{corenc\+::\+Mesh\+::\+CShape\+Function$<$ double $>$}}.
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CEdgeConstantBasis_a79d69ae2e268116f4e43e20881834a58}\label{classcorenc_1_1Mesh_1_1CEdgeConstantBasis_a79d69ae2e268116f4e43e20881834a58}} 
+\index{corenc::Mesh::CEdgeConstantBasis@{corenc::Mesh::CEdgeConstantBasis}!GetNormal@{GetNormal}}
+\index{GetNormal@{GetNormal}!corenc::Mesh::CEdgeConstantBasis@{corenc::Mesh::CEdgeConstantBasis}}
+\doxysubsubsection{\texorpdfstring{GetNormal()}{GetNormal()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} CEdge\+Constant\+Basis\+::\+Get\+Normal (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CShapeFunction_a5d9e746494241c344efab134e2883d17}{corenc\+::\+Mesh\+::\+CShape\+Function$<$ double $>$}}.
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CEdgeConstantBasis_a2c0425efa492c7ebca36549ff1be1df7}\label{classcorenc_1_1Mesh_1_1CEdgeConstantBasis_a2c0425efa492c7ebca36549ff1be1df7}} 
+\index{corenc::Mesh::CEdgeConstantBasis@{corenc::Mesh::CEdgeConstantBasis}!GetNumberOfShapeFunctions@{GetNumberOfShapeFunctions}}
+\index{GetNumberOfShapeFunctions@{GetNumberOfShapeFunctions}!corenc::Mesh::CEdgeConstantBasis@{corenc::Mesh::CEdgeConstantBasis}}
+\doxysubsubsection{\texorpdfstring{GetNumberOfShapeFunctions()}{GetNumberOfShapeFunctions()}}
+{\footnotesize\ttfamily const int CEdge\+Constant\+Basis\+::\+Get\+Number\+Of\+Shape\+Functions (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CShapeFunction_ac0abc38088b74000db00c16ceb3fd4dc}{corenc\+::\+Mesh\+::\+CShape\+Function$<$ double $>$}}.
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CEdgeConstantBasis_ab31a38f244c30671b05b99edda0fc6a4}\label{classcorenc_1_1Mesh_1_1CEdgeConstantBasis_ab31a38f244c30671b05b99edda0fc6a4}} 
+\index{corenc::Mesh::CEdgeConstantBasis@{corenc::Mesh::CEdgeConstantBasis}!GetShapeFunction@{GetShapeFunction}}
+\index{GetShapeFunction@{GetShapeFunction}!corenc::Mesh::CEdgeConstantBasis@{corenc::Mesh::CEdgeConstantBasis}}
+\doxysubsubsection{\texorpdfstring{GetShapeFunction()}{GetShapeFunction()}}
+{\footnotesize\ttfamily const double CEdge\+Constant\+Basis\+::\+Get\+Shape\+Function (\begin{DoxyParamCaption}\item[{const int}]{,  }\item[{const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} \&}]{p }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CShapeFunction_a871cda6b46ec7acce28121d0c74207f7}{corenc\+::\+Mesh\+::\+CShape\+Function$<$ double $>$}}.
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CEdgeConstantBasis_ad226aad71de62514faabe6b2bdfdae11}\label{classcorenc_1_1Mesh_1_1CEdgeConstantBasis_ad226aad71de62514faabe6b2bdfdae11}} 
+\index{corenc::Mesh::CEdgeConstantBasis@{corenc::Mesh::CEdgeConstantBasis}!GetWeight@{GetWeight}}
+\index{GetWeight@{GetWeight}!corenc::Mesh::CEdgeConstantBasis@{corenc::Mesh::CEdgeConstantBasis}}
+\doxysubsubsection{\texorpdfstring{GetWeight()}{GetWeight()}}
+{\footnotesize\ttfamily const double corenc\+::\+Mesh\+::\+CEdge\+Constant\+Basis\+::\+Get\+Weight (\begin{DoxyParamCaption}\item[{const int}]{node,  }\item[{const std\+::vector$<$ \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} $>$ \&}]{verts,  }\item[{const std\+::function$<$ const double(const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} \&)$>$ \&}]{f }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CEdgeConstantBasis_a1a9e27aeaf22bdbcd015abd4e6bb1c14}\label{classcorenc_1_1Mesh_1_1CEdgeConstantBasis_a1a9e27aeaf22bdbcd015abd4e6bb1c14}} 
+\index{corenc::Mesh::CEdgeConstantBasis@{corenc::Mesh::CEdgeConstantBasis}!IncreaseOrder@{IncreaseOrder}}
+\index{IncreaseOrder@{IncreaseOrder}!corenc::Mesh::CEdgeConstantBasis@{corenc::Mesh::CEdgeConstantBasis}}
+\doxysubsubsection{\texorpdfstring{IncreaseOrder()}{IncreaseOrder()}}
+{\footnotesize\ttfamily const int corenc\+::\+Mesh\+::\+CEdge\+Constant\+Basis\+::\+Increase\+Order (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CEdgeConstantBasis_a782e1e633f30c664540149106aa607ab}\label{classcorenc_1_1Mesh_1_1CEdgeConstantBasis_a782e1e633f30c664540149106aa607ab}} 
+\index{corenc::Mesh::CEdgeConstantBasis@{corenc::Mesh::CEdgeConstantBasis}!operator=@{operator=}}
+\index{operator=@{operator=}!corenc::Mesh::CEdgeConstantBasis@{corenc::Mesh::CEdgeConstantBasis}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CEdgeConstantBasis}{CEdge\+Constant\+Basis}} \& corenc\+::\+Mesh\+::\+CEdge\+Constant\+Basis\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CEdgeConstantBasis}{CEdge\+Constant\+Basis}} \&}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CEdgeConstantBasis_ae9af3f3ed0543d596e50e0c20d0f2338}\label{classcorenc_1_1Mesh_1_1CEdgeConstantBasis_ae9af3f3ed0543d596e50e0c20d0f2338}} 
+\index{corenc::Mesh::CEdgeConstantBasis@{corenc::Mesh::CEdgeConstantBasis}!ReverseNormal@{ReverseNormal}}
+\index{ReverseNormal@{ReverseNormal}!corenc::Mesh::CEdgeConstantBasis@{corenc::Mesh::CEdgeConstantBasis}}
+\doxysubsubsection{\texorpdfstring{ReverseNormal()}{ReverseNormal()}}
+{\footnotesize\ttfamily void CEdge\+Constant\+Basis\+::\+Reverse\+Normal (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CShapeFunction_a01a0bf9991424ac553ce54f083d8d3a9}{corenc\+::\+Mesh\+::\+CShape\+Function$<$ double $>$}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Core\+NCFEM/\+Finite\+Elements/\mbox{\hyperlink{Edge_8h}{Edge.\+h}}\item 
+Core\+NCFEM/\+Finite\+Elements/\mbox{\hyperlink{Edge_8cpp}{Edge.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,118 @@
+\hypertarget{RegularMesh3D_8h_source}{}\doxysection{Regular\+Mesh3\+D.\+h}
+\label{RegularMesh3D_8h_source}\index{CoreNCFEM/Grids/RegularMesh3D.h@{CoreNCFEM/Grids/RegularMesh3D.h}}
+\mbox{\hyperlink{RegularMesh3D_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef CORENC\_MESH\_RegularMesh3D\_h}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define CORENC\_MESH\_RegularMesh3D\_h}}
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include "{}../Mesh.h"{}}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include "{}../FiniteElements/FiniteElement2D.h"{}}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include "{}../Point.h"{}}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <fstream>}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <map>}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include "{}../Parameter.h"{}}}
+\DoxyCodeLine{12 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacecorenc}{corenc}}}
+\DoxyCodeLine{13 \{}
+\DoxyCodeLine{14     \textcolor{keyword}{namespace }Mesh}
+\DoxyCodeLine{15     \{}
+\DoxyCodeLine{16         \textcolor{keyword}{class }\mbox{\hyperlink{classcorenc_1_1Mesh_1_1CRegularMesh3D}{CRegularMesh3D}}\textcolor{comment}{// : public CMesh<>}}
+\DoxyCodeLine{17         \{}
+\DoxyCodeLine{18         \textcolor{keyword}{public}:}
+\DoxyCodeLine{19             \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CRegularMesh3D_af3ee54c2002dae10324354cc326f89a0}{CRegularMesh3D}}();}
+\DoxyCodeLine{20             \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CRegularMesh3D_a1a35695ed1394cd29d458f439c2283a2}{CRegularMesh3D}}(\textcolor{keyword}{const} std::string\& file\_name);}
+\DoxyCodeLine{21             \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CRegularMesh3D_af3ee54c2002dae10324354cc326f89a0}{CRegularMesh3D}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CRegularMesh3D}{CRegularMesh3D}}\&);}
+\DoxyCodeLine{22             \textcolor{comment}{// nx ny number of elements on x y}}
+\DoxyCodeLine{23             \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CRegularMesh3D_af3ee54c2002dae10324354cc326f89a0}{CRegularMesh3D}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}\& p1, \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}\& p2, \textcolor{keyword}{const} \textcolor{keywordtype}{int} nx, \textcolor{keyword}{const} \textcolor{keywordtype}{int} ny);}
+\DoxyCodeLine{24             \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CRegularMesh3D_af3ee54c2002dae10324354cc326f89a0}{CRegularMesh3D}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}\& p1, \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}\& p2, \textcolor{keyword}{const} \textcolor{keywordtype}{int} nx, \textcolor{keyword}{const} \textcolor{keywordtype}{int} ny, \textcolor{keyword}{const} \textcolor{keywordtype}{int} px, \textcolor{keyword}{const} \textcolor{keywordtype}{int} py);}
+\DoxyCodeLine{25             \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CRegularMesh3D_af3ee54c2002dae10324354cc326f89a0}{CRegularMesh3D}}(\textcolor{keyword}{const} \textcolor{keywordtype}{double} x1, \textcolor{keyword}{const} \textcolor{keywordtype}{double} y1, \textcolor{keyword}{const} \textcolor{keywordtype}{double} x2, \textcolor{keyword}{const} \textcolor{keywordtype}{double} y2, \textcolor{keyword}{const} \textcolor{keywordtype}{int} nx, \textcolor{keyword}{const} \textcolor{keywordtype}{int} ny);}
+\DoxyCodeLine{26             \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CRegularMesh3D}{CRegularMesh3D}}\& \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CRegularMesh3D_aec14c022d070a8a743fd2e706e7dde71}{operator=}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CRegularMesh3D}{CRegularMesh3D}}\& tr)}
+\DoxyCodeLine{27             \{}
+\DoxyCodeLine{28                 \textcolor{keyword}{const} \textcolor{keywordtype}{int} sz\_el = (int)tr.m\_elems.size();}
+\DoxyCodeLine{29                 \textcolor{keyword}{const} \textcolor{keywordtype}{int} sz\_pt = (int)tr.m\_points.size();}
+\DoxyCodeLine{30                 \textcolor{keyword}{const} \textcolor{keywordtype}{int} sz\_bpt = (int)tr.m\_basepoints.size();}
+\DoxyCodeLine{31                 \textcolor{keyword}{const} \textcolor{keywordtype}{int} sz\_bel = (int)tr.m\_elemsbase.size();}
+\DoxyCodeLine{32                 \textcolor{keyword}{const} \textcolor{keywordtype}{int} sz\_ed = (int)tr.m\_edges.size();}
+\DoxyCodeLine{33                 \textcolor{keyword}{const} \textcolor{keywordtype}{int} sz\_bed = (int)tr.m\_edgesbase.size();}
+\DoxyCodeLine{34                 m\_elems.resize(sz\_el);}
+\DoxyCodeLine{35                 m\_edges.resize(sz\_ed);}
+\DoxyCodeLine{36                 m\_points.resize(sz\_pt);}
+\DoxyCodeLine{37                 m\_basepoints.resize(sz\_bpt);}
+\DoxyCodeLine{38                 m\_elemsbase.resize(sz\_bel);}
+\DoxyCodeLine{39                 m\_edgesbase.resize(sz\_bed);}
+\DoxyCodeLine{40                 \textcolor{keywordtype}{int} i = 0;}
+\DoxyCodeLine{41                 \textcolor{keywordflow}{for} (i = 0; i < sz\_el; ++i)}
+\DoxyCodeLine{42                     m\_elems[i] = tr.m\_elems[i]-\/>Clone();}
+\DoxyCodeLine{43                 \textcolor{keywordflow}{for} (i = 0; i < sz\_ed; ++i)}
+\DoxyCodeLine{44                     m\_edges[i] = tr.m\_edges[i]-\/>Clone();}
+\DoxyCodeLine{45                 \textcolor{keywordflow}{for} (i = 0; i < sz\_pt; ++i)}
+\DoxyCodeLine{46                     m\_points[i] = tr.m\_points[i];}
+\DoxyCodeLine{47                 for (i = 0; i < sz\_bpt; ++i)}
+\DoxyCodeLine{48                     m\_basepoints[i] = tr.m\_basepoints[i];}
+\DoxyCodeLine{49                 for (i = 0; i < sz\_bel; ++i)}
+\DoxyCodeLine{50                     m\_elemsbase[i] = tr.m\_elemsbase[i]-\/>Clone();}
+\DoxyCodeLine{51                 \textcolor{keywordflow}{for} (i = 0; i < sz\_bed; ++i)}
+\DoxyCodeLine{52                     m\_edgesbase[i] = tr.m\_edgesbase[i]-\/>Clone();}
+\DoxyCodeLine{53                 m\_bnds.resize(tr.m\_bnds.size());}
+\DoxyCodeLine{54                 \textcolor{keywordflow}{for} (i = 0; i < m\_bnds.size(); ++i)}
+\DoxyCodeLine{55                     m\_bnds[i] = tr.m\_bnds[i];}
+\DoxyCodeLine{56                 m\_offsets = tr.m\_offsets;}
+\DoxyCodeLine{57                 m\_params = tr.m\_params;}
+\DoxyCodeLine{58                 m\_order = tr.m\_order;}
+\DoxyCodeLine{59                 m\_inodes = tr.m\_inodes;}
+\DoxyCodeLine{60                 \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{61             \}}
+\DoxyCodeLine{62             \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CRegularMesh3D}{CRegularMesh3D}}*           \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CRegularMesh3D_aa842b1e3309f677308d5f71689f7fe9d}{Clone}}()\textcolor{keyword}{ const}}
+\DoxyCodeLine{63 \textcolor{keyword}{            }\{}
+\DoxyCodeLine{64                 \textcolor{keywordflow}{return} \textcolor{keyword}{new} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CRegularMesh3D_af3ee54c2002dae10324354cc326f89a0}{CRegularMesh3D}}(*\textcolor{keyword}{this});}
+\DoxyCodeLine{65             \};}
+\DoxyCodeLine{66             \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int}                  \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CRegularMesh3D_aea9c57784faf218aebb46eb4a041e9d8}{GetNumberOfElements}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{67             \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int}                  \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CRegularMesh3D_add780a6e40e20458f49aab0b497d8e4e}{GetNumberOfNodes}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{68             \textcolor{keyword}{const} \textcolor{keywordtype}{int}                           \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CRegularMesh3D_a3bf2e6b7c2b6adb0b7435e9fdfd28517}{GetNumberOfINodes}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{69             \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int}                  \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CRegularMesh3D_a45170f31c879061b7bb4b1b2375e64ea}{GetNumberOfBoundaries}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{70             \textcolor{keyword}{const} \textcolor{keywordtype}{int}                           \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CRegularMesh3D_afbce5bb2b39a28c143c907e2ea82c436}{FindElement}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}\&) \textcolor{keyword}{const};}
+\DoxyCodeLine{71             \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}                            \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CRegularMesh3D_a2c7041398657d54c2763b2da30911b04}{GetNode}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int}) \textcolor{keyword}{const};}
+\DoxyCodeLine{72             \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement}{CElement<>}}*                 \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CRegularMesh3D_a1739cc8650acec74900fc5d522c48bbb}{GetElement}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int}) \textcolor{keyword}{const};}
+\DoxyCodeLine{73             \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement}{CElement<>}}*                 \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CRegularMesh3D_aa42a48cb5c7c4c0911e46ab103630b8f}{GetBoundary}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int}) \textcolor{keyword}{const};}
+\DoxyCodeLine{74             \textcolor{keyword}{const} \textcolor{keywordtype}{double}                        \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CRegularMesh3D_a0bcd35507c7acdeb6b6bf8acfcee4090}{getMinSize}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} 0.; \};}
+\DoxyCodeLine{75             \textcolor{keyword}{const} \textcolor{keywordtype}{double}                        \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CRegularMesh3D_af09fa6bf799d1003987dc25b8fd180c1}{getSolution}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} element, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} node) \textcolor{keyword}{const};}
+\DoxyCodeLine{76             \textcolor{keyword}{const} \textcolor{keywordtype}{int}                           \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CRegularMesh3D_a31bb39597d88f61f7949fbbdb6e6bfe4}{updateSolution}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} element, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} node, \textcolor{keyword}{const} \textcolor{keywordtype}{double} value);}
+\DoxyCodeLine{77             \textcolor{keyword}{const} std::vector<double>           \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CRegularMesh3D_af09fa6bf799d1003987dc25b8fd180c1}{getSolution}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{78             \textcolor{keyword}{const} \textcolor{keywordtype}{int}                           \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CRegularMesh3D_a31bb39597d88f61f7949fbbdb6e6bfe4}{updateSolution}}(\textcolor{keyword}{const} std::vector<double>\&);}
+\DoxyCodeLine{79             \textcolor{keyword}{const} \textcolor{keywordtype}{int}                           \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CRegularMesh3D_a31bb39597d88f61f7949fbbdb6e6bfe4}{updateSolution}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} element, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} node, \mbox{\hyperlink{classcorenc_1_1CSolution}{CSolution}}* value);}
+\DoxyCodeLine{80             \textcolor{keyword}{const} \textcolor{keywordtype}{double}                        \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CRegularMesh3D_a6a8b89572dad1945c3b0f996a54e9541}{getParameter}}(\mbox{\hyperlink{namespacecorenc_a2902da21a64b0735c94fc4e59e25b02f}{Parameters}}, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int}, \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}\&) \textcolor{keyword}{const};}
+\DoxyCodeLine{81             \textcolor{keyword}{const} \textcolor{keywordtype}{double}                        \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CRegularMesh3D_a6a8b89572dad1945c3b0f996a54e9541}{getParameter}}(\mbox{\hyperlink{namespacecorenc_a2902da21a64b0735c94fc4e59e25b02f}{Parameters}}, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int}, \textcolor{keyword}{const} \textcolor{keywordtype}{int}) \textcolor{keyword}{const};}
+\DoxyCodeLine{82             \textcolor{keyword}{const} \textcolor{keywordtype}{int}                           \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CRegularMesh3D_adb646072aaa79bc4cc453e3b4026d7bf}{setParameter}}(\mbox{\hyperlink{namespacecorenc_a2902da21a64b0735c94fc4e59e25b02f}{Parameters}}, \textcolor{keyword}{const} \textcolor{keywordtype}{double}, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int});}
+\DoxyCodeLine{83             \textcolor{keyword}{const} \textcolor{keywordtype}{int}                           \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CRegularMesh3D_adb646072aaa79bc4cc453e3b4026d7bf}{setParameter}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CParameter}{CParameter}}\&, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} type);}
+\DoxyCodeLine{84             \textcolor{keyword}{const} \textcolor{keywordtype}{int}                           \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CRegularMesh3D_a31bb39597d88f61f7949fbbdb6e6bfe4}{updateSolution}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} node, \textcolor{keyword}{const} \textcolor{keywordtype}{double} value);}
+\DoxyCodeLine{85             \textcolor{keyword}{const} \textcolor{keywordtype}{int}                           \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CRegularMesh3D_a4e4b112f0bb9e19f68be823b73d7acfa}{refine\_hx}}();}
+\DoxyCodeLine{86             \textcolor{keyword}{const} \textcolor{keywordtype}{int}                           \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CRegularMesh3D_a06b93cbcf38998f893c437d5967407c9}{refine\_hy}}();}
+\DoxyCodeLine{87             \textcolor{keyword}{const} \textcolor{keywordtype}{int}                           \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CRegularMesh3D_a2e1f4d0fbede842ee070d00593266eac}{refine\_h}}();}
+\DoxyCodeLine{88             \textcolor{keyword}{const} \textcolor{keywordtype}{int}                           \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CRegularMesh3D_aadab7ccb1b9793648bf0ebed830fd1f8}{refine\_p}}();}
+\DoxyCodeLine{89             \textcolor{keyword}{const} \textcolor{keywordtype}{int}                           \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CRegularMesh3D_a8872cda2d8ce5d6a427fd4840bab178f}{refine\_hp}}();}
+\DoxyCodeLine{90             \textcolor{keyword}{const} \textcolor{keywordtype}{int}                           \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CRegularMesh3D_abf4d6ab95c461c4a5ae33992ee8d4e44}{interpolate}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} node) \textcolor{keyword}{const};}
+\DoxyCodeLine{91             \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CRegularMesh3D_aea5e0a1c16a918f816db790b8b6fc0b3}{\string~CRegularMesh3D}}();}
+\DoxyCodeLine{92         \textcolor{keyword}{private}:}
+\DoxyCodeLine{93             std::vector<CElement<>*>            m\_elems;}
+\DoxyCodeLine{94             std::vector<CElement<>*>            m\_edges;}
+\DoxyCodeLine{95             std::vector<Point>                  m\_points;}
+\DoxyCodeLine{96             std::vector<Point>                  m\_basepoints;}
+\DoxyCodeLine{97             std::vector<CElement<>*>            m\_elemsbase;}
+\DoxyCodeLine{98             std::vector<CElement<>*>            m\_edgesbase;}
+\DoxyCodeLine{99             std::map<int, CParameter>           m\_params;}
+\DoxyCodeLine{100             std::vector<int>                    m\_offsets;}
+\DoxyCodeLine{101             std::vector<int>                    m\_bnds;}
+\DoxyCodeLine{102             \textcolor{keyword}{const} \textcolor{keywordtype}{double}                        CompSquare(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}\& p1, \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}\& p2, \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}\& p3) \textcolor{keyword}{const};}
+\DoxyCodeLine{103             \textcolor{keywordtype}{int}                                 m\_order;}
+\DoxyCodeLine{104             \textcolor{keywordtype}{int}                                 m\_inodes;}
+\DoxyCodeLine{105         \textcolor{keyword}{public}:}
+\DoxyCodeLine{106             \textcolor{keyword}{auto}                                \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CRegularMesh3D_aab632da51bd77e1179e29711a7db4de7}{GetElements}}() -\/> \textcolor{keyword}{decltype}(m\_elems) \{ \textcolor{keywordflow}{return} m\_elems; \};}
+\DoxyCodeLine{107             \textcolor{keyword}{auto}                                \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CRegularMesh3D_aa42a48cb5c7c4c0911e46ab103630b8f}{GetBoundary}}() -\/> \textcolor{keyword}{decltype}(m\_edges) \{ \textcolor{keywordflow}{return} m\_edges; \};}
+\DoxyCodeLine{108         \};}
+\DoxyCodeLine{109     \}}
+\DoxyCodeLine{110 \}}
+\DoxyCodeLine{111 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* CORENC\_MESH\_RegularMesh3D\_h */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{112 }
+
+\end{DoxyCode}

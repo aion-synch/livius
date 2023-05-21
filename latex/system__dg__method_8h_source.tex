@@ -1,0 +1,582 @@
+\hypertarget{system__dg__method_8h_source}{}\doxysection{system\+\_\+dg\+\_\+method.\+h}
+\label{system__dg__method_8h_source}\index{CoreNCFEM/Methods/system\_dg\_method.h@{CoreNCFEM/Methods/system\_dg\_method.h}}
+\mbox{\hyperlink{system__dg__method_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{// NO GENERALIZATION HERE}}
+\DoxyCodeLine{2 \textcolor{comment}{// JUST PLAIN DG FOR SYSTEM IN N -\/ DIMENSIONAL SPACE FOR ONE TIME STEP}}
+\DoxyCodeLine{3 \textcolor{comment}{// CONSTANT BASIS FUNCTIONS}}
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#ifndef CORENC\_METHODS\_SYSTEM\_DG\_METHOD\_H\_}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#define CORENC\_METHODS\_SYSTEM\_DG\_METHOD\_H\_}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <functional>}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <set>}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include "{}../Point.h"{}}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <memory>}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <cmath>}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{FEMethod_8h}{FEMethod.h}}"{}}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <map>}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <algorithm>}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{dg__flux_8h}{dg\_flux.h}}"{}}}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacecorenc}{corenc}}}
+\DoxyCodeLine{20 \{}
+\DoxyCodeLine{21     \textcolor{keyword}{namespace }method}
+\DoxyCodeLine{22     \{}
+\DoxyCodeLine{23         \textcolor{keyword}{template}<\textcolor{keyword}{class} Problem, \textcolor{keyword}{class} Gr\textcolor{keywordtype}{id}, \textcolor{keyword}{class} Matrix>}
+\DoxyCodeLine{24         \textcolor{keyword}{class }\mbox{\hyperlink{classcorenc_1_1method_1_1system__dg__method}{system\_dg\_method}}}
+\DoxyCodeLine{25         \{}
+\DoxyCodeLine{26         \textcolor{keyword}{public}:}
+\DoxyCodeLine{27             \mbox{\hyperlink{classcorenc_1_1method_1_1system__dg__method_a8502b645a4669df4eceeecdbfaa62e93}{system\_dg\_method}}() :}
+\DoxyCodeLine{28                 m\_problem\{ nullptr \},}
+\DoxyCodeLine{29                 m\_CoarseGrid\{ nullptr \},}
+\DoxyCodeLine{30                 m\_GlobalMatrix\{ nullptr \},}
+\DoxyCodeLine{31                 m\_rhsvector\{ nullptr \}}
+\DoxyCodeLine{32             \{\};}
+\DoxyCodeLine{33             \mbox{\hyperlink{classcorenc_1_1method_1_1system__dg__method_a56899abe481ed7282c5faec3e92d7673}{system\_dg\_method}}(}
+\DoxyCodeLine{34                 Problem* p,}
+\DoxyCodeLine{35                 Grid* g,}
+\DoxyCodeLine{36                 Matrix* m,}
+\DoxyCodeLine{37                 \textcolor{comment}{//Solution* s,}}
+\DoxyCodeLine{38                 \textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} sys\_size,}
+\DoxyCodeLine{39                 std::vector<double>* rhs):}
+\DoxyCodeLine{40                 \textcolor{comment}{//const std::function<const double(const double)>\& flux\_function,}}
+\DoxyCodeLine{41                 \textcolor{comment}{//const DGFlux flux\_type) :}}
+\DoxyCodeLine{42                 m\_problem\{ p \},}
+\DoxyCodeLine{43                 m\_CoarseGrid\{ g \},}
+\DoxyCodeLine{44                 m\_GlobalMatrix\{ m \},}
+\DoxyCodeLine{45                 m\_N\{ g-\/>GetNumberOfElements() \},}
+\DoxyCodeLine{46                 m\_Ns\{ g-\/>GetNumberOfBoundaries() \},}
+\DoxyCodeLine{47                 m\_rhsvector\{ rhs \},}
+\DoxyCodeLine{48                 \textcolor{comment}{//m\_flux(flux\_function),}}
+\DoxyCodeLine{49                 m\_sys\_size\{sys\_size\}\{}
+\DoxyCodeLine{50                 GeneratePortrait();}
+\DoxyCodeLine{51             \}}
+\DoxyCodeLine{52             \mbox{\hyperlink{classcorenc_1_1method_1_1system__dg__method_a56a2f67451df25d6322397eae439e3be}{\string~system\_dg\_method}}() \{\};}
+\DoxyCodeLine{53             \textcolor{keyword}{const} \textcolor{keywordtype}{int}                   \mbox{\hyperlink{classcorenc_1_1method_1_1system__dg__method_ac7e14529d65d6dde7e67d271aad860f9}{Assemble}}();}
+\DoxyCodeLine{54             \textcolor{keyword}{const} \textcolor{keywordtype}{int}                   \mbox{\hyperlink{classcorenc_1_1method_1_1system__dg__method_ad2e124cc2ec5323a6761feae36a01006}{changeFlux}}(\textcolor{keyword}{const} \mbox{\hyperlink{namespacecorenc_1_1method_ae3954d46976dc9ff3760cfa7ed0007c8}{DGFlux}} flux\_type) \{ m\_fluxtype = flux\_type; \textcolor{keywordflow}{return} 0; \};}
+\DoxyCodeLine{55             \textcolor{keyword}{const} Matrix*               \mbox{\hyperlink{classcorenc_1_1method_1_1system__dg__method_aec7251d8927d5bd81e629f9330346f95}{GetGlobalMatrix}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} m\_GlobalMatrix; \};}
+\DoxyCodeLine{56             \textcolor{keyword}{const} std::vector<double>   \mbox{\hyperlink{classcorenc_1_1method_1_1system__dg__method_a94f65865535944c6002be6d97aa1c867}{GetSolution}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} m\_vec; \};}
+\DoxyCodeLine{57             \textcolor{keyword}{const} \textcolor{keywordtype}{double}                \mbox{\hyperlink{classcorenc_1_1method_1_1system__dg__method_a94f65865535944c6002be6d97aa1c867}{GetSolution}}(\textcolor{keyword}{const} std::vector<double>\& point) \textcolor{keyword}{const};}
+\DoxyCodeLine{58             \textcolor{keyword}{const} \textcolor{keywordtype}{double}                \mbox{\hyperlink{classcorenc_1_1method_1_1system__dg__method_a2fd15d7c48b8e0189b63abbdba2083bc}{GetMaxSolution}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{59             \textcolor{keyword}{const} \textcolor{keywordtype}{double}                \mbox{\hyperlink{classcorenc_1_1method_1_1system__dg__method_a5306a58d4c1f96f8ee4e72d500c75c8a}{GetMinSolution}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{60             \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{double}         \mbox{\hyperlink{classcorenc_1_1method_1_1system__dg__method_a7e6915f84ad23c4eebc691e17eee0607}{GetSolution}}(\textcolor{keyword}{const} Grid\& g, \textcolor{keyword}{const} std::vector<double> \&dg\_sol, \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh::Point}}\& p)}
+\DoxyCodeLine{61             \{}
+\DoxyCodeLine{62                 \textcolor{keywordtype}{double} sum\{ 0 \};}
+\DoxyCodeLine{63                 \textcolor{keyword}{auto} nfem\{ g.FindElement(p) \};}
+\DoxyCodeLine{64                 \textcolor{keyword}{auto} elem\{ g.GetElement(nfem) \};}
+\DoxyCodeLine{65                 \textcolor{keyword}{auto} dofs\{ elem-\/>GetDoFs() \};}
+\DoxyCodeLine{66                 \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} i\{ 0 \}; i < dofs; ++i)}
+\DoxyCodeLine{67                 \{}
+\DoxyCodeLine{68                     sum += dg\_sol[nfem * dofs + i] * elem-\/>GetShapeFunction(i, p);}
+\DoxyCodeLine{69                 \}}
+\DoxyCodeLine{70                 \textcolor{keywordflow}{return} sum;}
+\DoxyCodeLine{71             \}}
+\DoxyCodeLine{72             \textcolor{keyword}{const} \textcolor{keywordtype}{double}            \mbox{\hyperlink{classcorenc_1_1method_1_1system__dg__method_a37bec87aafcf51f26c0096b17a91bd86}{GetSolution}}(\textcolor{keyword}{const} std::vector<double> \&dg\_sol, \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh::Point}}\& p)}
+\DoxyCodeLine{73             \{}
+\DoxyCodeLine{74                 \textcolor{keywordtype}{double} sum\{ 0 \};}
+\DoxyCodeLine{75                 \textcolor{keyword}{auto} nfem\{ m\_CoarseGrid-\/>FindElement(p) \};}
+\DoxyCodeLine{76                 \textcolor{keyword}{auto} elem\{ m\_CoarseGrid-\/>GetElement(nfem) \};}
+\DoxyCodeLine{77                 \textcolor{keyword}{auto} dofs\{ elem-\/>GetDoFs() \};}
+\DoxyCodeLine{78                 \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} i\{ 0 \}; i < dofs; ++i)}
+\DoxyCodeLine{79                 \{}
+\DoxyCodeLine{80                     sum += dg\_sol[nfem * dofs + i] * elem-\/>GetShapeFunction(i, p);}
+\DoxyCodeLine{81                 \}}
+\DoxyCodeLine{82                 \textcolor{keywordflow}{return} sum;}
+\DoxyCodeLine{83             \}}
+\DoxyCodeLine{84             \textcolor{keyword}{const} \textcolor{keywordtype}{int}                   \mbox{\hyperlink{classcorenc_1_1method_1_1system__dg__method_a3ad53273396989316372c4d6d45eedfd}{toDGSolution}}(\textcolor{keyword}{const} Grid\& g, std::vector<double>\& dg\_result)\textcolor{keyword}{ const}}
+\DoxyCodeLine{85 \textcolor{keyword}{            }\{}
+\DoxyCodeLine{86                 \textcolor{comment}{//dg\_result-\/>resize(m\_rhsvector-\/>size());}}
+\DoxyCodeLine{87                 dg\_result.resize(m\_rhsvector-\/>size());}
+\DoxyCodeLine{88                 \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} i\{ 0 \}; i < g.GetNumberOfElements(); ++i)}
+\DoxyCodeLine{89                 \{}
+\DoxyCodeLine{90                     \textcolor{keyword}{auto} elem\{ g.GetElement(i) \};}
+\DoxyCodeLine{91                     \textcolor{keyword}{auto} dofs\{ elem-\/>GetDoFs() \};}
+\DoxyCodeLine{92                     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} j\{ 0 \}; j < dofs; ++j)}
+\DoxyCodeLine{93                         \textcolor{comment}{//dg\_result-\/>operator[](m\_nums[i] + j) = g.getSolution(i, j);}}
+\DoxyCodeLine{94                         dg\_result[m\_nums[i] + j] = g.getSolution(i, j);}
+\DoxyCodeLine{95                 \}}
+\DoxyCodeLine{96                 \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{97             \}}
+\DoxyCodeLine{98             \textcolor{keyword}{const} \textcolor{keywordtype}{int}                   \mbox{\hyperlink{classcorenc_1_1method_1_1system__dg__method_a7baebbcafa9f0ebc8d7e03e14df235bb}{updateWeights}}(\textcolor{keyword}{const} std::vector<double>\& dg\_result)}
+\DoxyCodeLine{99             \{}
+\DoxyCodeLine{100                 \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} i\{ 0 \}; i < (\textcolor{keywordtype}{unsigned} int)m\_CoarseGrid-\/>GetNumberOfElements(); ++i)}
+\DoxyCodeLine{101                 \{}
+\DoxyCodeLine{102                     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} j\{ 0 \}; j < (\textcolor{keywordtype}{unsigned} int)m\_CoarseGrid-\/>GetElement(i)-\/>GetDoFs(); ++i)}
+\DoxyCodeLine{103                         m\_CoarseGrid-\/>updateSolution(i, j, dg\_result[m\_nums[i] + j]);}
+\DoxyCodeLine{104                 \}}
+\DoxyCodeLine{105                 \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{106             \}}
+\DoxyCodeLine{107 }
+\DoxyCodeLine{108             \textcolor{keyword}{const} \textcolor{keywordtype}{int}                   \mbox{\hyperlink{classcorenc_1_1method_1_1system__dg__method_accc649238f932bca049eaa4459c5a02c}{DGtostandart}}(\textcolor{keyword}{const} std::vector<double>\& dg\_result)}
+\DoxyCodeLine{109             \{}
+\DoxyCodeLine{110                 \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} i\{ 0 \}; i < (\textcolor{keywordtype}{unsigned} int)m\_CoarseGrid-\/>GetNumberOfElements(); ++i)}
+\DoxyCodeLine{111                 \{}
+\DoxyCodeLine{112                     \textcolor{keyword}{auto} elem\{ m\_CoarseGrid-\/>GetElement(i) \};}
+\DoxyCodeLine{113                     \textcolor{keyword}{auto} dofs\{ elem-\/>GetDoFs() \};}
+\DoxyCodeLine{114                     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} j\{ 0 \}; j < (\textcolor{keywordtype}{unsigned} int)dofs; ++j)}
+\DoxyCodeLine{115                         \textcolor{comment}{//m\_CoarseGrid-\/>updateSolution(i, j, dg\_result[m\_nums[i] + j]);}}
+\DoxyCodeLine{116                         m\_CoarseGrid-\/>updateSolution(i, j, dg\_result[m\_nums[i] + j]);}
+\DoxyCodeLine{117                 \}}
+\DoxyCodeLine{118                 \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{119             \}}
+\DoxyCodeLine{120         \textcolor{keyword}{private}:}
+\DoxyCodeLine{121             \textcolor{keyword}{const} \textcolor{keywordtype}{int}                   GeneratePortrait();}
+\DoxyCodeLine{122             \textcolor{keywordtype}{void}                        assembleBoundaries();}
+\DoxyCodeLine{123             \textcolor{keywordtype}{void}                        assemble\_flux(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} boundary);}
+\DoxyCodeLine{124             \textcolor{keyword}{const} \textcolor{keywordtype}{double}                numerical\_flux(\textcolor{keyword}{const} \textcolor{keywordtype}{double} ul, \textcolor{keyword}{const} \textcolor{keywordtype}{double} ur, \textcolor{keyword}{const} \textcolor{keywordtype}{double} fl, \textcolor{keyword}{const} \textcolor{keywordtype}{double} fr) \textcolor{keyword}{const};}
+\DoxyCodeLine{125             \textcolor{keywordtype}{void}                        MainConditions();}
+\DoxyCodeLine{126             \textcolor{keywordtype}{void}                        SecondConditions();}
+\DoxyCodeLine{127             \textcolor{keywordtype}{void}                        ThirdConditions();}
+\DoxyCodeLine{128             \textcolor{keyword}{const} \textcolor{keywordtype}{int}                   AssembleGlobal();}
+\DoxyCodeLine{129             \textcolor{keyword}{const} \textcolor{keywordtype}{int}                   AssembleFluxMatrix();}
+\DoxyCodeLine{130             Grid*                       m\_CoarseGrid;}
+\DoxyCodeLine{131             Matrix*                     m\_GlobalMatrix;}
+\DoxyCodeLine{132             std::vector<double>*        m\_rhsvector;}
+\DoxyCodeLine{133             std::vector<unsigned int>   m\_nums;}
+\DoxyCodeLine{134             \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int}                m\_N;  \textcolor{comment}{// number of elements}}
+\DoxyCodeLine{135             \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int}                m\_Ns; \textcolor{comment}{// number of boundaries}}
+\DoxyCodeLine{136             \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int}                m\_size;}
+\DoxyCodeLine{137             Problem*                    m\_problem;}
+\DoxyCodeLine{138             std::vector<double>         m\_vec;}
+\DoxyCodeLine{139             std::vector<double>         m\_solution;}
+\DoxyCodeLine{140             \textcolor{comment}{//std::function<const Mesh::Point(const Mesh::Point)> m\_numflux;}}
+\DoxyCodeLine{141             \textcolor{comment}{//std::function<const Mesh::Point(const Mesh::Point)> m\_flux;}}
+\DoxyCodeLine{142             \mbox{\hyperlink{namespacecorenc_1_1method_ae3954d46976dc9ff3760cfa7ed0007c8}{DGFlux}}                        m\_fluxtype;}
+\DoxyCodeLine{143             \textcolor{keywordtype}{size\_t}                      m\_sys\_size;}
+\DoxyCodeLine{144             std::function<\textcolor{keyword}{const} double(\textcolor{keyword}{const} \textcolor{keywordtype}{double})> m\_flux;}
+\DoxyCodeLine{145             \textcolor{keyword}{const} \textcolor{keywordtype}{int}                   AssembleLocalMatrix(\textcolor{keyword}{const} \textcolor{keywordtype}{int});}
+\DoxyCodeLine{146         \};}
+\DoxyCodeLine{147 }
+\DoxyCodeLine{148         \textcolor{keyword}{template}<\textcolor{keyword}{class} Gr\textcolor{keywordtype}{id}>}
+\DoxyCodeLine{149         \textcolor{keyword}{class }\mbox{\hyperlink{classcorenc_1_1method_1_1system__dg__method}{system\_dg\_method}}<Grid, bool, bool>}
+\DoxyCodeLine{150         \{}
+\DoxyCodeLine{151         \textcolor{keyword}{public}:}
+\DoxyCodeLine{152             \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{double}         \mbox{\hyperlink{classcorenc_1_1method_1_1system__dg__method_3_01Grid_00_01bool_00_01bool_01_4_add7851466edc469586e99e3390f02f17}{GetSolution}}(\textcolor{keyword}{const} Grid\& g, \textcolor{keyword}{const} std::vector<double> \&dg\_sol, \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh::Point}}\& p)}
+\DoxyCodeLine{153             \{}
+\DoxyCodeLine{154                 \textcolor{keywordtype}{double} sum\{ 0 \};}
+\DoxyCodeLine{155                 \textcolor{keyword}{auto} nfem\{ g.FindElement(p) \};}
+\DoxyCodeLine{156                 \textcolor{keyword}{auto} elem\{ g.GetElement(nfem) \};}
+\DoxyCodeLine{157                 \textcolor{keyword}{auto} dofs\{ elem-\/>GetDoFs() \};}
+\DoxyCodeLine{158                 \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} i\{ 0 \}; i < dofs; ++i)}
+\DoxyCodeLine{159                 \{}
+\DoxyCodeLine{160                     sum += dg\_sol[nfem * dofs + i] * elem-\/>GetShapeFunction(i, p);}
+\DoxyCodeLine{161                 \}}
+\DoxyCodeLine{162                 \textcolor{keywordflow}{return} sum;}
+\DoxyCodeLine{163             \}}
+\DoxyCodeLine{164         \};}
+\DoxyCodeLine{165 }
+\DoxyCodeLine{166         \textcolor{keyword}{template}<\textcolor{keyword}{class} Problem, \textcolor{keyword}{class}  Gr\textcolor{keywordtype}{id}, \textcolor{keyword}{class} Matrix>}
+\DoxyCodeLine{167         \textcolor{keyword}{const} \textcolor{keywordtype}{int} \mbox{\hyperlink{classcorenc_1_1method_1_1system__dg__method_ac7e14529d65d6dde7e67d271aad860f9}{system\_dg\_method<Problem, Grid, Matrix>::Assemble}}()}
+\DoxyCodeLine{168         \{}
+\DoxyCodeLine{169             \textcolor{comment}{//GeneratePortrait();}}
+\DoxyCodeLine{170             AssembleGlobal();}
+\DoxyCodeLine{171             AssembleFluxMatrix();}
+\DoxyCodeLine{172             MainConditions();}
+\DoxyCodeLine{173             SecondConditions();}
+\DoxyCodeLine{174             ThirdConditions();}
+\DoxyCodeLine{175             \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{176         \}}
+\DoxyCodeLine{177         \textcolor{keyword}{template}<\textcolor{keyword}{class} Problem, \textcolor{keyword}{class} Gr\textcolor{keywordtype}{id}, \textcolor{keyword}{class} Matrix>}
+\DoxyCodeLine{178         \textcolor{keyword}{const} \textcolor{keywordtype}{int} \mbox{\hyperlink{classcorenc_1_1method_1_1system__dg__method}{system\_dg\_method<Problem, Grid, Matrix>::GeneratePortrait}}()}
+\DoxyCodeLine{179         \{}
+\DoxyCodeLine{180             \textcolor{keywordtype}{int} lorder, rorder, order;}
+\DoxyCodeLine{181             std::vector<std::set<unsigned int>> temp;}
+\DoxyCodeLine{182             \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} i, j, nk, ne, k, sz, size;}
+\DoxyCodeLine{183             m\_size = 0;}
+\DoxyCodeLine{184             m\_nums.resize(m\_N * m\_sys\_size);}
+\DoxyCodeLine{185 }
+\DoxyCodeLine{186             nk = 0;}
+\DoxyCodeLine{187             sz = m\_N * m\_sys\_size;}
+\DoxyCodeLine{188             \textcolor{keywordflow}{for} (i = 0, k = 0; k < sz; ++i, k += m\_sys\_size)}
+\DoxyCodeLine{189             \{}
+\DoxyCodeLine{190                 size = m\_CoarseGrid-\/>GetElement(i)-\/>GetDoFs() * m\_sys\_size;}
+\DoxyCodeLine{191                 \textcolor{keywordflow}{for}(j = 0; j < m\_sys\_size; ++j)}
+\DoxyCodeLine{192                     m\_nums[k + j] = m\_size + j * m\_CoarseGrid-\/>GetElement(i)-\/>GetDoFs();}
+\DoxyCodeLine{193                 m\_size += size;}
+\DoxyCodeLine{194             \}}
+\DoxyCodeLine{195             temp.resize(m\_size);}
+\DoxyCodeLine{196             sz = m\_Ns;}
+\DoxyCodeLine{197             \textcolor{keywordflow}{for} (k = 0; k < sz; k += m\_sys\_size)}
+\DoxyCodeLine{198             \{}
+\DoxyCodeLine{199                 \textcolor{keyword}{auto} bound = m\_CoarseGrid-\/>GetBoundary(k);}
+\DoxyCodeLine{200                 nk = bound-\/>GetNeighbour(0);}
+\DoxyCodeLine{201                 ne = bound-\/>GetNeighbour(1);}
+\DoxyCodeLine{202                 lorder = m\_CoarseGrid-\/>GetElement(nk)-\/>GetDoFs();}
+\DoxyCodeLine{203                 \textcolor{keywordflow}{if} (ne != -\/1)}
+\DoxyCodeLine{204                 \{}
+\DoxyCodeLine{205 }
+\DoxyCodeLine{206                     rorder = m\_CoarseGrid-\/>GetElement(ne)-\/>GetDoFs();}
+\DoxyCodeLine{207                     \textcolor{keywordflow}{for} (i = 0; i < lorder; ++i)}
+\DoxyCodeLine{208                         \textcolor{keywordflow}{for} (j = 0; j < rorder; ++j)}
+\DoxyCodeLine{209                             temp[m\_nums[ne] + j].insert(m\_nums[nk] + i);}
+\DoxyCodeLine{210                     \textcolor{keywordflow}{for} (i = 0; i < lorder; ++i)}
+\DoxyCodeLine{211                         \textcolor{keywordflow}{for} (j = i + 1; j < lorder; ++j)}
+\DoxyCodeLine{212                             temp[m\_nums[nk] + j].insert(m\_nums[nk] + i);}
+\DoxyCodeLine{213                 \}}
+\DoxyCodeLine{214                 \textcolor{keywordflow}{else}}
+\DoxyCodeLine{215                 \{}
+\DoxyCodeLine{216                     \textcolor{keywordflow}{for} (i = 0; i < lorder; ++i)}
+\DoxyCodeLine{217                         \textcolor{keywordflow}{for} (j = i + 1; j < lorder; ++j)}
+\DoxyCodeLine{218                             temp[m\_nums[nk] + j].insert(m\_nums[nk] + i);}
+\DoxyCodeLine{219                 \}}
+\DoxyCodeLine{220             \}}
+\DoxyCodeLine{221 }
+\DoxyCodeLine{222             \textcolor{comment}{/*temp.resize(m\_CoarseGrid-\/>GetNumberOfNodes());}}
+\DoxyCodeLine{223 \textcolor{comment}{            m\_nums.resize(m\_CoarseGrid-\/>GetNumberOfNodes());}}
+\DoxyCodeLine{224 \textcolor{comment}{            lorder = m\_CoarseGrid-\/>GetElement(0)-\/>GetDoFs();}}
+\DoxyCodeLine{225 \textcolor{comment}{            for (k = 0; k < m\_CoarseGrid-\/>GetNumberOfNodes(); ++k)}}
+\DoxyCodeLine{226 \textcolor{comment}{            m\_nums[k] = k;}}
+\DoxyCodeLine{227 \textcolor{comment}{            //for (auto elem : m\_CoarseGrid-\/>GetElements())}}
+\DoxyCodeLine{228 \textcolor{comment}{            for(k = 0; k < m\_CoarseGrid-\/>GetNumberOfElements(); ++k)}}
+\DoxyCodeLine{229 \textcolor{comment}{            \{}}
+\DoxyCodeLine{230 \textcolor{comment}{            auto elem\{ m\_CoarseGrid-\/>GetElement(k) \};}}
+\DoxyCodeLine{231 \textcolor{comment}{            auto order\{ elem-\/>GetDoFs() \};}}
+\DoxyCodeLine{232 \textcolor{comment}{            for (i = 0; i < order; ++i)}}
+\DoxyCodeLine{233 \textcolor{comment}{            for (j = 0; j < order; ++j)}}
+\DoxyCodeLine{234 \textcolor{comment}{            if (elem-\/>GetNode(j) > elem-\/>GetNode(i))}}
+\DoxyCodeLine{235 \textcolor{comment}{            temp[elem-\/>GetNode(j)].insert(elem-\/>GetNode(i));}}
+\DoxyCodeLine{236 \textcolor{comment}{            \}*/}}
+\DoxyCodeLine{237             m\_GlobalMatrix-\/>Create(temp.size(), temp);}
+\DoxyCodeLine{238             m\_rhsvector-\/>resize(temp.size());}
+\DoxyCodeLine{239             \textcolor{comment}{//m\_vec.resize(temp.size());}}
+\DoxyCodeLine{240             \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{241         \}}
+\DoxyCodeLine{242 }
+\DoxyCodeLine{243         \textcolor{keyword}{template}<\textcolor{keyword}{class} Problem, \textcolor{keyword}{class} Gr\textcolor{keywordtype}{id}, \textcolor{keyword}{class} Matrix>}
+\DoxyCodeLine{244         \textcolor{keyword}{const} \textcolor{keywordtype}{int} system\_dg\_method<Problem, Grid, Matrix>::AssembleLocalMatrix(\textcolor{keyword}{const} \textcolor{keywordtype}{int} l)}
+\DoxyCodeLine{245         \{}
+\DoxyCodeLine{246             \textcolor{keywordtype}{int} i, j, k, nodes;}
+\DoxyCodeLine{247             \textcolor{keywordtype}{double} mij;}
+\DoxyCodeLine{248             \textcolor{keyword}{const} \textcolor{keyword}{auto}\& elem\{ m\_CoarseGrid-\/>GetElement(l) \};}
+\DoxyCodeLine{249             \textcolor{keyword}{const} \textcolor{keyword}{auto}\& dofs\{ elem-\/>GetDoFs() \};}
+\DoxyCodeLine{250             nodes = elem-\/>GetNumberOfNodes();}
+\DoxyCodeLine{251             std::vector<Mesh::Point> points(nodes);}
+\DoxyCodeLine{252             \textcolor{keywordflow}{for} (i = 0; i < nodes; ++i)}
+\DoxyCodeLine{253                 points[i] = m\_CoarseGrid-\/>GetNode(elem-\/>GetNode(i));}
+\DoxyCodeLine{254             \textcolor{keywordflow}{for} (k = 0; k < m\_problem-\/>getNumberOfTerms(); ++k)}
+\DoxyCodeLine{255             \{}
+\DoxyCodeLine{256                 \textcolor{keywordflow}{switch} (m\_problem-\/>getTerm(k))}
+\DoxyCodeLine{257                 \{}
+\DoxyCodeLine{258                 \textcolor{keywordflow}{case} \mbox{\hyperlink{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7da601d1ecfe8543b457d918d636d84cc9d}{Terms::EUV}}:}
+\DoxyCodeLine{259                     \textcolor{comment}{//for (i = 0; i < dofs; ++i)}}
+\DoxyCodeLine{260                     \textcolor{comment}{//\{}}
+\DoxyCodeLine{261                     \textcolor{comment}{//  for (j = 0; j < dofs; ++j)}}
+\DoxyCodeLine{262                     \textcolor{comment}{//  \{}}
+\DoxyCodeLine{263                     \textcolor{comment}{//      auto M = [\&](const Mesh::Point\& p)}}
+\DoxyCodeLine{264                     \textcolor{comment}{//      \{}}
+\DoxyCodeLine{265                     \textcolor{comment}{//          return elem-\/>GetShapeFunction(i, p) * elem-\/>GetShapeFunction(j, p);}}
+\DoxyCodeLine{266                     \textcolor{comment}{//      \};}}
+\DoxyCodeLine{267                     \textcolor{comment}{//      mij = elem-\/>Integrate(M, points);}}
+\DoxyCodeLine{268                     \textcolor{comment}{//      m\_rhsvector-\/>operator[](m\_nums[l] + i) += m\_CoarseGrid-\/>getParameter(Parameters::MASS, l, j) * m\_CoarseGrid-\/>getSolution(l, j) * mij;}}
+\DoxyCodeLine{269                     \textcolor{comment}{//  \}}}
+\DoxyCodeLine{270                     \textcolor{comment}{//\}}}
+\DoxyCodeLine{271                     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t} j = 0; j < m\_sys\_size; ++j)}
+\DoxyCodeLine{272                         m\_rhsvector-\/>operator[](m\_nums[l] + j) += m\_problem-\/>get\_solution(j, l, elem-\/>GetType(), points[l]);}
+\DoxyCodeLine{273                     \textcolor{keywordflow}{break};}
+\DoxyCodeLine{274                 \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{275                     \textcolor{keywordflow}{break};}
+\DoxyCodeLine{276                 \}}
+\DoxyCodeLine{277             \}}
+\DoxyCodeLine{278             \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{279         \}}
+\DoxyCodeLine{280 }
+\DoxyCodeLine{281         \textcolor{keyword}{template}<\textcolor{keyword}{class} Problem, \textcolor{keyword}{class} Gr\textcolor{keywordtype}{id}, \textcolor{keyword}{class} Matrix>}
+\DoxyCodeLine{282         \textcolor{keyword}{const} \textcolor{keywordtype}{int} system\_dg\_method<Problem, Grid, Matrix>::AssembleGlobal()}
+\DoxyCodeLine{283         \{}
+\DoxyCodeLine{284             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} l = 0; l < m\_N; ++l)}
+\DoxyCodeLine{285                 AssembleLocalMatrix(l);}
+\DoxyCodeLine{286             \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{287         \}}
+\DoxyCodeLine{288 }
+\DoxyCodeLine{289         \textcolor{keyword}{template}<\textcolor{keyword}{class} Problem, \textcolor{keyword}{class} Gr\textcolor{keywordtype}{id}, \textcolor{keyword}{class} Matrix>}
+\DoxyCodeLine{290         \textcolor{keyword}{const} \textcolor{keywordtype}{int} system\_dg\_method<Problem, Grid, Matrix>::AssembleFluxMatrix()}
+\DoxyCodeLine{291         \{}
+\DoxyCodeLine{292             \textcolor{keyword}{auto} Nb\{ m\_CoarseGrid-\/>GetNumberOfBoundaries() \};}
+\DoxyCodeLine{293             \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} l;}
+\DoxyCodeLine{294             \textcolor{keywordflow}{switch} (m\_fluxtype)}
+\DoxyCodeLine{295             \{}
+\DoxyCodeLine{296             \textcolor{keywordflow}{case} \mbox{\hyperlink{namespacecorenc_1_1method_ae3954d46976dc9ff3760cfa7ed0007c8a07348a5b48a028706dac285dd4c5b40a}{corenc::method::DGFlux::ELaxFriedrichs}}:}
+\DoxyCodeLine{297 }
+\DoxyCodeLine{298                 \textcolor{keywordflow}{for} (l = 0; l < Nb; ++l)}
+\DoxyCodeLine{299                 \{}
+\DoxyCodeLine{300                     \textcolor{keyword}{const} \textcolor{keyword}{auto}\& bound\{ m\_CoarseGrid-\/>GetBoundary(l) \};}
+\DoxyCodeLine{301                     \textcolor{keyword}{const} \textcolor{keyword}{auto}\& nk\{ bound-\/>GetNeighbour(0) \};}
+\DoxyCodeLine{302                     \textcolor{keyword}{const} \textcolor{keyword}{auto}\& ne\{ bound-\/>GetNeighbour(1) \};}
+\DoxyCodeLine{303                     \textcolor{keyword}{const} \textcolor{keyword}{auto}\& elemk\{ m\_CoarseGrid-\/>GetElement(nk) \};}
+\DoxyCodeLine{304                     \textcolor{keyword}{const} \textcolor{keyword}{auto}\& dofs\{ bound-\/>GetDoFs() \};}
+\DoxyCodeLine{305                     \textcolor{keyword}{const} \textcolor{keyword}{auto}\& dofsk\{ elemk-\/>GetDoFs() \};}
+\DoxyCodeLine{306                     \textcolor{keywordtype}{double} C\{ 0 \};}
+\DoxyCodeLine{307                     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} i, j;}
+\DoxyCodeLine{308                     std::vector<Mesh::Point> points(dofs);}
+\DoxyCodeLine{309                     \textcolor{keywordflow}{for} (i = 0; i < dofs; ++i)}
+\DoxyCodeLine{310                         points[i] = m\_CoarseGrid-\/>GetNode(bound-\/>GetNode(i));}
+\DoxyCodeLine{311                     \textcolor{keywordflow}{if} (ne > -\/1)}
+\DoxyCodeLine{312                     \{}
+\DoxyCodeLine{313                         \textcolor{keyword}{const} \textcolor{keyword}{auto}\& eleme\{ m\_CoarseGrid-\/>GetElement(ne) \};}
+\DoxyCodeLine{314                         \textcolor{keyword}{const} \textcolor{keyword}{auto}\& dofse\{ eleme-\/>GetDoFs() \};}
+\DoxyCodeLine{315                         \textcolor{keywordflow}{for} (i = 0; i < dofsk; ++i)}
+\DoxyCodeLine{316                         \{}
+\DoxyCodeLine{317                             \textcolor{keywordflow}{for} (j = 0; j < dofsk; ++j)}
+\DoxyCodeLine{318                             \{}
+\DoxyCodeLine{319                                 \textcolor{keyword}{auto} Mkk = [\&](\textcolor{keyword}{const} Mesh::Point\& p)}
+\DoxyCodeLine{320                                 \{}
+\DoxyCodeLine{321                                     \textcolor{keywordflow}{return} elemk-\/>GetShapeFunction(j, p) * elemk-\/>GetShapeFunction(i, p);}
+\DoxyCodeLine{322                                 \};}
+\DoxyCodeLine{323                                 \textcolor{keyword}{auto} temp\{ bound-\/>Integrate(Mkk, points) \};}
+\DoxyCodeLine{324                                 C = std::max(fabs(m\_CoarseGrid-\/>getSolution(ne, i)), fabs(m\_CoarseGrid-\/>getSolution(nk, j)));}
+\DoxyCodeLine{325                                 \textcolor{comment}{//m\_rhsvector-\/>operator[](m\_nums[nk] + i) += -\/0.5*(m\_flux(m\_CoarseGrid-\/>getSolution(nk, j)) * temp -\/ C * m\_CoarseGrid-\/>getSolution(nk, j) * temp);}}
+\DoxyCodeLine{326                                 \textcolor{keyword}{auto} val\{ -\/0.5*(m\_flux(m\_CoarseGrid-\/>getSolution(nk, j)) + C * m\_CoarseGrid-\/>getSolution(nk, j)) * temp \};}
+\DoxyCodeLine{327                                 m\_rhsvector-\/>operator[](m\_nums[nk] + i) += val;}
+\DoxyCodeLine{329                                 \textcolor{comment}{//lv[m\_nums[nk] + i] += val;}}
+\DoxyCodeLine{330                             \}}
+\DoxyCodeLine{331                         \}}
+\DoxyCodeLine{332                         \textcolor{keywordflow}{for} (i = 0; i < dofsk; ++i)}
+\DoxyCodeLine{333                         \{}
+\DoxyCodeLine{334                             \textcolor{keywordflow}{for} (j = 0; j < dofse; ++j)}
+\DoxyCodeLine{335                             \{}
+\DoxyCodeLine{336                                 \textcolor{keyword}{auto} Mke = [\&](\textcolor{keyword}{const} Mesh::Point\& p)}
+\DoxyCodeLine{337                                 \{}
+\DoxyCodeLine{338                                     \textcolor{keywordflow}{return} eleme-\/>GetShapeFunction(j, p) * elemk-\/>GetShapeFunction(i, p);}
+\DoxyCodeLine{339                                 \};}
+\DoxyCodeLine{340                                 \textcolor{keyword}{auto} temp\{ bound-\/>Integrate(Mke, points) \};}
+\DoxyCodeLine{341                                 C = std::max(fabs(m\_CoarseGrid-\/>getSolution(nk, i)), fabs(m\_CoarseGrid-\/>getSolution(ne, j)));}
+\DoxyCodeLine{342                                 \textcolor{comment}{//m\_rhsvector-\/>operator[](m\_nums[nk] +7 i) += -\/0.5*(m\_flux(m\_CoarseGrid-\/>getSolution(ne, j)) * temp -\/ C * m\_CoarseGrid-\/>getSolution(ne, j) * temp);}}
+\DoxyCodeLine{343                                 \textcolor{keyword}{auto} val\{ -\/0.5*(m\_flux(m\_CoarseGrid-\/>getSolution(ne, j)) -\/ C * m\_CoarseGrid-\/>getSolution(ne, j)) * temp \};}
+\DoxyCodeLine{344                                 m\_rhsvector-\/>operator[](m\_nums[nk] + i) += val;}
+\DoxyCodeLine{345                                 \textcolor{comment}{//ke[m\_nums[nk] + i] += val;}}
+\DoxyCodeLine{346                                 \textcolor{comment}{//lv[m\_nums[nk] + i] += val;}}
+\DoxyCodeLine{347                             \}}
+\DoxyCodeLine{348                         \}}
+\DoxyCodeLine{349                         \textcolor{keywordflow}{for} (i = 0; i < dofse; ++i)}
+\DoxyCodeLine{350                         \{}
+\DoxyCodeLine{351                             \textcolor{keywordflow}{for} (j = 0; j < dofsk; ++j)}
+\DoxyCodeLine{352                             \{}
+\DoxyCodeLine{353                                 \textcolor{keyword}{auto} Mek = [\&](\textcolor{keyword}{const} Mesh::Point\& p)}
+\DoxyCodeLine{354                                 \{}
+\DoxyCodeLine{355                                     \textcolor{keywordflow}{return} eleme-\/>GetShapeFunction(i, p) * elemk-\/>GetShapeFunction(j, p);}
+\DoxyCodeLine{356                                 \};}
+\DoxyCodeLine{357                                 \textcolor{keyword}{auto} temp\{ bound-\/>Integrate(Mek, points) \};}
+\DoxyCodeLine{358                                 C = std::max(fabs(m\_CoarseGrid-\/>getSolution(nk, j)), fabs(m\_CoarseGrid-\/>getSolution(ne, i)));}
+\DoxyCodeLine{359                                 \textcolor{comment}{//m\_rhsvector-\/>operator[](m\_nums[ne] + i) += 0.5*(m\_flux(m\_CoarseGrid-\/>getSolution(nk, j)) * temp -\/ C * m\_CoarseGrid-\/>getSolution(nk, j) * temp);}}
+\DoxyCodeLine{360                                 \textcolor{keyword}{auto} val\{ 0.5*(m\_flux(m\_CoarseGrid-\/>getSolution(nk, j)) + C * m\_CoarseGrid-\/>getSolution(nk, j)) * temp \};}
+\DoxyCodeLine{361                                 m\_rhsvector-\/>operator[](m\_nums[ne] + i) += val;}
+\DoxyCodeLine{362                                 \textcolor{comment}{//ek[m\_nums[ne] + i] += val;}}
+\DoxyCodeLine{363                                 \textcolor{comment}{//rv[m\_nums[ne] + i] += val;}}
+\DoxyCodeLine{364                             \}}
+\DoxyCodeLine{365                         \}}
+\DoxyCodeLine{366                         \textcolor{keywordflow}{for} (i = 0; i < dofse; ++i)}
+\DoxyCodeLine{367                         \{}
+\DoxyCodeLine{368                             \textcolor{keywordflow}{for} (j = 0; j < dofse; ++j)}
+\DoxyCodeLine{369                             \{}
+\DoxyCodeLine{370                                 \textcolor{keyword}{auto} Mee = [\&](\textcolor{keyword}{const} Mesh::Point\& p)}
+\DoxyCodeLine{371                                 \{}
+\DoxyCodeLine{372                                     \textcolor{keywordflow}{return} eleme-\/>GetShapeFunction(j, p) * eleme-\/>GetShapeFunction(i, p);}
+\DoxyCodeLine{373                                 \};}
+\DoxyCodeLine{374                                 \textcolor{keyword}{auto} temp\{ bound-\/>Integrate(Mee, points) \};}
+\DoxyCodeLine{375                                 C = std::max(fabs(m\_CoarseGrid-\/>getSolution(nk, i)), fabs(m\_CoarseGrid-\/>getSolution(ne, j)));}
+\DoxyCodeLine{376                                 \textcolor{comment}{//m\_rhsvector-\/>operator[](m\_nums[ne] + i) += 0.5*(m\_flux(m\_CoarseGrid-\/>getSolution(ne, j)) * temp -\/ C * m\_CoarseGrid-\/>getSolution(ne, j) * temp);}}
+\DoxyCodeLine{377                                 \textcolor{keyword}{auto} val\{ 0.5*(m\_flux(m\_CoarseGrid-\/>getSolution(ne, j)) -\/ C * m\_CoarseGrid-\/>getSolution(ne, j)) * temp \};}
+\DoxyCodeLine{378                                 m\_rhsvector-\/>operator[](m\_nums[ne] + i) += val;}
+\DoxyCodeLine{379                                 \textcolor{comment}{//ee[m\_nums[ne] + i] += val;}}
+\DoxyCodeLine{380                                 \textcolor{comment}{//rv[m\_nums[ne] + i] += val;}}
+\DoxyCodeLine{381                             \}}
+\DoxyCodeLine{382                         \}}
+\DoxyCodeLine{383                     \}}
+\DoxyCodeLine{384                     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{385                     \{}
+\DoxyCodeLine{386                         \textcolor{comment}{//C = m\_flux(m\_CoarseGrid-\/>getSolution(nk, 0));}}
+\DoxyCodeLine{387                         \textcolor{comment}{//m\_rhsvector-\/>operator[](m\_nums[nk]) = C;}}
+\DoxyCodeLine{388                         \textcolor{keywordflow}{if} (l == 0)}
+\DoxyCodeLine{389                         \{}
+\DoxyCodeLine{390                             \textcolor{keywordflow}{for} (i = 0; i < dofsk; ++i)}
+\DoxyCodeLine{391                             \{}
+\DoxyCodeLine{392                                 \textcolor{keywordflow}{for} (j = 0; j < dofsk; ++j)}
+\DoxyCodeLine{393                                 \{}
+\DoxyCodeLine{394                                     \textcolor{keyword}{auto} Mkk = [\&](\textcolor{keyword}{const} Mesh::Point\& p)}
+\DoxyCodeLine{395                                     \{}
+\DoxyCodeLine{396                                         \textcolor{keywordflow}{return} elemk-\/>GetShapeFunction(j, p) * elemk-\/>GetShapeFunction(i, p);}
+\DoxyCodeLine{397                                     \};}
+\DoxyCodeLine{398                                     \textcolor{keyword}{auto} temp\{ bound-\/>Integrate(Mkk, points) \};}
+\DoxyCodeLine{399                                     \textcolor{comment}{//m\_rhsvector-\/>operator[](m\_nums[nk]+i) -\/= ((ne+int(l))>0?-\/1:1)*(m\_flux(m\_CoarseGrid-\/>getSolution(nk, j)) * temp -\/ C * m\_CoarseGrid-\/>getSolution(nk, j) * temp);}}
+\DoxyCodeLine{400                                     \textcolor{keyword}{auto} fl = m\_flux(m\_CoarseGrid-\/>getSolution(nk, j)) * temp;}
+\DoxyCodeLine{401                                     m\_rhsvector-\/>operator[](m\_nums[nk] + i) += fl * temp;}
+\DoxyCodeLine{402                                     \textcolor{comment}{//if(C >= 0)}}
+\DoxyCodeLine{403                                     \textcolor{comment}{//m\_rhsvector-\/>operator[](m\_nums[nk] + i) += ((ne + int(l))>0 ? 1 : 0) * C * temp;}}
+\DoxyCodeLine{404                                     \textcolor{comment}{//m\_rhsvector-\/>operator[](m\_nums[nk] + i) += 1e10 * C * temp;}}
+\DoxyCodeLine{405                                 \}}
+\DoxyCodeLine{406                             \}}
+\DoxyCodeLine{407                         \}}
+\DoxyCodeLine{408                         \textcolor{keywordflow}{else}}
+\DoxyCodeLine{409                         \{}
+\DoxyCodeLine{410                             \textcolor{keywordflow}{for} (i = 0; i < dofsk; ++i)}
+\DoxyCodeLine{411                             \{}
+\DoxyCodeLine{412                                 \textcolor{keywordflow}{for} (j = 0; j < dofsk; ++j)}
+\DoxyCodeLine{413                                 \{}
+\DoxyCodeLine{414                                     \textcolor{keyword}{auto} Mkk = [\&](\textcolor{keyword}{const} Mesh::Point\& p)}
+\DoxyCodeLine{415                                     \{}
+\DoxyCodeLine{416                                         \textcolor{keywordflow}{return} elemk-\/>GetShapeFunction(j, p) * elemk-\/>GetShapeFunction(i, p);}
+\DoxyCodeLine{417                                     \};}
+\DoxyCodeLine{418                                     \textcolor{keyword}{auto} temp\{ bound-\/>Integrate(Mkk, points) \};}
+\DoxyCodeLine{419                                     \textcolor{keyword}{auto} fl = m\_flux(m\_CoarseGrid-\/>getSolution(nk, j)) * temp;}
+\DoxyCodeLine{420                                     m\_rhsvector-\/>operator[](m\_nums[nk] + i) -\/= fl * temp;}
+\DoxyCodeLine{421                                 \}}
+\DoxyCodeLine{422                             \}}
+\DoxyCodeLine{423                         \}}
+\DoxyCodeLine{424                     \}}
+\DoxyCodeLine{425                 \}}
+\DoxyCodeLine{426 }
+\DoxyCodeLine{427                 \textcolor{comment}{// explicit LF flux}}
+\DoxyCodeLine{428                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{429             \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{430                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{431             \}}
+\DoxyCodeLine{432             \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{433         \}}
+\DoxyCodeLine{434 }
+\DoxyCodeLine{435         \textcolor{keyword}{template}<\textcolor{keyword}{class} Problem, \textcolor{keyword}{class} Gr\textcolor{keywordtype}{id}, \textcolor{keyword}{class} Matrix>}
+\DoxyCodeLine{436         \textcolor{keywordtype}{void} system\_dg\_method<Problem, Grid, Matrix>::assemble\_flux(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} l)}
+\DoxyCodeLine{437         \{}
+\DoxyCodeLine{438             \textcolor{keyword}{const} \textcolor{keyword}{auto}\& bound\{ m\_CoarseGrid-\/>GetBoundary(l) \};}
+\DoxyCodeLine{439             \textcolor{keyword}{const} \textcolor{keyword}{auto}\& nk\{ bound-\/>GetNeighbour(0) \};}
+\DoxyCodeLine{440             \textcolor{keyword}{const} \textcolor{keyword}{auto}\& ne\{ bound-\/>GetNeighbour(1) \};}
+\DoxyCodeLine{441             \textcolor{keyword}{const} \textcolor{keyword}{auto}\& elemk\{ m\_CoarseGrid-\/>GetElement(nk) \};}
+\DoxyCodeLine{442             \textcolor{keyword}{const} \textcolor{keyword}{auto}\& dofs\{ bound-\/>GetDoFs() \};}
+\DoxyCodeLine{443             \textcolor{keyword}{const} \textcolor{keyword}{auto}\& dofsk\{ elemk-\/>GetDoFs() \};}
+\DoxyCodeLine{444             \textcolor{keywordtype}{double} C\{ 0 \};}
+\DoxyCodeLine{445             \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} i, j;}
+\DoxyCodeLine{446             std::vector<Mesh::Point> points(dofs);}
+\DoxyCodeLine{447             \textcolor{keywordflow}{for} (i = 0; i < dofs; ++i)}
+\DoxyCodeLine{448                 points[i] = m\_CoarseGrid-\/>GetNode(bound-\/>GetNode(i));}
+\DoxyCodeLine{449             C = 2;}
+\DoxyCodeLine{450             \textcolor{keywordflow}{if} (ne > -\/1)}
+\DoxyCodeLine{451             \{}
+\DoxyCodeLine{452                 \textcolor{keyword}{const} \textcolor{keyword}{auto}\& eleme\{ m\_CoarseGrid-\/>GetElement(ne) \};}
+\DoxyCodeLine{453                 \textcolor{keyword}{const} \textcolor{keyword}{auto}\& dofse\{ eleme-\/>GetDoFs() \};}
+\DoxyCodeLine{454                 \textcolor{keywordflow}{for} (i = 0; i < dofsk; ++i)}
+\DoxyCodeLine{455                 \{}
+\DoxyCodeLine{456                     \textcolor{keywordflow}{for} (j = 0; j < dofsk; ++j)}
+\DoxyCodeLine{457                     \{}
+\DoxyCodeLine{458                         \textcolor{keyword}{auto} Mkk = [\&](\textcolor{keyword}{const} Mesh::Point\& p)}
+\DoxyCodeLine{459                         \{}
+\DoxyCodeLine{460                             \textcolor{keywordflow}{return} elemk-\/>GetShapeFunction(j, p) * elemk-\/>GetShapeFunction(i, p);}
+\DoxyCodeLine{461                         \};}
+\DoxyCodeLine{462                         \textcolor{keyword}{auto} temp\{ bound-\/>Integrate(Mkk, points) \};}
+\DoxyCodeLine{463                         C = std::max(m\_CoarseGrid-\/>getSolution(nk, i), m\_CoarseGrid-\/>getSolution(nk, j));}
+\DoxyCodeLine{464                         \textcolor{keyword}{auto} val\{ -\/0.5*(m\_flux(m\_CoarseGrid-\/>getSolution(nk, j)) + C * m\_CoarseGrid-\/>getSolution(nk, j)) * temp \};}
+\DoxyCodeLine{465                         m\_rhsvector-\/>operator[](m\_nums[nk] + i) += val;}
+\DoxyCodeLine{466                         \textcolor{comment}{//kk[m\_nums[nk] + i] += val;}}
+\DoxyCodeLine{467                         \textcolor{comment}{//lv[m\_nums[nk] + i] += val;}}
+\DoxyCodeLine{468                     \}}
+\DoxyCodeLine{469                 \}}
+\DoxyCodeLine{470                 \textcolor{keywordflow}{for} (i = 0; i < dofsk; ++i)}
+\DoxyCodeLine{471                 \{}
+\DoxyCodeLine{472                     \textcolor{keywordflow}{for} (j = 0; j < dofse; ++j)}
+\DoxyCodeLine{473                     \{}
+\DoxyCodeLine{474                         \textcolor{keyword}{auto} Mke = [\&](\textcolor{keyword}{const} Mesh::Point\& p)}
+\DoxyCodeLine{475                         \{}
+\DoxyCodeLine{476                             \textcolor{keywordflow}{return} eleme-\/>GetShapeFunction(j, p) * elemk-\/>GetShapeFunction(i, p);}
+\DoxyCodeLine{477                         \};}
+\DoxyCodeLine{478                         \textcolor{keyword}{auto} temp\{ bound-\/>Integrate(Mke, points) \};}
+\DoxyCodeLine{479                         C = std::max(m\_CoarseGrid-\/>getSolution(nk, i), m\_CoarseGrid-\/>getSolution(ne, j));}
+\DoxyCodeLine{480                         \textcolor{comment}{//m\_rhsvector-\/>operator[](m\_nums[nk] +7 i) += -\/0.5*(m\_flux(m\_CoarseGrid-\/>getSolution(ne, j)) * temp -\/ C * m\_CoarseGrid-\/>getSolution(ne, j) * temp);}}
+\DoxyCodeLine{481                         \textcolor{keyword}{auto} val\{ -\/0.5*(m\_flux(m\_CoarseGrid-\/>getSolution(ne, j)) -\/ C * m\_CoarseGrid-\/>getSolution(ne, j)) * temp \};}
+\DoxyCodeLine{482                         m\_rhsvector-\/>operator[](m\_nums[nk] + i) += val;}
+\DoxyCodeLine{483                         \textcolor{comment}{//ke[m\_nums[nk] + i] += val;}}
+\DoxyCodeLine{484                         \textcolor{comment}{//rv[m\_nums[nk] + i] += val;}}
+\DoxyCodeLine{485                     \}}
+\DoxyCodeLine{486                 \}}
+\DoxyCodeLine{487                 \textcolor{keywordflow}{for} (i = 0; i < dofse; ++i)}
+\DoxyCodeLine{488                 \{}
+\DoxyCodeLine{489                     \textcolor{keywordflow}{for} (j = 0; j < dofsk; ++j)}
+\DoxyCodeLine{490                     \{}
+\DoxyCodeLine{491                         \textcolor{keyword}{auto} Mek = [\&](\textcolor{keyword}{const} Mesh::Point\& p)}
+\DoxyCodeLine{492                         \{}
+\DoxyCodeLine{493                             \textcolor{keywordflow}{return} eleme-\/>GetShapeFunction(i, p) * elemk-\/>GetShapeFunction(j, p);}
+\DoxyCodeLine{494                         \};}
+\DoxyCodeLine{495                         \textcolor{keyword}{auto} temp\{ bound-\/>Integrate(Mek, points) \};}
+\DoxyCodeLine{496                         C = std::max(m\_CoarseGrid-\/>getSolution(nk, j), m\_CoarseGrid-\/>getSolution(ne, i));}
+\DoxyCodeLine{497                         \textcolor{comment}{//m\_rhsvector-\/>operator[](m\_nums[ne] + i) += 0.5*(m\_flux(m\_CoarseGrid-\/>getSolution(nk, j)) * temp -\/ C * m\_CoarseGrid-\/>getSolution(nk, j) * temp);}}
+\DoxyCodeLine{498                         \textcolor{keyword}{auto} val\{ 0.5*(m\_flux(m\_CoarseGrid-\/>getSolution(nk, j)) + C * m\_CoarseGrid-\/>getSolution(nk, j)) * temp \};}
+\DoxyCodeLine{499                         m\_rhsvector-\/>operator[](m\_nums[ne] + i) += val;}
+\DoxyCodeLine{500                         \textcolor{comment}{//ek[m\_nums[ne] + i] += val;}}
+\DoxyCodeLine{501                         \textcolor{comment}{//lv[m\_nums[ne] + i] += val;}}
+\DoxyCodeLine{502                     \}}
+\DoxyCodeLine{503                 \}}
+\DoxyCodeLine{504                 \textcolor{keywordflow}{for} (i = 0; i < dofse; ++i)}
+\DoxyCodeLine{505                 \{}
+\DoxyCodeLine{506                     \textcolor{keywordflow}{for} (j = 0; j < dofse; ++j)}
+\DoxyCodeLine{507                     \{}
+\DoxyCodeLine{508                         \textcolor{keyword}{auto} Mee = [\&](\textcolor{keyword}{const} Mesh::Point\& p)}
+\DoxyCodeLine{509                         \{}
+\DoxyCodeLine{510                             \textcolor{keywordflow}{return} eleme-\/>GetShapeFunction(j, p) * eleme-\/>GetShapeFunction(i, p);}
+\DoxyCodeLine{511                         \};}
+\DoxyCodeLine{512                         \textcolor{keyword}{auto} temp\{ bound-\/>Integrate(Mee, points) \};}
+\DoxyCodeLine{513                         C = std::max(m\_CoarseGrid-\/>getSolution(ne, i), m\_CoarseGrid-\/>getSolution(ne, j));}
+\DoxyCodeLine{514                         \textcolor{comment}{//m\_rhsvector-\/>operator[](m\_nums[ne] + i) += 0.5*(m\_flux(m\_CoarseGrid-\/>getSolution(ne, j)) * temp -\/ C * m\_CoarseGrid-\/>getSolution(ne, j) * temp);}}
+\DoxyCodeLine{515                         \textcolor{keyword}{auto} val\{ 0.5*(m\_flux(m\_CoarseGrid-\/>getSolution(ne, j)) -\/ C * m\_CoarseGrid-\/>getSolution(ne, j)) * temp \};}
+\DoxyCodeLine{516                         m\_rhsvector-\/>operator[](m\_nums[ne] + i) += val;}
+\DoxyCodeLine{517                         \textcolor{comment}{//ee[m\_nums[ne] + i] += val;}}
+\DoxyCodeLine{518                         \textcolor{comment}{//rv[m\_nums[ne] + i] += val;}}
+\DoxyCodeLine{519                     \}}
+\DoxyCodeLine{520                 \}}
+\DoxyCodeLine{521             \}}
+\DoxyCodeLine{522             \textcolor{keywordflow}{else}}
+\DoxyCodeLine{523             \{}
+\DoxyCodeLine{524                 \textcolor{keywordflow}{for} (i = 0; i < dofsk; ++i)}
+\DoxyCodeLine{525                 \{}
+\DoxyCodeLine{526                     \textcolor{keywordflow}{for} (j = 0; j < dofsk; ++j)}
+\DoxyCodeLine{527                     \{}
+\DoxyCodeLine{528                         \textcolor{keyword}{auto} Mkk = [\&](\textcolor{keyword}{const} Mesh::Point\& p)}
+\DoxyCodeLine{529                         \{}
+\DoxyCodeLine{530                             \textcolor{keywordflow}{return} elemk-\/>GetShapeFunction(j, p) * elemk-\/>GetShapeFunction(i, p);}
+\DoxyCodeLine{531                         \};}
+\DoxyCodeLine{532                         \textcolor{keyword}{auto} temp\{ bound-\/>Integrate(Mkk, points) \};}
+\DoxyCodeLine{533                         \textcolor{keyword}{auto} fl = m\_flux(m\_CoarseGrid-\/>getSolution(nk, j));}
+\DoxyCodeLine{534                         C = m\_CoarseGrid-\/>getSolution(nk, j);}
+\DoxyCodeLine{535                         m\_rhsvector-\/>operator[](m\_nums[nk] + i) += ((ne + \textcolor{keywordtype}{int}(l))>0 ? 0 : 1) *fl * temp;}
+\DoxyCodeLine{536                     \}}
+\DoxyCodeLine{537                 \}}
+\DoxyCodeLine{538             \}}
+\DoxyCodeLine{539         \}}
+\DoxyCodeLine{540         \textcolor{keyword}{template}<\textcolor{keyword}{class} Problem, \textcolor{keyword}{class} Gr\textcolor{keywordtype}{id}, \textcolor{keyword}{class} Matrix>}
+\DoxyCodeLine{541         \textcolor{keywordtype}{void} system\_dg\_method<Problem, Grid, Matrix>::MainConditions()}
+\DoxyCodeLine{542         \{}
+\DoxyCodeLine{543 }
+\DoxyCodeLine{544         \}}
+\DoxyCodeLine{545 }
+\DoxyCodeLine{546         \textcolor{keyword}{template}<\textcolor{keyword}{class} Problem, \textcolor{keyword}{class} Gr\textcolor{keywordtype}{id}, \textcolor{keyword}{class} Matrix>}
+\DoxyCodeLine{547         \textcolor{keywordtype}{void} system\_dg\_method<Problem, Grid, Matrix>::SecondConditions()}
+\DoxyCodeLine{548         \{}
+\DoxyCodeLine{549 }
+\DoxyCodeLine{550         \}}
+\DoxyCodeLine{551 }
+\DoxyCodeLine{552         \textcolor{keyword}{template}<\textcolor{keyword}{class} Problem, \textcolor{keyword}{class} Gr\textcolor{keywordtype}{id}, \textcolor{keyword}{class} Matrix>}
+\DoxyCodeLine{553         \textcolor{keywordtype}{void} system\_dg\_method<Problem, Grid, Matrix>::ThirdConditions()}
+\DoxyCodeLine{554         \{}
+\DoxyCodeLine{555 }
+\DoxyCodeLine{556         \}}
+\DoxyCodeLine{557 }
+\DoxyCodeLine{558         \textcolor{keyword}{template}<\textcolor{keyword}{class} Problem, \textcolor{keyword}{class} Gr\textcolor{keywordtype}{id}, \textcolor{keyword}{class} Matrix>}
+\DoxyCodeLine{559         \textcolor{keyword}{const} \textcolor{keywordtype}{double} \mbox{\hyperlink{classcorenc_1_1method_1_1system__dg__method_a2fd15d7c48b8e0189b63abbdba2083bc}{system\_dg\_method<Problem, Grid, Matrix>::GetMaxSolution}}()\textcolor{keyword}{ const}}
+\DoxyCodeLine{560 \textcolor{keyword}{        }\{}
+\DoxyCodeLine{561             \textcolor{keywordflow}{return} 0.;}
+\DoxyCodeLine{562         \}}
+\DoxyCodeLine{563 }
+\DoxyCodeLine{564         \textcolor{keyword}{template}<\textcolor{keyword}{class} Problem, \textcolor{keyword}{class} Gr\textcolor{keywordtype}{id}, \textcolor{keyword}{class} Matrix>}
+\DoxyCodeLine{565         \textcolor{keyword}{const} \textcolor{keywordtype}{double} \mbox{\hyperlink{classcorenc_1_1method_1_1system__dg__method_a5306a58d4c1f96f8ee4e72d500c75c8a}{system\_dg\_method<Problem, Grid, Matrix>::GetMinSolution}}()\textcolor{keyword}{ const}}
+\DoxyCodeLine{566 \textcolor{keyword}{        }\{}
+\DoxyCodeLine{567             \textcolor{keywordflow}{return} 0.;}
+\DoxyCodeLine{568         \}}
+\DoxyCodeLine{569 }
+\DoxyCodeLine{570         \textcolor{keyword}{template}<\textcolor{keyword}{class} Problem, \textcolor{keyword}{class} Gr\textcolor{keywordtype}{id}, \textcolor{keyword}{class} Matrix>}
+\DoxyCodeLine{571         \textcolor{keyword}{const} \textcolor{keywordtype}{double} \mbox{\hyperlink{classcorenc_1_1method_1_1system__dg__method_a94f65865535944c6002be6d97aa1c867}{system\_dg\_method<Problem, Grid, Matrix>::GetSolution}}(\textcolor{keyword}{const} std::vector<double>\& point)\textcolor{keyword}{ const}}
+\DoxyCodeLine{572 \textcolor{keyword}{        }\{}
+\DoxyCodeLine{573             \textcolor{keywordflow}{return} 0.;}
+\DoxyCodeLine{574         \}}
+\DoxyCodeLine{575     \}}
+\DoxyCodeLine{576 \}}
+\DoxyCodeLine{577 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// !CORENC\_METHODS\_SYSTEM\_DG\_METHOD\_H\_}}
+
+\end{DoxyCode}

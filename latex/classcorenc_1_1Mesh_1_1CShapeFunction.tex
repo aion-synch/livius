@@ -1,0 +1,125 @@
+\hypertarget{classcorenc_1_1Mesh_1_1CShapeFunction}{}\doxysection{corenc\+::Mesh\+::CShape\+Function\texorpdfstring{$<$}{<} Type \texorpdfstring{$>$}{>} Class Template Reference}
+\label{classcorenc_1_1Mesh_1_1CShapeFunction}\index{corenc::Mesh::CShapeFunction$<$ Type $>$@{corenc::Mesh::CShapeFunction$<$ Type $>$}}
+
+
+{\ttfamily \#include $<$Shape\+Function.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcorenc_1_1Mesh_1_1CShapeFunction_a712e4bbc998a3f9d8e2d6ef42fd28a5b}{CShape\+Function}} ()
+\item 
+\mbox{\hyperlink{classcorenc_1_1Mesh_1_1CShapeFunction_ab406b4878c16ddf0f1e38a3f2b7b0bc4}{CShape\+Function}} (const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} $\ast$)
+\item 
+virtual \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CShapeFunction_adc2503d7864395d5ef0a578145f06a3a}{$\sim$\+CShape\+Function}} ()
+\item 
+virtual const int \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CShapeFunction_ac0abc38088b74000db00c16ceb3fd4dc}{Get\+Number\+Of\+Shape\+Functions}} () const =0
+\item 
+virtual const double \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CShapeFunction_a871cda6b46ec7acce28121d0c74207f7}{Get\+Shape\+Function}} (const int, const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} \&) const =0
+\item 
+virtual const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CShapeFunction_ae4e0205b8c97a3bc321b3f6f61ed7403}{Get\+Grad\+Shape\+Function}} (const int, const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} \&) const =0
+\item 
+virtual const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CShapeFunction_a5d9e746494241c344efab134e2883d17}{Get\+Normal}} () const =0
+\item 
+virtual void \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CShapeFunction_a01a0bf9991424ac553ce54f083d8d3a9}{Reverse\+Normal}} ()=0
+\item 
+virtual const double \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CShapeFunction_a6c850b856bd07fca32d2a55c47dee9bd}{Get\+Measure}} () const =0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CShapeFunction_a712e4bbc998a3f9d8e2d6ef42fd28a5b}\label{classcorenc_1_1Mesh_1_1CShapeFunction_a712e4bbc998a3f9d8e2d6ef42fd28a5b}} 
+\index{corenc::Mesh::CShapeFunction$<$ Type $>$@{corenc::Mesh::CShapeFunction$<$ Type $>$}!CShapeFunction@{CShapeFunction}}
+\index{CShapeFunction@{CShapeFunction}!corenc::Mesh::CShapeFunction$<$ Type $>$@{corenc::Mesh::CShapeFunction$<$ Type $>$}}
+\doxysubsubsection{\texorpdfstring{CShapeFunction()}{CShapeFunction()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Type $>$ \\
+\mbox{\hyperlink{classcorenc_1_1Mesh_1_1CShapeFunction}{corenc\+::\+Mesh\+::\+CShape\+Function}}$<$ Type $>$\+::\+CShape\+Function (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CShapeFunction_ab406b4878c16ddf0f1e38a3f2b7b0bc4}\label{classcorenc_1_1Mesh_1_1CShapeFunction_ab406b4878c16ddf0f1e38a3f2b7b0bc4}} 
+\index{corenc::Mesh::CShapeFunction$<$ Type $>$@{corenc::Mesh::CShapeFunction$<$ Type $>$}!CShapeFunction@{CShapeFunction}}
+\index{CShapeFunction@{CShapeFunction}!corenc::Mesh::CShapeFunction$<$ Type $>$@{corenc::Mesh::CShapeFunction$<$ Type $>$}}
+\doxysubsubsection{\texorpdfstring{CShapeFunction()}{CShapeFunction()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Type $>$ \\
+\mbox{\hyperlink{classcorenc_1_1Mesh_1_1CShapeFunction}{corenc\+::\+Mesh\+::\+CShape\+Function}}$<$ Type $>$\+::\+CShape\+Function (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} $\ast$}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CShapeFunction_adc2503d7864395d5ef0a578145f06a3a}\label{classcorenc_1_1Mesh_1_1CShapeFunction_adc2503d7864395d5ef0a578145f06a3a}} 
+\index{corenc::Mesh::CShapeFunction$<$ Type $>$@{corenc::Mesh::CShapeFunction$<$ Type $>$}!````~CShapeFunction@{$\sim$CShapeFunction}}
+\index{````~CShapeFunction@{$\sim$CShapeFunction}!corenc::Mesh::CShapeFunction$<$ Type $>$@{corenc::Mesh::CShapeFunction$<$ Type $>$}}
+\doxysubsubsection{\texorpdfstring{$\sim$CShapeFunction()}{~CShapeFunction()}}
+{\footnotesize\ttfamily template$<$class Type $>$ \\
+virtual \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CShapeFunction}{corenc\+::\+Mesh\+::\+CShape\+Function}}$<$ Type $>$\+::$\sim$\mbox{\hyperlink{classcorenc_1_1Mesh_1_1CShapeFunction}{CShape\+Function}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CShapeFunction_ae4e0205b8c97a3bc321b3f6f61ed7403}\label{classcorenc_1_1Mesh_1_1CShapeFunction_ae4e0205b8c97a3bc321b3f6f61ed7403}} 
+\index{corenc::Mesh::CShapeFunction$<$ Type $>$@{corenc::Mesh::CShapeFunction$<$ Type $>$}!GetGradShapeFunction@{GetGradShapeFunction}}
+\index{GetGradShapeFunction@{GetGradShapeFunction}!corenc::Mesh::CShapeFunction$<$ Type $>$@{corenc::Mesh::CShapeFunction$<$ Type $>$}}
+\doxysubsubsection{\texorpdfstring{GetGradShapeFunction()}{GetGradShapeFunction()}}
+{\footnotesize\ttfamily template$<$class Type $>$ \\
+virtual const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CShapeFunction}{corenc\+::\+Mesh\+::\+CShape\+Function}}$<$ Type $>$\+::\+Get\+Grad\+Shape\+Function (\begin{DoxyParamCaption}\item[{const int}]{,  }\item[{const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} \&}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CCubeBasis_a7322e119c92b9329764192b8c349d09a}{corenc\+::\+Mesh\+::\+CCube\+Basis}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CEdgeLinearBasis_a03384cd91a03b4173e0a8912237c312d}{corenc\+::\+Mesh\+::\+CEdge\+Linear\+Basis}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CEdgeConstantBasis_a7932dded1cafca5c4e6df1c22e6ec5ef}{corenc\+::\+Mesh\+::\+CEdge\+Constant\+Basis}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CEdgeMultiBasis_afb600b73075cbf6aec5ab16a203ac94a}{corenc\+::\+Mesh\+::\+CEdge\+Multi\+Basis}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CEdgeHermiteBasis_aa178b2fa12b1c946fe98b3c1e670732d}{corenc\+::\+Mesh\+::\+CEdge\+Hermite\+Basis}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CEdge2ndBasis_a916fb7359bfe590c11ea1b2f3fccf88f}{corenc\+::\+Mesh\+::\+CEdge2nd\+Basis}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CNodeBasis_ab9093c9c3aac55c416746f52aba71023}{corenc\+::\+Mesh\+::\+CNode\+Basis}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CRectangleBasis_ac49d117cca0f116507aae3ac13f2da21}{corenc\+::\+Mesh\+::\+CRectangle\+Basis}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CRectangleHBasis_af788f317e72c8e1c8a6f46991156746f}{corenc\+::\+Mesh\+::\+CRectangle\+HBasis}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CRectangleBasis2x_adbbc3d018a2c7645dedc078ccaf974f0}{corenc\+::\+Mesh\+::\+CRectangle\+Basis2x}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CRectangleBasis2y_a6d524b98b0dafcaf3f97b67074765734}{corenc\+::\+Mesh\+::\+CRectangle\+Basis2y}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CRectangleBasis2_a757bd6bea54d7bd81c6ae35c4214eb62}{corenc\+::\+Mesh\+::\+CRectangle\+Basis2}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CRectangleConstantBasis_a4c243f508ce22922c994b0bcfbc7100d}{corenc\+::\+Mesh\+::\+CRectangle\+Constant\+Basis}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CTriangleBasis_a567bd8813351810ecb895d3e5efab0e4}{corenc\+::\+Mesh\+::\+CTriangle\+Basis}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CTriangleLagrangeBasis_a74f57b4ef57210e780d4121c65847756}{corenc\+::\+Mesh\+::\+CTriangle\+Lagrange\+Basis}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CTriangleLinearBasis_ae9c984398370a063e06f02c041bb0fc5}{corenc\+::\+Mesh\+::\+CTriangle\+Linear\+Basis}}, and \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CTriangleBasis_a6f16f1e9114f6a38a34fc3dcdb1887fc}{corenc\+::\+Mesh\+::\+CTriangle\+Basis}}.
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CShapeFunction_a6c850b856bd07fca32d2a55c47dee9bd}\label{classcorenc_1_1Mesh_1_1CShapeFunction_a6c850b856bd07fca32d2a55c47dee9bd}} 
+\index{corenc::Mesh::CShapeFunction$<$ Type $>$@{corenc::Mesh::CShapeFunction$<$ Type $>$}!GetMeasure@{GetMeasure}}
+\index{GetMeasure@{GetMeasure}!corenc::Mesh::CShapeFunction$<$ Type $>$@{corenc::Mesh::CShapeFunction$<$ Type $>$}}
+\doxysubsubsection{\texorpdfstring{GetMeasure()}{GetMeasure()}}
+{\footnotesize\ttfamily template$<$class Type $>$ \\
+virtual const double \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CShapeFunction}{corenc\+::\+Mesh\+::\+CShape\+Function}}$<$ Type $>$\+::\+Get\+Measure (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CCubeBasis_a2a947f212e9820568ebf297cd1bf833d}{corenc\+::\+Mesh\+::\+CCube\+Basis}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CEdgeLinearBasis_a63a0d1b62ce182c464a19f8837a8e5f7}{corenc\+::\+Mesh\+::\+CEdge\+Linear\+Basis}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CEdgeConstantBasis_aad1e04b406799c8933cbe63d687b212a}{corenc\+::\+Mesh\+::\+CEdge\+Constant\+Basis}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CEdgeMultiBasis_aedee3ecdb9533ec1051d51bc56fc1670}{corenc\+::\+Mesh\+::\+CEdge\+Multi\+Basis}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CEdgeHermiteBasis_a99f4bbb7962361c42d1f2ffe9a4dbbe7}{corenc\+::\+Mesh\+::\+CEdge\+Hermite\+Basis}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CEdge2ndBasis_abd5b272fe921bc7db24b4e27ad156ad8}{corenc\+::\+Mesh\+::\+CEdge2nd\+Basis}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CNodeBasis_aa3a7694c4a264840867ea583359713fe}{corenc\+::\+Mesh\+::\+CNode\+Basis}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CRectangleBasis_a24f54d48cc15d63055421ad4a775ba5f}{corenc\+::\+Mesh\+::\+CRectangle\+Basis}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CRectangleHBasis_a56a4d81792bc06626a9970e5f2845d95}{corenc\+::\+Mesh\+::\+CRectangle\+HBasis}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CRectangleBasis2x_a4b21b24a32ae614e68bbe8570028dee2}{corenc\+::\+Mesh\+::\+CRectangle\+Basis2x}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CRectangleBasis2y_a2ffb48d68b1f31a59ae4f529b6a9e104}{corenc\+::\+Mesh\+::\+CRectangle\+Basis2y}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CRectangleBasis2_aae98487f46494fd47423b8428cfb2235}{corenc\+::\+Mesh\+::\+CRectangle\+Basis2}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CRectangleConstantBasis_af39700c96465add0393204335ef8da31}{corenc\+::\+Mesh\+::\+CRectangle\+Constant\+Basis}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CTriangleBasis_ab29e0edb8ad2ca28abff58fc5124b153}{corenc\+::\+Mesh\+::\+CTriangle\+Basis}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CTriangleLagrangeBasis_a22f4809e2f74634e74959c97dbebb9e1}{corenc\+::\+Mesh\+::\+CTriangle\+Lagrange\+Basis}}, and \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CTriangleLinearBasis_a59e365183f715a2de489d14c3ec6a980}{corenc\+::\+Mesh\+::\+CTriangle\+Linear\+Basis}}.
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CShapeFunction_a5d9e746494241c344efab134e2883d17}\label{classcorenc_1_1Mesh_1_1CShapeFunction_a5d9e746494241c344efab134e2883d17}} 
+\index{corenc::Mesh::CShapeFunction$<$ Type $>$@{corenc::Mesh::CShapeFunction$<$ Type $>$}!GetNormal@{GetNormal}}
+\index{GetNormal@{GetNormal}!corenc::Mesh::CShapeFunction$<$ Type $>$@{corenc::Mesh::CShapeFunction$<$ Type $>$}}
+\doxysubsubsection{\texorpdfstring{GetNormal()}{GetNormal()}}
+{\footnotesize\ttfamily template$<$class Type $>$ \\
+virtual const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CShapeFunction}{corenc\+::\+Mesh\+::\+CShape\+Function}}$<$ Type $>$\+::\+Get\+Normal (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CCubeBasis_a757bcd741f29aff69add36ac46768ebd}{corenc\+::\+Mesh\+::\+CCube\+Basis}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CEdgeLinearBasis_a4089ad11fec08208e76825c25017dea4}{corenc\+::\+Mesh\+::\+CEdge\+Linear\+Basis}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CEdgeConstantBasis_a79d69ae2e268116f4e43e20881834a58}{corenc\+::\+Mesh\+::\+CEdge\+Constant\+Basis}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CEdgeMultiBasis_ac929eafdc90da4943f1ca2dceae253b7}{corenc\+::\+Mesh\+::\+CEdge\+Multi\+Basis}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CEdgeHermiteBasis_af9a3e671d8c2f843a64de5c76edc798d}{corenc\+::\+Mesh\+::\+CEdge\+Hermite\+Basis}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CEdge2ndBasis_a7c8ec8c39e2d7aa5d0c3b91c84bc37ba}{corenc\+::\+Mesh\+::\+CEdge2nd\+Basis}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CNodeBasis_ab34236eaf8ecbcb69bb46b239caa390f}{corenc\+::\+Mesh\+::\+CNode\+Basis}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CRectangleBasis_ab360266940778b80711002dc4ce19f18}{corenc\+::\+Mesh\+::\+CRectangle\+Basis}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CRectangleHBasis_a497971b52532f3b64fbcca49186e5f6c}{corenc\+::\+Mesh\+::\+CRectangle\+HBasis}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CRectangleBasis2x_a9f631b6c0599034e6aa263c4ed64d6e0}{corenc\+::\+Mesh\+::\+CRectangle\+Basis2x}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CRectangleBasis2y_a17d01fc03cb2ed0966be15b1f304b34e}{corenc\+::\+Mesh\+::\+CRectangle\+Basis2y}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CRectangleBasis2_a2d8e2557c99dcd970693aff247cd25d5}{corenc\+::\+Mesh\+::\+CRectangle\+Basis2}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CRectangleConstantBasis_a3a284b4cd90d3f5c4f04051f0fc9a6ef}{corenc\+::\+Mesh\+::\+CRectangle\+Constant\+Basis}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CTriangleBasis_a8fd6433f6f49ce21662ab57ec8db22db}{corenc\+::\+Mesh\+::\+CTriangle\+Basis}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CTriangleLagrangeBasis_a0fcb2010598ff8316dac6f616bcfbffa}{corenc\+::\+Mesh\+::\+CTriangle\+Lagrange\+Basis}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CTriangleLinearBasis_a5741e5583555454373da80fb580c34e0}{corenc\+::\+Mesh\+::\+CTriangle\+Linear\+Basis}}, and \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CTriangleBasis_a7eac3113cd7c9ccf434590969d38c26e}{corenc\+::\+Mesh\+::\+CTriangle\+Basis}}.
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CShapeFunction_ac0abc38088b74000db00c16ceb3fd4dc}\label{classcorenc_1_1Mesh_1_1CShapeFunction_ac0abc38088b74000db00c16ceb3fd4dc}} 
+\index{corenc::Mesh::CShapeFunction$<$ Type $>$@{corenc::Mesh::CShapeFunction$<$ Type $>$}!GetNumberOfShapeFunctions@{GetNumberOfShapeFunctions}}
+\index{GetNumberOfShapeFunctions@{GetNumberOfShapeFunctions}!corenc::Mesh::CShapeFunction$<$ Type $>$@{corenc::Mesh::CShapeFunction$<$ Type $>$}}
+\doxysubsubsection{\texorpdfstring{GetNumberOfShapeFunctions()}{GetNumberOfShapeFunctions()}}
+{\footnotesize\ttfamily template$<$class Type $>$ \\
+virtual const int \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CShapeFunction}{corenc\+::\+Mesh\+::\+CShape\+Function}}$<$ Type $>$\+::\+Get\+Number\+Of\+Shape\+Functions (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CCubeBasis_a76822a1b31b099f7bf9586bc44d08c7a}{corenc\+::\+Mesh\+::\+CCube\+Basis}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CEdgeLinearBasis_a9d70c7fcf230707fa3b7529079d993fa}{corenc\+::\+Mesh\+::\+CEdge\+Linear\+Basis}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CEdgeConstantBasis_a2c0425efa492c7ebca36549ff1be1df7}{corenc\+::\+Mesh\+::\+CEdge\+Constant\+Basis}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CEdgeMultiBasis_ae856b9ec035e1e553b218735aabe90b9}{corenc\+::\+Mesh\+::\+CEdge\+Multi\+Basis}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CEdgeHermiteBasis_a8b4ed9b1f17eb2aee9747a1bd0b1bdd5}{corenc\+::\+Mesh\+::\+CEdge\+Hermite\+Basis}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CEdge2ndBasis_ac6b424cf82f4c655d439b8d806ff66ae}{corenc\+::\+Mesh\+::\+CEdge2nd\+Basis}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CNodeBasis_a6af9cceeebc98901d83e20e37edab107}{corenc\+::\+Mesh\+::\+CNode\+Basis}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CRectangleBasis_ae5dde52b3d1b411cb5cd03c03bf95a7d}{corenc\+::\+Mesh\+::\+CRectangle\+Basis}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CRectangleHBasis_a5ea0fab8f2207c47fdcde32071f69888}{corenc\+::\+Mesh\+::\+CRectangle\+HBasis}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CRectangleBasis2x_ad3b13fa7ac612cf9e8db10f3c8079f48}{corenc\+::\+Mesh\+::\+CRectangle\+Basis2x}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CRectangleBasis2y_acd262906de14fe0c934ae0e9dafcb766}{corenc\+::\+Mesh\+::\+CRectangle\+Basis2y}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CRectangleBasis2_ad76a879c5579dd8959af91d1549d8a1e}{corenc\+::\+Mesh\+::\+CRectangle\+Basis2}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CRectangleConstantBasis_a20d837e84d0cf7ad45d8ee775792d96a}{corenc\+::\+Mesh\+::\+CRectangle\+Constant\+Basis}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CTriangleBasis_a153ac154ab8b6085bfc3fbcbca7c695f}{corenc\+::\+Mesh\+::\+CTriangle\+Basis}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CTriangleLagrangeBasis_a6890274b79fa3e617af548b86c53a842}{corenc\+::\+Mesh\+::\+CTriangle\+Lagrange\+Basis}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CTriangleLinearBasis_a023b8548fc007c380095ac42a8fb363f}{corenc\+::\+Mesh\+::\+CTriangle\+Linear\+Basis}}, and \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CTriangleBasis_a06ef33117403f8577f7321a0a4caeab2}{corenc\+::\+Mesh\+::\+CTriangle\+Basis}}.
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CShapeFunction_a871cda6b46ec7acce28121d0c74207f7}\label{classcorenc_1_1Mesh_1_1CShapeFunction_a871cda6b46ec7acce28121d0c74207f7}} 
+\index{corenc::Mesh::CShapeFunction$<$ Type $>$@{corenc::Mesh::CShapeFunction$<$ Type $>$}!GetShapeFunction@{GetShapeFunction}}
+\index{GetShapeFunction@{GetShapeFunction}!corenc::Mesh::CShapeFunction$<$ Type $>$@{corenc::Mesh::CShapeFunction$<$ Type $>$}}
+\doxysubsubsection{\texorpdfstring{GetShapeFunction()}{GetShapeFunction()}}
+{\footnotesize\ttfamily template$<$class Type $>$ \\
+virtual const double \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CShapeFunction}{corenc\+::\+Mesh\+::\+CShape\+Function}}$<$ Type $>$\+::\+Get\+Shape\+Function (\begin{DoxyParamCaption}\item[{const int}]{,  }\item[{const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} \&}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CCubeBasis_a0ccac383732951535719b22a66e009cd}{corenc\+::\+Mesh\+::\+CCube\+Basis}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CEdgeLinearBasis_a6cf3e2b08a3b2dc6f9a65cad3da4281a}{corenc\+::\+Mesh\+::\+CEdge\+Linear\+Basis}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CEdgeConstantBasis_ab31a38f244c30671b05b99edda0fc6a4}{corenc\+::\+Mesh\+::\+CEdge\+Constant\+Basis}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CEdgeMultiBasis_a1989cb38d1e9e1842524ba3695dca731}{corenc\+::\+Mesh\+::\+CEdge\+Multi\+Basis}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CEdgeHermiteBasis_a7c3793487319c9297f3bee71b5645220}{corenc\+::\+Mesh\+::\+CEdge\+Hermite\+Basis}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CEdge2ndBasis_a35cc7e88bc78c9cc85e796a2bd2e8403}{corenc\+::\+Mesh\+::\+CEdge2nd\+Basis}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CNodeBasis_a0eeb069a5db1b3acb6dbbbc3dee81e9f}{corenc\+::\+Mesh\+::\+CNode\+Basis}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CRectangleBasis_ae56cadd679b68fd4c28b743cb5c2c1d1}{corenc\+::\+Mesh\+::\+CRectangle\+Basis}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CRectangleHBasis_aebe97e78332f1fb36f0a8c2283b5eb46}{corenc\+::\+Mesh\+::\+CRectangle\+HBasis}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CRectangleBasis2x_a2036d1b9176e876b69aa757cb3a7f224}{corenc\+::\+Mesh\+::\+CRectangle\+Basis2x}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CRectangleBasis2y_a2231224ba735ba0f53d8315f34d84d25}{corenc\+::\+Mesh\+::\+CRectangle\+Basis2y}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CRectangleBasis2_a76e213d493334a379e4eef95b268e8c5}{corenc\+::\+Mesh\+::\+CRectangle\+Basis2}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CRectangleConstantBasis_a0e27e99bb3b6995515df5f82c7b208a1}{corenc\+::\+Mesh\+::\+CRectangle\+Constant\+Basis}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CTriangleBasis_a37c2b67b72eb32fd6b31bdd16edcda95}{corenc\+::\+Mesh\+::\+CTriangle\+Basis}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CTriangleLagrangeBasis_ae58dc1f3263a68b87e0652369dbb2d82}{corenc\+::\+Mesh\+::\+CTriangle\+Lagrange\+Basis}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CTriangleLinearBasis_acfb975d3b242bef03b78b9b89a964f21}{corenc\+::\+Mesh\+::\+CTriangle\+Linear\+Basis}}, and \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CTriangleBasis_ac63941b9105a152a1b308c628c49ceb1}{corenc\+::\+Mesh\+::\+CTriangle\+Basis}}.
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CShapeFunction_a01a0bf9991424ac553ce54f083d8d3a9}\label{classcorenc_1_1Mesh_1_1CShapeFunction_a01a0bf9991424ac553ce54f083d8d3a9}} 
+\index{corenc::Mesh::CShapeFunction$<$ Type $>$@{corenc::Mesh::CShapeFunction$<$ Type $>$}!ReverseNormal@{ReverseNormal}}
+\index{ReverseNormal@{ReverseNormal}!corenc::Mesh::CShapeFunction$<$ Type $>$@{corenc::Mesh::CShapeFunction$<$ Type $>$}}
+\doxysubsubsection{\texorpdfstring{ReverseNormal()}{ReverseNormal()}}
+{\footnotesize\ttfamily template$<$class Type $>$ \\
+virtual void \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CShapeFunction}{corenc\+::\+Mesh\+::\+CShape\+Function}}$<$ Type $>$\+::\+Reverse\+Normal (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CCubeBasis_a14826ce1a23fb21562def32c06e9c8f5}{corenc\+::\+Mesh\+::\+CCube\+Basis}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CEdgeLinearBasis_a02db43539ca588f976d68056daabad76}{corenc\+::\+Mesh\+::\+CEdge\+Linear\+Basis}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CEdgeConstantBasis_ae9af3f3ed0543d596e50e0c20d0f2338}{corenc\+::\+Mesh\+::\+CEdge\+Constant\+Basis}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CEdgeMultiBasis_a4e529a71bb338097a8c6dd6b8c401031}{corenc\+::\+Mesh\+::\+CEdge\+Multi\+Basis}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CEdgeHermiteBasis_af690ee8701505a078048ceafd8b4eaa7}{corenc\+::\+Mesh\+::\+CEdge\+Hermite\+Basis}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CEdge2ndBasis_a29ef0abce714853737750d330528fecd}{corenc\+::\+Mesh\+::\+CEdge2nd\+Basis}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CNodeBasis_a2ac14859f6c1ef51d01d3afdfd5d8f1e}{corenc\+::\+Mesh\+::\+CNode\+Basis}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CRectangleBasis_ae77248a678976ecf63f13192f266cbe0}{corenc\+::\+Mesh\+::\+CRectangle\+Basis}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CRectangleHBasis_a0cbda9efe8ef9d78fb774753cc1326e4}{corenc\+::\+Mesh\+::\+CRectangle\+HBasis}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CRectangleBasis2x_a2f99ee7eb77903b61aa8fd9c63677ac9}{corenc\+::\+Mesh\+::\+CRectangle\+Basis2x}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CRectangleBasis2y_a040f9e7291cb2aef984440a2584b26bd}{corenc\+::\+Mesh\+::\+CRectangle\+Basis2y}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CRectangleBasis2_aaef88f7ef62e345f7690e0bdb29702a1}{corenc\+::\+Mesh\+::\+CRectangle\+Basis2}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CRectangleConstantBasis_a802f9c4891dc7ce28f35c626a3a7613c}{corenc\+::\+Mesh\+::\+CRectangle\+Constant\+Basis}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CTriangleBasis_a67116671f7db54ad600b368cd507146e}{corenc\+::\+Mesh\+::\+CTriangle\+Basis}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CTriangleLagrangeBasis_abf02392da663ee9112980c296cd54f76}{corenc\+::\+Mesh\+::\+CTriangle\+Lagrange\+Basis}}, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CTriangleLinearBasis_a087fa65c9c4809b03e289aef8a2b33f3}{corenc\+::\+Mesh\+::\+CTriangle\+Linear\+Basis}}, and \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CTriangleBasis_af3edf7a05844db613700d21e2f281675}{corenc\+::\+Mesh\+::\+CTriangle\+Basis}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Core\+NCFEM/\+Finite\+Elements/\mbox{\hyperlink{ShapeFunction_8h}{Shape\+Function.\+h}}\end{DoxyCompactItemize}

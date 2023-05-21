@@ -1,0 +1,297 @@
+\hypertarget{MatrixSkyline_8h_source}{}\doxysection{Matrix\+Skyline.\+h}
+\label{MatrixSkyline_8h_source}\index{CoreNCA/MatrixSkyline.h@{CoreNCA/MatrixSkyline.h}}
+\mbox{\hyperlink{MatrixSkyline_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef CORENC\_ALGEBRA\_MATRIXSKYLINE\_H\_}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define CORENC\_ALGEBRA\_MATRIXSKYLINE\_H\_}}
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include <set>}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <memory>}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{Matrix_8h}{Matrix.h}}"{}}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{MatrixDiag_8h}{MatrixDiag.h}}"{}}}
+\DoxyCodeLine{8 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespaceAlgebra}{Algebra}}}
+\DoxyCodeLine{9 \{}
+\DoxyCodeLine{10     \textcolor{keyword}{class }ESolver;}
+\DoxyCodeLine{11     \textcolor{keyword}{enum class} \mbox{\hyperlink{namespaceAlgebra_af3ba1642071f1a948ca328a97b8c95af}{Solvers}}}
+\DoxyCodeLine{12     \{}
+\DoxyCodeLine{13         \mbox{\hyperlink{namespaceAlgebra_af3ba1642071f1a948ca328a97b8c95afa17f477cd947340d28b9a4d6f49c1e43b}{BiCGStab}},}
+\DoxyCodeLine{14         \mbox{\hyperlink{namespaceAlgebra_af3ba1642071f1a948ca328a97b8c95afac1bfd84e7215afa3204b8e1cdb21a2bd}{GMRES}},}
+\DoxyCodeLine{15         \mbox{\hyperlink{namespaceAlgebra_af3ba1642071f1a948ca328a97b8c95afa8c01bee8588fc2235d9305d6a58e63e4}{GMRES\_BiCGStab}},}
+\DoxyCodeLine{16         \mbox{\hyperlink{namespaceAlgebra_af3ba1642071f1a948ca328a97b8c95afaedc41fb7bf8bdac012523d1bcd949a4f}{Gauss}},}
+\DoxyCodeLine{17         \mbox{\hyperlink{namespaceAlgebra_af3ba1642071f1a948ca328a97b8c95afa0ad0029336b06af5a77904a678d137b1}{PARDISO}}}
+\DoxyCodeLine{18     \};}
+\DoxyCodeLine{22     \textcolor{keyword}{class }\mbox{\hyperlink{classAlgebra_1_1MatrixSkyline}{MatrixSkyline}}}
+\DoxyCodeLine{23     \{}
+\DoxyCodeLine{24     \textcolor{keyword}{public}:}
+\DoxyCodeLine{25         \mbox{\hyperlink{classAlgebra_1_1MatrixSkyline_a48bff51216490bc4e8da595e20163272}{MatrixSkyline}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int}\& Size, \textcolor{keyword}{const} std::vector<std::set<unsigned int>>\& nonzero);}
+\DoxyCodeLine{26         \mbox{\hyperlink{classAlgebra_1_1MatrixSkyline_af41c6d860c151a501a30c8f923daa99c}{MatrixSkyline}}()\{\};}
+\DoxyCodeLine{27         \mbox{\hyperlink{classAlgebra_1_1MatrixSkyline_ae372203c36befbb4957c0ee9964a459d}{\string~MatrixSkyline}}();}
+\DoxyCodeLine{28         \textcolor{keywordtype}{void}                \mbox{\hyperlink{classAlgebra_1_1MatrixSkyline_a05057825dcc9610a11d65a09bcf6a008}{NullRow}}(\textcolor{keywordtype}{int} row);}
+\DoxyCodeLine{29         \textcolor{keywordtype}{double}\& \mbox{\hyperlink{classAlgebra_1_1MatrixSkyline_ab39154918afb9465bbcb131e63bd11e6}{operator()}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} i, \textcolor{keyword}{const} \textcolor{keywordtype}{int} j)}
+\DoxyCodeLine{30         \{}
+\DoxyCodeLine{31             \textcolor{keywordtype}{int} ind;}
+\DoxyCodeLine{32             \textcolor{comment}{/*for (ind = m\_rowptr[i]; ind < m\_rowptr[i + 1]; ++ind)}}
+\DoxyCodeLine{33 \textcolor{comment}{                if (m\_colind[ind] == j)}}
+\DoxyCodeLine{34 \textcolor{comment}{                    break;}}
+\DoxyCodeLine{35 \textcolor{comment}{            return (*this).m\_valL[ind];*/}}
+\DoxyCodeLine{36             \textcolor{keywordflow}{if} (i == j)}
+\DoxyCodeLine{37             \{}
+\DoxyCodeLine{38                 \textcolor{keywordflow}{return} (*this).m\_valDiag[i];}
+\DoxyCodeLine{39             \}}
+\DoxyCodeLine{40             \textcolor{keywordflow}{if} (i < j)}
+\DoxyCodeLine{41             \{}
+\DoxyCodeLine{42                 \textcolor{keywordflow}{for} (ind = m\_rowptr[j]; ind < m\_rowptr[j + 1]; ++ind)}
+\DoxyCodeLine{43                     \textcolor{keywordflow}{if} (m\_colind[ind] == i)}
+\DoxyCodeLine{44                         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{45                 \textcolor{keywordflow}{return} (*this).m\_valU[ind];}
+\DoxyCodeLine{46             \}}
+\DoxyCodeLine{47             \textcolor{keywordflow}{else}}
+\DoxyCodeLine{48             \{}
+\DoxyCodeLine{49                 \textcolor{keywordflow}{for} (ind = m\_rowptr[i]; ind < m\_rowptr[i + 1]; ++ind)}
+\DoxyCodeLine{50                     \textcolor{keywordflow}{if} (m\_colind[ind] == j)}
+\DoxyCodeLine{51                         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{52                 \textcolor{keywordflow}{return} (*this).m\_valL[ind];}
+\DoxyCodeLine{53             \}}
+\DoxyCodeLine{54             \textcolor{comment}{//return (*this)[];}}
+\DoxyCodeLine{55         \}}
+\DoxyCodeLine{56         \textcolor{keyword}{const} \textcolor{keywordtype}{double} \mbox{\hyperlink{classAlgebra_1_1MatrixSkyline_a900b4cfc123261273055a8a7cce48f1a}{operator()}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} i, \textcolor{keyword}{const} \textcolor{keywordtype}{int} j)\textcolor{keyword}{ const}}
+\DoxyCodeLine{57 \textcolor{keyword}{        }\{}
+\DoxyCodeLine{58             \textcolor{keywordtype}{int} ind;}
+\DoxyCodeLine{59             \textcolor{comment}{/*for (ind = m\_rowptr[i]; ind < m\_rowptr[i + 1]; ++ind)}}
+\DoxyCodeLine{60 \textcolor{comment}{                if (m\_colind[ind] == j)}}
+\DoxyCodeLine{61 \textcolor{comment}{                    break;}}
+\DoxyCodeLine{62 \textcolor{comment}{            return (*this).m\_valL[ind];*/}}
+\DoxyCodeLine{63             \textcolor{keywordflow}{if} (i == j)}
+\DoxyCodeLine{64             \{}
+\DoxyCodeLine{65                 \textcolor{keywordflow}{return} (*this).m\_valDiag[i];}
+\DoxyCodeLine{66             \}}
+\DoxyCodeLine{67             \textcolor{keywordflow}{if} (i < j)}
+\DoxyCodeLine{68             \{}
+\DoxyCodeLine{69                 \textcolor{keywordflow}{for} (ind = m\_rowptr[j]; ind < m\_rowptr[j + 1]; ++ind)}
+\DoxyCodeLine{70                     \textcolor{keywordflow}{if} (m\_colind[ind] == i)}
+\DoxyCodeLine{71                         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{72                 \textcolor{keywordflow}{if} (ind < m\_rowptr[j + 1])}
+\DoxyCodeLine{73                     \textcolor{keywordflow}{return} (*this).m\_valU[ind];}
+\DoxyCodeLine{74                 \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{75             \}}
+\DoxyCodeLine{76             \textcolor{keywordflow}{else}}
+\DoxyCodeLine{77             \{}
+\DoxyCodeLine{78                 \textcolor{keywordflow}{for} (ind = m\_rowptr[i]; ind < m\_rowptr[i + 1]; ++ind)}
+\DoxyCodeLine{79                     \textcolor{keywordflow}{if} (m\_colind[ind] == j)}
+\DoxyCodeLine{80                         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{81                 \textcolor{keywordflow}{if} (ind < m\_rowptr[i + 1])}
+\DoxyCodeLine{82                     \textcolor{keywordflow}{return} (*this).m\_valL[ind];}
+\DoxyCodeLine{83                 \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{84             \}}
+\DoxyCodeLine{85             \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{86         \}}
+\DoxyCodeLine{87         \textcolor{keyword}{const} \textcolor{keywordtype}{double}        \mbox{\hyperlink{classAlgebra_1_1MatrixSkyline_a494a591ba3d8b3bf9e4dcd6f716aeb6a}{GetElement}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} i, \textcolor{keyword}{const} \textcolor{keywordtype}{int} j)\textcolor{keyword}{ const}}
+\DoxyCodeLine{88 \textcolor{keyword}{        }\{}
+\DoxyCodeLine{89             \textcolor{keywordtype}{int} ind;}
+\DoxyCodeLine{90             \textcolor{comment}{/*for (ind = m\_rowptr[i]; ind < m\_rowptr[i + 1]; ++ind)}}
+\DoxyCodeLine{91 \textcolor{comment}{                if (m\_colind[ind] == j)}}
+\DoxyCodeLine{92 \textcolor{comment}{                    break;}}
+\DoxyCodeLine{93 \textcolor{comment}{            return (*this).m\_valL[ind];*/}}
+\DoxyCodeLine{94             \textcolor{keywordflow}{if} (i == j)}
+\DoxyCodeLine{95             \{}
+\DoxyCodeLine{96                 \textcolor{keywordflow}{return} (*this).m\_valDiag[i];}
+\DoxyCodeLine{97             \}}
+\DoxyCodeLine{98             \textcolor{keywordflow}{if} (i < j)}
+\DoxyCodeLine{99             \{}
+\DoxyCodeLine{100                 \textcolor{keywordflow}{for} (ind = m\_rowptr[j]; ind < m\_rowptr[j + 1]; ++ind)}
+\DoxyCodeLine{101                     \textcolor{keywordflow}{if} (m\_colind[ind] == i)}
+\DoxyCodeLine{102                         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{103                 \textcolor{keywordflow}{if} (ind < m\_rowptr[j + 1])}
+\DoxyCodeLine{104                     \textcolor{keywordflow}{return} (*this).m\_valU[ind];}
+\DoxyCodeLine{105                 \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{106             \}}
+\DoxyCodeLine{107             \textcolor{keywordflow}{else}}
+\DoxyCodeLine{108             \{}
+\DoxyCodeLine{109                 \textcolor{keywordflow}{for} (ind = m\_rowptr[i]; ind < m\_rowptr[i + 1]; ++ind)}
+\DoxyCodeLine{110                     \textcolor{keywordflow}{if} (m\_colind[ind] == j)}
+\DoxyCodeLine{111                         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{112                 \textcolor{keywordflow}{if} (ind < m\_rowptr[i + 1])}
+\DoxyCodeLine{113                     \textcolor{keywordflow}{return} (*this).m\_valL[ind];}
+\DoxyCodeLine{114                 \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{115             \}}
+\DoxyCodeLine{116             \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{117         \}}
+\DoxyCodeLine{118         \textcolor{keyword}{const} \textcolor{keywordtype}{int}           \mbox{\hyperlink{classAlgebra_1_1MatrixSkyline_a4e98f769191b3738896597a3f9c461b6}{GetSize}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} m\_size; \}}
+\DoxyCodeLine{119         \textcolor{keywordtype}{void}                \mbox{\hyperlink{classAlgebra_1_1MatrixSkyline_ad98977e1b2163db7e056e88613c9ad18}{NullMatrix}}();}
+\DoxyCodeLine{120         \mbox{\hyperlink{classAlgebra_1_1MatrixSkyline}{MatrixSkyline}}\&     \mbox{\hyperlink{classAlgebra_1_1MatrixSkyline_aeb7f2a3cedb80b086f89eee1af001250}{operator=}}(\textcolor{keyword}{const} \mbox{\hyperlink{classAlgebra_1_1MatrixSkyline}{MatrixSkyline}}\&);}
+\DoxyCodeLine{121         \textcolor{comment}{//MatrixSkyline\&        operator-\/(const MatrixSkyline\&);}}
+\DoxyCodeLine{122         \textcolor{comment}{//friend const MatrixSkyline operator-\/(const MatrixSkyline\&, const MatrixSkyline\&);}}
+\DoxyCodeLine{123         \textcolor{comment}{// A -\/ scal * B}}
+\DoxyCodeLine{124         \textcolor{keyword}{static} \textcolor{keyword}{const} \mbox{\hyperlink{classAlgebra_1_1MatrixSkyline}{MatrixSkyline}} \mbox{\hyperlink{classAlgebra_1_1MatrixSkyline_adc3ff1bc8cac6e8a5db70074c4f5e1d9}{diff\_skymatrix}}(\textcolor{keyword}{const} \mbox{\hyperlink{classAlgebra_1_1MatrixSkyline}{MatrixSkyline}}\& matrix, \textcolor{keyword}{const} \mbox{\hyperlink{classAlgebra_1_1MatrixSkyline}{MatrixSkyline}}\& B, \textcolor{keyword}{const} \textcolor{keywordtype}{double} scal)}
+\DoxyCodeLine{125         \{}
+\DoxyCodeLine{126             \mbox{\hyperlink{classAlgebra_1_1MatrixSkyline}{MatrixSkyline}} C(matrix);}
+\DoxyCodeLine{127             \textcolor{keywordflow}{if} ((B.m\_gsize == matrix.m\_gsize) \&\& (matrix.m\_size == B.m\_size))}
+\DoxyCodeLine{128             \{}
+\DoxyCodeLine{129                 \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < B.m\_gsize; ++i)}
+\DoxyCodeLine{130                 \{}
+\DoxyCodeLine{131                     C.m\_valL[i] = matrix.m\_valL[i] -\/ scal * B.m\_valL[i];}
+\DoxyCodeLine{132                     C.m\_valU[i] = matrix.m\_valU[i] -\/ scal * B.m\_valU[i];}
+\DoxyCodeLine{133                 \}}
+\DoxyCodeLine{134                 \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < B.m\_size; ++i)}
+\DoxyCodeLine{135                 \{}
+\DoxyCodeLine{136                     C.m\_valDiag[i] = matrix.m\_valDiag[i] -\/ scal * B.m\_valDiag[i];}
+\DoxyCodeLine{137                 \}}
+\DoxyCodeLine{138             \}}
+\DoxyCodeLine{139             \textcolor{keywordflow}{return} C;}
+\DoxyCodeLine{140         \}}
+\DoxyCodeLine{141         \textcolor{keyword}{static} \textcolor{keyword}{const} \mbox{\hyperlink{classAlgebra_1_1MatrixSkyline}{MatrixSkyline}} \mbox{\hyperlink{classAlgebra_1_1MatrixSkyline_a6b789125aad1d63d649d1560101d58a0}{diff\_skymatrix}}(\textcolor{keyword}{const} \mbox{\hyperlink{classAlgebra_1_1MatrixSkyline}{MatrixSkyline}}\& matrix, \textcolor{keyword}{const} \mbox{\hyperlink{classAlgebra_1_1MatrixSkyline}{MatrixSkyline}}\& B, \textcolor{keyword}{const} \textcolor{keywordtype}{double} a, \textcolor{keyword}{const} \textcolor{keywordtype}{double} b)}
+\DoxyCodeLine{142         \{}
+\DoxyCodeLine{143             \mbox{\hyperlink{classAlgebra_1_1MatrixSkyline}{MatrixSkyline}} C(matrix);}
+\DoxyCodeLine{144             \textcolor{keywordflow}{if} ((B.m\_gsize == matrix.m\_gsize) \&\& (matrix.m\_size == B.m\_size))}
+\DoxyCodeLine{145             \{}
+\DoxyCodeLine{146                 \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < B.m\_gsize; ++i)}
+\DoxyCodeLine{147                 \{}
+\DoxyCodeLine{148                     C.m\_valL[i] = a * matrix.m\_valL[i] -\/ b * B.m\_valL[i];}
+\DoxyCodeLine{149                     C.m\_valU[i] = a * matrix.m\_valU[i] -\/ b * B.m\_valU[i];}
+\DoxyCodeLine{150                 \}}
+\DoxyCodeLine{151                 \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < B.m\_size; ++i)}
+\DoxyCodeLine{152                 \{}
+\DoxyCodeLine{153                     C.m\_valDiag[i] = a * matrix.m\_valDiag[i] -\/ b * B.m\_valDiag[i];}
+\DoxyCodeLine{154                 \}}
+\DoxyCodeLine{155             \}}
+\DoxyCodeLine{156             \textcolor{keywordflow}{return} C;}
+\DoxyCodeLine{157         \}}
+\DoxyCodeLine{158         \textcolor{keyword}{static} \textcolor{keyword}{const} \mbox{\hyperlink{classAlgebra_1_1MatrixSkyline}{MatrixSkyline}} \mbox{\hyperlink{classAlgebra_1_1MatrixSkyline_a4418005f9d04f538cfd1a16468d194c3}{transpose\_sky}}(\textcolor{keyword}{const} \mbox{\hyperlink{classAlgebra_1_1MatrixSkyline}{MatrixSkyline}}\& matrix)}
+\DoxyCodeLine{159         \{}
+\DoxyCodeLine{160             \mbox{\hyperlink{classAlgebra_1_1MatrixSkyline}{MatrixSkyline}} C(matrix);}
+\DoxyCodeLine{161             C.m\_valL = matrix.m\_valU;}
+\DoxyCodeLine{162             C.m\_valU = matrix.m\_valL;}
+\DoxyCodeLine{163             \textcolor{keywordflow}{return} C;}
+\DoxyCodeLine{164         \}}
+\DoxyCodeLine{165         \mbox{\hyperlink{classAlgebra_1_1MatrixSkyline_af41c6d860c151a501a30c8f923daa99c}{MatrixSkyline}}(\textcolor{keyword}{const} \mbox{\hyperlink{classAlgebra_1_1MatrixSkyline}{MatrixSkyline}}\& matrix);}
+\DoxyCodeLine{166         \textcolor{keywordtype}{void}                \mbox{\hyperlink{classAlgebra_1_1MatrixSkyline_add6a3aee35ae6dfc232312aac9a65d4d}{Create}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int}\& Size, \textcolor{keyword}{const} std::vector<std::set<unsigned int>>\& nonzero);}
+\DoxyCodeLine{167         \textcolor{keywordtype}{void}                \mbox{\hyperlink{classAlgebra_1_1MatrixSkyline_a57f08f3deffd9be6c0715d6028e81cf0}{AddElement}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} i, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} j, \textcolor{keyword}{const} \textcolor{keywordtype}{double} a)}
+\DoxyCodeLine{168         \{}
+\DoxyCodeLine{169             \textcolor{keywordtype}{int} ind;}
+\DoxyCodeLine{170             \textcolor{comment}{/*for (ind = m\_rowptr[i]; ind < m\_rowptr[i + 1]; ++ind)}}
+\DoxyCodeLine{171 \textcolor{comment}{             if (m\_colind[ind] == j)}}
+\DoxyCodeLine{172 \textcolor{comment}{             break;}}
+\DoxyCodeLine{173 \textcolor{comment}{             return (*this).m\_valL[ind];*/}}
+\DoxyCodeLine{174             \textcolor{keywordflow}{if} (i == j)}
+\DoxyCodeLine{175             \{}
+\DoxyCodeLine{176                 m\_valDiag[i] += a;}
+\DoxyCodeLine{177                 \textcolor{keywordflow}{return};}
+\DoxyCodeLine{178             \}}
+\DoxyCodeLine{179             \textcolor{keywordflow}{if} (i < j)}
+\DoxyCodeLine{180             \{}
+\DoxyCodeLine{181                 \textcolor{keywordflow}{for} (ind = m\_rowptr[j]; ind < m\_rowptr[j + 1]; ++ind)}
+\DoxyCodeLine{182                     \textcolor{keywordflow}{if} (m\_colind[ind] == i)}
+\DoxyCodeLine{183                         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{184                 m\_valU[ind] += a;}
+\DoxyCodeLine{185                 \textcolor{keywordflow}{return};}
+\DoxyCodeLine{186             \}}
+\DoxyCodeLine{187             \textcolor{keywordflow}{else}}
+\DoxyCodeLine{188             \{}
+\DoxyCodeLine{189                 \textcolor{keywordflow}{for} (ind = m\_rowptr[i]; ind < m\_rowptr[i + 1]; ++ind)}
+\DoxyCodeLine{190                     \textcolor{keywordflow}{if} (m\_colind[ind] == j)}
+\DoxyCodeLine{191                         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{192                 m\_valL[ind] += a;}
+\DoxyCodeLine{193                 \textcolor{keywordflow}{return};}
+\DoxyCodeLine{194             \}}
+\DoxyCodeLine{195         \}}
+\DoxyCodeLine{196         }
+\DoxyCodeLine{197     \textcolor{keyword}{private}:}
+\DoxyCodeLine{198         \textcolor{comment}{//int*              m\_rowptr = nullptr;}}
+\DoxyCodeLine{199         std::vector<int>    m\_rowptr;}
+\DoxyCodeLine{200         \textcolor{comment}{//int*              m\_colind = nullptr;}}
+\DoxyCodeLine{201         std::vector<int>    m\_colind;}
+\DoxyCodeLine{202         \textcolor{comment}{//double*               m\_valU = nullptr;}}
+\DoxyCodeLine{203         std::vector<double> m\_valU;}
+\DoxyCodeLine{204         \textcolor{comment}{//double*               m\_valL = nullptr;}}
+\DoxyCodeLine{205         std::vector<double> m\_valL;}
+\DoxyCodeLine{206         \textcolor{comment}{//double*               m\_valDiag = nullptr;}}
+\DoxyCodeLine{207         std::vector<double> m\_valDiag;}
+\DoxyCodeLine{208         \textcolor{keywordtype}{int}                 m\_size;}
+\DoxyCodeLine{209         \textcolor{keywordtype}{int}                 m\_gsize;}
+\DoxyCodeLine{210         \textcolor{keyword}{friend}              \mbox{\hyperlink{classAlgebra_1_1ESolver}{ESolver}};}
+\DoxyCodeLine{211         \textcolor{comment}{//friend                Matrix;}}
+\DoxyCodeLine{212     \};}
+\DoxyCodeLine{213     \textcolor{keyword}{class }\mbox{\hyperlink{classAlgebra_1_1ESolver}{ESolver}}}
+\DoxyCodeLine{214     \{}
+\DoxyCodeLine{215     \textcolor{keyword}{public}:}
+\DoxyCodeLine{216         \mbox{\hyperlink{classAlgebra_1_1ESolver_a1243898cdf1b3e025a5b27061cabb740}{ESolver}}(\textcolor{keyword}{const} \mbox{\hyperlink{classAlgebra_1_1MatrixSkyline}{MatrixSkyline}}\& matrix, \textcolor{keyword}{const} std::vector<double>\& rightvector) :}
+\DoxyCodeLine{217             m\_matrix\{ matrix \},}
+\DoxyCodeLine{218             m\_rightvector( rightvector ),}
+\DoxyCodeLine{219             m\_maxiter(20000),}
+\DoxyCodeLine{220             m\_eps(1e-\/10)}
+\DoxyCodeLine{221         \{}
+\DoxyCodeLine{222             m\_solution.resize(matrix.m\_size);}
+\DoxyCodeLine{223         \}}
+\DoxyCodeLine{224         \mbox{\hyperlink{classAlgebra_1_1ESolver_ad2369b20bd386a2cac176f22d8f3f1a4}{ESolver}}()\{\};}
+\DoxyCodeLine{225         \mbox{\hyperlink{classAlgebra_1_1ESolver_af2677ed6ca72b66e308a52da0022f4e4}{ESolver}}(\mbox{\hyperlink{namespaceAlgebra_af3ba1642071f1a948ca328a97b8c95af}{Solvers}} kek) :m\_solver(kek)\{\};}
+\DoxyCodeLine{226         \textcolor{keywordtype}{void}                    \mbox{\hyperlink{classAlgebra_1_1ESolver_a334c12c29f255a406a1978bbe6068909}{Reload}}(\textcolor{keyword}{const} \mbox{\hyperlink{classAlgebra_1_1MatrixSkyline}{MatrixSkyline}}\& matrix, \textcolor{keyword}{const} std::vector<double>\& right);}
+\DoxyCodeLine{227         \textcolor{keywordtype}{void}                    \mbox{\hyperlink{classAlgebra_1_1ESolver_ab809484df57688069aedc86bfe7ffc18}{Solve}}(\mbox{\hyperlink{namespaceAlgebra_af3ba1642071f1a948ca328a97b8c95af}{Solvers}});}
+\DoxyCodeLine{228         \textcolor{keyword}{const} std::vector<double>       \mbox{\hyperlink{classAlgebra_1_1ESolver_ab809484df57688069aedc86bfe7ffc18}{Solve}}(\mbox{\hyperlink{classAlgebra_1_1MatrixSkyline}{MatrixSkyline}}\&, \textcolor{keyword}{const} std::vector<double>\& rhs, std::vector<double>\& sol, std::vector<double>\& residual, \textcolor{keyword}{const} \textcolor{keywordtype}{int} iter, \textcolor{keyword}{const} \textcolor{keywordtype}{double} eps);}
+\DoxyCodeLine{229         \textcolor{keyword}{const} std::vector<double>       \mbox{\hyperlink{classAlgebra_1_1ESolver_ab809484df57688069aedc86bfe7ffc18}{Solve}}(\mbox{\hyperlink{classAlgebra_1_1MatrixDiag}{MatrixDiag}}\&, \textcolor{keyword}{const} std::vector<double>\& rhs, std::vector<double>\& sol, std::vector<double>\& residual, \textcolor{keyword}{const} \textcolor{keywordtype}{int} iter, \textcolor{keyword}{const} \textcolor{keywordtype}{double} eps);}
+\DoxyCodeLine{230         \textcolor{keywordtype}{double}                  \mbox{\hyperlink{namespaceAlgebra_af3ba1642071f1a948ca328a97b8c95afa17f477cd947340d28b9a4d6f49c1e43b}{BiCGStab}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} \_maxiter);}
+\DoxyCodeLine{231         \textcolor{keywordtype}{double}                  \mbox{\hyperlink{namespaceAlgebra_af3ba1642071f1a948ca328a97b8c95afac1bfd84e7215afa3204b8e1cdb21a2bd}{GMRES}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} \_maxiter);}
+\DoxyCodeLine{232         \textcolor{keywordtype}{void}                    \mbox{\hyperlink{namespaceAlgebra_af3ba1642071f1a948ca328a97b8c95afac1bfd84e7215afa3204b8e1cdb21a2bd}{GMRES}}(\mbox{\hyperlink{classAlgebra_1_1MatrixSkyline}{MatrixSkyline}}\&, \textcolor{keyword}{const} std::vector<double>\& rhs, std::vector<double>\& sol, std::vector<double>\& residual, \textcolor{keyword}{const} \textcolor{keywordtype}{int} iter, \textcolor{keyword}{const} \textcolor{keywordtype}{double} eps);}
+\DoxyCodeLine{233         \textcolor{keywordtype}{void}                    \mbox{\hyperlink{namespaceAlgebra_af3ba1642071f1a948ca328a97b8c95afa17f477cd947340d28b9a4d6f49c1e43b}{BiCGStab}}(\mbox{\hyperlink{classAlgebra_1_1MatrixSkyline}{MatrixSkyline}}\&, \textcolor{keyword}{const} std::vector<double>\& rhs, std::vector<double>\& sol, std::vector<double>\& residual, \textcolor{keyword}{const} \textcolor{keywordtype}{int} iter, \textcolor{keyword}{const} \textcolor{keywordtype}{double} eps);}
+\DoxyCodeLine{234         \textcolor{keywordtype}{void}                    \mbox{\hyperlink{namespaceAlgebra_af3ba1642071f1a948ca328a97b8c95afaedc41fb7bf8bdac012523d1bcd949a4f}{Gauss}}(\mbox{\hyperlink{classAlgebra_1_1MatrixSkyline}{MatrixSkyline}}\&, \textcolor{keyword}{const} std::vector<double>\& rhs, std::vector<double>\& sol, std::vector<double>\& residual, \textcolor{keyword}{const} \textcolor{keywordtype}{int} iter, \textcolor{keyword}{const} \textcolor{keywordtype}{double} eps);}
+\DoxyCodeLine{235         \textcolor{keywordtype}{void}                    \mbox{\hyperlink{namespaceAlgebra_af3ba1642071f1a948ca328a97b8c95afaedc41fb7bf8bdac012523d1bcd949a4f}{Gauss}}(\mbox{\hyperlink{classAlgebra_1_1Matrix}{Matrix}}\&, \textcolor{keyword}{const} std::vector<double>\& rhs, std::vector<double>\& sol);}
+\DoxyCodeLine{236         \textcolor{keywordtype}{void}                    \mbox{\hyperlink{namespaceAlgebra_af3ba1642071f1a948ca328a97b8c95afaedc41fb7bf8bdac012523d1bcd949a4f}{Gauss}}(\textcolor{keyword}{const} \mbox{\hyperlink{classAlgebra_1_1Matrix}{Matrix}}\&, \textcolor{keywordtype}{double}* in\_out);}
+\DoxyCodeLine{237         \textcolor{keywordtype}{void}                    \mbox{\hyperlink{namespaceAlgebra_af3ba1642071f1a948ca328a97b8c95afaedc41fb7bf8bdac012523d1bcd949a4f}{Gauss}}(\textcolor{keyword}{const} \mbox{\hyperlink{classAlgebra_1_1Matrix}{Matrix}}\&, \textcolor{keywordtype}{double}* in, \textcolor{keywordtype}{double}* out);}
+\DoxyCodeLine{238         \textcolor{keywordtype}{void}                    \mbox{\hyperlink{namespaceAlgebra_af3ba1642071f1a948ca328a97b8c95afaedc41fb7bf8bdac012523d1bcd949a4f}{Gauss}}(\textcolor{keyword}{const} \mbox{\hyperlink{classAlgebra_1_1Matrix}{Matrix}}\&, \textcolor{keyword}{const} \textcolor{keywordtype}{double}* in, \textcolor{keywordtype}{double}* out);}
+\DoxyCodeLine{239         \textcolor{keywordtype}{void}                    \mbox{\hyperlink{classAlgebra_1_1ESolver_ac651ec30be29f16168f5f154b4a24b29}{Pardiso}}(\mbox{\hyperlink{classAlgebra_1_1MatrixSkyline}{MatrixSkyline}}\&, \textcolor{keyword}{const} std::vector<double>\& rhs, std::vector<double>\& sol);}
+\DoxyCodeLine{240         \textcolor{keywordtype}{void}                    \mbox{\hyperlink{classAlgebra_1_1ESolver_a631f8f27e850c6a953e34f137810a8d2}{BiCGStabPrecond}}();}
+\DoxyCodeLine{241         \textcolor{keyword}{const} std::vector<double>   \mbox{\hyperlink{classAlgebra_1_1ESolver_a0929c797e48986237c37a7db0281cf16}{GetSolution}}()\textcolor{keyword}{ const}\{ \textcolor{keywordflow}{return} m\_solution; \}}
+\DoxyCodeLine{242         \textcolor{keywordtype}{void}                    \mbox{\hyperlink{classAlgebra_1_1ESolver_a9108711ffd3d9cbe19ed8b4bc7998cd6}{GetSolution}}(std::vector<double>\& sol) \textcolor{keyword}{const};}
+\DoxyCodeLine{243         \textcolor{keywordtype}{void}                    \mbox{\hyperlink{classAlgebra_1_1ESolver_af815a18ad73b4a5e77398a7d1467c2df}{MatrixprodVector}}(\textcolor{keywordtype}{double}*res, std::vector<double>\& x, \mbox{\hyperlink{classAlgebra_1_1MatrixSkyline}{MatrixSkyline}}\& m);}
+\DoxyCodeLine{244         \textcolor{keywordtype}{void}                    \mbox{\hyperlink{classAlgebra_1_1ESolver_af815a18ad73b4a5e77398a7d1467c2df}{MatrixprodVector}}(\textcolor{keywordtype}{double}*res, \textcolor{keywordtype}{double}* x, \mbox{\hyperlink{classAlgebra_1_1MatrixSkyline}{MatrixSkyline}}\& m);}
+\DoxyCodeLine{245         \textcolor{keywordtype}{void}                    \mbox{\hyperlink{classAlgebra_1_1ESolver_af815a18ad73b4a5e77398a7d1467c2df}{MatrixprodVector}}(\textcolor{keywordtype}{double}*res, \textcolor{keywordtype}{double}* x, \textcolor{keyword}{const} \mbox{\hyperlink{classAlgebra_1_1Matrix}{Matrix}}\& m);}
+\DoxyCodeLine{246         \textcolor{keywordtype}{void}                    \mbox{\hyperlink{classAlgebra_1_1ESolver_af815a18ad73b4a5e77398a7d1467c2df}{MatrixprodVector}}(\textcolor{keywordtype}{double}*res, \textcolor{keyword}{const} \textcolor{keywordtype}{double}* x, \textcolor{keyword}{const} \mbox{\hyperlink{classAlgebra_1_1Matrix}{Matrix}}\& m);}
+\DoxyCodeLine{247         \mbox{\hyperlink{classAlgebra_1_1ESolver_a6016ec626bad83209132700abf733514}{\string~ESolver}}();}
+\DoxyCodeLine{248     \textcolor{keyword}{private}:}
+\DoxyCodeLine{249         \mbox{\hyperlink{classAlgebra_1_1MatrixSkyline}{MatrixSkyline}}          m\_matrix;}
+\DoxyCodeLine{250         std::vector<std::vector<double>> H, V, W;}
+\DoxyCodeLine{251         std::vector<double>     m\_solution;}
+\DoxyCodeLine{252         std::vector<double>     m\_rightvector;}
+\DoxyCodeLine{253         \textcolor{keywordtype}{void}                    GMRESBiCGStab();}
+\DoxyCodeLine{254         \textcolor{keywordtype}{void}                    \mbox{\hyperlink{classAlgebra_1_1ESolver_af815a18ad73b4a5e77398a7d1467c2df}{MatrixprodVector}}(\textcolor{keywordtype}{double}*res, std::vector<double>\& x, \textcolor{keywordtype}{double}*valDiag, \textcolor{keywordtype}{double}*valL, \textcolor{keywordtype}{double}*valU, \textcolor{keywordtype}{int}*rowptr, \textcolor{keywordtype}{int}*colind, \textcolor{keywordtype}{int} size);}
+\DoxyCodeLine{255         \textcolor{keywordtype}{void}                    \mbox{\hyperlink{classAlgebra_1_1ESolver_af815a18ad73b4a5e77398a7d1467c2df}{MatrixprodVector}}(\textcolor{keywordtype}{double}*res, std::vector<double>\& x,}
+\DoxyCodeLine{256                                                 std::vector<double>\&valDiag, }
+\DoxyCodeLine{257                                                 std::vector<double>\&valL,}
+\DoxyCodeLine{258                                                 std::vector<double>\&valU,}
+\DoxyCodeLine{259                                                 std::vector<int>\&rowptr,}
+\DoxyCodeLine{260                                                 std::vector<int>\&colind, \textcolor{keywordtype}{int} size);}
+\DoxyCodeLine{261         \textcolor{comment}{//void                  MatrixprodVector(double*res, std::vector<double>\& x, MatrixSkyline\& m);}}
+\DoxyCodeLine{262         \textcolor{keywordtype}{void}                    \mbox{\hyperlink{classAlgebra_1_1ESolver_af815a18ad73b4a5e77398a7d1467c2df}{MatrixprodVector}}(\textcolor{keywordtype}{double}*res, \textcolor{keywordtype}{double}* x,}
+\DoxyCodeLine{263                                                 std::vector<double>\&valDiag,}
+\DoxyCodeLine{264                                                 std::vector<double>\&valL,}
+\DoxyCodeLine{265                                                 std::vector<double>\&valU,}
+\DoxyCodeLine{266                                                 std::vector<int>\&rowptr,}
+\DoxyCodeLine{267                                                 std::vector<int>\&colind, \textcolor{keywordtype}{int} size);}
+\DoxyCodeLine{268         \textcolor{keywordtype}{void}                    \mbox{\hyperlink{classAlgebra_1_1ESolver_af815a18ad73b4a5e77398a7d1467c2df}{MatrixprodVector}}(\textcolor{keywordtype}{double}*res, \textcolor{keywordtype}{double}* x, \textcolor{keywordtype}{double}*valDiag, \textcolor{keywordtype}{double}*valL, \textcolor{keywordtype}{double}*valU, \textcolor{keywordtype}{int}*rowptr, \textcolor{keywordtype}{int}*colind, \textcolor{keywordtype}{int} size);}
+\DoxyCodeLine{269         \textcolor{keywordtype}{void}                    \mbox{\hyperlink{classAlgebra_1_1ESolver_af815a18ad73b4a5e77398a7d1467c2df}{MatrixprodVector}}(\textcolor{keywordtype}{double}* res, \textcolor{keywordtype}{double}* x, \textcolor{keywordtype}{double}* val, \textcolor{keywordtype}{int}* rowptr, \textcolor{keywordtype}{int}* colind, \textcolor{keywordtype}{int} size);}
+\DoxyCodeLine{270         \textcolor{keyword}{const} \textcolor{keywordtype}{double}            DotProd(\textcolor{keywordtype}{double}*, \textcolor{keywordtype}{double}*, \textcolor{keywordtype}{int});}
+\DoxyCodeLine{271         \textcolor{keywordtype}{void}                    zero\_GMRES(std::vector<std::vector<double>>\&, \textcolor{keyword}{const} \textcolor{keywordtype}{int} str, \textcolor{keyword}{const} \textcolor{keywordtype}{int} stl);}
+\DoxyCodeLine{272         \textcolor{keywordtype}{void}                    mult\_Ht\_H\_slae(\textcolor{keywordtype}{double}, \textcolor{keywordtype}{double}*, \textcolor{keywordtype}{int});}
+\DoxyCodeLine{273         \textcolor{keywordtype}{void}                    gauss(std::vector<std::vector<double>>\&, \textcolor{keywordtype}{double}*, \textcolor{keywordtype}{double}*, \textcolor{keywordtype}{int});}
+\DoxyCodeLine{274         \textcolor{keywordtype}{int}                     find\_max(std::vector<std::vector<double>>\&, \textcolor{keywordtype}{int}, \textcolor{keywordtype}{int});}
+\DoxyCodeLine{275         \textcolor{keywordtype}{void}                    Copy(\textcolor{keywordtype}{double} *x, \textcolor{keywordtype}{double} *y, \textcolor{keywordtype}{int} n);}
+\DoxyCodeLine{276         \textcolor{keywordtype}{void}                    mult\_Vy(\textcolor{keywordtype}{double}*, \textcolor{keywordtype}{double}*, \textcolor{keywordtype}{int});}
+\DoxyCodeLine{277         \textcolor{keywordtype}{void}                    mult\_Vy(\textcolor{keywordtype}{double}*, \textcolor{keywordtype}{double}*, \textcolor{keywordtype}{int}, \textcolor{keywordtype}{int});}
+\DoxyCodeLine{278         \textcolor{keyword}{const} \textcolor{keywordtype}{double}            DotProd(\textcolor{keyword}{const} std::vector<double>\&, \textcolor{keyword}{const} std::vector<double>\&, \textcolor{keywordtype}{int});}
+\DoxyCodeLine{279         \textcolor{keyword}{const} \textcolor{keywordtype}{double}            Norm(\textcolor{keywordtype}{double}*, \textcolor{keywordtype}{int});}
+\DoxyCodeLine{280         \textcolor{keyword}{const} \textcolor{keywordtype}{double}            Norm(\textcolor{keyword}{const} std::vector<double>\&, \textcolor{keywordtype}{int});}
+\DoxyCodeLine{281         \textcolor{keywordtype}{double}                  m\_eps;}
+\DoxyCodeLine{282         \mbox{\hyperlink{namespaceAlgebra_af3ba1642071f1a948ca328a97b8c95af}{Solvers}}                  m\_solver;}
+\DoxyCodeLine{283         \textcolor{keywordtype}{int}                     m\_maxiter;}
+\DoxyCodeLine{284         \textcolor{keywordtype}{double}*                 m\_LUvalL = \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{285         \textcolor{keywordtype}{double}*                 m\_LUvalU = \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{286         \textcolor{keywordtype}{double}*                 m\_LUvalDiag = \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{287         \textcolor{keywordtype}{void}                    LUPrec();}
+\DoxyCodeLine{288         \textcolor{keywordtype}{void}                    LSolve(\textcolor{keywordtype}{double}*, \textcolor{keywordtype}{double}*);}
+\DoxyCodeLine{289         \textcolor{keywordtype}{void}                    USolve(\textcolor{keywordtype}{double}*, \textcolor{keywordtype}{double}*);}
+\DoxyCodeLine{290     \textcolor{keyword}{public}:}
+\DoxyCodeLine{291         \textcolor{keyword}{auto}                    \mbox{\hyperlink{classAlgebra_1_1ESolver_a36d2d0400c486d03379e640e8037acd9}{GetSolution}}() -\/> \textcolor{keyword}{decltype}(m\_solution) \{ \textcolor{keywordflow}{return} m\_solution; \}}
+\DoxyCodeLine{292     \};}
+\DoxyCodeLine{293 \}}
+\DoxyCodeLine{294 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// CORENC\_ALGEBRA\_MATRIXSKYLINE\_H\_}}
+
+\end{DoxyCode}

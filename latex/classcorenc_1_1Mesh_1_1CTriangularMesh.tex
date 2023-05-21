@@ -1,0 +1,375 @@
+\hypertarget{classcorenc_1_1Mesh_1_1CTriangularMesh}{}\doxysection{corenc\+::Mesh\+::CTriangular\+Mesh Class Reference}
+\label{classcorenc_1_1Mesh_1_1CTriangularMesh}\index{corenc::Mesh::CTriangularMesh@{corenc::Mesh::CTriangularMesh}}
+
+
+{\ttfamily \#include $<$Triangular\+Mesh.\+h$>$}
+
+Inheritance diagram for corenc\+::Mesh\+::CTriangular\+Mesh\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classcorenc_1_1Mesh_1_1CTriangularMesh}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcorenc_1_1Mesh_1_1CTriangularMesh_a1decc5427babe3c0f78d612f01195ecf}{CTriangular\+Mesh}} ()
+\item 
+\mbox{\hyperlink{classcorenc_1_1Mesh_1_1CTriangularMesh_a352230f8d9570fdf737221e4c143b302}{CTriangular\+Mesh}} (const std\+::string \&file\+\_\+name)
+\item 
+\mbox{\hyperlink{classcorenc_1_1Mesh_1_1CTriangularMesh_a1f82b477e767570794f848eaa0d7f3a8}{CTriangular\+Mesh}} (const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CTriangularMesh}{CTriangular\+Mesh}} \&)
+\item 
+\mbox{\hyperlink{classcorenc_1_1Mesh_1_1CTriangularMesh_a192c737294e284bdd2a8381499866a5a}{CTriangular\+Mesh}} (const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} \&p1, const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} \&p2, const int nx, const int ny)
+\item 
+\mbox{\hyperlink{classcorenc_1_1Mesh_1_1CTriangularMesh}{CTriangular\+Mesh}} \& \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CTriangularMesh_ae680ed044ba645c3f13b764166a78437}{operator=}} (const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CTriangularMesh}{CTriangular\+Mesh}} \&tr)
+\item 
+\mbox{\hyperlink{classcorenc_1_1Mesh_1_1CTriangularMesh}{CTriangular\+Mesh}} $\ast$ \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CTriangularMesh_a08322d91fa57d7204c85005bba409675}{Clone}} () const
+\item 
+const unsigned int \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CTriangularMesh_ade44cc7d3cfb56416c8a597c2dc0633a}{Get\+Number\+Of\+Elements}} () const
+\item 
+const unsigned int \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CTriangularMesh_ab5283aac58612b8f4bfa755a89e74dc1}{Get\+Number\+Of\+Nodes}} () const
+\item 
+const unsigned int \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CTriangularMesh_a26504953be8ae71cf504537f4daa7485}{Get\+Number\+Of\+Boundaries}} () const
+\item 
+const int \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CTriangularMesh_aeaa2a478d9c98c641ece741ad2f5e839}{Find\+Element}} (const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} \&) const
+\item 
+const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CTriangularMesh_ac33285d87088a7d103b01e6d754c4d63}{Get\+Node}} (const unsigned int) const
+\item 
+const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement}{CElement}} $\ast$ \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CTriangularMesh_ab9977751c0996552c7622d2de175373b}{Get\+Element}} (const unsigned int) const
+\item 
+const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement}{CElement}} $\ast$ \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CTriangularMesh_ac261e2638509ccd142c7b4437ff037f0}{Get\+Boundary}} (const unsigned int) const
+\item 
+const double \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CTriangularMesh_a7a5efe242eb664c957f1081ca3d7e0b6}{get\+Min\+Size}} () const
+\item 
+const double \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CTriangularMesh_ae7d3931c8450c1360d0e31b1b052a2cc}{get\+Solution}} (const unsigned int element, const unsigned int node) const
+\item 
+const int \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CTriangularMesh_a9ab9585e053c2b068b867ee147aabc48}{update\+Solution}} (const unsigned int element, const unsigned int node, const double value)
+\item 
+const std\+::vector$<$ double $>$ \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CTriangularMesh_a352f4f5ef49b61eb3b85ec7c7554a2dc}{get\+Solution}} () const
+\item 
+const int \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CTriangularMesh_ae633d76c1a56220fa518ae8a453cf7ce}{update\+Solution}} (const std\+::vector$<$ double $>$ \&)
+\item 
+const int \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CTriangularMesh_aa260d09523450ffae99e3bd8f1017eab}{update\+Solution}} (const unsigned int element, const unsigned int node, \mbox{\hyperlink{classcorenc_1_1CSolution}{CSolution}} $\ast$value)
+\item 
+const double \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CTriangularMesh_a063de5c5d41bbc3be31fb64cf02730b2}{get\+Parameter}} (\mbox{\hyperlink{namespacecorenc_a2902da21a64b0735c94fc4e59e25b02f}{Parameters}}, const unsigned int, const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} \&) const
+\item 
+const double \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CTriangularMesh_a8d6553843856d9edf9ded84593a2a0c2}{get\+Parameter}} (\mbox{\hyperlink{namespacecorenc_a2902da21a64b0735c94fc4e59e25b02f}{Parameters}}, const unsigned int, const int) const
+\item 
+const int \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CTriangularMesh_a4462270fb1bd60e4e694eba933397fbc}{set\+Parameter}} (\mbox{\hyperlink{namespacecorenc_a2902da21a64b0735c94fc4e59e25b02f}{Parameters}}, const double, const unsigned int)
+\item 
+const int \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CTriangularMesh_a6bbdc788d8e257165e1d8d930e045b72}{set\+Parameter}} (const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CParameter}{CParameter}} \&, const unsigned int type)
+\item 
+const int \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CTriangularMesh_aedcb644fb02857d99c8100a289f7a500}{update\+Solution}} (const unsigned int node, const double value)
+\item 
+const int \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CTriangularMesh_af23171a2a28da1402506d0350042e78c}{refine\+\_\+h}} ()
+\item 
+const int \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CTriangularMesh_abf502b1b6e5a64317c0982ed1d506e83}{refine\+\_\+p}} ()
+\item 
+const int \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CTriangularMesh_af26e21832267da5676114fb861dfa045}{refine\+\_\+hp}} ()
+\item 
+const int \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CTriangularMesh_a17c34e20d7080c1e5ce72d853d4cc3c4}{set4th\+Order}} ()
+\item 
+const int \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CTriangularMesh_ab14a6d3b2366decd014c17e00c4eff80}{set2nd\+Order}} ()
+\item 
+const int \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CTriangularMesh_ae83c2988506cd8e8bbf18dd41211b8c9}{set3rd\+Order}} ()
+\item 
+const int \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CTriangularMesh_ae82f6c2aa3c6a5c20b1096c8d2bdd1cd}{interpolate}} (const int node) const
+\item 
+const int \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CTriangularMesh_a9a4066f397300e2cea0a89961f9dccb2}{Get\+Number\+Of\+INodes}} () const
+\item 
+\mbox{\hyperlink{classcorenc_1_1Mesh_1_1CTriangularMesh_a9f387cdc3d6a79e696ed448449116392}{$\sim$\+CTriangular\+Mesh}} ()
+\item 
+auto \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CTriangularMesh_a279788f2d422077929a0765608f2935b}{Get\+Elements}} () -\/$>$ decltype(m\+\_\+elems)
+\item 
+auto \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CTriangularMesh_a57f508c03969021fd9ffa1bb074037b7}{Get\+Boundary}} () -\/$>$ decltype(m\+\_\+edges)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CTriangularMesh_a1decc5427babe3c0f78d612f01195ecf}\label{classcorenc_1_1Mesh_1_1CTriangularMesh_a1decc5427babe3c0f78d612f01195ecf}} 
+\index{corenc::Mesh::CTriangularMesh@{corenc::Mesh::CTriangularMesh}!CTriangularMesh@{CTriangularMesh}}
+\index{CTriangularMesh@{CTriangularMesh}!corenc::Mesh::CTriangularMesh@{corenc::Mesh::CTriangularMesh}}
+\doxysubsubsection{\texorpdfstring{CTriangularMesh()}{CTriangularMesh()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily CTriangular\+Mesh\+::\+CTriangular\+Mesh (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CTriangularMesh_a352230f8d9570fdf737221e4c143b302}\label{classcorenc_1_1Mesh_1_1CTriangularMesh_a352230f8d9570fdf737221e4c143b302}} 
+\index{corenc::Mesh::CTriangularMesh@{corenc::Mesh::CTriangularMesh}!CTriangularMesh@{CTriangularMesh}}
+\index{CTriangularMesh@{CTriangularMesh}!corenc::Mesh::CTriangularMesh@{corenc::Mesh::CTriangularMesh}}
+\doxysubsubsection{\texorpdfstring{CTriangularMesh()}{CTriangularMesh()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily corenc\+::\+Mesh\+::\+CTriangular\+Mesh\+::\+CTriangular\+Mesh (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{file\+\_\+name }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CTriangularMesh_a1f82b477e767570794f848eaa0d7f3a8}\label{classcorenc_1_1Mesh_1_1CTriangularMesh_a1f82b477e767570794f848eaa0d7f3a8}} 
+\index{corenc::Mesh::CTriangularMesh@{corenc::Mesh::CTriangularMesh}!CTriangularMesh@{CTriangularMesh}}
+\index{CTriangularMesh@{CTriangularMesh}!corenc::Mesh::CTriangularMesh@{corenc::Mesh::CTriangularMesh}}
+\doxysubsubsection{\texorpdfstring{CTriangularMesh()}{CTriangularMesh()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily CTriangular\+Mesh\+::\+CTriangular\+Mesh (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CTriangularMesh}{CTriangular\+Mesh}} \&}]{tr }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CTriangularMesh_a192c737294e284bdd2a8381499866a5a}\label{classcorenc_1_1Mesh_1_1CTriangularMesh_a192c737294e284bdd2a8381499866a5a}} 
+\index{corenc::Mesh::CTriangularMesh@{corenc::Mesh::CTriangularMesh}!CTriangularMesh@{CTriangularMesh}}
+\index{CTriangularMesh@{CTriangularMesh}!corenc::Mesh::CTriangularMesh@{corenc::Mesh::CTriangularMesh}}
+\doxysubsubsection{\texorpdfstring{CTriangularMesh()}{CTriangularMesh()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily CTriangular\+Mesh\+::\+CTriangular\+Mesh (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} \&}]{p1,  }\item[{const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} \&}]{p2,  }\item[{const int}]{nx,  }\item[{const int}]{ny }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CTriangularMesh_a9f387cdc3d6a79e696ed448449116392}\label{classcorenc_1_1Mesh_1_1CTriangularMesh_a9f387cdc3d6a79e696ed448449116392}} 
+\index{corenc::Mesh::CTriangularMesh@{corenc::Mesh::CTriangularMesh}!````~CTriangularMesh@{$\sim$CTriangularMesh}}
+\index{````~CTriangularMesh@{$\sim$CTriangularMesh}!corenc::Mesh::CTriangularMesh@{corenc::Mesh::CTriangularMesh}}
+\doxysubsubsection{\texorpdfstring{$\sim$CTriangularMesh()}{~CTriangularMesh()}}
+{\footnotesize\ttfamily CTriangular\+Mesh\+::$\sim$\+CTriangular\+Mesh (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CTriangularMesh_a08322d91fa57d7204c85005bba409675}\label{classcorenc_1_1Mesh_1_1CTriangularMesh_a08322d91fa57d7204c85005bba409675}} 
+\index{corenc::Mesh::CTriangularMesh@{corenc::Mesh::CTriangularMesh}!Clone@{Clone}}
+\index{Clone@{Clone}!corenc::Mesh::CTriangularMesh@{corenc::Mesh::CTriangularMesh}}
+\doxysubsubsection{\texorpdfstring{Clone()}{Clone()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CTriangularMesh}{CTriangular\+Mesh}} $\ast$ corenc\+::\+Mesh\+::\+CTriangular\+Mesh\+::\+Clone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CTriangularMesh_aeaa2a478d9c98c641ece741ad2f5e839}\label{classcorenc_1_1Mesh_1_1CTriangularMesh_aeaa2a478d9c98c641ece741ad2f5e839}} 
+\index{corenc::Mesh::CTriangularMesh@{corenc::Mesh::CTriangularMesh}!FindElement@{FindElement}}
+\index{FindElement@{FindElement}!corenc::Mesh::CTriangularMesh@{corenc::Mesh::CTriangularMesh}}
+\doxysubsubsection{\texorpdfstring{FindElement()}{FindElement()}}
+{\footnotesize\ttfamily const int CTriangular\+Mesh\+::\+Find\+Element (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} \&}]{test }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CMesh_a3839a09424d361be8984bd7ba092ffa6}{corenc\+::\+Mesh\+::\+CMesh$<$$>$}}.
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CTriangularMesh_a57f508c03969021fd9ffa1bb074037b7}\label{classcorenc_1_1Mesh_1_1CTriangularMesh_a57f508c03969021fd9ffa1bb074037b7}} 
+\index{corenc::Mesh::CTriangularMesh@{corenc::Mesh::CTriangularMesh}!GetBoundary@{GetBoundary}}
+\index{GetBoundary@{GetBoundary}!corenc::Mesh::CTriangularMesh@{corenc::Mesh::CTriangularMesh}}
+\doxysubsubsection{\texorpdfstring{GetBoundary()}{GetBoundary()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily auto corenc\+::\+Mesh\+::\+CTriangular\+Mesh\+::\+Get\+Boundary (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) -\/$>$ decltype(m\+\_\+edges) \hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CTriangularMesh_ac261e2638509ccd142c7b4437ff037f0}\label{classcorenc_1_1Mesh_1_1CTriangularMesh_ac261e2638509ccd142c7b4437ff037f0}} 
+\index{corenc::Mesh::CTriangularMesh@{corenc::Mesh::CTriangularMesh}!GetBoundary@{GetBoundary}}
+\index{GetBoundary@{GetBoundary}!corenc::Mesh::CTriangularMesh@{corenc::Mesh::CTriangularMesh}}
+\doxysubsubsection{\texorpdfstring{GetBoundary()}{GetBoundary()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement}{CElement}} $\ast$ CTriangular\+Mesh\+::\+Get\+Boundary (\begin{DoxyParamCaption}\item[{const unsigned int}]{n }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CMesh_aea9e16c92725b28d25211a2325a93968}{corenc\+::\+Mesh\+::\+CMesh$<$$>$}}.
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CTriangularMesh_ab9977751c0996552c7622d2de175373b}\label{classcorenc_1_1Mesh_1_1CTriangularMesh_ab9977751c0996552c7622d2de175373b}} 
+\index{corenc::Mesh::CTriangularMesh@{corenc::Mesh::CTriangularMesh}!GetElement@{GetElement}}
+\index{GetElement@{GetElement}!corenc::Mesh::CTriangularMesh@{corenc::Mesh::CTriangularMesh}}
+\doxysubsubsection{\texorpdfstring{GetElement()}{GetElement()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement}{CElement}} $\ast$ CTriangular\+Mesh\+::\+Get\+Element (\begin{DoxyParamCaption}\item[{const unsigned int}]{n }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CMesh_a3071b830b8705d445b8a68d4bda9bdef}{corenc\+::\+Mesh\+::\+CMesh$<$$>$}}.
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CTriangularMesh_a279788f2d422077929a0765608f2935b}\label{classcorenc_1_1Mesh_1_1CTriangularMesh_a279788f2d422077929a0765608f2935b}} 
+\index{corenc::Mesh::CTriangularMesh@{corenc::Mesh::CTriangularMesh}!GetElements@{GetElements}}
+\index{GetElements@{GetElements}!corenc::Mesh::CTriangularMesh@{corenc::Mesh::CTriangularMesh}}
+\doxysubsubsection{\texorpdfstring{GetElements()}{GetElements()}}
+{\footnotesize\ttfamily auto corenc\+::\+Mesh\+::\+CTriangular\+Mesh\+::\+Get\+Elements (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) -\/$>$ decltype(m\+\_\+elems) \hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CTriangularMesh_a7a5efe242eb664c957f1081ca3d7e0b6}\label{classcorenc_1_1Mesh_1_1CTriangularMesh_a7a5efe242eb664c957f1081ca3d7e0b6}} 
+\index{corenc::Mesh::CTriangularMesh@{corenc::Mesh::CTriangularMesh}!getMinSize@{getMinSize}}
+\index{getMinSize@{getMinSize}!corenc::Mesh::CTriangularMesh@{corenc::Mesh::CTriangularMesh}}
+\doxysubsubsection{\texorpdfstring{getMinSize()}{getMinSize()}}
+{\footnotesize\ttfamily const double corenc\+::\+Mesh\+::\+CTriangular\+Mesh\+::get\+Min\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CMesh_a4e21c6d07f2753eccc21b77adf4f104d}{corenc\+::\+Mesh\+::\+CMesh$<$$>$}}.
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CTriangularMesh_ac33285d87088a7d103b01e6d754c4d63}\label{classcorenc_1_1Mesh_1_1CTriangularMesh_ac33285d87088a7d103b01e6d754c4d63}} 
+\index{corenc::Mesh::CTriangularMesh@{corenc::Mesh::CTriangularMesh}!GetNode@{GetNode}}
+\index{GetNode@{GetNode}!corenc::Mesh::CTriangularMesh@{corenc::Mesh::CTriangularMesh}}
+\doxysubsubsection{\texorpdfstring{GetNode()}{GetNode()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh\+::\+Point}} CTriangular\+Mesh\+::\+Get\+Node (\begin{DoxyParamCaption}\item[{const unsigned int}]{n }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CMesh_ae71fa6a4c58504fd8dc0daf3bea95cf4}{corenc\+::\+Mesh\+::\+CMesh$<$$>$}}.
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CTriangularMesh_a26504953be8ae71cf504537f4daa7485}\label{classcorenc_1_1Mesh_1_1CTriangularMesh_a26504953be8ae71cf504537f4daa7485}} 
+\index{corenc::Mesh::CTriangularMesh@{corenc::Mesh::CTriangularMesh}!GetNumberOfBoundaries@{GetNumberOfBoundaries}}
+\index{GetNumberOfBoundaries@{GetNumberOfBoundaries}!corenc::Mesh::CTriangularMesh@{corenc::Mesh::CTriangularMesh}}
+\doxysubsubsection{\texorpdfstring{GetNumberOfBoundaries()}{GetNumberOfBoundaries()}}
+{\footnotesize\ttfamily const unsigned int CTriangular\+Mesh\+::\+Get\+Number\+Of\+Boundaries (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CMesh_a1170e2e4e523db3c111c5b106361b0c5}{corenc\+::\+Mesh\+::\+CMesh$<$$>$}}.
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CTriangularMesh_ade44cc7d3cfb56416c8a597c2dc0633a}\label{classcorenc_1_1Mesh_1_1CTriangularMesh_ade44cc7d3cfb56416c8a597c2dc0633a}} 
+\index{corenc::Mesh::CTriangularMesh@{corenc::Mesh::CTriangularMesh}!GetNumberOfElements@{GetNumberOfElements}}
+\index{GetNumberOfElements@{GetNumberOfElements}!corenc::Mesh::CTriangularMesh@{corenc::Mesh::CTriangularMesh}}
+\doxysubsubsection{\texorpdfstring{GetNumberOfElements()}{GetNumberOfElements()}}
+{\footnotesize\ttfamily const unsigned int CTriangular\+Mesh\+::\+Get\+Number\+Of\+Elements (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CMesh_a61f2f2ced4496eefe659474cd2cbef29}{corenc\+::\+Mesh\+::\+CMesh$<$$>$}}.
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CTriangularMesh_a9a4066f397300e2cea0a89961f9dccb2}\label{classcorenc_1_1Mesh_1_1CTriangularMesh_a9a4066f397300e2cea0a89961f9dccb2}} 
+\index{corenc::Mesh::CTriangularMesh@{corenc::Mesh::CTriangularMesh}!GetNumberOfINodes@{GetNumberOfINodes}}
+\index{GetNumberOfINodes@{GetNumberOfINodes}!corenc::Mesh::CTriangularMesh@{corenc::Mesh::CTriangularMesh}}
+\doxysubsubsection{\texorpdfstring{GetNumberOfINodes()}{GetNumberOfINodes()}}
+{\footnotesize\ttfamily const int CTriangular\+Mesh\+::\+Get\+Number\+Of\+INodes (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CTriangularMesh_ab5283aac58612b8f4bfa755a89e74dc1}\label{classcorenc_1_1Mesh_1_1CTriangularMesh_ab5283aac58612b8f4bfa755a89e74dc1}} 
+\index{corenc::Mesh::CTriangularMesh@{corenc::Mesh::CTriangularMesh}!GetNumberOfNodes@{GetNumberOfNodes}}
+\index{GetNumberOfNodes@{GetNumberOfNodes}!corenc::Mesh::CTriangularMesh@{corenc::Mesh::CTriangularMesh}}
+\doxysubsubsection{\texorpdfstring{GetNumberOfNodes()}{GetNumberOfNodes()}}
+{\footnotesize\ttfamily const unsigned int CTriangular\+Mesh\+::\+Get\+Number\+Of\+Nodes (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CMesh_ad5dd038254ddb5a67320b1cb8cf03c78}{corenc\+::\+Mesh\+::\+CMesh$<$$>$}}.
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CTriangularMesh_a8d6553843856d9edf9ded84593a2a0c2}\label{classcorenc_1_1Mesh_1_1CTriangularMesh_a8d6553843856d9edf9ded84593a2a0c2}} 
+\index{corenc::Mesh::CTriangularMesh@{corenc::Mesh::CTriangularMesh}!getParameter@{getParameter}}
+\index{getParameter@{getParameter}!corenc::Mesh::CTriangularMesh@{corenc::Mesh::CTriangularMesh}}
+\doxysubsubsection{\texorpdfstring{getParameter()}{getParameter()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily const double CTriangular\+Mesh\+::get\+Parameter (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacecorenc_a2902da21a64b0735c94fc4e59e25b02f}{Parameters}}}]{param,  }\item[{const unsigned int}]{l,  }\item[{const int}]{i }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CMesh_a12ee2c6171486ced9abb957e3dd395cc}{corenc\+::\+Mesh\+::\+CMesh$<$$>$}}.
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CTriangularMesh_a063de5c5d41bbc3be31fb64cf02730b2}\label{classcorenc_1_1Mesh_1_1CTriangularMesh_a063de5c5d41bbc3be31fb64cf02730b2}} 
+\index{corenc::Mesh::CTriangularMesh@{corenc::Mesh::CTriangularMesh}!getParameter@{getParameter}}
+\index{getParameter@{getParameter}!corenc::Mesh::CTriangularMesh@{corenc::Mesh::CTriangularMesh}}
+\doxysubsubsection{\texorpdfstring{getParameter()}{getParameter()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily const double CTriangular\+Mesh\+::get\+Parameter (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacecorenc_a2902da21a64b0735c94fc4e59e25b02f}{Parameters}}}]{param,  }\item[{const unsigned int}]{l,  }\item[{const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} \&}]{p }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CMesh_aad2ee8f9559aca5edcb72f105b428a3c}{corenc\+::\+Mesh\+::\+CMesh$<$$>$}}.
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CTriangularMesh_a352f4f5ef49b61eb3b85ec7c7554a2dc}\label{classcorenc_1_1Mesh_1_1CTriangularMesh_a352f4f5ef49b61eb3b85ec7c7554a2dc}} 
+\index{corenc::Mesh::CTriangularMesh@{corenc::Mesh::CTriangularMesh}!getSolution@{getSolution}}
+\index{getSolution@{getSolution}!corenc::Mesh::CTriangularMesh@{corenc::Mesh::CTriangularMesh}}
+\doxysubsubsection{\texorpdfstring{getSolution()}{getSolution()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily const std\+::vector$<$ double $>$ CTriangular\+Mesh\+::get\+Solution (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CMesh_a4f14479428561637c43f769159eabbdb}{corenc\+::\+Mesh\+::\+CMesh$<$$>$}}.
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CTriangularMesh_ae7d3931c8450c1360d0e31b1b052a2cc}\label{classcorenc_1_1Mesh_1_1CTriangularMesh_ae7d3931c8450c1360d0e31b1b052a2cc}} 
+\index{corenc::Mesh::CTriangularMesh@{corenc::Mesh::CTriangularMesh}!getSolution@{getSolution}}
+\index{getSolution@{getSolution}!corenc::Mesh::CTriangularMesh@{corenc::Mesh::CTriangularMesh}}
+\doxysubsubsection{\texorpdfstring{getSolution()}{getSolution()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily const double CTriangular\+Mesh\+::get\+Solution (\begin{DoxyParamCaption}\item[{const unsigned int}]{element,  }\item[{const unsigned int}]{node }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CMesh_aa693666b5c0f1dd873ee820c5bebab63}{corenc\+::\+Mesh\+::\+CMesh$<$$>$}}.
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CTriangularMesh_ae82f6c2aa3c6a5c20b1096c8d2bdd1cd}\label{classcorenc_1_1Mesh_1_1CTriangularMesh_ae82f6c2aa3c6a5c20b1096c8d2bdd1cd}} 
+\index{corenc::Mesh::CTriangularMesh@{corenc::Mesh::CTriangularMesh}!interpolate@{interpolate}}
+\index{interpolate@{interpolate}!corenc::Mesh::CTriangularMesh@{corenc::Mesh::CTriangularMesh}}
+\doxysubsubsection{\texorpdfstring{interpolate()}{interpolate()}}
+{\footnotesize\ttfamily const int CTriangular\+Mesh\+::interpolate (\begin{DoxyParamCaption}\item[{const int}]{node }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CTriangularMesh_ae680ed044ba645c3f13b764166a78437}\label{classcorenc_1_1Mesh_1_1CTriangularMesh_ae680ed044ba645c3f13b764166a78437}} 
+\index{corenc::Mesh::CTriangularMesh@{corenc::Mesh::CTriangularMesh}!operator=@{operator=}}
+\index{operator=@{operator=}!corenc::Mesh::CTriangularMesh@{corenc::Mesh::CTriangularMesh}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CTriangularMesh}{CTriangular\+Mesh}} \& corenc\+::\+Mesh\+::\+CTriangular\+Mesh\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CTriangularMesh}{CTriangular\+Mesh}} \&}]{tr }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CTriangularMesh_af23171a2a28da1402506d0350042e78c}\label{classcorenc_1_1Mesh_1_1CTriangularMesh_af23171a2a28da1402506d0350042e78c}} 
+\index{corenc::Mesh::CTriangularMesh@{corenc::Mesh::CTriangularMesh}!refine\_h@{refine\_h}}
+\index{refine\_h@{refine\_h}!corenc::Mesh::CTriangularMesh@{corenc::Mesh::CTriangularMesh}}
+\doxysubsubsection{\texorpdfstring{refine\_h()}{refine\_h()}}
+{\footnotesize\ttfamily const int CTriangular\+Mesh\+::refine\+\_\+h (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CTriangularMesh_af26e21832267da5676114fb861dfa045}\label{classcorenc_1_1Mesh_1_1CTriangularMesh_af26e21832267da5676114fb861dfa045}} 
+\index{corenc::Mesh::CTriangularMesh@{corenc::Mesh::CTriangularMesh}!refine\_hp@{refine\_hp}}
+\index{refine\_hp@{refine\_hp}!corenc::Mesh::CTriangularMesh@{corenc::Mesh::CTriangularMesh}}
+\doxysubsubsection{\texorpdfstring{refine\_hp()}{refine\_hp()}}
+{\footnotesize\ttfamily const int corenc\+::\+Mesh\+::\+CTriangular\+Mesh\+::refine\+\_\+hp (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CTriangularMesh_abf502b1b6e5a64317c0982ed1d506e83}\label{classcorenc_1_1Mesh_1_1CTriangularMesh_abf502b1b6e5a64317c0982ed1d506e83}} 
+\index{corenc::Mesh::CTriangularMesh@{corenc::Mesh::CTriangularMesh}!refine\_p@{refine\_p}}
+\index{refine\_p@{refine\_p}!corenc::Mesh::CTriangularMesh@{corenc::Mesh::CTriangularMesh}}
+\doxysubsubsection{\texorpdfstring{refine\_p()}{refine\_p()}}
+{\footnotesize\ttfamily const int CTriangular\+Mesh\+::refine\+\_\+p (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CTriangularMesh_ab14a6d3b2366decd014c17e00c4eff80}\label{classcorenc_1_1Mesh_1_1CTriangularMesh_ab14a6d3b2366decd014c17e00c4eff80}} 
+\index{corenc::Mesh::CTriangularMesh@{corenc::Mesh::CTriangularMesh}!set2ndOrder@{set2ndOrder}}
+\index{set2ndOrder@{set2ndOrder}!corenc::Mesh::CTriangularMesh@{corenc::Mesh::CTriangularMesh}}
+\doxysubsubsection{\texorpdfstring{set2ndOrder()}{set2ndOrder()}}
+{\footnotesize\ttfamily const int CTriangular\+Mesh\+::set2nd\+Order (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CTriangularMesh_ae83c2988506cd8e8bbf18dd41211b8c9}\label{classcorenc_1_1Mesh_1_1CTriangularMesh_ae83c2988506cd8e8bbf18dd41211b8c9}} 
+\index{corenc::Mesh::CTriangularMesh@{corenc::Mesh::CTriangularMesh}!set3rdOrder@{set3rdOrder}}
+\index{set3rdOrder@{set3rdOrder}!corenc::Mesh::CTriangularMesh@{corenc::Mesh::CTriangularMesh}}
+\doxysubsubsection{\texorpdfstring{set3rdOrder()}{set3rdOrder()}}
+{\footnotesize\ttfamily const int CTriangular\+Mesh\+::set3rd\+Order (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CTriangularMesh_a17c34e20d7080c1e5ce72d853d4cc3c4}\label{classcorenc_1_1Mesh_1_1CTriangularMesh_a17c34e20d7080c1e5ce72d853d4cc3c4}} 
+\index{corenc::Mesh::CTriangularMesh@{corenc::Mesh::CTriangularMesh}!set4thOrder@{set4thOrder}}
+\index{set4thOrder@{set4thOrder}!corenc::Mesh::CTriangularMesh@{corenc::Mesh::CTriangularMesh}}
+\doxysubsubsection{\texorpdfstring{set4thOrder()}{set4thOrder()}}
+{\footnotesize\ttfamily const int CTriangular\+Mesh\+::set4th\+Order (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CTriangularMesh_a6bbdc788d8e257165e1d8d930e045b72}\label{classcorenc_1_1Mesh_1_1CTriangularMesh_a6bbdc788d8e257165e1d8d930e045b72}} 
+\index{corenc::Mesh::CTriangularMesh@{corenc::Mesh::CTriangularMesh}!setParameter@{setParameter}}
+\index{setParameter@{setParameter}!corenc::Mesh::CTriangularMesh@{corenc::Mesh::CTriangularMesh}}
+\doxysubsubsection{\texorpdfstring{setParameter()}{setParameter()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily const int CTriangular\+Mesh\+::set\+Parameter (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CParameter}{CParameter}} \&}]{p,  }\item[{const unsigned int}]{type }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CTriangularMesh_a4462270fb1bd60e4e694eba933397fbc}\label{classcorenc_1_1Mesh_1_1CTriangularMesh_a4462270fb1bd60e4e694eba933397fbc}} 
+\index{corenc::Mesh::CTriangularMesh@{corenc::Mesh::CTriangularMesh}!setParameter@{setParameter}}
+\index{setParameter@{setParameter}!corenc::Mesh::CTriangularMesh@{corenc::Mesh::CTriangularMesh}}
+\doxysubsubsection{\texorpdfstring{setParameter()}{setParameter()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily const int CTriangular\+Mesh\+::set\+Parameter (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacecorenc_a2902da21a64b0735c94fc4e59e25b02f}{Parameters}}}]{param,  }\item[{const double}]{,  }\item[{const unsigned int}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CMesh_a192b79784e382424b26bfac000f9b182}{corenc\+::\+Mesh\+::\+CMesh$<$$>$}}.
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CTriangularMesh_ae633d76c1a56220fa518ae8a453cf7ce}\label{classcorenc_1_1Mesh_1_1CTriangularMesh_ae633d76c1a56220fa518ae8a453cf7ce}} 
+\index{corenc::Mesh::CTriangularMesh@{corenc::Mesh::CTriangularMesh}!updateSolution@{updateSolution}}
+\index{updateSolution@{updateSolution}!corenc::Mesh::CTriangularMesh@{corenc::Mesh::CTriangularMesh}}
+\doxysubsubsection{\texorpdfstring{updateSolution()}{updateSolution()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily const int CTriangular\+Mesh\+::update\+Solution (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ double $>$ \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CMesh_a8b1d47f2a85018a7a43b4a413c35a5a1}{corenc\+::\+Mesh\+::\+CMesh$<$$>$}}.
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CTriangularMesh_a9ab9585e053c2b068b867ee147aabc48}\label{classcorenc_1_1Mesh_1_1CTriangularMesh_a9ab9585e053c2b068b867ee147aabc48}} 
+\index{corenc::Mesh::CTriangularMesh@{corenc::Mesh::CTriangularMesh}!updateSolution@{updateSolution}}
+\index{updateSolution@{updateSolution}!corenc::Mesh::CTriangularMesh@{corenc::Mesh::CTriangularMesh}}
+\doxysubsubsection{\texorpdfstring{updateSolution()}{updateSolution()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily const int CTriangular\+Mesh\+::update\+Solution (\begin{DoxyParamCaption}\item[{const unsigned int}]{element,  }\item[{const unsigned int}]{node,  }\item[{const double}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CMesh_aa7cd7017928512d535c71ad5b76a4bd3}{corenc\+::\+Mesh\+::\+CMesh$<$$>$}}.
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CTriangularMesh_aa260d09523450ffae99e3bd8f1017eab}\label{classcorenc_1_1Mesh_1_1CTriangularMesh_aa260d09523450ffae99e3bd8f1017eab}} 
+\index{corenc::Mesh::CTriangularMesh@{corenc::Mesh::CTriangularMesh}!updateSolution@{updateSolution}}
+\index{updateSolution@{updateSolution}!corenc::Mesh::CTriangularMesh@{corenc::Mesh::CTriangularMesh}}
+\doxysubsubsection{\texorpdfstring{updateSolution()}{updateSolution()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily const int CTriangular\+Mesh\+::update\+Solution (\begin{DoxyParamCaption}\item[{const unsigned int}]{element,  }\item[{const unsigned int}]{node,  }\item[{\mbox{\hyperlink{classcorenc_1_1CSolution}{CSolution}} $\ast$}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CMesh_aaf320e93d10760f5215dde8c115b3a1b}{corenc\+::\+Mesh\+::\+CMesh$<$$>$}}.
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CTriangularMesh_aedcb644fb02857d99c8100a289f7a500}\label{classcorenc_1_1Mesh_1_1CTriangularMesh_aedcb644fb02857d99c8100a289f7a500}} 
+\index{corenc::Mesh::CTriangularMesh@{corenc::Mesh::CTriangularMesh}!updateSolution@{updateSolution}}
+\index{updateSolution@{updateSolution}!corenc::Mesh::CTriangularMesh@{corenc::Mesh::CTriangularMesh}}
+\doxysubsubsection{\texorpdfstring{updateSolution()}{updateSolution()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily const int CTriangular\+Mesh\+::update\+Solution (\begin{DoxyParamCaption}\item[{const unsigned int}]{node,  }\item[{const double}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CMesh_a11f9e99efda8223c3c6fd49987c13c7e}{corenc\+::\+Mesh\+::\+CMesh$<$$>$}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Core\+NCFEM/\+Grids/\mbox{\hyperlink{TriangularMesh_8h}{Triangular\+Mesh.\+h}}\item 
+Core\+NCFEM/\+Grids/\mbox{\hyperlink{TriangularMesh_8cpp}{Triangular\+Mesh.\+cpp}}\end{DoxyCompactItemize}

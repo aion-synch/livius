@@ -1,0 +1,102 @@
+\hypertarget{classcorenc_1_1CProblem}{}\doxysection{corenc\+::CProblem Class Reference}
+\label{classcorenc_1_1CProblem}\index{corenc::CProblem@{corenc::CProblem}}
+
+
+{\ttfamily \#include $<$Problems.\+h$>$}
+
+Inheritance diagram for corenc\+::CProblem\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classcorenc_1_1CProblem}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcorenc_1_1CProblem_a0b1430e1bf2dc152a90f98b558d33154}{CProblem}} ()
+\item 
+virtual \mbox{\hyperlink{classcorenc_1_1CProblem_adc3d93683f7c87588a9cecc13222c7b8}{$\sim$\+CProblem}} ()
+\item 
+virtual \mbox{\hyperlink{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7d}{Terms}} \mbox{\hyperlink{classcorenc_1_1CProblem_a893274efc38ac039658afd3a16600392}{get\+Term}} (const unsigned int) const =0
+\item 
+virtual const unsigned int \mbox{\hyperlink{classcorenc_1_1CProblem_ad7b960b983e445add1c06c230acee8f8}{get\+Number\+Of\+Terms}} () const =0
+\item 
+virtual const int \mbox{\hyperlink{classcorenc_1_1CProblem_aa24039eaa6078b54fd6683c2d1f8a25f}{set\+Term}} (const unsigned int, const \mbox{\hyperlink{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7d}{Terms}} \&)=0
+\item 
+virtual const int \mbox{\hyperlink{classcorenc_1_1CProblem_aca3fa2d2e8d36f51114c8c814ae088ab}{add\+Term}} (const \mbox{\hyperlink{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7d}{Terms}} \&)=0
+\item 
+virtual const int \mbox{\hyperlink{classcorenc_1_1CProblem_aa3dc557e5cf76bb82bb3ed8279d4cd86}{load\+\_\+parameters}} (const std\+::string \&file\+\_\+name)=0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classcorenc_1_1CProblem_a0b1430e1bf2dc152a90f98b558d33154}\label{classcorenc_1_1CProblem_a0b1430e1bf2dc152a90f98b558d33154}} 
+\index{corenc::CProblem@{corenc::CProblem}!CProblem@{CProblem}}
+\index{CProblem@{CProblem}!corenc::CProblem@{corenc::CProblem}}
+\doxysubsubsection{\texorpdfstring{CProblem()}{CProblem()}}
+{\footnotesize\ttfamily corenc\+::\+CProblem\+::\+CProblem (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classcorenc_1_1CProblem_adc3d93683f7c87588a9cecc13222c7b8}\label{classcorenc_1_1CProblem_adc3d93683f7c87588a9cecc13222c7b8}} 
+\index{corenc::CProblem@{corenc::CProblem}!````~CProblem@{$\sim$CProblem}}
+\index{````~CProblem@{$\sim$CProblem}!corenc::CProblem@{corenc::CProblem}}
+\doxysubsubsection{\texorpdfstring{$\sim$CProblem()}{~CProblem()}}
+{\footnotesize\ttfamily virtual corenc\+::\+CProblem\+::$\sim$\+CProblem (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classcorenc_1_1CProblem_aca3fa2d2e8d36f51114c8c814ae088ab}\label{classcorenc_1_1CProblem_aca3fa2d2e8d36f51114c8c814ae088ab}} 
+\index{corenc::CProblem@{corenc::CProblem}!addTerm@{addTerm}}
+\index{addTerm@{addTerm}!corenc::CProblem@{corenc::CProblem}}
+\doxysubsubsection{\texorpdfstring{addTerm()}{addTerm()}}
+{\footnotesize\ttfamily virtual const int corenc\+::\+CProblem\+::add\+Term (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7d}{Terms}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classcorenc_1_1CBurgersScalar_a814fa20a4af85d64b3907ff217fb2a07}{corenc\+::\+CBurgers\+Scalar}}, \mbox{\hyperlink{classcorenc_1_1CDiffusionScalar_a74a6a0b8b7025c566f5f95093f9e2a56}{corenc\+::\+CDiffusion\+Scalar}}, and \mbox{\hyperlink{classcorenc_1_1CShallowWater_ae68c31fb0beb29a531249661dd454803}{corenc\+::\+CShallow\+Water}}.
+
+\mbox{\Hypertarget{classcorenc_1_1CProblem_ad7b960b983e445add1c06c230acee8f8}\label{classcorenc_1_1CProblem_ad7b960b983e445add1c06c230acee8f8}} 
+\index{corenc::CProblem@{corenc::CProblem}!getNumberOfTerms@{getNumberOfTerms}}
+\index{getNumberOfTerms@{getNumberOfTerms}!corenc::CProblem@{corenc::CProblem}}
+\doxysubsubsection{\texorpdfstring{getNumberOfTerms()}{getNumberOfTerms()}}
+{\footnotesize\ttfamily virtual const unsigned int corenc\+::\+CProblem\+::get\+Number\+Of\+Terms (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classcorenc_1_1CBurgersScalar_a5bd396faf72321f605072551b0db2be6}{corenc\+::\+CBurgers\+Scalar}}, \mbox{\hyperlink{classcorenc_1_1CDiffusionScalar_aa8839df48c4512da2082165633c74be4}{corenc\+::\+CDiffusion\+Scalar}}, and \mbox{\hyperlink{classcorenc_1_1CShallowWater_a4cd748e169bc417fab80f3eada35f373}{corenc\+::\+CShallow\+Water}}.
+
+\mbox{\Hypertarget{classcorenc_1_1CProblem_a893274efc38ac039658afd3a16600392}\label{classcorenc_1_1CProblem_a893274efc38ac039658afd3a16600392}} 
+\index{corenc::CProblem@{corenc::CProblem}!getTerm@{getTerm}}
+\index{getTerm@{getTerm}!corenc::CProblem@{corenc::CProblem}}
+\doxysubsubsection{\texorpdfstring{getTerm()}{getTerm()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7d}{Terms}} corenc\+::\+CProblem\+::get\+Term (\begin{DoxyParamCaption}\item[{const unsigned int}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classcorenc_1_1CBurgersScalar_aeb8d952d52c76c6827db0f92a4bc45d1}{corenc\+::\+CBurgers\+Scalar}}, \mbox{\hyperlink{classcorenc_1_1CDiffusionScalar_a535743895dfe086c12d4bf5de4081bae}{corenc\+::\+CDiffusion\+Scalar}}, and \mbox{\hyperlink{classcorenc_1_1CShallowWater_a5c72e5e5ebf18c6391b59a4302c675f3}{corenc\+::\+CShallow\+Water}}.
+
+\mbox{\Hypertarget{classcorenc_1_1CProblem_aa3dc557e5cf76bb82bb3ed8279d4cd86}\label{classcorenc_1_1CProblem_aa3dc557e5cf76bb82bb3ed8279d4cd86}} 
+\index{corenc::CProblem@{corenc::CProblem}!load\_parameters@{load\_parameters}}
+\index{load\_parameters@{load\_parameters}!corenc::CProblem@{corenc::CProblem}}
+\doxysubsubsection{\texorpdfstring{load\_parameters()}{load\_parameters()}}
+{\footnotesize\ttfamily virtual const int corenc\+::\+CProblem\+::load\+\_\+parameters (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{file\+\_\+name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classcorenc_1_1CBurgersScalar_a7adda935a4ebf3ee575698e89cf0bec2}{corenc\+::\+CBurgers\+Scalar}}, \mbox{\hyperlink{classcorenc_1_1CDiffusionScalar_a429994518ecbe2bab2676d044a2b432d}{corenc\+::\+CDiffusion\+Scalar}}, and \mbox{\hyperlink{classcorenc_1_1CShallowWater_a26862fb323f56a2317d5f8c783707739}{corenc\+::\+CShallow\+Water}}.
+
+\mbox{\Hypertarget{classcorenc_1_1CProblem_aa24039eaa6078b54fd6683c2d1f8a25f}\label{classcorenc_1_1CProblem_aa24039eaa6078b54fd6683c2d1f8a25f}} 
+\index{corenc::CProblem@{corenc::CProblem}!setTerm@{setTerm}}
+\index{setTerm@{setTerm}!corenc::CProblem@{corenc::CProblem}}
+\doxysubsubsection{\texorpdfstring{setTerm()}{setTerm()}}
+{\footnotesize\ttfamily virtual const int corenc\+::\+CProblem\+::set\+Term (\begin{DoxyParamCaption}\item[{const unsigned int}]{,  }\item[{const \mbox{\hyperlink{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7d}{Terms}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classcorenc_1_1CBurgersScalar_a0d46c1c8975d18567b2b154af561cc16}{corenc\+::\+CBurgers\+Scalar}}, \mbox{\hyperlink{classcorenc_1_1CDiffusionScalar_a74a5439a602d3fa00a18d420de83ddc9}{corenc\+::\+CDiffusion\+Scalar}}, and \mbox{\hyperlink{classcorenc_1_1CShallowWater_a823e261c1672b2fe221c942b6397dd9f}{corenc\+::\+CShallow\+Water}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Problems/\mbox{\hyperlink{Problems_8h}{Problems.\+h}}\end{DoxyCompactItemize}

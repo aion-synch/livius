@@ -1,0 +1,155 @@
+\hypertarget{classcorenc_1_1Mesh_1_1CNodeBasis}{}\doxysection{corenc\+::Mesh\+::CNode\+Basis Class Reference}
+\label{classcorenc_1_1Mesh_1_1CNodeBasis}\index{corenc::Mesh::CNodeBasis@{corenc::Mesh::CNodeBasis}}
+
+
+{\ttfamily \#include $<$Node.\+h$>$}
+
+Inheritance diagram for corenc\+::Mesh\+::CNode\+Basis\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classcorenc_1_1Mesh_1_1CNodeBasis}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcorenc_1_1Mesh_1_1CNodeBasis_afd84246f3e9ae9598691628ad062b69b}{CNode\+Basis}} ()
+\item 
+\mbox{\hyperlink{classcorenc_1_1Mesh_1_1CNodeBasis_af39ecc1a69dc142908ef2ba8e0cb4b78}{CNode\+Basis}} (const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} $\ast$)
+\item 
+\mbox{\hyperlink{classcorenc_1_1Mesh_1_1CNodeBasis_a2e3f738af91ebd32ecdbeef12408cced}{CNode\+Basis}} (const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CNodeBasis}{CNode\+Basis}} \&e)
+\item 
+\mbox{\hyperlink{classcorenc_1_1Mesh_1_1CNodeBasis}{CNode\+Basis}} \& \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CNodeBasis_a11ef94e5fcf733e119a3349d171b3e05}{operator=}} (const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CNodeBasis}{CNode\+Basis}} \&e)
+\item 
+\mbox{\hyperlink{classcorenc_1_1Mesh_1_1CNodeBasis_a478414a17d7c1cfe5bde59e2853d470a}{$\sim$\+CNode\+Basis}} ()
+\item 
+const int \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CNodeBasis_a6af9cceeebc98901d83e20e37edab107}{Get\+Number\+Of\+Shape\+Functions}} () const
+\item 
+const double \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CNodeBasis_a0eeb069a5db1b3acb6dbbbc3dee81e9f}{Get\+Shape\+Function}} (const int, const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} \&) const
+\item 
+const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CNodeBasis_ab9093c9c3aac55c416746f52aba71023}{Get\+Grad\+Shape\+Function}} (const int, const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} \&) const
+\item 
+const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CNodeBasis_ab34236eaf8ecbcb69bb46b239caa390f}{Get\+Normal}} () const
+\item 
+void \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CNodeBasis_a2ac14859f6c1ef51d01d3afdfd5d8f1e}{Reverse\+Normal}} ()
+\item 
+const double \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CNodeBasis_ac2d4847bca75733d3503708317f12f04}{Get\+Weight}} (const int node, const std\+::vector$<$ \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} $>$ \&verts, const std\+::function$<$ const double(const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} \&)$>$ \&f) const
+\item 
+const int \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CNodeBasis_a06a09d1daaccdcedfea28fbfff15469f}{Increase\+Order}} ()
+\item 
+const double \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CNodeBasis_aa3a7694c4a264840867ea583359713fe}{Get\+Measure}} () const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CNodeBasis_afd84246f3e9ae9598691628ad062b69b}\label{classcorenc_1_1Mesh_1_1CNodeBasis_afd84246f3e9ae9598691628ad062b69b}} 
+\index{corenc::Mesh::CNodeBasis@{corenc::Mesh::CNodeBasis}!CNodeBasis@{CNodeBasis}}
+\index{CNodeBasis@{CNodeBasis}!corenc::Mesh::CNodeBasis@{corenc::Mesh::CNodeBasis}}
+\doxysubsubsection{\texorpdfstring{CNodeBasis()}{CNodeBasis()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily CNode\+Basis\+::\+CNode\+Basis (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CNodeBasis_af39ecc1a69dc142908ef2ba8e0cb4b78}\label{classcorenc_1_1Mesh_1_1CNodeBasis_af39ecc1a69dc142908ef2ba8e0cb4b78}} 
+\index{corenc::Mesh::CNodeBasis@{corenc::Mesh::CNodeBasis}!CNodeBasis@{CNodeBasis}}
+\index{CNodeBasis@{CNodeBasis}!corenc::Mesh::CNodeBasis@{corenc::Mesh::CNodeBasis}}
+\doxysubsubsection{\texorpdfstring{CNodeBasis()}{CNodeBasis()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily CNode\+Basis\+::\+CNode\+Basis (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} $\ast$}]{p }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CNodeBasis_a2e3f738af91ebd32ecdbeef12408cced}\label{classcorenc_1_1Mesh_1_1CNodeBasis_a2e3f738af91ebd32ecdbeef12408cced}} 
+\index{corenc::Mesh::CNodeBasis@{corenc::Mesh::CNodeBasis}!CNodeBasis@{CNodeBasis}}
+\index{CNodeBasis@{CNodeBasis}!corenc::Mesh::CNodeBasis@{corenc::Mesh::CNodeBasis}}
+\doxysubsubsection{\texorpdfstring{CNodeBasis()}{CNodeBasis()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily corenc\+::\+Mesh\+::\+CNode\+Basis\+::\+CNode\+Basis (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CNodeBasis}{CNode\+Basis}} \&}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CNodeBasis_a478414a17d7c1cfe5bde59e2853d470a}\label{classcorenc_1_1Mesh_1_1CNodeBasis_a478414a17d7c1cfe5bde59e2853d470a}} 
+\index{corenc::Mesh::CNodeBasis@{corenc::Mesh::CNodeBasis}!````~CNodeBasis@{$\sim$CNodeBasis}}
+\index{````~CNodeBasis@{$\sim$CNodeBasis}!corenc::Mesh::CNodeBasis@{corenc::Mesh::CNodeBasis}}
+\doxysubsubsection{\texorpdfstring{$\sim$CNodeBasis()}{~CNodeBasis()}}
+{\footnotesize\ttfamily corenc\+::\+Mesh\+::\+CNode\+Basis\+::$\sim$\+CNode\+Basis (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CNodeBasis_ab9093c9c3aac55c416746f52aba71023}\label{classcorenc_1_1Mesh_1_1CNodeBasis_ab9093c9c3aac55c416746f52aba71023}} 
+\index{corenc::Mesh::CNodeBasis@{corenc::Mesh::CNodeBasis}!GetGradShapeFunction@{GetGradShapeFunction}}
+\index{GetGradShapeFunction@{GetGradShapeFunction}!corenc::Mesh::CNodeBasis@{corenc::Mesh::CNodeBasis}}
+\doxysubsubsection{\texorpdfstring{GetGradShapeFunction()}{GetGradShapeFunction()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} CNode\+Basis\+::\+Get\+Grad\+Shape\+Function (\begin{DoxyParamCaption}\item[{const int}]{,  }\item[{const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} \&}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CShapeFunction_ae4e0205b8c97a3bc321b3f6f61ed7403}{corenc\+::\+Mesh\+::\+CShape\+Function$<$ double $>$}}.
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CNodeBasis_aa3a7694c4a264840867ea583359713fe}\label{classcorenc_1_1Mesh_1_1CNodeBasis_aa3a7694c4a264840867ea583359713fe}} 
+\index{corenc::Mesh::CNodeBasis@{corenc::Mesh::CNodeBasis}!GetMeasure@{GetMeasure}}
+\index{GetMeasure@{GetMeasure}!corenc::Mesh::CNodeBasis@{corenc::Mesh::CNodeBasis}}
+\doxysubsubsection{\texorpdfstring{GetMeasure()}{GetMeasure()}}
+{\footnotesize\ttfamily const double corenc\+::\+Mesh\+::\+CNode\+Basis\+::\+Get\+Measure (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CShapeFunction_a6c850b856bd07fca32d2a55c47dee9bd}{corenc\+::\+Mesh\+::\+CShape\+Function$<$ double $>$}}.
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CNodeBasis_ab34236eaf8ecbcb69bb46b239caa390f}\label{classcorenc_1_1Mesh_1_1CNodeBasis_ab34236eaf8ecbcb69bb46b239caa390f}} 
+\index{corenc::Mesh::CNodeBasis@{corenc::Mesh::CNodeBasis}!GetNormal@{GetNormal}}
+\index{GetNormal@{GetNormal}!corenc::Mesh::CNodeBasis@{corenc::Mesh::CNodeBasis}}
+\doxysubsubsection{\texorpdfstring{GetNormal()}{GetNormal()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} CNode\+Basis\+::\+Get\+Normal (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CShapeFunction_a5d9e746494241c344efab134e2883d17}{corenc\+::\+Mesh\+::\+CShape\+Function$<$ double $>$}}.
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CNodeBasis_a6af9cceeebc98901d83e20e37edab107}\label{classcorenc_1_1Mesh_1_1CNodeBasis_a6af9cceeebc98901d83e20e37edab107}} 
+\index{corenc::Mesh::CNodeBasis@{corenc::Mesh::CNodeBasis}!GetNumberOfShapeFunctions@{GetNumberOfShapeFunctions}}
+\index{GetNumberOfShapeFunctions@{GetNumberOfShapeFunctions}!corenc::Mesh::CNodeBasis@{corenc::Mesh::CNodeBasis}}
+\doxysubsubsection{\texorpdfstring{GetNumberOfShapeFunctions()}{GetNumberOfShapeFunctions()}}
+{\footnotesize\ttfamily const int CNode\+Basis\+::\+Get\+Number\+Of\+Shape\+Functions (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CShapeFunction_ac0abc38088b74000db00c16ceb3fd4dc}{corenc\+::\+Mesh\+::\+CShape\+Function$<$ double $>$}}.
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CNodeBasis_a0eeb069a5db1b3acb6dbbbc3dee81e9f}\label{classcorenc_1_1Mesh_1_1CNodeBasis_a0eeb069a5db1b3acb6dbbbc3dee81e9f}} 
+\index{corenc::Mesh::CNodeBasis@{corenc::Mesh::CNodeBasis}!GetShapeFunction@{GetShapeFunction}}
+\index{GetShapeFunction@{GetShapeFunction}!corenc::Mesh::CNodeBasis@{corenc::Mesh::CNodeBasis}}
+\doxysubsubsection{\texorpdfstring{GetShapeFunction()}{GetShapeFunction()}}
+{\footnotesize\ttfamily const double CNode\+Basis\+::\+Get\+Shape\+Function (\begin{DoxyParamCaption}\item[{const int}]{,  }\item[{const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} \&}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CShapeFunction_a871cda6b46ec7acce28121d0c74207f7}{corenc\+::\+Mesh\+::\+CShape\+Function$<$ double $>$}}.
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CNodeBasis_ac2d4847bca75733d3503708317f12f04}\label{classcorenc_1_1Mesh_1_1CNodeBasis_ac2d4847bca75733d3503708317f12f04}} 
+\index{corenc::Mesh::CNodeBasis@{corenc::Mesh::CNodeBasis}!GetWeight@{GetWeight}}
+\index{GetWeight@{GetWeight}!corenc::Mesh::CNodeBasis@{corenc::Mesh::CNodeBasis}}
+\doxysubsubsection{\texorpdfstring{GetWeight()}{GetWeight()}}
+{\footnotesize\ttfamily const double corenc\+::\+Mesh\+::\+CNode\+Basis\+::\+Get\+Weight (\begin{DoxyParamCaption}\item[{const int}]{node,  }\item[{const std\+::vector$<$ \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} $>$ \&}]{verts,  }\item[{const std\+::function$<$ const double(const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} \&)$>$ \&}]{f }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CNodeBasis_a06a09d1daaccdcedfea28fbfff15469f}\label{classcorenc_1_1Mesh_1_1CNodeBasis_a06a09d1daaccdcedfea28fbfff15469f}} 
+\index{corenc::Mesh::CNodeBasis@{corenc::Mesh::CNodeBasis}!IncreaseOrder@{IncreaseOrder}}
+\index{IncreaseOrder@{IncreaseOrder}!corenc::Mesh::CNodeBasis@{corenc::Mesh::CNodeBasis}}
+\doxysubsubsection{\texorpdfstring{IncreaseOrder()}{IncreaseOrder()}}
+{\footnotesize\ttfamily const int corenc\+::\+Mesh\+::\+CNode\+Basis\+::\+Increase\+Order (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CNodeBasis_a11ef94e5fcf733e119a3349d171b3e05}\label{classcorenc_1_1Mesh_1_1CNodeBasis_a11ef94e5fcf733e119a3349d171b3e05}} 
+\index{corenc::Mesh::CNodeBasis@{corenc::Mesh::CNodeBasis}!operator=@{operator=}}
+\index{operator=@{operator=}!corenc::Mesh::CNodeBasis@{corenc::Mesh::CNodeBasis}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CNodeBasis}{CNode\+Basis}} \& corenc\+::\+Mesh\+::\+CNode\+Basis\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CNodeBasis}{CNode\+Basis}} \&}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CNodeBasis_a2ac14859f6c1ef51d01d3afdfd5d8f1e}\label{classcorenc_1_1Mesh_1_1CNodeBasis_a2ac14859f6c1ef51d01d3afdfd5d8f1e}} 
+\index{corenc::Mesh::CNodeBasis@{corenc::Mesh::CNodeBasis}!ReverseNormal@{ReverseNormal}}
+\index{ReverseNormal@{ReverseNormal}!corenc::Mesh::CNodeBasis@{corenc::Mesh::CNodeBasis}}
+\doxysubsubsection{\texorpdfstring{ReverseNormal()}{ReverseNormal()}}
+{\footnotesize\ttfamily void CNode\+Basis\+::\+Reverse\+Normal (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CShapeFunction_a01a0bf9991424ac553ce54f083d8d3a9}{corenc\+::\+Mesh\+::\+CShape\+Function$<$ double $>$}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Core\+NCFEM/\+Finite\+Elements/\mbox{\hyperlink{Node_8h}{Node.\+h}}\item 
+Core\+NCFEM/\+Finite\+Elements/\mbox{\hyperlink{Node_8cpp}{Node.\+cpp}}\end{DoxyCompactItemize}

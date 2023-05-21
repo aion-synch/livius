@@ -1,0 +1,158 @@
+\hypertarget{classcorenc_1_1method_1_1system__dg__method}{}\doxysection{corenc\+::method\+::system\+\_\+dg\+\_\+method\texorpdfstring{$<$}{<} Problem, Grid, Matrix \texorpdfstring{$>$}{>} Class Template Reference}
+\label{classcorenc_1_1method_1_1system__dg__method}\index{corenc::method::system\_dg\_method$<$ Problem, Grid, Matrix $>$@{corenc::method::system\_dg\_method$<$ Problem, Grid, Matrix $>$}}
+
+
+{\ttfamily \#include $<$system\+\_\+dg\+\_\+method.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcorenc_1_1method_1_1system__dg__method_a8502b645a4669df4eceeecdbfaa62e93}{system\+\_\+dg\+\_\+method}} ()
+\item 
+\mbox{\hyperlink{classcorenc_1_1method_1_1system__dg__method_a56899abe481ed7282c5faec3e92d7673}{system\+\_\+dg\+\_\+method}} (Problem $\ast$p, Grid $\ast$g, Matrix $\ast$m, const size\+\_\+t sys\+\_\+size, std\+::vector$<$ double $>$ $\ast$rhs)
+\item 
+\mbox{\hyperlink{classcorenc_1_1method_1_1system__dg__method_a56a2f67451df25d6322397eae439e3be}{$\sim$system\+\_\+dg\+\_\+method}} ()
+\item 
+const int \mbox{\hyperlink{classcorenc_1_1method_1_1system__dg__method_ac7e14529d65d6dde7e67d271aad860f9}{Assemble}} ()
+\item 
+const int \mbox{\hyperlink{classcorenc_1_1method_1_1system__dg__method_ad2e124cc2ec5323a6761feae36a01006}{change\+Flux}} (const \mbox{\hyperlink{namespacecorenc_1_1method_ae3954d46976dc9ff3760cfa7ed0007c8}{DGFlux}} flux\+\_\+type)
+\item 
+const Matrix $\ast$ \mbox{\hyperlink{classcorenc_1_1method_1_1system__dg__method_aec7251d8927d5bd81e629f9330346f95}{Get\+Global\+Matrix}} () const
+\item 
+const std\+::vector$<$ double $>$ \mbox{\hyperlink{classcorenc_1_1method_1_1system__dg__method_a94f65865535944c6002be6d97aa1c867}{Get\+Solution}} () const
+\item 
+const double \mbox{\hyperlink{classcorenc_1_1method_1_1system__dg__method_a52d5dddb24faa12c32b3dab0f1e42b3b}{Get\+Solution}} (const std\+::vector$<$ double $>$ \&point) const
+\item 
+const double \mbox{\hyperlink{classcorenc_1_1method_1_1system__dg__method_a2fd15d7c48b8e0189b63abbdba2083bc}{Get\+Max\+Solution}} () const
+\item 
+const double \mbox{\hyperlink{classcorenc_1_1method_1_1system__dg__method_a5306a58d4c1f96f8ee4e72d500c75c8a}{Get\+Min\+Solution}} () const
+\item 
+const double \mbox{\hyperlink{classcorenc_1_1method_1_1system__dg__method_a37bec87aafcf51f26c0096b17a91bd86}{Get\+Solution}} (const std\+::vector$<$ double $>$ \&dg\+\_\+sol, const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh\+::\+Point}} \&p)
+\item 
+const int \mbox{\hyperlink{classcorenc_1_1method_1_1system__dg__method_a3ad53273396989316372c4d6d45eedfd}{to\+DGSolution}} (const Grid \&g, std\+::vector$<$ double $>$ \&dg\+\_\+result) const
+\item 
+const int \mbox{\hyperlink{classcorenc_1_1method_1_1system__dg__method_a7baebbcafa9f0ebc8d7e03e14df235bb}{update\+Weights}} (const std\+::vector$<$ double $>$ \&dg\+\_\+result)
+\item 
+const int \mbox{\hyperlink{classcorenc_1_1method_1_1system__dg__method_accc649238f932bca049eaa4459c5a02c}{DGtostandart}} (const std\+::vector$<$ double $>$ \&dg\+\_\+result)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static const double \mbox{\hyperlink{classcorenc_1_1method_1_1system__dg__method_a7e6915f84ad23c4eebc691e17eee0607}{Get\+Solution}} (const Grid \&g, const std\+::vector$<$ double $>$ \&dg\+\_\+sol, const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh\+::\+Point}} \&p)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classcorenc_1_1method_1_1system__dg__method_a8502b645a4669df4eceeecdbfaa62e93}\label{classcorenc_1_1method_1_1system__dg__method_a8502b645a4669df4eceeecdbfaa62e93}} 
+\index{corenc::method::system\_dg\_method$<$ Problem, Grid, Matrix $>$@{corenc::method::system\_dg\_method$<$ Problem, Grid, Matrix $>$}!system\_dg\_method@{system\_dg\_method}}
+\index{system\_dg\_method@{system\_dg\_method}!corenc::method::system\_dg\_method$<$ Problem, Grid, Matrix $>$@{corenc::method::system\_dg\_method$<$ Problem, Grid, Matrix $>$}}
+\doxysubsubsection{\texorpdfstring{system\_dg\_method()}{system\_dg\_method()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Problem , class Grid , class Matrix $>$ \\
+\mbox{\hyperlink{classcorenc_1_1method_1_1system__dg__method}{corenc\+::method\+::system\+\_\+dg\+\_\+method}}$<$ Problem, Grid, Matrix $>$\+::system\+\_\+dg\+\_\+method (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classcorenc_1_1method_1_1system__dg__method_a56899abe481ed7282c5faec3e92d7673}\label{classcorenc_1_1method_1_1system__dg__method_a56899abe481ed7282c5faec3e92d7673}} 
+\index{corenc::method::system\_dg\_method$<$ Problem, Grid, Matrix $>$@{corenc::method::system\_dg\_method$<$ Problem, Grid, Matrix $>$}!system\_dg\_method@{system\_dg\_method}}
+\index{system\_dg\_method@{system\_dg\_method}!corenc::method::system\_dg\_method$<$ Problem, Grid, Matrix $>$@{corenc::method::system\_dg\_method$<$ Problem, Grid, Matrix $>$}}
+\doxysubsubsection{\texorpdfstring{system\_dg\_method()}{system\_dg\_method()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Problem , class Grid , class Matrix $>$ \\
+\mbox{\hyperlink{classcorenc_1_1method_1_1system__dg__method}{corenc\+::method\+::system\+\_\+dg\+\_\+method}}$<$ Problem, Grid, Matrix $>$\+::system\+\_\+dg\+\_\+method (\begin{DoxyParamCaption}\item[{Problem $\ast$}]{p,  }\item[{Grid $\ast$}]{g,  }\item[{Matrix $\ast$}]{m,  }\item[{const size\+\_\+t}]{sys\+\_\+size,  }\item[{std\+::vector$<$ double $>$ $\ast$}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classcorenc_1_1method_1_1system__dg__method_a56a2f67451df25d6322397eae439e3be}\label{classcorenc_1_1method_1_1system__dg__method_a56a2f67451df25d6322397eae439e3be}} 
+\index{corenc::method::system\_dg\_method$<$ Problem, Grid, Matrix $>$@{corenc::method::system\_dg\_method$<$ Problem, Grid, Matrix $>$}!````~system\_dg\_method@{$\sim$system\_dg\_method}}
+\index{````~system\_dg\_method@{$\sim$system\_dg\_method}!corenc::method::system\_dg\_method$<$ Problem, Grid, Matrix $>$@{corenc::method::system\_dg\_method$<$ Problem, Grid, Matrix $>$}}
+\doxysubsubsection{\texorpdfstring{$\sim$system\_dg\_method()}{~system\_dg\_method()}}
+{\footnotesize\ttfamily template$<$class Problem , class Grid , class Matrix $>$ \\
+\mbox{\hyperlink{classcorenc_1_1method_1_1system__dg__method}{corenc\+::method\+::system\+\_\+dg\+\_\+method}}$<$ Problem, Grid, Matrix $>$\+::$\sim$\mbox{\hyperlink{classcorenc_1_1method_1_1system__dg__method}{system\+\_\+dg\+\_\+method}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classcorenc_1_1method_1_1system__dg__method_ac7e14529d65d6dde7e67d271aad860f9}\label{classcorenc_1_1method_1_1system__dg__method_ac7e14529d65d6dde7e67d271aad860f9}} 
+\index{corenc::method::system\_dg\_method$<$ Problem, Grid, Matrix $>$@{corenc::method::system\_dg\_method$<$ Problem, Grid, Matrix $>$}!Assemble@{Assemble}}
+\index{Assemble@{Assemble}!corenc::method::system\_dg\_method$<$ Problem, Grid, Matrix $>$@{corenc::method::system\_dg\_method$<$ Problem, Grid, Matrix $>$}}
+\doxysubsubsection{\texorpdfstring{Assemble()}{Assemble()}}
+{\footnotesize\ttfamily template$<$class Problem , class Grid , class Matrix $>$ \\
+const int \mbox{\hyperlink{classcorenc_1_1method_1_1system__dg__method}{corenc\+::method\+::system\+\_\+dg\+\_\+method}}$<$ Problem, Grid, Matrix $>$\+::\+Assemble}
+
+\mbox{\Hypertarget{classcorenc_1_1method_1_1system__dg__method_ad2e124cc2ec5323a6761feae36a01006}\label{classcorenc_1_1method_1_1system__dg__method_ad2e124cc2ec5323a6761feae36a01006}} 
+\index{corenc::method::system\_dg\_method$<$ Problem, Grid, Matrix $>$@{corenc::method::system\_dg\_method$<$ Problem, Grid, Matrix $>$}!changeFlux@{changeFlux}}
+\index{changeFlux@{changeFlux}!corenc::method::system\_dg\_method$<$ Problem, Grid, Matrix $>$@{corenc::method::system\_dg\_method$<$ Problem, Grid, Matrix $>$}}
+\doxysubsubsection{\texorpdfstring{changeFlux()}{changeFlux()}}
+{\footnotesize\ttfamily template$<$class Problem , class Grid , class Matrix $>$ \\
+const int \mbox{\hyperlink{classcorenc_1_1method_1_1system__dg__method}{corenc\+::method\+::system\+\_\+dg\+\_\+method}}$<$ Problem, Grid, Matrix $>$\+::change\+Flux (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespacecorenc_1_1method_ae3954d46976dc9ff3760cfa7ed0007c8}{DGFlux}}}]{flux\+\_\+type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classcorenc_1_1method_1_1system__dg__method_accc649238f932bca049eaa4459c5a02c}\label{classcorenc_1_1method_1_1system__dg__method_accc649238f932bca049eaa4459c5a02c}} 
+\index{corenc::method::system\_dg\_method$<$ Problem, Grid, Matrix $>$@{corenc::method::system\_dg\_method$<$ Problem, Grid, Matrix $>$}!DGtostandart@{DGtostandart}}
+\index{DGtostandart@{DGtostandart}!corenc::method::system\_dg\_method$<$ Problem, Grid, Matrix $>$@{corenc::method::system\_dg\_method$<$ Problem, Grid, Matrix $>$}}
+\doxysubsubsection{\texorpdfstring{DGtostandart()}{DGtostandart()}}
+{\footnotesize\ttfamily template$<$class Problem , class Grid , class Matrix $>$ \\
+const int \mbox{\hyperlink{classcorenc_1_1method_1_1system__dg__method}{corenc\+::method\+::system\+\_\+dg\+\_\+method}}$<$ Problem, Grid, Matrix $>$\+::\+DGtostandart (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ double $>$ \&}]{dg\+\_\+result }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classcorenc_1_1method_1_1system__dg__method_aec7251d8927d5bd81e629f9330346f95}\label{classcorenc_1_1method_1_1system__dg__method_aec7251d8927d5bd81e629f9330346f95}} 
+\index{corenc::method::system\_dg\_method$<$ Problem, Grid, Matrix $>$@{corenc::method::system\_dg\_method$<$ Problem, Grid, Matrix $>$}!GetGlobalMatrix@{GetGlobalMatrix}}
+\index{GetGlobalMatrix@{GetGlobalMatrix}!corenc::method::system\_dg\_method$<$ Problem, Grid, Matrix $>$@{corenc::method::system\_dg\_method$<$ Problem, Grid, Matrix $>$}}
+\doxysubsubsection{\texorpdfstring{GetGlobalMatrix()}{GetGlobalMatrix()}}
+{\footnotesize\ttfamily template$<$class Problem , class Grid , class Matrix $>$ \\
+const Matrix $\ast$ \mbox{\hyperlink{classcorenc_1_1method_1_1system__dg__method}{corenc\+::method\+::system\+\_\+dg\+\_\+method}}$<$ Problem, Grid, Matrix $>$\+::\+Get\+Global\+Matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classcorenc_1_1method_1_1system__dg__method_a2fd15d7c48b8e0189b63abbdba2083bc}\label{classcorenc_1_1method_1_1system__dg__method_a2fd15d7c48b8e0189b63abbdba2083bc}} 
+\index{corenc::method::system\_dg\_method$<$ Problem, Grid, Matrix $>$@{corenc::method::system\_dg\_method$<$ Problem, Grid, Matrix $>$}!GetMaxSolution@{GetMaxSolution}}
+\index{GetMaxSolution@{GetMaxSolution}!corenc::method::system\_dg\_method$<$ Problem, Grid, Matrix $>$@{corenc::method::system\_dg\_method$<$ Problem, Grid, Matrix $>$}}
+\doxysubsubsection{\texorpdfstring{GetMaxSolution()}{GetMaxSolution()}}
+{\footnotesize\ttfamily template$<$class Problem , class Grid , class Matrix $>$ \\
+const double \mbox{\hyperlink{classcorenc_1_1method_1_1system__dg__method}{corenc\+::method\+::system\+\_\+dg\+\_\+method}}$<$ Problem, Grid, Matrix $>$\+::\+Get\+Max\+Solution}
+
+\mbox{\Hypertarget{classcorenc_1_1method_1_1system__dg__method_a5306a58d4c1f96f8ee4e72d500c75c8a}\label{classcorenc_1_1method_1_1system__dg__method_a5306a58d4c1f96f8ee4e72d500c75c8a}} 
+\index{corenc::method::system\_dg\_method$<$ Problem, Grid, Matrix $>$@{corenc::method::system\_dg\_method$<$ Problem, Grid, Matrix $>$}!GetMinSolution@{GetMinSolution}}
+\index{GetMinSolution@{GetMinSolution}!corenc::method::system\_dg\_method$<$ Problem, Grid, Matrix $>$@{corenc::method::system\_dg\_method$<$ Problem, Grid, Matrix $>$}}
+\doxysubsubsection{\texorpdfstring{GetMinSolution()}{GetMinSolution()}}
+{\footnotesize\ttfamily template$<$class Problem , class Grid , class Matrix $>$ \\
+const double \mbox{\hyperlink{classcorenc_1_1method_1_1system__dg__method}{corenc\+::method\+::system\+\_\+dg\+\_\+method}}$<$ Problem, Grid, Matrix $>$\+::\+Get\+Min\+Solution}
+
+\mbox{\Hypertarget{classcorenc_1_1method_1_1system__dg__method_a94f65865535944c6002be6d97aa1c867}\label{classcorenc_1_1method_1_1system__dg__method_a94f65865535944c6002be6d97aa1c867}} 
+\index{corenc::method::system\_dg\_method$<$ Problem, Grid, Matrix $>$@{corenc::method::system\_dg\_method$<$ Problem, Grid, Matrix $>$}!GetSolution@{GetSolution}}
+\index{GetSolution@{GetSolution}!corenc::method::system\_dg\_method$<$ Problem, Grid, Matrix $>$@{corenc::method::system\_dg\_method$<$ Problem, Grid, Matrix $>$}}
+\doxysubsubsection{\texorpdfstring{GetSolution()}{GetSolution()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily template$<$class Problem , class Grid , class Matrix $>$ \\
+const std\+::vector$<$ double $>$ \mbox{\hyperlink{classcorenc_1_1method_1_1system__dg__method}{corenc\+::method\+::system\+\_\+dg\+\_\+method}}$<$ Problem, Grid, Matrix $>$\+::\+Get\+Solution (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classcorenc_1_1method_1_1system__dg__method_a7e6915f84ad23c4eebc691e17eee0607}\label{classcorenc_1_1method_1_1system__dg__method_a7e6915f84ad23c4eebc691e17eee0607}} 
+\index{corenc::method::system\_dg\_method$<$ Problem, Grid, Matrix $>$@{corenc::method::system\_dg\_method$<$ Problem, Grid, Matrix $>$}!GetSolution@{GetSolution}}
+\index{GetSolution@{GetSolution}!corenc::method::system\_dg\_method$<$ Problem, Grid, Matrix $>$@{corenc::method::system\_dg\_method$<$ Problem, Grid, Matrix $>$}}
+\doxysubsubsection{\texorpdfstring{GetSolution()}{GetSolution()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily template$<$class Problem , class Grid , class Matrix $>$ \\
+static const double \mbox{\hyperlink{classcorenc_1_1method_1_1system__dg__method}{corenc\+::method\+::system\+\_\+dg\+\_\+method}}$<$ Problem, Grid, Matrix $>$\+::\+Get\+Solution (\begin{DoxyParamCaption}\item[{const Grid \&}]{g,  }\item[{const std\+::vector$<$ double $>$ \&}]{dg\+\_\+sol,  }\item[{const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh\+::\+Point}} \&}]{p }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{classcorenc_1_1method_1_1system__dg__method_a37bec87aafcf51f26c0096b17a91bd86}\label{classcorenc_1_1method_1_1system__dg__method_a37bec87aafcf51f26c0096b17a91bd86}} 
+\index{corenc::method::system\_dg\_method$<$ Problem, Grid, Matrix $>$@{corenc::method::system\_dg\_method$<$ Problem, Grid, Matrix $>$}!GetSolution@{GetSolution}}
+\index{GetSolution@{GetSolution}!corenc::method::system\_dg\_method$<$ Problem, Grid, Matrix $>$@{corenc::method::system\_dg\_method$<$ Problem, Grid, Matrix $>$}}
+\doxysubsubsection{\texorpdfstring{GetSolution()}{GetSolution()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily template$<$class Problem , class Grid , class Matrix $>$ \\
+const double \mbox{\hyperlink{classcorenc_1_1method_1_1system__dg__method}{corenc\+::method\+::system\+\_\+dg\+\_\+method}}$<$ Problem, Grid, Matrix $>$\+::\+Get\+Solution (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ double $>$ \&}]{dg\+\_\+sol,  }\item[{const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh\+::\+Point}} \&}]{p }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classcorenc_1_1method_1_1system__dg__method_a52d5dddb24faa12c32b3dab0f1e42b3b}\label{classcorenc_1_1method_1_1system__dg__method_a52d5dddb24faa12c32b3dab0f1e42b3b}} 
+\index{corenc::method::system\_dg\_method$<$ Problem, Grid, Matrix $>$@{corenc::method::system\_dg\_method$<$ Problem, Grid, Matrix $>$}!GetSolution@{GetSolution}}
+\index{GetSolution@{GetSolution}!corenc::method::system\_dg\_method$<$ Problem, Grid, Matrix $>$@{corenc::method::system\_dg\_method$<$ Problem, Grid, Matrix $>$}}
+\doxysubsubsection{\texorpdfstring{GetSolution()}{GetSolution()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily template$<$class Problem , class Grid , class Matrix $>$ \\
+const double \mbox{\hyperlink{classcorenc_1_1method_1_1system__dg__method}{corenc\+::method\+::system\+\_\+dg\+\_\+method}}$<$ Problem, Grid, Matrix $>$\+::\+Get\+Solution (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ double $>$ \&}]{point }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classcorenc_1_1method_1_1system__dg__method_a3ad53273396989316372c4d6d45eedfd}\label{classcorenc_1_1method_1_1system__dg__method_a3ad53273396989316372c4d6d45eedfd}} 
+\index{corenc::method::system\_dg\_method$<$ Problem, Grid, Matrix $>$@{corenc::method::system\_dg\_method$<$ Problem, Grid, Matrix $>$}!toDGSolution@{toDGSolution}}
+\index{toDGSolution@{toDGSolution}!corenc::method::system\_dg\_method$<$ Problem, Grid, Matrix $>$@{corenc::method::system\_dg\_method$<$ Problem, Grid, Matrix $>$}}
+\doxysubsubsection{\texorpdfstring{toDGSolution()}{toDGSolution()}}
+{\footnotesize\ttfamily template$<$class Problem , class Grid , class Matrix $>$ \\
+const int \mbox{\hyperlink{classcorenc_1_1method_1_1system__dg__method}{corenc\+::method\+::system\+\_\+dg\+\_\+method}}$<$ Problem, Grid, Matrix $>$\+::to\+DGSolution (\begin{DoxyParamCaption}\item[{const Grid \&}]{g,  }\item[{std\+::vector$<$ double $>$ \&}]{dg\+\_\+result }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classcorenc_1_1method_1_1system__dg__method_a7baebbcafa9f0ebc8d7e03e14df235bb}\label{classcorenc_1_1method_1_1system__dg__method_a7baebbcafa9f0ebc8d7e03e14df235bb}} 
+\index{corenc::method::system\_dg\_method$<$ Problem, Grid, Matrix $>$@{corenc::method::system\_dg\_method$<$ Problem, Grid, Matrix $>$}!updateWeights@{updateWeights}}
+\index{updateWeights@{updateWeights}!corenc::method::system\_dg\_method$<$ Problem, Grid, Matrix $>$@{corenc::method::system\_dg\_method$<$ Problem, Grid, Matrix $>$}}
+\doxysubsubsection{\texorpdfstring{updateWeights()}{updateWeights()}}
+{\footnotesize\ttfamily template$<$class Problem , class Grid , class Matrix $>$ \\
+const int \mbox{\hyperlink{classcorenc_1_1method_1_1system__dg__method}{corenc\+::method\+::system\+\_\+dg\+\_\+method}}$<$ Problem, Grid, Matrix $>$\+::update\+Weights (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ double $>$ \&}]{dg\+\_\+result }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Core\+NCFEM/\+Methods/\mbox{\hyperlink{system__dg__method_8h}{system\+\_\+dg\+\_\+method.\+h}}\end{DoxyCompactItemize}

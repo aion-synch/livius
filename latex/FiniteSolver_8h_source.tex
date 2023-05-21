@@ -1,0 +1,34 @@
+\hypertarget{FiniteSolver_8h_source}{}\doxysection{Finite\+Solver.\+h}
+\label{FiniteSolver_8h_source}\index{CoreNCFEM/FiniteSolver.h@{CoreNCFEM/FiniteSolver.h}}
+\mbox{\hyperlink{FiniteSolver_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef CORENC\_FINITESOLVER\_H}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define CORENC\_FINITESOLVER\_H}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacecorenc}{corenc}}}
+\DoxyCodeLine{5 \{}
+\DoxyCodeLine{6     \textcolor{keyword}{template}<\textcolor{keyword}{class} Method, \textcolor{keyword}{class} Mesh, \textcolor{keyword}{class} Solver>}
+\DoxyCodeLine{7     \textcolor{keyword}{class }\mbox{\hyperlink{classcorenc_1_1CFiniteSolver}{CFiniteSolver}}}
+\DoxyCodeLine{8     \{}
+\DoxyCodeLine{9     \textcolor{keyword}{public}:}
+\DoxyCodeLine{10         \mbox{\hyperlink{classcorenc_1_1CFiniteSolver_ab649e5fc3c573a23c421bf2381449102}{CFiniteSolver}}() \{\};}
+\DoxyCodeLine{11         \mbox{\hyperlink{classcorenc_1_1CFiniteSolver_a49f479a5e203769c29403106ec21f2dc}{\string~CFiniteSolver}}() \{\};}
+\DoxyCodeLine{12         \textcolor{keywordtype}{void}                        \mbox{\hyperlink{classcorenc_1_1CFiniteSolver_a90de511b615d78ee50b62dc5c73fa358}{Solve}}();}
+\DoxyCodeLine{13     \textcolor{keyword}{private}:}
+\DoxyCodeLine{14         Method*                     m\_method;}
+\DoxyCodeLine{15         Mesh*                       m\_mesh;}
+\DoxyCodeLine{16         Solver*                     m\_solver;}
+\DoxyCodeLine{17     \};}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19     \textcolor{keyword}{template}<\textcolor{keyword}{class} Method, \textcolor{keyword}{class} Mesh, \textcolor{keyword}{class} Solver>}
+\DoxyCodeLine{20     \textcolor{keywordtype}{void} \mbox{\hyperlink{classcorenc_1_1CFiniteSolver_a90de511b615d78ee50b62dc5c73fa358}{CFiniteSolver<Method, Mesh, Solver>::Solve}}()}
+\DoxyCodeLine{21     \{}
+\DoxyCodeLine{22         m\_method-\/>Assemble();}
+\DoxyCodeLine{23         \textcolor{keywordflow}{return};}
+\DoxyCodeLine{24     \}}
+\DoxyCodeLine{25 \}}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// !CORENC\_FINITESOLVER\_H}}
+\DoxyCodeLine{28 }
+
+\end{DoxyCode}

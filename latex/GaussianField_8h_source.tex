@@ -1,0 +1,108 @@
+\hypertarget{GaussianField_8h_source}{}\doxysection{Gaussian\+Field.\+h}
+\label{GaussianField_8h_source}\index{CoreNCFEM/GaussianField.h@{CoreNCFEM/GaussianField.h}}
+\mbox{\hyperlink{GaussianField_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef CORENC\_GAUSSIANPROCESS\_H\_}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define CORENC\_GAUSSIANPROCESS\_H\_}}
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include <algorithm>}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <cmath>}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{Point_8h}{Point.h}}"{}}}
+\DoxyCodeLine{7 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacecorenc}{corenc}}}
+\DoxyCodeLine{8 \{}
+\DoxyCodeLine{9     \textcolor{keyword}{struct }\mbox{\hyperlink{structcorenc_1_1GaussianProcess}{GaussianProcess}}}
+\DoxyCodeLine{10     \{}
+\DoxyCodeLine{11         \textcolor{keywordtype}{double} \mbox{\hyperlink{structcorenc_1_1GaussianProcess_a5ba7900d5fc222f9477449f15d62539a}{sigma2}};}
+\DoxyCodeLine{12         \textcolor{keywordtype}{double} \mbox{\hyperlink{structcorenc_1_1GaussianProcess_a7cb8cdd5effd3abb1c520e314c811f72}{l}};}
+\DoxyCodeLine{13         \textcolor{keywordtype}{double} \mbox{\hyperlink{structcorenc_1_1GaussianProcess_a18f5329f96eb0026d0cf7b2db886af08}{a}};}
+\DoxyCodeLine{14         \textcolor{keywordtype}{double} \mbox{\hyperlink{structcorenc_1_1GaussianProcess_a8e75298e39df16af34bf18a505d4a846}{b}};}
+\DoxyCodeLine{15         \textcolor{keywordtype}{double} \mbox{\hyperlink{structcorenc_1_1GaussianProcess_a6507ffad35f8ef4aa664e9bdbbc0b4f4}{c}};}
+\DoxyCodeLine{16         \textcolor{keywordtype}{double} \mbox{\hyperlink{structcorenc_1_1GaussianProcess_aae90db8223de92e9c3e03431add5dd80}{A}};}
+\DoxyCodeLine{17         \textcolor{keywordtype}{double} \mbox{\hyperlink{structcorenc_1_1GaussianProcess_aa3094a96be1fd50a6661a1f95120fff8}{B}};}
+\DoxyCodeLine{18         \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{structcorenc_1_1GaussianProcess_a202227437a3e8bf7ee53bab10c303cec}{K}} = 1;}
+\DoxyCodeLine{19         std::vector<double> \mbox{\hyperlink{structcorenc_1_1GaussianProcess_a6f1bb59c4fc2a0ad4647448c3cc81601}{lambda}};}
+\DoxyCodeLine{20         \mbox{\hyperlink{structcorenc_1_1GaussianProcess_a8121bb835eb8aab3e86666ffafa2a275}{GaussianProcess}}(\textcolor{keyword}{const} \textcolor{keywordtype}{double} L, \textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} num)}
+\DoxyCodeLine{21         \{}
+\DoxyCodeLine{22             \mbox{\hyperlink{structcorenc_1_1GaussianProcess_a202227437a3e8bf7ee53bab10c303cec}{K}} = num;}
+\DoxyCodeLine{23             \mbox{\hyperlink{structcorenc_1_1GaussianProcess_a5ba7900d5fc222f9477449f15d62539a}{sigma2}} = L;}
+\DoxyCodeLine{24             \mbox{\hyperlink{structcorenc_1_1GaussianProcess_a7cb8cdd5effd3abb1c520e314c811f72}{l}} = 2 * L;}
+\DoxyCodeLine{25             \mbox{\hyperlink{structcorenc_1_1GaussianProcess_a18f5329f96eb0026d0cf7b2db886af08}{a}} = 1. / (4 * \mbox{\hyperlink{structcorenc_1_1GaussianProcess_a5ba7900d5fc222f9477449f15d62539a}{sigma2}});}
+\DoxyCodeLine{26             \mbox{\hyperlink{structcorenc_1_1GaussianProcess_a8e75298e39df16af34bf18a505d4a846}{b}} = 1. / (2 * \mbox{\hyperlink{structcorenc_1_1GaussianProcess_a7cb8cdd5effd3abb1c520e314c811f72}{l}} * \mbox{\hyperlink{structcorenc_1_1GaussianProcess_a7cb8cdd5effd3abb1c520e314c811f72}{l}});}
+\DoxyCodeLine{27             \mbox{\hyperlink{structcorenc_1_1GaussianProcess_a6507ffad35f8ef4aa664e9bdbbc0b4f4}{c}} = sqrt(\mbox{\hyperlink{structcorenc_1_1GaussianProcess_a18f5329f96eb0026d0cf7b2db886af08}{a}} * \mbox{\hyperlink{structcorenc_1_1GaussianProcess_a18f5329f96eb0026d0cf7b2db886af08}{a}} + 2 * \mbox{\hyperlink{structcorenc_1_1GaussianProcess_a18f5329f96eb0026d0cf7b2db886af08}{a}} * \mbox{\hyperlink{structcorenc_1_1GaussianProcess_a8e75298e39df16af34bf18a505d4a846}{b}});}
+\DoxyCodeLine{28             \mbox{\hyperlink{structcorenc_1_1GaussianProcess_aae90db8223de92e9c3e03431add5dd80}{A}} = \mbox{\hyperlink{structcorenc_1_1GaussianProcess_a18f5329f96eb0026d0cf7b2db886af08}{a}} + \mbox{\hyperlink{structcorenc_1_1GaussianProcess_a8e75298e39df16af34bf18a505d4a846}{b}} + \mbox{\hyperlink{structcorenc_1_1GaussianProcess_a6507ffad35f8ef4aa664e9bdbbc0b4f4}{c}};}
+\DoxyCodeLine{29             \mbox{\hyperlink{structcorenc_1_1GaussianProcess_aa3094a96be1fd50a6661a1f95120fff8}{B}} = \mbox{\hyperlink{structcorenc_1_1GaussianProcess_a8e75298e39df16af34bf18a505d4a846}{b}} / \mbox{\hyperlink{structcorenc_1_1GaussianProcess_aae90db8223de92e9c3e03431add5dd80}{A}};}
+\DoxyCodeLine{30             \mbox{\hyperlink{structcorenc_1_1GaussianProcess_a6f1bb59c4fc2a0ad4647448c3cc81601}{lambda}}.resize(\mbox{\hyperlink{structcorenc_1_1GaussianProcess_a202227437a3e8bf7ee53bab10c303cec}{K}});}
+\DoxyCodeLine{31             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < \mbox{\hyperlink{structcorenc_1_1GaussianProcess_a202227437a3e8bf7ee53bab10c303cec}{K}}; ++i)}
+\DoxyCodeLine{32                 \mbox{\hyperlink{structcorenc_1_1GaussianProcess_a6f1bb59c4fc2a0ad4647448c3cc81601}{lambda}}[i] = std::pow(\mbox{\hyperlink{structcorenc_1_1GaussianProcess_aa3094a96be1fd50a6661a1f95120fff8}{B}}, i) * sqrt(2 * \mbox{\hyperlink{structcorenc_1_1GaussianProcess_a18f5329f96eb0026d0cf7b2db886af08}{a}} / \mbox{\hyperlink{structcorenc_1_1GaussianProcess_aae90db8223de92e9c3e03431add5dd80}{A}});}
+\DoxyCodeLine{33         \}}
+\DoxyCodeLine{34         \textcolor{keyword}{const} \textcolor{keywordtype}{double} \mbox{\hyperlink{structcorenc_1_1GaussianProcess_a4993f9fce624c4ec34648fe0722a0787}{He}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} i, \textcolor{keyword}{const} \textcolor{keywordtype}{double} x)\textcolor{keyword}{ const}}
+\DoxyCodeLine{35 \textcolor{keyword}{        }\{}
+\DoxyCodeLine{36             \textcolor{keywordflow}{switch} (i)}
+\DoxyCodeLine{37             \{}
+\DoxyCodeLine{38             \textcolor{keywordflow}{case} 0:}
+\DoxyCodeLine{39                 \textcolor{keywordflow}{return} 1.;}
+\DoxyCodeLine{40             \textcolor{keywordflow}{case} 1:}
+\DoxyCodeLine{41                 \textcolor{keywordflow}{return} x;}
+\DoxyCodeLine{42             \textcolor{keywordflow}{case} 2:}
+\DoxyCodeLine{43                 \textcolor{keywordflow}{return} x * x -\/ 1.;}
+\DoxyCodeLine{44             \textcolor{keywordflow}{case} 3:}
+\DoxyCodeLine{45                 \textcolor{keywordflow}{return} x * x * x -\/ 3. * x;}
+\DoxyCodeLine{46             \textcolor{keywordflow}{case} 4:}
+\DoxyCodeLine{47                 \textcolor{keywordflow}{return} x * x * x * x -\/ 6. * x * x + 3.;}
+\DoxyCodeLine{48             \textcolor{keywordflow}{case} 5:}
+\DoxyCodeLine{49                 \textcolor{keywordflow}{return} x * x * x * x * x -\/ 10. * x * x * x + 15. * x;}
+\DoxyCodeLine{50             \textcolor{keywordflow}{case} 6:}
+\DoxyCodeLine{51                 \textcolor{keywordflow}{return} x * x * x * x * x * x -\/ 15. * x * x * x * x + 45. * x * x -\/ 25.;}
+\DoxyCodeLine{52             \textcolor{keywordflow}{case} 7:}
+\DoxyCodeLine{53                 \textcolor{keywordflow}{return} x * x * x * x * x * x * x -\/ 21. * x * x * x * x * x + 105. * x * x * x -\/ 105. * x;}
+\DoxyCodeLine{54             \textcolor{keywordflow}{case} 8:}
+\DoxyCodeLine{55                 \textcolor{keywordflow}{return} x * x * x * x * x * x * x * x -\/ 28. * x * x * x * x * x * x + 210. * x * x * x * x -\/ 420. * x * x + 105;}
+\DoxyCodeLine{56             \textcolor{keywordflow}{case} 9:}
+\DoxyCodeLine{57                 \textcolor{keywordflow}{return} x * x * x * x * x * x * x * x * x -\/ 36. * x * x * x * x * x * x * x + 378. * x * x * x * x * x -\/ 1260. * x * x * x + 945. * x;}
+\DoxyCodeLine{58             \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{59                 \textcolor{keywordflow}{return} x * x * x * x * x * x * x * x * x * x -\/ 45. * x * x * x * x * x * x * x * x + 630. * x * x * x * x * x * x -\/ 3150. * x * x * x *x + 4725. * x * x -\/ 945.;}
+\DoxyCodeLine{60                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{61             \}}
+\DoxyCodeLine{62         \};}
+\DoxyCodeLine{63         \textcolor{keyword}{const} \textcolor{keywordtype}{double} \mbox{\hyperlink{structcorenc_1_1GaussianProcess_a564d9f3ede3c50f27986c4616e3191a7}{phi}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} i, \textcolor{keyword}{const} \textcolor{keywordtype}{double} x)\textcolor{keyword}{ const}}
+\DoxyCodeLine{64 \textcolor{keyword}{        }\{}
+\DoxyCodeLine{65             \textcolor{keywordflow}{return} exp(-\/(\mbox{\hyperlink{structcorenc_1_1GaussianProcess_a6507ffad35f8ef4aa664e9bdbbc0b4f4}{c}} -\/ \mbox{\hyperlink{structcorenc_1_1GaussianProcess_a18f5329f96eb0026d0cf7b2db886af08}{a}}) * x * x) * \mbox{\hyperlink{structcorenc_1_1GaussianProcess_a4993f9fce624c4ec34648fe0722a0787}{He}}(i, x * sqrt(2 * \mbox{\hyperlink{structcorenc_1_1GaussianProcess_a6507ffad35f8ef4aa664e9bdbbc0b4f4}{c}}));}
+\DoxyCodeLine{66         \};}
+\DoxyCodeLine{67     \};}
+\DoxyCodeLine{68     \textcolor{comment}{/*enum class gkernels}}
+\DoxyCodeLine{69 \textcolor{comment}{    \{}}
+\DoxyCodeLine{70 \textcolor{comment}{        gexponent,}}
+\DoxyCodeLine{71 \textcolor{comment}{        gker1,}}
+\DoxyCodeLine{72 \textcolor{comment}{        gker2,}}
+\DoxyCodeLine{73 \textcolor{comment}{        gker3}}
+\DoxyCodeLine{74 \textcolor{comment}{    \};*/}}
+\DoxyCodeLine{75     \textcolor{keyword}{struct }\mbox{\hyperlink{structcorenc_1_1GaussianKernel}{GaussianKernel}}}
+\DoxyCodeLine{76     \{}
+\DoxyCodeLine{77         \textcolor{keywordtype}{int} \mbox{\hyperlink{structcorenc_1_1GaussianKernel_a6b2452c975e690bc6fdff422169509a5}{N}};}
+\DoxyCodeLine{78         \textcolor{keyword}{const} \textcolor{keywordtype}{double} \mbox{\hyperlink{structcorenc_1_1GaussianKernel_a0f628ed1e827b4b076c35ba989b5873b}{gpexp}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh::Point}}\& a)\textcolor{keyword}{ const}}
+\DoxyCodeLine{79 \textcolor{keyword}{        }\{}
+\DoxyCodeLine{80             \textcolor{keywordflow}{return} exp(-\/12.5 * (a.\mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point_a4a1b6340ba2c09f18d67e6c3324a960c}{x}} * a.\mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point_a4a1b6340ba2c09f18d67e6c3324a960c}{x}} + a.\mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point_ad284cc2cdcd57432d6667bacb0cc5ccd}{y}} * a.\mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point_ad284cc2cdcd57432d6667bacb0cc5ccd}{y}}));}
+\DoxyCodeLine{81         \}}
+\DoxyCodeLine{82 }
+\DoxyCodeLine{83         \textcolor{keyword}{const} \textcolor{keywordtype}{double} \mbox{\hyperlink{structcorenc_1_1GaussianKernel_a762c391a33cb33a8a431daabf86bd454}{gpstep}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh::Point}}\& a)\textcolor{keyword}{ const}}
+\DoxyCodeLine{84 \textcolor{keyword}{        }\{}
+\DoxyCodeLine{85             \textcolor{keywordflow}{if} (fabs(a.\mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point_a4a1b6340ba2c09f18d67e6c3324a960c}{x}}) < 0.5 \&\& fabs(a.\mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point_ad284cc2cdcd57432d6667bacb0cc5ccd}{y}}) < 0.5)}
+\DoxyCodeLine{86                 \textcolor{keywordflow}{return} 1.;}
+\DoxyCodeLine{87             \textcolor{keywordflow}{return} 0.;}
+\DoxyCodeLine{88         \}}
+\DoxyCodeLine{89         std::vector<Mesh::Point> \mbox{\hyperlink{structcorenc_1_1GaussianKernel_a81b38f2926ddd1728ef2c093d8fd7281}{\_centrs}};}
+\DoxyCodeLine{90         \mbox{\hyperlink{structcorenc_1_1GaussianKernel_af96f4aa057e28f04df04e0c5ac06ca50}{GaussianKernel}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} \_n, \textcolor{keyword}{const} std::vector<Mesh::Point>\& centers) :}
+\DoxyCodeLine{91             \mbox{\hyperlink{structcorenc_1_1GaussianKernel_a6b2452c975e690bc6fdff422169509a5}{N}}\{ \_n \}, \mbox{\hyperlink{structcorenc_1_1GaussianKernel_a81b38f2926ddd1728ef2c093d8fd7281}{\_centrs}}\{ centers \} \{\}}
+\DoxyCodeLine{92         \textcolor{keyword}{const} \textcolor{keywordtype}{double} \mbox{\hyperlink{structcorenc_1_1GaussianKernel_aa04dcfdd01760e83a5ecbfe216667b4f}{get\_gp}}(\textcolor{keyword}{const} std::vector<double>\& a, \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh::Point}}\& p)\textcolor{keyword}{ const}}
+\DoxyCodeLine{93 \textcolor{keyword}{        }\{}
+\DoxyCodeLine{94             \textcolor{keywordtype}{double} sum = 0;}
+\DoxyCodeLine{95             \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} i = 0; i < \mbox{\hyperlink{structcorenc_1_1GaussianKernel_a6b2452c975e690bc6fdff422169509a5}{N}}; ++i)}
+\DoxyCodeLine{96                 sum += a[i] * \mbox{\hyperlink{structcorenc_1_1GaussianKernel_a0f628ed1e827b4b076c35ba989b5873b}{gpexp}}(p -\/ \mbox{\hyperlink{structcorenc_1_1GaussianKernel_a81b38f2926ddd1728ef2c093d8fd7281}{\_centrs}}[i]);}
+\DoxyCodeLine{97             \textcolor{keywordflow}{return} sum;}
+\DoxyCodeLine{98         \}}
+\DoxyCodeLine{99 }
+\DoxyCodeLine{100     \};}
+\DoxyCodeLine{101 \}}
+\DoxyCodeLine{102 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// CORENC\_GAUSSIANPROCESS\_H\_}}
+
+\end{DoxyCode}

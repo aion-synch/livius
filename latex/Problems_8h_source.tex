@@ -1,0 +1,28 @@
+\hypertarget{Problems_8h_source}{}\doxysection{Problems.\+h}
+\label{Problems_8h_source}\index{Problems/Problems.h@{Problems/Problems.h}}
+\mbox{\hyperlink{Problems_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#ifndef CORENC\_PROBLEMS\_PROBLEMS\_H\_}}
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#define CORENC\_PROBLEMS\_PROBLEMS\_H\_}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include "{}../CoreNCFEM/Point.h"{}}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{6 }
+\DoxyCodeLine{7 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacecorenc}{corenc}}}
+\DoxyCodeLine{8 \{}
+\DoxyCodeLine{9     \textcolor{keyword}{class }\mbox{\hyperlink{classcorenc_1_1CProblem}{CProblem}}}
+\DoxyCodeLine{10     \{}
+\DoxyCodeLine{11     \textcolor{keyword}{public}:}
+\DoxyCodeLine{12         \mbox{\hyperlink{classcorenc_1_1CProblem_a0b1430e1bf2dc152a90f98b558d33154}{CProblem}}() \{\}}
+\DoxyCodeLine{13         \textcolor{keyword}{virtual} \mbox{\hyperlink{classcorenc_1_1CProblem_adc3d93683f7c87588a9cecc13222c7b8}{\string~CProblem}}() \{\};}
+\DoxyCodeLine{14         \textcolor{keyword}{virtual} \mbox{\hyperlink{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7d}{Terms}}                  \mbox{\hyperlink{classcorenc_1_1CProblem_a893274efc38ac039658afd3a16600392}{getTerm}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int}) \textcolor{keyword}{const} = 0;}
+\DoxyCodeLine{15         \textcolor{keyword}{virtual} \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int}      \mbox{\hyperlink{classcorenc_1_1CProblem_ad7b960b983e445add1c06c230acee8f8}{getNumberOfTerms}}() \textcolor{keyword}{const} = 0;}
+\DoxyCodeLine{16         \textcolor{keyword}{virtual} \textcolor{keyword}{const} \textcolor{keywordtype}{int}               \mbox{\hyperlink{classcorenc_1_1CProblem_aa24039eaa6078b54fd6683c2d1f8a25f}{setTerm}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int}, \textcolor{keyword}{const} \mbox{\hyperlink{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7d}{Terms}}\&) = 0;}
+\DoxyCodeLine{17         \textcolor{keyword}{virtual} \textcolor{keyword}{const} \textcolor{keywordtype}{int}               \mbox{\hyperlink{classcorenc_1_1CProblem_aca3fa2d2e8d36f51114c8c814ae088ab}{addTerm}}(\textcolor{keyword}{const} \mbox{\hyperlink{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7d}{Terms}}\&) = 0;}
+\DoxyCodeLine{18         \textcolor{keyword}{virtual} \textcolor{keyword}{const} \textcolor{keywordtype}{int}               \mbox{\hyperlink{classcorenc_1_1CProblem_aa3dc557e5cf76bb82bb3ed8279d4cd86}{load\_parameters}}(\textcolor{keyword}{const} std::string\& file\_name) = 0;}
+\DoxyCodeLine{19     \};}
+\DoxyCodeLine{20 \}}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// !CORENC\_PROBLEMS\_PROBLEMS\_H\_}}
+
+\end{DoxyCode}

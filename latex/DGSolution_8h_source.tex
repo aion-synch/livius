@@ -1,0 +1,119 @@
+\hypertarget{DGSolution_8h_source}{}\doxysection{DGSolution.\+h}
+\label{DGSolution_8h_source}\index{CoreNCFEM/Methods/DGSolution.h@{CoreNCFEM/Methods/DGSolution.h}}
+\mbox{\hyperlink{DGSolution_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef CORENC\_METHODS\_DGSOLUTION\_H\_}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define CORENC\_METHODS\_DGSOLUTION\_H\_}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{DGMethod_8h}{DGMethod.h}}"{}}}
+\DoxyCodeLine{5 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacecorenc}{corenc}}}
+\DoxyCodeLine{6 \{}
+\DoxyCodeLine{7     \textcolor{keyword}{namespace }method}
+\DoxyCodeLine{8     \{}
+\DoxyCodeLine{9         \textcolor{keyword}{template}<\textcolor{keyword}{class} Gr\textcolor{keywordtype}{id}>}
+\DoxyCodeLine{10         \textcolor{keyword}{class }\mbox{\hyperlink{classcorenc_1_1method_1_1DGSolution}{DGSolution}}}
+\DoxyCodeLine{11         \{}
+\DoxyCodeLine{12         \textcolor{keyword}{public}:}
+\DoxyCodeLine{13             \mbox{\hyperlink{classcorenc_1_1method_1_1DGSolution_a98be5d5a38284024d2e865c67cbd045e}{DGSolution}}() \{\};}
+\DoxyCodeLine{14             \mbox{\hyperlink{classcorenc_1_1method_1_1DGSolution_a952e328c5dd9ad47680c287dd362ede7}{DGSolution}}(\textcolor{keyword}{const} std::vector<double>\& w) :m\_w\{ w \} \{\}}
+\DoxyCodeLine{15             \mbox{\hyperlink{classcorenc_1_1method_1_1DGSolution_a9fdfbc3c74da370b2ff750e0e628a515}{DGSolution}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1method_1_1DGSolution}{DGSolution<Grid>}}\& dg) :m\_w\{ dg.m\_w \} \{\}}
+\DoxyCodeLine{16             \mbox{\hyperlink{classcorenc_1_1method_1_1DGSolution}{DGSolution<Grid>}}\& \mbox{\hyperlink{classcorenc_1_1method_1_1DGSolution_aea3f4d254cf716a173ed68166c45937c}{operator=}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1method_1_1DGSolution}{DGSolution<Grid>}}\& dg)}
+\DoxyCodeLine{17             \{}
+\DoxyCodeLine{18                 m\_w = dg.m\_w;}
+\DoxyCodeLine{19                 \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{20             \}}
+\DoxyCodeLine{21             \mbox{\hyperlink{classcorenc_1_1method_1_1DGSolution_ae2a666026d1b15f284d22d160a178684}{\string~DGSolution}}()}
+\DoxyCodeLine{22             \{}
+\DoxyCodeLine{23                 \textcolor{keywordflow}{if} (m\_w.size() > 0)}
+\DoxyCodeLine{24                     std::vector<double>().swap(m\_w);}
+\DoxyCodeLine{25             \}}
+\DoxyCodeLine{26             \textcolor{keyword}{const} \textcolor{keywordtype}{double}                \mbox{\hyperlink{classcorenc_1_1method_1_1DGSolution_a6deb2c2effae174104a2870c9260450a}{getWeight}}(\textcolor{keyword}{const} Grid\& g, \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh::Point}}\& p)\textcolor{keyword}{ const}}
+\DoxyCodeLine{27 \textcolor{keyword}{            }\{}
+\DoxyCodeLine{28                 \textcolor{keywordflow}{if} (m\_w.size() > 0)}
+\DoxyCodeLine{29                     \textcolor{keywordflow}{return} \mbox{\hyperlink{classcorenc_1_1method_1_1DGMethod_afa9f1c995c17bdc817102e8be336578a}{DGMethod<int, Grid, int>::GetSolution}}(g, m\_w, p);}
+\DoxyCodeLine{30                 \textcolor{keywordflow}{return} 0.;}
+\DoxyCodeLine{31             \};}
+\DoxyCodeLine{32             \textcolor{keyword}{const} std::vector<double>   \mbox{\hyperlink{classcorenc_1_1method_1_1DGSolution_acb56b261c333d4c3636aaf4c5ba8aa95}{getWeights}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} m\_w; \}}
+\DoxyCodeLine{33             \textcolor{keyword}{const} \textcolor{keywordtype}{int}                   \mbox{\hyperlink{classcorenc_1_1method_1_1DGSolution_a14af93925490db8ac6e2d8c63e92c70b}{updateWeight}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} i, \textcolor{keyword}{const} \textcolor{keywordtype}{double} val)}
+\DoxyCodeLine{34             \{}
+\DoxyCodeLine{35                 \textcolor{keywordflow}{if} (i < m\_w.size())}
+\DoxyCodeLine{36                 \{}
+\DoxyCodeLine{37                     m\_w[i] = val;}
+\DoxyCodeLine{38                     \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{39                 \}}
+\DoxyCodeLine{40                 \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{41             \}}
+\DoxyCodeLine{42         \textcolor{keyword}{private}:}
+\DoxyCodeLine{43             std::vector<double>         m\_w;}
+\DoxyCodeLine{44         \};}
+\DoxyCodeLine{45         \textcolor{keyword}{template}<\textcolor{keyword}{class} Gr\textcolor{keywordtype}{id}>}
+\DoxyCodeLine{46         \textcolor{keyword}{class }\mbox{\hyperlink{classcorenc_1_1method_1_1STSolution}{STSolution}}}
+\DoxyCodeLine{47         \{}
+\DoxyCodeLine{48         \textcolor{keyword}{public}:}
+\DoxyCodeLine{49             \mbox{\hyperlink{classcorenc_1_1method_1_1STSolution_aab713bfac1eacb782d911bef1c89e8af}{STSolution}}() \{\};}
+\DoxyCodeLine{50             \mbox{\hyperlink{classcorenc_1_1method_1_1STSolution_a5c75dc4301df7208fff6862f923207cc}{STSolution}}(\textcolor{keyword}{const} Grid\& g):m\_grid\{g\}\{\}}
+\DoxyCodeLine{51             \mbox{\hyperlink{classcorenc_1_1method_1_1STSolution_a362e81a21391f2c82c52927667610001}{STSolution}}(}
+\DoxyCodeLine{52                 \textcolor{keyword}{const} std::vector<\mbox{\hyperlink{classcorenc_1_1method_1_1DGSolution}{DGSolution<Grid>}}>\& w,}
+\DoxyCodeLine{53                 \textcolor{keyword}{const} std::vector<double> time,}
+\DoxyCodeLine{54                 \textcolor{keyword}{const} Grid\& g) : m\_w\{ w \}, m\_time\{ time \}, m\_grid\{g\} \{\}}
+\DoxyCodeLine{55             \mbox{\hyperlink{classcorenc_1_1method_1_1STSolution_a2170e2ef97951c371e244dd62ff8cd56}{STSolution}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1method_1_1STSolution}{STSolution<Grid>}}\& st) :m\_w\{ st.m\_w \}, m\_time\{ st.m\_time \}, m\_grid\{st.m\_grid\} \{\}}
+\DoxyCodeLine{56             \mbox{\hyperlink{classcorenc_1_1method_1_1STSolution}{STSolution<Grid>}}\& \mbox{\hyperlink{classcorenc_1_1method_1_1STSolution_aa512a6b5322c350265f13537b1c58705}{operator=}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1method_1_1STSolution}{STSolution<Grid>}}\& st)}
+\DoxyCodeLine{57             \{}
+\DoxyCodeLine{58                 m\_w = st.m\_w;}
+\DoxyCodeLine{59                 m\_time = st.m\_time;}
+\DoxyCodeLine{60                 m\_grid = st.m\_grid;}
+\DoxyCodeLine{61                 \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{62             \}}
+\DoxyCodeLine{63             \mbox{\hyperlink{classcorenc_1_1method_1_1STSolution_abc0856eebcf8811777a1756a4f2ced9a}{\string~STSolution}}()}
+\DoxyCodeLine{64             \{}
+\DoxyCodeLine{65                 \textcolor{keywordflow}{if} (m\_w.size() > 0)}
+\DoxyCodeLine{66                     std::vector<DGSolution<Grid>>().swap(m\_w);}
+\DoxyCodeLine{67                 \textcolor{keywordflow}{if} (m\_time.size() > 0)}
+\DoxyCodeLine{68                     std::vector<double>().swap(m\_time);}
+\DoxyCodeLine{69             \}}
+\DoxyCodeLine{70             \textcolor{keyword}{const} \textcolor{keywordtype}{double}                \mbox{\hyperlink{classcorenc_1_1method_1_1STSolution_a3fe3b1fa354be0371f8acd576b5d21e5}{getWeight}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh::Point}}\& p, \textcolor{keyword}{const} \textcolor{keywordtype}{double} time)\textcolor{keyword}{ const}}
+\DoxyCodeLine{71 \textcolor{keyword}{            }\{}
+\DoxyCodeLine{72                 \textcolor{keywordtype}{int} i = 0;}
+\DoxyCodeLine{73                 \textcolor{keyword}{auto} sz = m\_time.size();}
+\DoxyCodeLine{74                 \textcolor{keywordflow}{if} (fabs(time) < 1e-\/14)}
+\DoxyCodeLine{75                     \textcolor{keywordflow}{return} \mbox{\hyperlink{classcorenc_1_1method_1_1DGMethod_afa9f1c995c17bdc817102e8be336578a}{DGMethod<Grid>::GetSolution}}(m\_grid, m\_w[0].\mbox{\hyperlink{classcorenc_1_1method_1_1STSolution_a3e81560f13422ad13fc5faa5d8a52182}{getWeights}}(), p);}
+\DoxyCodeLine{76                 \textcolor{keywordflow}{for} (; i < sz; ++i)}
+\DoxyCodeLine{77                 \{}
+\DoxyCodeLine{78                     \textcolor{keywordflow}{if} (time < m\_time[i])}
+\DoxyCodeLine{79                         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{80                 \}}
+\DoxyCodeLine{81                 \textcolor{keywordflow}{if} (i == sz)}
+\DoxyCodeLine{82                     -\/-\/i;}
+\DoxyCodeLine{83                 \textcolor{keywordtype}{double} dt = m\_time[i] -\/ m\_time[i -\/ 1];}
+\DoxyCodeLine{84                 \textcolor{keyword}{auto} temp = \mbox{\hyperlink{classcorenc_1_1method_1_1DGMethod_afa9f1c995c17bdc817102e8be336578a}{DGMethod<Grid>::GetSolution}}(m\_grid, m\_w[i -\/ 1].\mbox{\hyperlink{classcorenc_1_1method_1_1STSolution_a3e81560f13422ad13fc5faa5d8a52182}{getWeights}}(), p);}
+\DoxyCodeLine{85                 \textcolor{keywordtype}{double} du = \mbox{\hyperlink{classcorenc_1_1method_1_1DGMethod_afa9f1c995c17bdc817102e8be336578a}{DGMethod<Grid>::GetSolution}}(m\_grid, m\_w[i].\mbox{\hyperlink{classcorenc_1_1method_1_1STSolution_a3e81560f13422ad13fc5faa5d8a52182}{getWeights}}(), p) -\/ temp;}
+\DoxyCodeLine{86                 \textcolor{keywordflow}{return} temp + du * (time -\/ m\_time[i -\/ 1]) / dt;}
+\DoxyCodeLine{87             \};}
+\DoxyCodeLine{88             \textcolor{keyword}{const} \textcolor{keywordtype}{int}                   \mbox{\hyperlink{classcorenc_1_1method_1_1STSolution_a88a8171820c4017671aa6e6c328fa236}{updateWeight}}(}
+\DoxyCodeLine{89                 \textcolor{keyword}{const} std::vector<double> time,}
+\DoxyCodeLine{90                 \textcolor{keyword}{const} std::vector<\mbox{\hyperlink{classcorenc_1_1method_1_1DGSolution}{DGSolution<Grid>}}> w}
+\DoxyCodeLine{91             )}
+\DoxyCodeLine{92             \{}
+\DoxyCodeLine{93                 m\_time = time;}
+\DoxyCodeLine{94                 m\_w = w;}
+\DoxyCodeLine{95             \}}
+\DoxyCodeLine{96             \textcolor{keyword}{const} \textcolor{keywordtype}{int}                   \mbox{\hyperlink{classcorenc_1_1method_1_1STSolution_a4074004dbac4d31865b493d4143f80fd}{addTimeLayer}}(}
+\DoxyCodeLine{97                 \textcolor{keyword}{const} \textcolor{keywordtype}{double} time,}
+\DoxyCodeLine{98                 \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1method_1_1DGSolution}{DGSolution<Grid>}} w}
+\DoxyCodeLine{99             )}
+\DoxyCodeLine{100             \{}
+\DoxyCodeLine{101                 m\_time.push\_back(time);}
+\DoxyCodeLine{102                 m\_w.push\_back(w);}
+\DoxyCodeLine{103                 \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{104             \}}
+\DoxyCodeLine{105             \textcolor{keyword}{const} std::vector<DGSolution<Grid>>     \mbox{\hyperlink{classcorenc_1_1method_1_1STSolution_a3e81560f13422ad13fc5faa5d8a52182}{getWeights}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} m\_w; \}}
+\DoxyCodeLine{106         \textcolor{keyword}{private}:}
+\DoxyCodeLine{107             std::vector<DGSolution<Grid>>                           m\_w;}
+\DoxyCodeLine{108             std::vector<double>                                     m\_time;}
+\DoxyCodeLine{109             Grid                                                    m\_grid;}
+\DoxyCodeLine{110         \};}
+\DoxyCodeLine{111     \}}
+\DoxyCodeLine{112 \}}
+\DoxyCodeLine{113 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// !CORENC\_METHODS\_DGSOLUTION\_H\_}}
+
+\end{DoxyCode}

@@ -1,0 +1,44 @@
+\hypertarget{FiniteElement_8h}{}\doxysection{Core\+NCFEM/\+Finite\+Elements/\+Finite\+Element.h File Reference}
+\label{FiniteElement_8h}\index{CoreNCFEM/FiniteElements/FiniteElement.h@{CoreNCFEM/FiniteElements/FiniteElement.h}}
+{\ttfamily \#include $<$functional$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include \char`\"{}../\+Point.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../\+FESolution.\+h\char`\"{}}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4}{corenc\+::\+Mesh\+::\+CElement$<$ bool $>$}}
+\item 
+class \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement}{corenc\+::\+Mesh\+::\+CElement$<$ T $>$}}
+\item 
+class \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement}{corenc\+::\+Mesh\+::\+CFinite\+Element$<$ Shape, Shape\+Function, Do\+F, T $>$}}
+\item 
+class \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_3_01Shape_00_01ShapeFunction_00_01DoF_00_01bool_01_4}{corenc\+::\+Mesh\+::\+CFinite\+Element$<$ Shape, Shape\+Function, Do\+F, bool $>$}}
+\item 
+class \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_3_01Shape_00_01ShapeFunction_00_01bool_00_01bool_01_4}{corenc\+::\+Mesh\+::\+CFinite\+Element$<$ Shape, Shape\+Function, bool, bool $>$}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacecorenc}{corenc}}
+\item 
+namespace \mbox{\hyperlink{namespacecorenc_1_1Mesh}{corenc\+::\+Mesh}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{namespacecorenc_1_1Mesh_adeeb6b9f25865139c6f15459a5f09438}{corenc\+::\+Mesh\+::function\+\_\+dp}} = std\+::function$<$ const double(const Point \&)$>$
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{namespacecorenc_1_1Mesh_ade663ef62361abc52180c80e173479ee}{corenc\+::\+Mesh\+::\+Elements}} \{ \newline
+\mbox{\hyperlink{namespacecorenc_1_1Mesh_ade663ef62361abc52180c80e173479eea5225153c2c6b43e461a400d68cde5fd6}{corenc\+::\+Mesh\+::\+Interval}} = 0
+, \mbox{\hyperlink{namespacecorenc_1_1Mesh_ade663ef62361abc52180c80e173479eeaa0663fd6a2d6ebe882669b2574a8536c}{corenc\+::\+Mesh\+::\+Triangle}} = 1
+, \mbox{\hyperlink{namespacecorenc_1_1Mesh_ade663ef62361abc52180c80e173479eea5e96309fa7b3bf2f76e86671a04f97f4}{corenc\+::\+Mesh\+::\+Rectangle}} = 2
+, \mbox{\hyperlink{namespacecorenc_1_1Mesh_ade663ef62361abc52180c80e173479eeae74c66bd369b3becc3a7358d73b1a4bb}{corenc\+::\+Mesh\+::\+Tetrahedron}} = 3
+, \newline
+\mbox{\hyperlink{namespacecorenc_1_1Mesh_ade663ef62361abc52180c80e173479eeab2b2235b20551774c7c28e5742ea2937}{corenc\+::\+Mesh\+::\+Cube}} = 4
+ \}
+\end{DoxyCompactItemize}

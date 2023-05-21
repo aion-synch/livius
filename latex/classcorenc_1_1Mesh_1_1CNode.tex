@@ -1,0 +1,181 @@
+\hypertarget{classcorenc_1_1Mesh_1_1CNode}{}\doxysection{corenc\+::Mesh\+::CNode Class Reference}
+\label{classcorenc_1_1Mesh_1_1CNode}\index{corenc::Mesh::CNode@{corenc::Mesh::CNode}}
+
+
+{\ttfamily \#include $<$Node.\+h$>$}
+
+Inheritance diagram for corenc\+::Mesh\+::CNode\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classcorenc_1_1Mesh_1_1CNode}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcorenc_1_1Mesh_1_1CNode_a92f7b783eb6349154976e1f8229898a5}{CNode}} ()
+\item 
+\mbox{\hyperlink{classcorenc_1_1Mesh_1_1CNode_abd071f2747ad0e0e693df1828e9b8ea3}{CNode}} (const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CNode}{CNode}} \&)
+\item 
+\mbox{\hyperlink{classcorenc_1_1Mesh_1_1CNode_aef99f7a66449e81f9bea7f793016ea2a}{CNode}} (const int n)
+\item 
+\mbox{\hyperlink{classcorenc_1_1Mesh_1_1CNode_a0f0cc0b7709f1bf3eb8bbebe5f4a9b2b}{CNode}} (const int $\ast$n)
+\item 
+\mbox{\hyperlink{classcorenc_1_1Mesh_1_1CNode}{CNode}} \& \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CNode_a1eae5e4d3f7ce2c80766f7fe4c430259}{operator=}} (const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CNode}{CNode}} \&e)
+\item 
+\mbox{\hyperlink{classcorenc_1_1Mesh_1_1CNode_ac88d96a401cea016ac4cf3f9c07e161b}{$\sim$\+CNode}} ()
+\item 
+const int \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CNode_a1527ea00a7db98ad0aaa0c0e890b1db5}{Get\+Node}} (const int) const
+\item 
+const int \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CNode_ab6c256798a78ffd3fda9420389b20884}{Get\+Node}} (const \mbox{\hyperlink{namespacecorenc_1_1Mesh_ac50e77ee39c11765e81daf606c1cbc05}{NODES}} \&) const
+\item 
+const int \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CNode_a885700478ae2f2e0d965588004d19c71}{Increase\+Order}} ()
+\item 
+const int \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CNode_ad9d3771895004d215ddef2d431f13c44}{Get\+Number\+Of\+Nodes}} () const
+\item 
+void \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CNode_a0ac3a082e880e58aef0d82ef70924c8d}{Set\+Node}} (const int k, const int node)
+\item 
+const double \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CNode_a7e6276a78de62d668fdfad8c74f93bad}{Integrate}} (const std\+::function$<$ const double(const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} \&)$>$ \&, const std\+::vector$<$ \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} $>$ \&v) const
+\item 
+const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CNode_a1087f5ac239143e190064df45bd28656}{Integrate}} (const std\+::function$<$ const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}(const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} \&)$>$ \&, const std\+::vector$<$ \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} $>$ \&v) const
+\item 
+const std\+::vector$<$ double $>$ \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CNode_a38b6bef30d69c5864dc3b41ff0a6163a}{Integrate}} (const std\+::function$<$ const std\+::vector$<$ double $>$(const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} \&)$>$ \&, const std\+::vector$<$ \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} $>$ \&) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+const bool \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CNode_a6853289aa4e3568a6b7c792856129a24}{operator==}} (const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CNode}{CNode}} \&e1, const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CNode}{CNode}} \&e2)
+\item 
+std\+::istream \& \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CNode_ad20e074c8e22878ce8cf4a12e74eefde}{operator$>$$>$}} (std\+::istream \&is, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CNode}{CNode}} \&e)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CNode_a92f7b783eb6349154976e1f8229898a5}\label{classcorenc_1_1Mesh_1_1CNode_a92f7b783eb6349154976e1f8229898a5}} 
+\index{corenc::Mesh::CNode@{corenc::Mesh::CNode}!CNode@{CNode}}
+\index{CNode@{CNode}!corenc::Mesh::CNode@{corenc::Mesh::CNode}}
+\doxysubsubsection{\texorpdfstring{CNode()}{CNode()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily CNode\+::\+CNode (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CNode_abd071f2747ad0e0e693df1828e9b8ea3}\label{classcorenc_1_1Mesh_1_1CNode_abd071f2747ad0e0e693df1828e9b8ea3}} 
+\index{corenc::Mesh::CNode@{corenc::Mesh::CNode}!CNode@{CNode}}
+\index{CNode@{CNode}!corenc::Mesh::CNode@{corenc::Mesh::CNode}}
+\doxysubsubsection{\texorpdfstring{CNode()}{CNode()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily CNode\+::\+CNode (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CNode}{CNode}} \&}]{n }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CNode_aef99f7a66449e81f9bea7f793016ea2a}\label{classcorenc_1_1Mesh_1_1CNode_aef99f7a66449e81f9bea7f793016ea2a}} 
+\index{corenc::Mesh::CNode@{corenc::Mesh::CNode}!CNode@{CNode}}
+\index{CNode@{CNode}!corenc::Mesh::CNode@{corenc::Mesh::CNode}}
+\doxysubsubsection{\texorpdfstring{CNode()}{CNode()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily corenc\+::\+Mesh\+::\+CNode\+::\+CNode (\begin{DoxyParamCaption}\item[{const int}]{n }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CNode_a0f0cc0b7709f1bf3eb8bbebe5f4a9b2b}\label{classcorenc_1_1Mesh_1_1CNode_a0f0cc0b7709f1bf3eb8bbebe5f4a9b2b}} 
+\index{corenc::Mesh::CNode@{corenc::Mesh::CNode}!CNode@{CNode}}
+\index{CNode@{CNode}!corenc::Mesh::CNode@{corenc::Mesh::CNode}}
+\doxysubsubsection{\texorpdfstring{CNode()}{CNode()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily CNode\+::\+CNode (\begin{DoxyParamCaption}\item[{const int $\ast$}]{n }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CNode_ac88d96a401cea016ac4cf3f9c07e161b}\label{classcorenc_1_1Mesh_1_1CNode_ac88d96a401cea016ac4cf3f9c07e161b}} 
+\index{corenc::Mesh::CNode@{corenc::Mesh::CNode}!````~CNode@{$\sim$CNode}}
+\index{````~CNode@{$\sim$CNode}!corenc::Mesh::CNode@{corenc::Mesh::CNode}}
+\doxysubsubsection{\texorpdfstring{$\sim$CNode()}{~CNode()}}
+{\footnotesize\ttfamily corenc\+::\+Mesh\+::\+CNode\+::$\sim$\+CNode (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CNode_a1527ea00a7db98ad0aaa0c0e890b1db5}\label{classcorenc_1_1Mesh_1_1CNode_a1527ea00a7db98ad0aaa0c0e890b1db5}} 
+\index{corenc::Mesh::CNode@{corenc::Mesh::CNode}!GetNode@{GetNode}}
+\index{GetNode@{GetNode}!corenc::Mesh::CNode@{corenc::Mesh::CNode}}
+\doxysubsubsection{\texorpdfstring{GetNode()}{GetNode()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily const int CNode\+::\+Get\+Node (\begin{DoxyParamCaption}\item[{const int}]{n }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CShape_aad28580dcd5977402ec947c2ada0e441}{corenc\+::\+Mesh\+::\+CShape}}.
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CNode_ab6c256798a78ffd3fda9420389b20884}\label{classcorenc_1_1Mesh_1_1CNode_ab6c256798a78ffd3fda9420389b20884}} 
+\index{corenc::Mesh::CNode@{corenc::Mesh::CNode}!GetNode@{GetNode}}
+\index{GetNode@{GetNode}!corenc::Mesh::CNode@{corenc::Mesh::CNode}}
+\doxysubsubsection{\texorpdfstring{GetNode()}{GetNode()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily const int CNode\+::\+Get\+Node (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespacecorenc_1_1Mesh_ac50e77ee39c11765e81daf606c1cbc05}{NODES}} \&}]{node }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CShape_ac3c4c10066ac77758c554bba94bb8ba1}{corenc\+::\+Mesh\+::\+CShape}}.
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CNode_ad9d3771895004d215ddef2d431f13c44}\label{classcorenc_1_1Mesh_1_1CNode_ad9d3771895004d215ddef2d431f13c44}} 
+\index{corenc::Mesh::CNode@{corenc::Mesh::CNode}!GetNumberOfNodes@{GetNumberOfNodes}}
+\index{GetNumberOfNodes@{GetNumberOfNodes}!corenc::Mesh::CNode@{corenc::Mesh::CNode}}
+\doxysubsubsection{\texorpdfstring{GetNumberOfNodes()}{GetNumberOfNodes()}}
+{\footnotesize\ttfamily const int CNode\+::\+Get\+Number\+Of\+Nodes (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CShape_a1180a1826c034d38149d0f76a5b364dc}{corenc\+::\+Mesh\+::\+CShape}}.
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CNode_a885700478ae2f2e0d965588004d19c71}\label{classcorenc_1_1Mesh_1_1CNode_a885700478ae2f2e0d965588004d19c71}} 
+\index{corenc::Mesh::CNode@{corenc::Mesh::CNode}!IncreaseOrder@{IncreaseOrder}}
+\index{IncreaseOrder@{IncreaseOrder}!corenc::Mesh::CNode@{corenc::Mesh::CNode}}
+\doxysubsubsection{\texorpdfstring{IncreaseOrder()}{IncreaseOrder()}}
+{\footnotesize\ttfamily const int corenc\+::\+Mesh\+::\+CNode\+::\+Increase\+Order (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CNode_a7e6276a78de62d668fdfad8c74f93bad}\label{classcorenc_1_1Mesh_1_1CNode_a7e6276a78de62d668fdfad8c74f93bad}} 
+\index{corenc::Mesh::CNode@{corenc::Mesh::CNode}!Integrate@{Integrate}}
+\index{Integrate@{Integrate}!corenc::Mesh::CNode@{corenc::Mesh::CNode}}
+\doxysubsubsection{\texorpdfstring{Integrate()}{Integrate()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily const double CNode\+::\+Integrate (\begin{DoxyParamCaption}\item[{const std\+::function$<$ const double(const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} \&)$>$ \&}]{f,  }\item[{const std\+::vector$<$ \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} $>$ \&}]{v }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CNode_a1087f5ac239143e190064df45bd28656}\label{classcorenc_1_1Mesh_1_1CNode_a1087f5ac239143e190064df45bd28656}} 
+\index{corenc::Mesh::CNode@{corenc::Mesh::CNode}!Integrate@{Integrate}}
+\index{Integrate@{Integrate}!corenc::Mesh::CNode@{corenc::Mesh::CNode}}
+\doxysubsubsection{\texorpdfstring{Integrate()}{Integrate()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} CNode\+::\+Integrate (\begin{DoxyParamCaption}\item[{const std\+::function$<$ const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}(const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} \&)$>$ \&}]{f,  }\item[{const std\+::vector$<$ \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} $>$ \&}]{v }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CNode_a38b6bef30d69c5864dc3b41ff0a6163a}\label{classcorenc_1_1Mesh_1_1CNode_a38b6bef30d69c5864dc3b41ff0a6163a}} 
+\index{corenc::Mesh::CNode@{corenc::Mesh::CNode}!Integrate@{Integrate}}
+\index{Integrate@{Integrate}!corenc::Mesh::CNode@{corenc::Mesh::CNode}}
+\doxysubsubsection{\texorpdfstring{Integrate()}{Integrate()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily const std\+::vector$<$ double $>$ corenc\+::\+Mesh\+::\+CNode\+::\+Integrate (\begin{DoxyParamCaption}\item[{const std\+::function$<$ const std\+::vector$<$ double $>$(const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} \&)$>$ \&}]{,  }\item[{const std\+::vector$<$ \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} $>$ \&}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CShape_a33c47e38a5533ba192941cda8cc0ab0d}{corenc\+::\+Mesh\+::\+CShape}}.
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CNode_a1eae5e4d3f7ce2c80766f7fe4c430259}\label{classcorenc_1_1Mesh_1_1CNode_a1eae5e4d3f7ce2c80766f7fe4c430259}} 
+\index{corenc::Mesh::CNode@{corenc::Mesh::CNode}!operator=@{operator=}}
+\index{operator=@{operator=}!corenc::Mesh::CNode@{corenc::Mesh::CNode}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CNode}{CNode}} \& corenc\+::\+Mesh\+::\+CNode\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CNode}{CNode}} \&}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CNode_a0ac3a082e880e58aef0d82ef70924c8d}\label{classcorenc_1_1Mesh_1_1CNode_a0ac3a082e880e58aef0d82ef70924c8d}} 
+\index{corenc::Mesh::CNode@{corenc::Mesh::CNode}!SetNode@{SetNode}}
+\index{SetNode@{SetNode}!corenc::Mesh::CNode@{corenc::Mesh::CNode}}
+\doxysubsubsection{\texorpdfstring{SetNode()}{SetNode()}}
+{\footnotesize\ttfamily void CNode\+::\+Set\+Node (\begin{DoxyParamCaption}\item[{const int}]{k,  }\item[{const int}]{node }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CShape_a9fadcf61c9edeecbdfcd35dc7c92d4b6}{corenc\+::\+Mesh\+::\+CShape}}.
+
+
+
+\doxysubsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CNode_a6853289aa4e3568a6b7c792856129a24}\label{classcorenc_1_1Mesh_1_1CNode_a6853289aa4e3568a6b7c792856129a24}} 
+\index{corenc::Mesh::CNode@{corenc::Mesh::CNode}!operator==@{operator==}}
+\index{operator==@{operator==}!corenc::Mesh::CNode@{corenc::Mesh::CNode}}
+\doxysubsubsection{\texorpdfstring{operator==}{operator==}}
+{\footnotesize\ttfamily const bool operator== (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CNode}{CNode}} \&}]{e1,  }\item[{const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CNode}{CNode}} \&}]{e2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CNode_ad20e074c8e22878ce8cf4a12e74eefde}\label{classcorenc_1_1Mesh_1_1CNode_ad20e074c8e22878ce8cf4a12e74eefde}} 
+\index{corenc::Mesh::CNode@{corenc::Mesh::CNode}!operator$>$$>$@{operator$>$$>$}}
+\index{operator$>$$>$@{operator$>$$>$}!corenc::Mesh::CNode@{corenc::Mesh::CNode}}
+\doxysubsubsection{\texorpdfstring{operator$>$$>$}{operator>>}}
+{\footnotesize\ttfamily std\+::istream \& operator$>$$>$ (\begin{DoxyParamCaption}\item[{std\+::istream \&}]{is,  }\item[{\mbox{\hyperlink{classcorenc_1_1Mesh_1_1CNode}{CNode}} \&}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Core\+NCFEM/\+Finite\+Elements/\mbox{\hyperlink{Node_8h}{Node.\+h}}\item 
+Core\+NCFEM/\+Finite\+Elements/\mbox{\hyperlink{Node_8cpp}{Node.\+cpp}}\end{DoxyCompactItemize}

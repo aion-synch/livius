@@ -1,0 +1,100 @@
+\hypertarget{dg__solver_8h_source}{}\doxysection{dg\+\_\+solver.\+h}
+\label{dg__solver_8h_source}\index{Solvers/dg\_solver.h@{Solvers/dg\_solver.h}}
+\mbox{\hyperlink{dg__solver_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef CORENC\_SOLVERS\_DG\_SOLVER\_H\_}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define CORENC\_SOLVERS\_DG\_SOLVER\_H\_}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include "{}../CoreNCFEM/Grids/TriangularMesh.h"{}}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include "{}../CoreNCFEM/Methods/DGMethod.h"{}}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include "{}../Problems/DiffusionScalar.h"{}}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include "{}../CoreNCA/MatrixSkyline.h"{}}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include "{}../CoreNCFEM/Methods/FEAnalysis.h"{}}}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{10 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacecorenc}{corenc}}}
+\DoxyCodeLine{11 \{}
+\DoxyCodeLine{12     \textcolor{keyword}{namespace }solvers}
+\DoxyCodeLine{13     \{}
+\DoxyCodeLine{14         \textcolor{keyword}{template}<\textcolor{keyword}{class} \_Problem, \textcolor{keyword}{class} \_Mesh, \textcolor{keyword}{class} \_Result>}
+\DoxyCodeLine{15         \textcolor{keyword}{class }\mbox{\hyperlink{classcorenc_1_1solvers_1_1dg__solver}{dg\_solver}}}
+\DoxyCodeLine{16         \{}
+\DoxyCodeLine{17             \textcolor{keyword}{using }\mbox{\hyperlink{classcorenc_1_1method_1_1DGMethod}{\_Method}} = \mbox{\hyperlink{classcorenc_1_1method_1_1DGMethod}{method::DGMethod<\_Problem, \_Mesh, Algebra::MatrixSkyline>}};}
+\DoxyCodeLine{18         \textcolor{keyword}{public}:}
+\DoxyCodeLine{19             \mbox{\hyperlink{classcorenc_1_1solvers_1_1dg__solver_acf933668c5c18b1eed2437d38e13b894}{dg\_solver}}() :m\_method\{ nullptr \} \{\}}
+\DoxyCodeLine{20             \mbox{\hyperlink{classcorenc_1_1solvers_1_1dg__solver_a02ae1c094ceec0d55559fd54c9c59f3f}{\string~dg\_solver}}()}
+\DoxyCodeLine{21             \{}
+\DoxyCodeLine{22                 \textcolor{keywordflow}{if} (m\_method != \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{23                     \textcolor{keyword}{delete} m\_method;}
+\DoxyCodeLine{24             \}}
+\DoxyCodeLine{25             \textcolor{comment}{// terms, method, mesh, solver, result}}
+\DoxyCodeLine{26             \textcolor{keyword}{const} \textcolor{keywordtype}{int}               \mbox{\hyperlink{classcorenc_1_1solvers_1_1dg__solver_a9b4bd4d5fd02beb3e1c189e1277d4f28}{elliptic\_solver}}(\_Problem*, \_Mesh*, \_Result*);}
+\DoxyCodeLine{27             \textcolor{keyword}{const} \textcolor{keywordtype}{double}            \mbox{\hyperlink{classcorenc_1_1solvers_1_1dg__solver_af63e0aac52c9774d544a7dd672981954}{get\_value}}(\textcolor{keyword}{const} \_Mesh\&, \textcolor{keyword}{const} \_Result\&, \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh::Point}}\& p) \textcolor{keyword}{const};}
+\DoxyCodeLine{28             \textcolor{keyword}{const} \textcolor{keywordtype}{double}            \mbox{\hyperlink{classcorenc_1_1solvers_1_1dg__solver_af63e0aac52c9774d544a7dd672981954}{get\_value}}(\textcolor{keyword}{const} \_Method*, \textcolor{keyword}{const} \_Mesh\&, \textcolor{keyword}{const} \_Result\&, \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh::Point}}\& p) \textcolor{keyword}{const};}
+\DoxyCodeLine{29             \textcolor{keyword}{const} \textcolor{keywordtype}{double}            \mbox{\hyperlink{classcorenc_1_1solvers_1_1dg__solver_af63e0aac52c9774d544a7dd672981954}{get\_value}}(\textcolor{keyword}{const} \_Mesh\&, \textcolor{keyword}{const} \_Result\&, \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh::Point}}\& p, \textcolor{keyword}{const} \textcolor{keywordtype}{int} i) \textcolor{keyword}{const};}
+\DoxyCodeLine{30             \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh::Point}}        \mbox{\hyperlink{classcorenc_1_1solvers_1_1dg__solver_ad23051f798d7e368fd53a6c26ba6cc1c}{get\_gradvalue}}(\textcolor{keyword}{const} \_Mesh\&, \textcolor{keyword}{const} \_Result\&, \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh::Point}}\& p) \textcolor{keyword}{const};}
+\DoxyCodeLine{31             \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh::Point}}        \mbox{\hyperlink{classcorenc_1_1solvers_1_1dg__solver_ad23051f798d7e368fd53a6c26ba6cc1c}{get\_gradvalue}}(\textcolor{keyword}{const} \_Mesh\&, \textcolor{keyword}{const} \_Result\&, \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh::Point}}\& p, \textcolor{keyword}{const} \textcolor{keywordtype}{int} i) \textcolor{keyword}{const};}
+\DoxyCodeLine{32         \textcolor{keyword}{private}:}
+\DoxyCodeLine{33             \_Method * m\_method;}
+\DoxyCodeLine{34         \};}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36         \textcolor{keyword}{template}<\textcolor{keyword}{class} \_Problem, \textcolor{keyword}{class} \_Mesh, \textcolor{keyword}{class} \_Result>}
+\DoxyCodeLine{37         \textcolor{keyword}{const} \textcolor{keywordtype}{int} \mbox{\hyperlink{classcorenc_1_1solvers_1_1dg__solver_a9b4bd4d5fd02beb3e1c189e1277d4f28}{dg\_solver<\_Problem, \_Mesh, \_Result>::elliptic\_solver}}(\_Problem* problem, \_Mesh* mesh, \_Result* result)}
+\DoxyCodeLine{38         \{}
+\DoxyCodeLine{39             std::vector<double> res;}
+\DoxyCodeLine{40             \textcolor{comment}{//std::shared\_ptr<Algebra::MatrixSkyline> matrix\{ new Algebra::MatrixSkyline() \};}}
+\DoxyCodeLine{41             \mbox{\hyperlink{classAlgebra_1_1MatrixSkyline}{Algebra::MatrixSkyline}}* matrix\{ \textcolor{keyword}{new} \mbox{\hyperlink{classAlgebra_1_1MatrixSkyline}{Algebra::MatrixSkyline}}() \};}
+\DoxyCodeLine{42             std::vector<double> rhs;}
+\DoxyCodeLine{43             \textcolor{keywordflow}{if} (m\_method != \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{44                 \textcolor{keyword}{delete} m\_method;}
+\DoxyCodeLine{45             m\_method = \textcolor{keyword}{new} \mbox{\hyperlink{classcorenc_1_1method_1_1DGMethod}{\_Method}}\{ problem, mesh, matrix, \&rhs \};}
+\DoxyCodeLine{46             m\_method-\/>\mbox{\hyperlink{classcorenc_1_1method_1_1DGMethod_a7b768c2a3869874fdbc6c942a2e2e45a}{Discretization}}();}
+\DoxyCodeLine{47             \mbox{\hyperlink{classAlgebra_1_1ESolver}{Algebra::ESolver}} esl\{ \mbox{\hyperlink{namespaceAlgebra_af3ba1642071f1a948ca328a97b8c95afac1bfd84e7215afa3204b8e1cdb21a2bd}{Algebra::Solvers::GMRES}} \};}
+\DoxyCodeLine{48             *result = esl.Solve(*matrix, rhs, *result, res, 100000, 1e-\/13);}
+\DoxyCodeLine{49             \textcolor{keyword}{delete} matrix;}
+\DoxyCodeLine{50             \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{51         \}}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53         \textcolor{keyword}{template}<\textcolor{keyword}{class} \_Problem, \textcolor{keyword}{class} \_Mesh, \textcolor{keyword}{class} \_Result>}
+\DoxyCodeLine{54         \textcolor{keyword}{const} \textcolor{keywordtype}{double} \mbox{\hyperlink{classcorenc_1_1solvers_1_1dg__solver_af63e0aac52c9774d544a7dd672981954}{dg\_solver<\_Problem, \_Mesh, \_Result>::get\_value}}(\textcolor{keyword}{const} \_Mesh\& mesh, \textcolor{keyword}{const} \_Result\& res, \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh::Point}}\& p)\textcolor{keyword}{ const}}
+\DoxyCodeLine{55 \textcolor{keyword}{        }\{}
+\DoxyCodeLine{56             \textcolor{keywordflow}{if} (m\_method != \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{57                 \textcolor{keywordflow}{return} m\_method-\/>GetSolution(mesh, res, p);}
+\DoxyCodeLine{58             \textcolor{keywordflow}{return} 0.;}
+\DoxyCodeLine{59         \}}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61         \textcolor{keyword}{template}<\textcolor{keyword}{class} \_Problem, \textcolor{keyword}{class} \_Mesh, \textcolor{keyword}{class} \_Result>}
+\DoxyCodeLine{62         \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh::Point}} \mbox{\hyperlink{classcorenc_1_1solvers_1_1dg__solver_ad23051f798d7e368fd53a6c26ba6cc1c}{dg\_solver<\_Problem, \_Mesh, \_Result>::get\_gradvalue}}(\textcolor{keyword}{const} \_Mesh\& mesh, \textcolor{keyword}{const} \_Result\& res, \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh::Point}}\& p)\textcolor{keyword}{ const}}
+\DoxyCodeLine{63 \textcolor{keyword}{        }\{}
+\DoxyCodeLine{64             \textcolor{keywordflow}{if} (m\_method != \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{65                 \textcolor{keywordflow}{return} m\_method-\/>GetGradSolution(mesh, res, p);}
+\DoxyCodeLine{66             \textcolor{keywordflow}{return} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh::Point}}(0, 0, 0);}
+\DoxyCodeLine{67         \}}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{69         \textcolor{keyword}{template}<\textcolor{keyword}{class} \_Problem, \textcolor{keyword}{class} \_Mesh, \textcolor{keyword}{class} \_Result>}
+\DoxyCodeLine{70         \textcolor{keyword}{const} \textcolor{keywordtype}{double} \mbox{\hyperlink{classcorenc_1_1solvers_1_1dg__solver_af63e0aac52c9774d544a7dd672981954}{dg\_solver<\_Problem, \_Mesh, \_Result>::get\_value}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1method_1_1DGMethod}{\_Method}}* method2, \textcolor{keyword}{const} \_Mesh\& mesh, \textcolor{keyword}{const} \_Result\& res, \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh::Point}}\& p)\textcolor{keyword}{ const}}
+\DoxyCodeLine{71 \textcolor{keyword}{        }\{}
+\DoxyCodeLine{72             \textcolor{keywordflow}{if} (method2 != \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{73                 \textcolor{keywordflow}{return} method2-\/>\mbox{\hyperlink{classcorenc_1_1method_1_1DGMethod_afa9f1c995c17bdc817102e8be336578a}{GetSolution}}(mesh, res, p);}
+\DoxyCodeLine{74             \textcolor{keywordflow}{return} 0.;}
+\DoxyCodeLine{75         \}}
+\DoxyCodeLine{76 }
+\DoxyCodeLine{77         \textcolor{keyword}{template}<\textcolor{keyword}{class} \_Problem, \textcolor{keyword}{class} \_Mesh, \textcolor{keyword}{class} \_Result>}
+\DoxyCodeLine{78         \textcolor{keyword}{const} \textcolor{keywordtype}{double} \mbox{\hyperlink{classcorenc_1_1solvers_1_1dg__solver_af63e0aac52c9774d544a7dd672981954}{dg\_solver<\_Problem, \_Mesh, \_Result>::get\_value}}(\textcolor{keyword}{const} \_Mesh\& mesh, \textcolor{keyword}{const} \_Result\& res, \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh::Point}}\& p, \textcolor{keyword}{const} \textcolor{keywordtype}{int} i)\textcolor{keyword}{ const}}
+\DoxyCodeLine{79 \textcolor{keyword}{        }\{}
+\DoxyCodeLine{80             \textcolor{keywordflow}{if} (m\_method != \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{81                 \textcolor{keywordflow}{return} m\_method-\/>GetSolution(mesh, res, p, i);}
+\DoxyCodeLine{82             \textcolor{keywordflow}{return} 0.;}
+\DoxyCodeLine{83         \}}
+\DoxyCodeLine{84         \textcolor{keyword}{template}<\textcolor{keyword}{class} \_Problem, \textcolor{keyword}{class} \_Mesh, \textcolor{keyword}{class} \_Result>}
+\DoxyCodeLine{85         \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh::Point}} \mbox{\hyperlink{classcorenc_1_1solvers_1_1dg__solver_ad23051f798d7e368fd53a6c26ba6cc1c}{dg\_solver<\_Problem, \_Mesh, \_Result>::get\_gradvalue}}(\textcolor{keyword}{const} \_Mesh\& mesh, \textcolor{keyword}{const} \_Result\& res, \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh::Point}}\& p, \textcolor{keyword}{const} \textcolor{keywordtype}{int} i)\textcolor{keyword}{ const}}
+\DoxyCodeLine{86 \textcolor{keyword}{        }\{}
+\DoxyCodeLine{87             \textcolor{keywordflow}{if} (m\_method != \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{88                 \textcolor{keywordflow}{return} m\_method-\/>GetGradSolution(mesh, res, p, i);}
+\DoxyCodeLine{89             \textcolor{keywordflow}{return} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh::Point}}(0, 0, 0);}
+\DoxyCodeLine{90         \}}
+\DoxyCodeLine{91 }
+\DoxyCodeLine{92     \}}
+\DoxyCodeLine{93 \}}
+\DoxyCodeLine{94 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// !CORENC\_SOLVERS\_dg\_solver\_H\_}}
+
+\end{DoxyCode}

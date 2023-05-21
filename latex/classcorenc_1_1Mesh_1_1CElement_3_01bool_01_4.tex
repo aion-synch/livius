@@ -1,0 +1,188 @@
+\hypertarget{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4}{}\doxysection{corenc\+::Mesh\+::CElement\texorpdfstring{$<$}{<} bool \texorpdfstring{$>$}{>} Class Reference}
+\label{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4}\index{corenc::Mesh::CElement$<$ bool $>$@{corenc::Mesh::CElement$<$ bool $>$}}
+
+
+{\ttfamily \#include $<$Finite\+Element.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_a5960ae4b21fe00df8c4932b1a761160f}{CElement}} ()
+\item 
+virtual \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_afcb506d3f81442e261cabb31c7e87138}{$\sim$\+CElement}} ()
+\item 
+virtual const int \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_aaa98a9ec578a8fe19631f233b235323c}{Get\+Type}} () const =0
+\item 
+virtual \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement}{CElement}} $\ast$ \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_a2eb704d0f3477fd9ede8f7d01fb37007}{Clone}} () const =0
+\item 
+virtual const int \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_acb7fc9acc2be3c7d450ae666cac3e56f}{Get\+Do\+Fs}} () const =0
+\item 
+virtual const int \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_ac4be4bb008f39364b6cc9813672fcead}{Get\+Node}} (const int) const =0
+\item 
+virtual const int \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_acbd9aa5430c2a1013206629c168545c9}{Get\+Neighbour}} (const int) const =0
+\item 
+virtual void \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_adb30f904b7b007f3978d144d59b0a94b}{Set\+Neighbour}} (const int k, const int elem)=0
+\item 
+virtual void \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_a8acfd116f86f2722e7908fcb89307335}{Set\+Type}} (const int)=0
+\item 
+virtual void \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_a3837efeda55c3c4fb93b132fb31de7a5}{Set\+Node}} (const int, const int)=0
+\item 
+virtual const int \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_ac3c62fdf5243488ad882fb70219fe26a}{Get\+Number\+Of\+Nodes}} () const =0
+\item 
+virtual const double \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_ac11a26cec1f97384da288ea36728a02b}{Get\+Shape\+Function}} (const int, const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} \&) const =0
+\item 
+virtual const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_a3b05d8213dd1487f2527e4ff329762ff}{Get\+Grad\+Shape\+Function}} (const int, const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} \&) const =0
+\item 
+virtual const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_a777fb68730aafe054b1daf65a986b8fa}{Get\+Normal}} () const =0
+\item 
+virtual void \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_a28776b7ba2afc7f16ce5bc43ab4b8c35}{Reverse\+Normal}} ()=0
+\item 
+virtual const double \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_a8c13cd1046e2dde21a067f7c05035711}{Integrate}} (const \mbox{\hyperlink{namespacecorenc_1_1Mesh_adeeb6b9f25865139c6f15459a5f09438}{function\+\_\+dp}} \&, const std\+::vector$<$ \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} $>$ \&v) const =0
+\item 
+virtual const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_a459c607a68b7a01dc41dacca76cfeffb}{Integrate}} (const std\+::function$<$ const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}(const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} \&)$>$ \&, const std\+::vector$<$ \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} $>$ \&v) const =0
+\item 
+virtual const std\+::vector$<$ double $>$ \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_aae8b9f193e2d4d6a27bbec0501f1ee75}{Integrate}} (const std\+::function$<$ const std\+::vector$<$ double $>$(const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} \&)$>$ \&, const std\+::vector$<$ \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} $>$ \&) const =0
+\item 
+virtual const double \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_a8564472647a28d339c4dc295a13b1586}{Get\+Weight}} (const int, const std\+::vector$<$ \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} $>$ \&verts, const \mbox{\hyperlink{namespacecorenc_1_1Mesh_adeeb6b9f25865139c6f15459a5f09438}{function\+\_\+dp}} \&f) const =0
+\item 
+virtual const int \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_aec5c324fdbe36d71af7ecdfac8caccdd}{Increase\+Order}} ()=0
+\item 
+virtual const double \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_a9da62a2dbfdc92f6fa71c4249459ba4c}{Get\+Measure}} () const =0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_a5960ae4b21fe00df8c4932b1a761160f}\label{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_a5960ae4b21fe00df8c4932b1a761160f}} 
+\index{corenc::Mesh::CElement$<$ bool $>$@{corenc::Mesh::CElement$<$ bool $>$}!CElement@{CElement}}
+\index{CElement@{CElement}!corenc::Mesh::CElement$<$ bool $>$@{corenc::Mesh::CElement$<$ bool $>$}}
+\doxysubsubsection{\texorpdfstring{CElement()}{CElement()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement}{corenc\+::\+Mesh\+::\+CElement}}$<$ bool $>$\+::\+CElement (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_afcb506d3f81442e261cabb31c7e87138}\label{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_afcb506d3f81442e261cabb31c7e87138}} 
+\index{corenc::Mesh::CElement$<$ bool $>$@{corenc::Mesh::CElement$<$ bool $>$}!````~CElement@{$\sim$CElement}}
+\index{````~CElement@{$\sim$CElement}!corenc::Mesh::CElement$<$ bool $>$@{corenc::Mesh::CElement$<$ bool $>$}}
+\doxysubsubsection{\texorpdfstring{$\sim$CElement()}{~CElement()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement}{corenc\+::\+Mesh\+::\+CElement}}$<$ bool $>$\+::$\sim$\mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement}{CElement}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_a2eb704d0f3477fd9ede8f7d01fb37007}\label{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_a2eb704d0f3477fd9ede8f7d01fb37007}} 
+\index{corenc::Mesh::CElement$<$ bool $>$@{corenc::Mesh::CElement$<$ bool $>$}!Clone@{Clone}}
+\index{Clone@{Clone}!corenc::Mesh::CElement$<$ bool $>$@{corenc::Mesh::CElement$<$ bool $>$}}
+\doxysubsubsection{\texorpdfstring{Clone()}{Clone()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement}{CElement}} $\ast$ \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement}{corenc\+::\+Mesh\+::\+CElement}}$<$ bool $>$\+::\+Clone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_acb7fc9acc2be3c7d450ae666cac3e56f}\label{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_acb7fc9acc2be3c7d450ae666cac3e56f}} 
+\index{corenc::Mesh::CElement$<$ bool $>$@{corenc::Mesh::CElement$<$ bool $>$}!GetDoFs@{GetDoFs}}
+\index{GetDoFs@{GetDoFs}!corenc::Mesh::CElement$<$ bool $>$@{corenc::Mesh::CElement$<$ bool $>$}}
+\doxysubsubsection{\texorpdfstring{GetDoFs()}{GetDoFs()}}
+{\footnotesize\ttfamily virtual const int \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement}{corenc\+::\+Mesh\+::\+CElement}}$<$ bool $>$\+::\+Get\+Do\+Fs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_a3b05d8213dd1487f2527e4ff329762ff}\label{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_a3b05d8213dd1487f2527e4ff329762ff}} 
+\index{corenc::Mesh::CElement$<$ bool $>$@{corenc::Mesh::CElement$<$ bool $>$}!GetGradShapeFunction@{GetGradShapeFunction}}
+\index{GetGradShapeFunction@{GetGradShapeFunction}!corenc::Mesh::CElement$<$ bool $>$@{corenc::Mesh::CElement$<$ bool $>$}}
+\doxysubsubsection{\texorpdfstring{GetGradShapeFunction()}{GetGradShapeFunction()}}
+{\footnotesize\ttfamily virtual const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement}{corenc\+::\+Mesh\+::\+CElement}}$<$ bool $>$\+::\+Get\+Grad\+Shape\+Function (\begin{DoxyParamCaption}\item[{const int}]{,  }\item[{const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} \&}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_a9da62a2dbfdc92f6fa71c4249459ba4c}\label{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_a9da62a2dbfdc92f6fa71c4249459ba4c}} 
+\index{corenc::Mesh::CElement$<$ bool $>$@{corenc::Mesh::CElement$<$ bool $>$}!GetMeasure@{GetMeasure}}
+\index{GetMeasure@{GetMeasure}!corenc::Mesh::CElement$<$ bool $>$@{corenc::Mesh::CElement$<$ bool $>$}}
+\doxysubsubsection{\texorpdfstring{GetMeasure()}{GetMeasure()}}
+{\footnotesize\ttfamily virtual const double \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement}{corenc\+::\+Mesh\+::\+CElement}}$<$ bool $>$\+::\+Get\+Measure (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_acbd9aa5430c2a1013206629c168545c9}\label{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_acbd9aa5430c2a1013206629c168545c9}} 
+\index{corenc::Mesh::CElement$<$ bool $>$@{corenc::Mesh::CElement$<$ bool $>$}!GetNeighbour@{GetNeighbour}}
+\index{GetNeighbour@{GetNeighbour}!corenc::Mesh::CElement$<$ bool $>$@{corenc::Mesh::CElement$<$ bool $>$}}
+\doxysubsubsection{\texorpdfstring{GetNeighbour()}{GetNeighbour()}}
+{\footnotesize\ttfamily virtual const int \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement}{corenc\+::\+Mesh\+::\+CElement}}$<$ bool $>$\+::\+Get\+Neighbour (\begin{DoxyParamCaption}\item[{const int}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_ac4be4bb008f39364b6cc9813672fcead}\label{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_ac4be4bb008f39364b6cc9813672fcead}} 
+\index{corenc::Mesh::CElement$<$ bool $>$@{corenc::Mesh::CElement$<$ bool $>$}!GetNode@{GetNode}}
+\index{GetNode@{GetNode}!corenc::Mesh::CElement$<$ bool $>$@{corenc::Mesh::CElement$<$ bool $>$}}
+\doxysubsubsection{\texorpdfstring{GetNode()}{GetNode()}}
+{\footnotesize\ttfamily virtual const int \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement}{corenc\+::\+Mesh\+::\+CElement}}$<$ bool $>$\+::\+Get\+Node (\begin{DoxyParamCaption}\item[{const int}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_a777fb68730aafe054b1daf65a986b8fa}\label{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_a777fb68730aafe054b1daf65a986b8fa}} 
+\index{corenc::Mesh::CElement$<$ bool $>$@{corenc::Mesh::CElement$<$ bool $>$}!GetNormal@{GetNormal}}
+\index{GetNormal@{GetNormal}!corenc::Mesh::CElement$<$ bool $>$@{corenc::Mesh::CElement$<$ bool $>$}}
+\doxysubsubsection{\texorpdfstring{GetNormal()}{GetNormal()}}
+{\footnotesize\ttfamily virtual const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement}{corenc\+::\+Mesh\+::\+CElement}}$<$ bool $>$\+::\+Get\+Normal (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_ac3c62fdf5243488ad882fb70219fe26a}\label{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_ac3c62fdf5243488ad882fb70219fe26a}} 
+\index{corenc::Mesh::CElement$<$ bool $>$@{corenc::Mesh::CElement$<$ bool $>$}!GetNumberOfNodes@{GetNumberOfNodes}}
+\index{GetNumberOfNodes@{GetNumberOfNodes}!corenc::Mesh::CElement$<$ bool $>$@{corenc::Mesh::CElement$<$ bool $>$}}
+\doxysubsubsection{\texorpdfstring{GetNumberOfNodes()}{GetNumberOfNodes()}}
+{\footnotesize\ttfamily virtual const int \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement}{corenc\+::\+Mesh\+::\+CElement}}$<$ bool $>$\+::\+Get\+Number\+Of\+Nodes (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_ac11a26cec1f97384da288ea36728a02b}\label{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_ac11a26cec1f97384da288ea36728a02b}} 
+\index{corenc::Mesh::CElement$<$ bool $>$@{corenc::Mesh::CElement$<$ bool $>$}!GetShapeFunction@{GetShapeFunction}}
+\index{GetShapeFunction@{GetShapeFunction}!corenc::Mesh::CElement$<$ bool $>$@{corenc::Mesh::CElement$<$ bool $>$}}
+\doxysubsubsection{\texorpdfstring{GetShapeFunction()}{GetShapeFunction()}}
+{\footnotesize\ttfamily virtual const double \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement}{corenc\+::\+Mesh\+::\+CElement}}$<$ bool $>$\+::\+Get\+Shape\+Function (\begin{DoxyParamCaption}\item[{const int}]{,  }\item[{const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} \&}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_aaa98a9ec578a8fe19631f233b235323c}\label{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_aaa98a9ec578a8fe19631f233b235323c}} 
+\index{corenc::Mesh::CElement$<$ bool $>$@{corenc::Mesh::CElement$<$ bool $>$}!GetType@{GetType}}
+\index{GetType@{GetType}!corenc::Mesh::CElement$<$ bool $>$@{corenc::Mesh::CElement$<$ bool $>$}}
+\doxysubsubsection{\texorpdfstring{GetType()}{GetType()}}
+{\footnotesize\ttfamily virtual const int \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement}{corenc\+::\+Mesh\+::\+CElement}}$<$ bool $>$\+::\+Get\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_a8564472647a28d339c4dc295a13b1586}\label{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_a8564472647a28d339c4dc295a13b1586}} 
+\index{corenc::Mesh::CElement$<$ bool $>$@{corenc::Mesh::CElement$<$ bool $>$}!GetWeight@{GetWeight}}
+\index{GetWeight@{GetWeight}!corenc::Mesh::CElement$<$ bool $>$@{corenc::Mesh::CElement$<$ bool $>$}}
+\doxysubsubsection{\texorpdfstring{GetWeight()}{GetWeight()}}
+{\footnotesize\ttfamily virtual const double \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement}{corenc\+::\+Mesh\+::\+CElement}}$<$ bool $>$\+::\+Get\+Weight (\begin{DoxyParamCaption}\item[{const int}]{,  }\item[{const std\+::vector$<$ \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} $>$ \&}]{verts,  }\item[{const \mbox{\hyperlink{namespacecorenc_1_1Mesh_adeeb6b9f25865139c6f15459a5f09438}{function\+\_\+dp}} \&}]{f }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_aec5c324fdbe36d71af7ecdfac8caccdd}\label{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_aec5c324fdbe36d71af7ecdfac8caccdd}} 
+\index{corenc::Mesh::CElement$<$ bool $>$@{corenc::Mesh::CElement$<$ bool $>$}!IncreaseOrder@{IncreaseOrder}}
+\index{IncreaseOrder@{IncreaseOrder}!corenc::Mesh::CElement$<$ bool $>$@{corenc::Mesh::CElement$<$ bool $>$}}
+\doxysubsubsection{\texorpdfstring{IncreaseOrder()}{IncreaseOrder()}}
+{\footnotesize\ttfamily virtual const int \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement}{corenc\+::\+Mesh\+::\+CElement}}$<$ bool $>$\+::\+Increase\+Order (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_a8c13cd1046e2dde21a067f7c05035711}\label{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_a8c13cd1046e2dde21a067f7c05035711}} 
+\index{corenc::Mesh::CElement$<$ bool $>$@{corenc::Mesh::CElement$<$ bool $>$}!Integrate@{Integrate}}
+\index{Integrate@{Integrate}!corenc::Mesh::CElement$<$ bool $>$@{corenc::Mesh::CElement$<$ bool $>$}}
+\doxysubsubsection{\texorpdfstring{Integrate()}{Integrate()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily virtual const double \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement}{corenc\+::\+Mesh\+::\+CElement}}$<$ bool $>$\+::\+Integrate (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespacecorenc_1_1Mesh_adeeb6b9f25865139c6f15459a5f09438}{function\+\_\+dp}} \&}]{,  }\item[{const std\+::vector$<$ \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} $>$ \&}]{v }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_a459c607a68b7a01dc41dacca76cfeffb}\label{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_a459c607a68b7a01dc41dacca76cfeffb}} 
+\index{corenc::Mesh::CElement$<$ bool $>$@{corenc::Mesh::CElement$<$ bool $>$}!Integrate@{Integrate}}
+\index{Integrate@{Integrate}!corenc::Mesh::CElement$<$ bool $>$@{corenc::Mesh::CElement$<$ bool $>$}}
+\doxysubsubsection{\texorpdfstring{Integrate()}{Integrate()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily virtual const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement}{corenc\+::\+Mesh\+::\+CElement}}$<$ bool $>$\+::\+Integrate (\begin{DoxyParamCaption}\item[{const std\+::function$<$ const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}(const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} \&)$>$ \&}]{,  }\item[{const std\+::vector$<$ \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} $>$ \&}]{v }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_aae8b9f193e2d4d6a27bbec0501f1ee75}\label{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_aae8b9f193e2d4d6a27bbec0501f1ee75}} 
+\index{corenc::Mesh::CElement$<$ bool $>$@{corenc::Mesh::CElement$<$ bool $>$}!Integrate@{Integrate}}
+\index{Integrate@{Integrate}!corenc::Mesh::CElement$<$ bool $>$@{corenc::Mesh::CElement$<$ bool $>$}}
+\doxysubsubsection{\texorpdfstring{Integrate()}{Integrate()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily virtual const std\+::vector$<$ double $>$ \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement}{corenc\+::\+Mesh\+::\+CElement}}$<$ bool $>$\+::\+Integrate (\begin{DoxyParamCaption}\item[{const std\+::function$<$ const std\+::vector$<$ double $>$(const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} \&)$>$ \&}]{,  }\item[{const std\+::vector$<$ \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} $>$ \&}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_a28776b7ba2afc7f16ce5bc43ab4b8c35}\label{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_a28776b7ba2afc7f16ce5bc43ab4b8c35}} 
+\index{corenc::Mesh::CElement$<$ bool $>$@{corenc::Mesh::CElement$<$ bool $>$}!ReverseNormal@{ReverseNormal}}
+\index{ReverseNormal@{ReverseNormal}!corenc::Mesh::CElement$<$ bool $>$@{corenc::Mesh::CElement$<$ bool $>$}}
+\doxysubsubsection{\texorpdfstring{ReverseNormal()}{ReverseNormal()}}
+{\footnotesize\ttfamily virtual void \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement}{corenc\+::\+Mesh\+::\+CElement}}$<$ bool $>$\+::\+Reverse\+Normal (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_adb30f904b7b007f3978d144d59b0a94b}\label{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_adb30f904b7b007f3978d144d59b0a94b}} 
+\index{corenc::Mesh::CElement$<$ bool $>$@{corenc::Mesh::CElement$<$ bool $>$}!SetNeighbour@{SetNeighbour}}
+\index{SetNeighbour@{SetNeighbour}!corenc::Mesh::CElement$<$ bool $>$@{corenc::Mesh::CElement$<$ bool $>$}}
+\doxysubsubsection{\texorpdfstring{SetNeighbour()}{SetNeighbour()}}
+{\footnotesize\ttfamily virtual void \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement}{corenc\+::\+Mesh\+::\+CElement}}$<$ bool $>$\+::\+Set\+Neighbour (\begin{DoxyParamCaption}\item[{const int}]{k,  }\item[{const int}]{elem }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_a3837efeda55c3c4fb93b132fb31de7a5}\label{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_a3837efeda55c3c4fb93b132fb31de7a5}} 
+\index{corenc::Mesh::CElement$<$ bool $>$@{corenc::Mesh::CElement$<$ bool $>$}!SetNode@{SetNode}}
+\index{SetNode@{SetNode}!corenc::Mesh::CElement$<$ bool $>$@{corenc::Mesh::CElement$<$ bool $>$}}
+\doxysubsubsection{\texorpdfstring{SetNode()}{SetNode()}}
+{\footnotesize\ttfamily virtual void \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement}{corenc\+::\+Mesh\+::\+CElement}}$<$ bool $>$\+::\+Set\+Node (\begin{DoxyParamCaption}\item[{const int}]{,  }\item[{const int}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+\mbox{\Hypertarget{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_a8acfd116f86f2722e7908fcb89307335}\label{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_a8acfd116f86f2722e7908fcb89307335}} 
+\index{corenc::Mesh::CElement$<$ bool $>$@{corenc::Mesh::CElement$<$ bool $>$}!SetType@{SetType}}
+\index{SetType@{SetType}!corenc::Mesh::CElement$<$ bool $>$@{corenc::Mesh::CElement$<$ bool $>$}}
+\doxysubsubsection{\texorpdfstring{SetType()}{SetType()}}
+{\footnotesize\ttfamily virtual void \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement}{corenc\+::\+Mesh\+::\+CElement}}$<$ bool $>$\+::\+Set\+Type (\begin{DoxyParamCaption}\item[{const int}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Core\+NCFEM/\+Finite\+Elements/\mbox{\hyperlink{FiniteElement_8h}{Finite\+Element.\+h}}\end{DoxyCompactItemize}

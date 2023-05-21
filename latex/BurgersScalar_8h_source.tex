@@ -1,0 +1,30 @@
+\hypertarget{BurgersScalar_8h_source}{}\doxysection{Burgers\+Scalar.\+h}
+\label{BurgersScalar_8h_source}\index{Problems/BurgersScalar.h@{Problems/BurgersScalar.h}}
+\mbox{\hyperlink{BurgersScalar_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef CORENC\_PROBLEMS\_BURGERS\_H\_}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define CORENC\_PROBLEMS\_BURGERS\_H\_}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{Problems_8h}{Problems.h}}"{}}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{6 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacecorenc}{corenc}}}
+\DoxyCodeLine{7 \{}
+\DoxyCodeLine{8     \textcolor{keyword}{class }\mbox{\hyperlink{classcorenc_1_1CBurgersScalar}{CBurgersScalar}} : \textcolor{keyword}{public} \mbox{\hyperlink{classcorenc_1_1CProblem}{CProblem}}}
+\DoxyCodeLine{9     \{}
+\DoxyCodeLine{10     \textcolor{keyword}{public}:}
+\DoxyCodeLine{11         \mbox{\hyperlink{classcorenc_1_1CBurgersScalar_a5affaa04246eaaaf4c6520e0c72081f2}{CBurgersScalar}}();}
+\DoxyCodeLine{12         \mbox{\hyperlink{classcorenc_1_1CBurgersScalar_a1a4459360dd733d555cd4090061d122f}{\string~CBurgersScalar}}();}
+\DoxyCodeLine{13         \mbox{\hyperlink{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7d}{Terms}}                      \mbox{\hyperlink{classcorenc_1_1CBurgersScalar_aeb8d952d52c76c6827db0f92a4bc45d1}{getTerm}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int}) \textcolor{keyword}{const};}
+\DoxyCodeLine{14         \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int}          \mbox{\hyperlink{classcorenc_1_1CBurgersScalar_a5bd396faf72321f605072551b0db2be6}{getNumberOfTerms}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{15         \textcolor{keyword}{const} \textcolor{keywordtype}{int}                   \mbox{\hyperlink{classcorenc_1_1CBurgersScalar_a0d46c1c8975d18567b2b154af561cc16}{setTerm}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int}, \textcolor{keyword}{const} \mbox{\hyperlink{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7d}{Terms}}\&);}
+\DoxyCodeLine{16         \textcolor{keyword}{const} \textcolor{keywordtype}{int}                   \mbox{\hyperlink{classcorenc_1_1CBurgersScalar_a814fa20a4af85d64b3907ff217fb2a07}{addTerm}}(\textcolor{keyword}{const} \mbox{\hyperlink{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7d}{Terms}}\&);}
+\DoxyCodeLine{17         \textcolor{keyword}{const} \textcolor{keywordtype}{double}                \mbox{\hyperlink{classcorenc_1_1CBurgersScalar_a4e922eb550f7e7eabfe0f11cd101ac06}{getFlux}}(\textcolor{keyword}{const} \textcolor{keywordtype}{double}) \textcolor{keyword}{const};}
+\DoxyCodeLine{18         \textcolor{keyword}{const} \textcolor{keywordtype}{int}                   \mbox{\hyperlink{classcorenc_1_1CBurgersScalar_a017024e2899e0df49c80c41ce4b2633c}{removeTerm}}(\textcolor{keyword}{const} \mbox{\hyperlink{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7d}{Terms}}\&);}
+\DoxyCodeLine{19         \textcolor{keyword}{const} \textcolor{keywordtype}{int}                   \mbox{\hyperlink{classcorenc_1_1CBurgersScalar_a7adda935a4ebf3ee575698e89cf0bec2}{load\_parameters}}(\textcolor{keyword}{const} std::string\& file\_name);}
+\DoxyCodeLine{20     \textcolor{keyword}{private}:}
+\DoxyCodeLine{21         std::vector<Terms>          m\_terms;}
+\DoxyCodeLine{22     \};}
+\DoxyCodeLine{23 \}}
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// !CORENC\_PROBLEMS\_BURGERS\_H\_}}
+
+\end{DoxyCode}

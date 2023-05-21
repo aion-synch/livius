@@ -1,0 +1,174 @@
+\hypertarget{namespacecorenc}{}\doxysection{corenc Namespace Reference}
+\label{namespacecorenc}\index{corenc@{corenc}}
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacecorenc_1_1color}{color}}
+\item 
+namespace \mbox{\hyperlink{namespacecorenc_1_1Mesh}{Mesh}}
+\item 
+namespace \mbox{\hyperlink{namespacecorenc_1_1method}{method}}
+\item 
+namespace \mbox{\hyperlink{namespacecorenc_1_1solvers}{solvers}}
+\item 
+namespace \mbox{\hyperlink{namespacecorenc_1_1tests}{tests}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classcorenc_1_1CBurgersScalar}{CBurgers\+Scalar}}
+\item 
+class \mbox{\hyperlink{classcorenc_1_1CDiffusionScalar}{CDiffusion\+Scalar}}
+\item 
+class \mbox{\hyperlink{classcorenc_1_1CFESolution}{CFESolution}}
+\item 
+class \mbox{\hyperlink{classcorenc_1_1CFEweights}{CFEweights}}
+\item 
+class \mbox{\hyperlink{classcorenc_1_1CFiniteSolver}{CFinite\+Solver}}
+\item 
+class \mbox{\hyperlink{classcorenc_1_1CProblem}{CProblem}}
+\item 
+class \mbox{\hyperlink{classcorenc_1_1CShallowWater}{CShallow\+Water}}
+\item 
+class \mbox{\hyperlink{classcorenc_1_1CSolution}{CSolution}}
+\item 
+class \mbox{\hyperlink{classcorenc_1_1CVecSolution}{CVec\+Solution}}
+\item 
+struct \mbox{\hyperlink{structcorenc_1_1GaussianKernel}{Gaussian\+Kernel}}
+\item 
+struct \mbox{\hyperlink{structcorenc_1_1GaussianProcess}{Gaussian\+Process}}
+\item 
+class \mbox{\hyperlink{classcorenc_1_1multi__vector}{multi\+\_\+vector}}
+\item 
+class \mbox{\hyperlink{classcorenc_1_1test__case__elliptic__fem}{test\+\_\+case\+\_\+elliptic\+\_\+fem}}
+\item 
+class \mbox{\hyperlink{classcorenc_1_1test__case__solver}{test\+\_\+case\+\_\+solver}}
+\item 
+class \mbox{\hyperlink{classcorenc_1_1test__cases}{test\+\_\+cases}}
+\item 
+class \mbox{\hyperlink{classcorenc_1_1test__conv__diff}{test\+\_\+conv\+\_\+diff}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{namespacecorenc_abc502e4067a2e66d2fb5fe938255ddd6}{scalar\+\_\+func}} = std\+::function$<$ const double(const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh\+::\+Point}} \&)$>$
+\item 
+using \mbox{\hyperlink{namespacecorenc_aa65dce54630955e13ac41f161126f7d9}{vector\+\_\+func}} = std\+::function$<$ const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh\+::\+Point}}(const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh\+::\+Point}} \&)$>$
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum class \mbox{\hyperlink{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7d}{Terms}} \{ \newline
+\mbox{\hyperlink{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7da511236cf0a2ae58312752c309767be64}{IUV}}
+, \mbox{\hyperlink{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7da6700bf7165821afe98b24ac1b0966758}{IDUDV}}
+, \mbox{\hyperlink{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7da6cbf1e7c8586e0d3a65915638e2ae293}{IDUV}}
+, \mbox{\hyperlink{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7dab9a50fb352778c6273b307887dd2ba28}{IUDV}}
+, \newline
+\mbox{\hyperlink{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7da601d1ecfe8543b457d918d636d84cc9d}{EUV}}
+, \mbox{\hyperlink{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7dac74248d6b3ec20c4b6969c4e520b09ca}{EDUDV}}
+, \mbox{\hyperlink{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7daa7a21a5469737f2aa8b257cce9aa27e3}{EDUV}}
+, \mbox{\hyperlink{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7da38f852dce31a67414f478b5626a4d118}{EUDV}}
+, \newline
+\mbox{\hyperlink{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7da4a56e919ee256e21151e6df79babae35}{EFV}}
+, \mbox{\hyperlink{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7dad3b7f41b5ee98737009f90516d82fd4c}{RUV}}
+, \mbox{\hyperlink{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7da9aa23ab26cb4db3b1e10a668eff580f2}{SUPG}}
+ \}
+\item 
+enum class \mbox{\hyperlink{namespacecorenc_a2902da21a64b0735c94fc4e59e25b02f}{Parameters}} \{ \mbox{\hyperlink{namespacecorenc_a2902da21a64b0735c94fc4e59e25b02fac9f4e4b1345e4e958a307bf67ae358a7}{DIFFUSION}}
+, \mbox{\hyperlink{namespacecorenc_a2902da21a64b0735c94fc4e59e25b02facb6c2c4b3c8f95f9b58ad13f0a97245d}{MASS}}
+, \mbox{\hyperlink{namespacecorenc_a2902da21a64b0735c94fc4e59e25b02fa21d5412bbfc0a49ed5cb827c133bb3fb}{ADVECTION}}
+ \}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Usually it is a vector$<$double$>$ but some methods required different types like vector of vectors or double/tripple values The interface for dealing with solutions; NOT IN USE 
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{namespacecorenc_abc502e4067a2e66d2fb5fe938255ddd6}\label{namespacecorenc_abc502e4067a2e66d2fb5fe938255ddd6}} 
+\index{corenc@{corenc}!scalar\_func@{scalar\_func}}
+\index{scalar\_func@{scalar\_func}!corenc@{corenc}}
+\doxysubsubsection{\texorpdfstring{scalar\_func}{scalar\_func}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{namespacecorenc_abc502e4067a2e66d2fb5fe938255ddd6}{corenc\+::scalar\+\_\+func}} = typedef std\+::function$<$const double(const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh\+::\+Point}}\&)$>$}
+
+\mbox{\Hypertarget{namespacecorenc_aa65dce54630955e13ac41f161126f7d9}\label{namespacecorenc_aa65dce54630955e13ac41f161126f7d9}} 
+\index{corenc@{corenc}!vector\_func@{vector\_func}}
+\index{vector\_func@{vector\_func}!corenc@{corenc}}
+\doxysubsubsection{\texorpdfstring{vector\_func}{vector\_func}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{namespacecorenc_aa65dce54630955e13ac41f161126f7d9}{corenc\+::vector\+\_\+func}} = typedef std\+::function$<$const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh\+::\+Point}}(const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh\+::\+Point}}\&)$>$}
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{namespacecorenc_a2902da21a64b0735c94fc4e59e25b02f}\label{namespacecorenc_a2902da21a64b0735c94fc4e59e25b02f}} 
+\index{corenc@{corenc}!Parameters@{Parameters}}
+\index{Parameters@{Parameters}!corenc@{corenc}}
+\doxysubsubsection{\texorpdfstring{Parameters}{Parameters}}
+{\footnotesize\ttfamily enum class \mbox{\hyperlink{namespacecorenc_a2902da21a64b0735c94fc4e59e25b02f}{corenc\+::\+Parameters}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DIFFUSION@{DIFFUSION}!corenc@{corenc}}\index{corenc@{corenc}!DIFFUSION@{DIFFUSION}}}\mbox{\Hypertarget{namespacecorenc_a2902da21a64b0735c94fc4e59e25b02fac9f4e4b1345e4e958a307bf67ae358a7}\label{namespacecorenc_a2902da21a64b0735c94fc4e59e25b02fac9f4e4b1345e4e958a307bf67ae358a7}} 
+DIFFUSION&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MASS@{MASS}!corenc@{corenc}}\index{corenc@{corenc}!MASS@{MASS}}}\mbox{\Hypertarget{namespacecorenc_a2902da21a64b0735c94fc4e59e25b02facb6c2c4b3c8f95f9b58ad13f0a97245d}\label{namespacecorenc_a2902da21a64b0735c94fc4e59e25b02facb6c2c4b3c8f95f9b58ad13f0a97245d}} 
+MASS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ADVECTION@{ADVECTION}!corenc@{corenc}}\index{corenc@{corenc}!ADVECTION@{ADVECTION}}}\mbox{\Hypertarget{namespacecorenc_a2902da21a64b0735c94fc4e59e25b02fa21d5412bbfc0a49ed5cb827c133bb3fb}\label{namespacecorenc_a2902da21a64b0735c94fc4e59e25b02fa21d5412bbfc0a49ed5cb827c133bb3fb}} 
+ADVECTION&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7d}\label{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7d}} 
+\index{corenc@{corenc}!Terms@{Terms}}
+\index{Terms@{Terms}!corenc@{corenc}}
+\doxysubsubsection{\texorpdfstring{Terms}{Terms}}
+{\footnotesize\ttfamily enum class \mbox{\hyperlink{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7d}{corenc\+::\+Terms}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{IUV@{IUV}!corenc@{corenc}}\index{corenc@{corenc}!IUV@{IUV}}}\mbox{\Hypertarget{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7da511236cf0a2ae58312752c309767be64}\label{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7da511236cf0a2ae58312752c309767be64}} 
+IUV&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{IDUDV@{IDUDV}!corenc@{corenc}}\index{corenc@{corenc}!IDUDV@{IDUDV}}}\mbox{\Hypertarget{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7da6700bf7165821afe98b24ac1b0966758}\label{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7da6700bf7165821afe98b24ac1b0966758}} 
+IDUDV&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{IDUV@{IDUV}!corenc@{corenc}}\index{corenc@{corenc}!IDUV@{IDUV}}}\mbox{\Hypertarget{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7da6cbf1e7c8586e0d3a65915638e2ae293}\label{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7da6cbf1e7c8586e0d3a65915638e2ae293}} 
+IDUV&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{IUDV@{IUDV}!corenc@{corenc}}\index{corenc@{corenc}!IUDV@{IUDV}}}\mbox{\Hypertarget{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7dab9a50fb352778c6273b307887dd2ba28}\label{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7dab9a50fb352778c6273b307887dd2ba28}} 
+IUDV&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EUV@{EUV}!corenc@{corenc}}\index{corenc@{corenc}!EUV@{EUV}}}\mbox{\Hypertarget{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7da601d1ecfe8543b457d918d636d84cc9d}\label{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7da601d1ecfe8543b457d918d636d84cc9d}} 
+EUV&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EDUDV@{EDUDV}!corenc@{corenc}}\index{corenc@{corenc}!EDUDV@{EDUDV}}}\mbox{\Hypertarget{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7dac74248d6b3ec20c4b6969c4e520b09ca}\label{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7dac74248d6b3ec20c4b6969c4e520b09ca}} 
+EDUDV&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EDUV@{EDUV}!corenc@{corenc}}\index{corenc@{corenc}!EDUV@{EDUV}}}\mbox{\Hypertarget{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7daa7a21a5469737f2aa8b257cce9aa27e3}\label{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7daa7a21a5469737f2aa8b257cce9aa27e3}} 
+EDUV&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EUDV@{EUDV}!corenc@{corenc}}\index{corenc@{corenc}!EUDV@{EUDV}}}\mbox{\Hypertarget{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7da38f852dce31a67414f478b5626a4d118}\label{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7da38f852dce31a67414f478b5626a4d118}} 
+EUDV&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EFV@{EFV}!corenc@{corenc}}\index{corenc@{corenc}!EFV@{EFV}}}\mbox{\Hypertarget{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7da4a56e919ee256e21151e6df79babae35}\label{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7da4a56e919ee256e21151e6df79babae35}} 
+EFV&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RUV@{RUV}!corenc@{corenc}}\index{corenc@{corenc}!RUV@{RUV}}}\mbox{\Hypertarget{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7dad3b7f41b5ee98737009f90516d82fd4c}\label{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7dad3b7f41b5ee98737009f90516d82fd4c}} 
+RUV&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SUPG@{SUPG}!corenc@{corenc}}\index{corenc@{corenc}!SUPG@{SUPG}}}\mbox{\Hypertarget{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7da9aa23ab26cb4db3b1e10a668eff580f2}\label{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7da9aa23ab26cb4db3b1e10a668eff580f2}} 
+SUPG&\\
+\hline
+
+\end{DoxyEnumFields}

@@ -1,0 +1,293 @@
+\hypertarget{classcorenc_1_1method_1_1FEMethodZero}{}\doxysection{corenc\+::method\+::FEMethod\+Zero\texorpdfstring{$<$}{<} Problem, Grid, Matrix \texorpdfstring{$>$}{>} Class Template Reference}
+\label{classcorenc_1_1method_1_1FEMethodZero}\index{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$@{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$}}
+
+
+{\ttfamily \#include $<$FEMethod\+Zero.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcorenc_1_1method_1_1FEMethodZero_aaf25bd2f3953b17b0e2d10b0b69194b8}{FEMethod\+Zero}} ()
+\item 
+\mbox{\hyperlink{classcorenc_1_1method_1_1FEMethodZero_adb9f8b9096a74457d34103a8f9c14fde}{FEMethod\+Zero}} (Problem $\ast$p, Grid $\ast$g, Matrix $\ast$m, std\+::vector$<$ double $>$ $\ast$rhs)
+\item 
+\mbox{\hyperlink{classcorenc_1_1method_1_1FEMethodZero_a4022c8bca59884034c92ca90503b9193}{FEMethod\+Zero}} (Problem $\ast$p, Grid $\ast$g, Matrix $\ast$m, Matrix $\ast$rm, std\+::vector$<$ double $>$ $\ast$rhs)
+\item 
+\mbox{\hyperlink{classcorenc_1_1method_1_1FEMethodZero_a83d63cec4980d8b5d38b9dede96e50df}{FEMethod\+Zero}} (const std\+::shared\+\_\+ptr$<$ Grid $>$ \&grid)
+\item 
+\mbox{\hyperlink{classcorenc_1_1method_1_1FEMethodZero_a5b889904498805a911f940bcf3d1aae1}{FEMethod\+Zero}} (Grid $\ast$grid)
+\item 
+\mbox{\hyperlink{classcorenc_1_1method_1_1FEMethodZero_a9c6b9f2d06c010732e6be2a491634bd6}{FEMethod\+Zero}} (const \mbox{\hyperlink{classcorenc_1_1method_1_1FEMethodZero}{FEMethod\+Zero}} \&meth)
+\item 
+void \mbox{\hyperlink{classcorenc_1_1method_1_1FEMethodZero_a2a93554d366cde7e43d33b62f6cdc3ee}{Discretization}} ()
+\item 
+const double \mbox{\hyperlink{classcorenc_1_1method_1_1FEMethodZero_adbab15f62e549adf53466fb03913b71b}{Get\+Value}} (const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh\+::\+Point}} \&) const
+\item 
+const double \mbox{\hyperlink{classcorenc_1_1method_1_1FEMethodZero_a345b7813782a4e76caf923a3ff0a7352}{Get\+Value}} (const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh\+::\+Point}} \&, const std\+::vector$<$ double $>$ \&vec) const
+\item 
+const double \mbox{\hyperlink{classcorenc_1_1method_1_1FEMethodZero_af562869677aa251e0a94a30378f5509b}{Get\+Value}} (const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh\+::\+Point}} \&, const std\+::vector$<$ double $>$ \&vec, const int num) const
+\item 
+const double \mbox{\hyperlink{classcorenc_1_1method_1_1FEMethodZero_a1ee73cbde17b79365c4fce9d67991a22}{Get\+Effective}} (const std\+::vector$<$ double $>$ \&vec) const
+\item 
+void \mbox{\hyperlink{classcorenc_1_1method_1_1FEMethodZero_aeaddd875e327ab03b8cf0e9e6351a918}{Project\+Solution}} (std\+::vector$<$ double $>$ \&, std\+::function$<$ const double(const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh\+::\+Point}} \&, const std\+::vector$<$ double $>$ \&, const int)$>$ \mbox{\hyperlink{classcorenc_1_1method_1_1FEMethodZero_adbab15f62e549adf53466fb03913b71b}{Get\+Value}}, std\+::vector$<$ double $>$ \&sol)
+\item 
+void \mbox{\hyperlink{classcorenc_1_1method_1_1FEMethodZero_aab39defd5f7dee848368c5ce9209745f}{Project\+Solution}} (std\+::vector$<$ double $>$ \&, std\+::function$<$ const double(const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh\+::\+Point}} \&, const std\+::vector$<$ double $>$ \&)$>$ \mbox{\hyperlink{classcorenc_1_1method_1_1FEMethodZero_adbab15f62e549adf53466fb03913b71b}{Get\+Value}}, std\+::vector$<$ double $>$ \&sol, const int)
+\item 
+void \mbox{\hyperlink{classcorenc_1_1method_1_1FEMethodZero_a43afd3230ff310cba4d4992d530b3976}{Load\+Solution}} (const std\+::vector$<$ double $>$ \&vec)
+\item 
+const std\+::vector$<$ double $>$ \mbox{\hyperlink{classcorenc_1_1method_1_1FEMethodZero_aeec36e8b838d791c61675f43926937e1}{Set\+Solution}} (const int sol, const int liq, const double, const double, const double)
+\item 
+void \mbox{\hyperlink{classcorenc_1_1method_1_1FEMethodZero_a80d494891a70eb68f111897ba4b64eec}{Get\+Solution}} (std\+::vector$<$ double $>$ \&vec)
+\item 
+void \mbox{\hyperlink{classcorenc_1_1method_1_1FEMethodZero_a9e1e337e07ad0dfd16a2995583d855fb}{Rediscretization}} (const std\+::shared\+\_\+ptr$<$ Grid $>$ \&)
+\item 
+void \mbox{\hyperlink{classcorenc_1_1method_1_1FEMethodZero_aeb0d62b554a42ac372453dee08547173}{Rediscretization}} ()
+\item 
+void \mbox{\hyperlink{classcorenc_1_1method_1_1FEMethodZero_ad01d2754470e2f83cf13e79764e6f062}{Set\+Time\+Step}} (const double \&step)
+\item 
+Matrix $\ast$ \mbox{\hyperlink{classcorenc_1_1method_1_1FEMethodZero_ad595adcc3935cad9c15f7c013a64ff67}{Get\+Global\+Matrix}} () const
+\item 
+Grid $\ast$ \mbox{\hyperlink{classcorenc_1_1method_1_1FEMethodZero_ab5cc0c98ab973f8b65042139791a8f02}{Get\+Mesh}} ()
+\item 
+const std\+::vector$<$ double $>$ \mbox{\hyperlink{classcorenc_1_1method_1_1FEMethodZero_a377d3d94bdbae6740f6b739d5e5ef767}{Get\+Right\+Vector}} () const
+\item 
+void \mbox{\hyperlink{classcorenc_1_1method_1_1FEMethodZero_a2f3682858f2e1ceaa302db7277d58732}{Out\+Dat\+Format}} (const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh\+::\+Point}} \&min, const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh\+::\+Point}} \&max, const std\+::string \&file\+\_\+name, const std\+::vector$<$ double $>$ \&vec) const
+\item 
+void \mbox{\hyperlink{classcorenc_1_1method_1_1FEMethodZero_a7abb3b918bae993c533d1b48e2519ee0}{Out\+Mesh\+Format}} (const std\+::string \&file\+\_\+name, const std\+::vector$<$ double $>$ \&vec)
+\item 
+void \mbox{\hyperlink{classcorenc_1_1method_1_1FEMethodZero_aaafa84c4105971722fc55d94b01f70f5}{Out\+Mesh\+Time\+Format}} (const std\+::string \&file\+\_\+name, const std\+::vector$<$ double $>$ \&vec)
+\item 
+\mbox{\hyperlink{classcorenc_1_1method_1_1FEMethodZero_adcfa379268d60597506e141a71946cdc}{$\sim$\+FEMethod\+Zero}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static const double \mbox{\hyperlink{classcorenc_1_1method_1_1FEMethodZero_a96f8dbb133d1af792f75a6ec874a9f05}{Get\+Solution}} (const Grid \&g, const std\+::vector$<$ double $>$ \&weights, const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh\+::\+Point}} \&p)
+\item 
+static const double \mbox{\hyperlink{classcorenc_1_1method_1_1FEMethodZero_ab1537c8c6240126ad3e6efb0bd6c3530}{Get\+Solution}} (const Grid \&g, const std\+::vector$<$ double $>$ \&weights, const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh\+::\+Point}} \&p, const int nfem)
+\item 
+static const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh\+::\+Point}} \mbox{\hyperlink{classcorenc_1_1method_1_1FEMethodZero_a8a27552ec18dc9af1b92eb612698ec84}{Get\+Grad\+Solution}} (const Grid \&g, const std\+::vector$<$ double $>$ \&weights, const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh\+::\+Point}} \&p)
+\item 
+static const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh\+::\+Point}} \mbox{\hyperlink{classcorenc_1_1method_1_1FEMethodZero_a979b278024d4459b3e7d79431ec77f32}{Get\+Grad\+Solution}} (const Grid \&g, const std\+::vector$<$ double $>$ \&weights, const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh\+::\+Point}} \&p, const int n)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classcorenc_1_1method_1_1FEMethodZero_aaf25bd2f3953b17b0e2d10b0b69194b8}\label{classcorenc_1_1method_1_1FEMethodZero_aaf25bd2f3953b17b0e2d10b0b69194b8}} 
+\index{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$@{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$}!FEMethodZero@{FEMethodZero}}
+\index{FEMethodZero@{FEMethodZero}!corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$@{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$}}
+\doxysubsubsection{\texorpdfstring{FEMethodZero()}{FEMethodZero()}\hspace{0.1cm}{\footnotesize\ttfamily [1/6]}}
+{\footnotesize\ttfamily template$<$class Problem , class Grid , class Matrix $>$ \\
+\mbox{\hyperlink{classcorenc_1_1method_1_1FEMethodZero}{corenc\+::method\+::\+FEMethod\+Zero}}$<$ Problem, Grid, Matrix $>$\+::\+FEMethod\+Zero (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classcorenc_1_1method_1_1FEMethodZero_adb9f8b9096a74457d34103a8f9c14fde}\label{classcorenc_1_1method_1_1FEMethodZero_adb9f8b9096a74457d34103a8f9c14fde}} 
+\index{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$@{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$}!FEMethodZero@{FEMethodZero}}
+\index{FEMethodZero@{FEMethodZero}!corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$@{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$}}
+\doxysubsubsection{\texorpdfstring{FEMethodZero()}{FEMethodZero()}\hspace{0.1cm}{\footnotesize\ttfamily [2/6]}}
+{\footnotesize\ttfamily template$<$class Problem , class Grid , class Matrix $>$ \\
+\mbox{\hyperlink{classcorenc_1_1method_1_1FEMethodZero}{corenc\+::method\+::\+FEMethod\+Zero}}$<$ Problem, Grid, Matrix $>$\+::\+FEMethod\+Zero (\begin{DoxyParamCaption}\item[{Problem $\ast$}]{p,  }\item[{Grid $\ast$}]{g,  }\item[{Matrix $\ast$}]{m,  }\item[{std\+::vector$<$ double $>$ $\ast$}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classcorenc_1_1method_1_1FEMethodZero_a4022c8bca59884034c92ca90503b9193}\label{classcorenc_1_1method_1_1FEMethodZero_a4022c8bca59884034c92ca90503b9193}} 
+\index{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$@{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$}!FEMethodZero@{FEMethodZero}}
+\index{FEMethodZero@{FEMethodZero}!corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$@{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$}}
+\doxysubsubsection{\texorpdfstring{FEMethodZero()}{FEMethodZero()}\hspace{0.1cm}{\footnotesize\ttfamily [3/6]}}
+{\footnotesize\ttfamily template$<$class Problem , class Grid , class Matrix $>$ \\
+\mbox{\hyperlink{classcorenc_1_1method_1_1FEMethodZero}{corenc\+::method\+::\+FEMethod\+Zero}}$<$ Problem, Grid, Matrix $>$\+::\+FEMethod\+Zero (\begin{DoxyParamCaption}\item[{Problem $\ast$}]{p,  }\item[{Grid $\ast$}]{g,  }\item[{Matrix $\ast$}]{m,  }\item[{Matrix $\ast$}]{rm,  }\item[{std\+::vector$<$ double $>$ $\ast$}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classcorenc_1_1method_1_1FEMethodZero_a83d63cec4980d8b5d38b9dede96e50df}\label{classcorenc_1_1method_1_1FEMethodZero_a83d63cec4980d8b5d38b9dede96e50df}} 
+\index{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$@{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$}!FEMethodZero@{FEMethodZero}}
+\index{FEMethodZero@{FEMethodZero}!corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$@{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$}}
+\doxysubsubsection{\texorpdfstring{FEMethodZero()}{FEMethodZero()}\hspace{0.1cm}{\footnotesize\ttfamily [4/6]}}
+{\footnotesize\ttfamily template$<$class Problem , class Grid , class Matrix $>$ \\
+\mbox{\hyperlink{classcorenc_1_1method_1_1FEMethodZero}{corenc\+::method\+::\+FEMethod\+Zero}}$<$ Problem, Grid, Matrix $>$\+::\+FEMethod\+Zero (\begin{DoxyParamCaption}\item[{const std\+::shared\+\_\+ptr$<$ Grid $>$ \&}]{grid }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classcorenc_1_1method_1_1FEMethodZero_a5b889904498805a911f940bcf3d1aae1}\label{classcorenc_1_1method_1_1FEMethodZero_a5b889904498805a911f940bcf3d1aae1}} 
+\index{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$@{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$}!FEMethodZero@{FEMethodZero}}
+\index{FEMethodZero@{FEMethodZero}!corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$@{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$}}
+\doxysubsubsection{\texorpdfstring{FEMethodZero()}{FEMethodZero()}\hspace{0.1cm}{\footnotesize\ttfamily [5/6]}}
+{\footnotesize\ttfamily template$<$class Problem , class Grid , class Matrix $>$ \\
+\mbox{\hyperlink{classcorenc_1_1method_1_1FEMethodZero}{corenc\+::method\+::\+FEMethod\+Zero}}$<$ Problem, Grid, Matrix $>$\+::\+FEMethod\+Zero (\begin{DoxyParamCaption}\item[{Grid $\ast$}]{grid }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classcorenc_1_1method_1_1FEMethodZero_a9c6b9f2d06c010732e6be2a491634bd6}\label{classcorenc_1_1method_1_1FEMethodZero_a9c6b9f2d06c010732e6be2a491634bd6}} 
+\index{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$@{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$}!FEMethodZero@{FEMethodZero}}
+\index{FEMethodZero@{FEMethodZero}!corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$@{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$}}
+\doxysubsubsection{\texorpdfstring{FEMethodZero()}{FEMethodZero()}\hspace{0.1cm}{\footnotesize\ttfamily [6/6]}}
+{\footnotesize\ttfamily template$<$class Problem , class Grid , class Matrix $>$ \\
+\mbox{\hyperlink{classcorenc_1_1method_1_1FEMethodZero}{corenc\+::method\+::\+FEMethod\+Zero}}$<$ Problem, Grid, Matrix $>$\+::\+FEMethod\+Zero (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcorenc_1_1method_1_1FEMethodZero}{FEMethod\+Zero}}$<$ Problem, Grid, Matrix $>$ \&}]{meth }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classcorenc_1_1method_1_1FEMethodZero_adcfa379268d60597506e141a71946cdc}\label{classcorenc_1_1method_1_1FEMethodZero_adcfa379268d60597506e141a71946cdc}} 
+\index{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$@{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$}!````~FEMethodZero@{$\sim$FEMethodZero}}
+\index{````~FEMethodZero@{$\sim$FEMethodZero}!corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$@{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$}}
+\doxysubsubsection{\texorpdfstring{$\sim$FEMethodZero()}{~FEMethodZero()}}
+{\footnotesize\ttfamily template$<$class Problem , class Grid , class Matrix $>$ \\
+\mbox{\hyperlink{classcorenc_1_1method_1_1FEMethodZero}{corenc\+::method\+::\+FEMethod\+Zero}}$<$ Problem, Grid, Matrix $>$\+::$\sim$\mbox{\hyperlink{classcorenc_1_1method_1_1FEMethodZero}{FEMethod\+Zero}}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classcorenc_1_1method_1_1FEMethodZero_a2a93554d366cde7e43d33b62f6cdc3ee}\label{classcorenc_1_1method_1_1FEMethodZero_a2a93554d366cde7e43d33b62f6cdc3ee}} 
+\index{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$@{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$}!Discretization@{Discretization}}
+\index{Discretization@{Discretization}!corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$@{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$}}
+\doxysubsubsection{\texorpdfstring{Discretization()}{Discretization()}}
+{\footnotesize\ttfamily template$<$class Problem , class Grid , class Matrix $>$ \\
+void \mbox{\hyperlink{classcorenc_1_1method_1_1FEMethodZero}{corenc\+::method\+::\+FEMethod\+Zero}}$<$ Problem, Grid, Matrix $>$\+::\+Discretization}
+
+\mbox{\Hypertarget{classcorenc_1_1method_1_1FEMethodZero_a1ee73cbde17b79365c4fce9d67991a22}\label{classcorenc_1_1method_1_1FEMethodZero_a1ee73cbde17b79365c4fce9d67991a22}} 
+\index{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$@{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$}!GetEffective@{GetEffective}}
+\index{GetEffective@{GetEffective}!corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$@{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$}}
+\doxysubsubsection{\texorpdfstring{GetEffective()}{GetEffective()}}
+{\footnotesize\ttfamily template$<$class Problem , class Grid , class Matrix $>$ \\
+const double \mbox{\hyperlink{classcorenc_1_1method_1_1FEMethodZero}{corenc\+::method\+::\+FEMethod\+Zero}}$<$ Problem, Grid, Matrix $>$\+::\+Get\+Effective (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ double $>$ \&}]{vec }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classcorenc_1_1method_1_1FEMethodZero_ad595adcc3935cad9c15f7c013a64ff67}\label{classcorenc_1_1method_1_1FEMethodZero_ad595adcc3935cad9c15f7c013a64ff67}} 
+\index{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$@{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$}!GetGlobalMatrix@{GetGlobalMatrix}}
+\index{GetGlobalMatrix@{GetGlobalMatrix}!corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$@{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$}}
+\doxysubsubsection{\texorpdfstring{GetGlobalMatrix()}{GetGlobalMatrix()}}
+{\footnotesize\ttfamily template$<$class Problem , class Grid , class Matrix $>$ \\
+Matrix $\ast$ \mbox{\hyperlink{classcorenc_1_1method_1_1FEMethodZero}{corenc\+::method\+::\+FEMethod\+Zero}}$<$ Problem, Grid, Matrix $>$\+::\+Get\+Global\+Matrix}
+
+\mbox{\Hypertarget{classcorenc_1_1method_1_1FEMethodZero_a8a27552ec18dc9af1b92eb612698ec84}\label{classcorenc_1_1method_1_1FEMethodZero_a8a27552ec18dc9af1b92eb612698ec84}} 
+\index{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$@{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$}!GetGradSolution@{GetGradSolution}}
+\index{GetGradSolution@{GetGradSolution}!corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$@{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$}}
+\doxysubsubsection{\texorpdfstring{GetGradSolution()}{GetGradSolution()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Problem , class Grid , class Matrix $>$ \\
+const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh\+::\+Point}} \mbox{\hyperlink{classcorenc_1_1method_1_1FEMethodZero}{corenc\+::method\+::\+FEMethod\+Zero}}$<$ Problem, Grid, Matrix $>$\+::\+Get\+Grad\+Solution (\begin{DoxyParamCaption}\item[{const Grid \&}]{g,  }\item[{const std\+::vector$<$ double $>$ \&}]{weights,  }\item[{const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh\+::\+Point}} \&}]{p }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{classcorenc_1_1method_1_1FEMethodZero_a979b278024d4459b3e7d79431ec77f32}\label{classcorenc_1_1method_1_1FEMethodZero_a979b278024d4459b3e7d79431ec77f32}} 
+\index{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$@{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$}!GetGradSolution@{GetGradSolution}}
+\index{GetGradSolution@{GetGradSolution}!corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$@{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$}}
+\doxysubsubsection{\texorpdfstring{GetGradSolution()}{GetGradSolution()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Problem , class Grid , class Matrix $>$ \\
+const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh\+::\+Point}} \mbox{\hyperlink{classcorenc_1_1method_1_1FEMethodZero}{corenc\+::method\+::\+FEMethod\+Zero}}$<$ Problem, Grid, Matrix $>$\+::\+Get\+Grad\+Solution (\begin{DoxyParamCaption}\item[{const Grid \&}]{g,  }\item[{const std\+::vector$<$ double $>$ \&}]{weights,  }\item[{const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh\+::\+Point}} \&}]{p,  }\item[{const int}]{n }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{classcorenc_1_1method_1_1FEMethodZero_ab5cc0c98ab973f8b65042139791a8f02}\label{classcorenc_1_1method_1_1FEMethodZero_ab5cc0c98ab973f8b65042139791a8f02}} 
+\index{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$@{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$}!GetMesh@{GetMesh}}
+\index{GetMesh@{GetMesh}!corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$@{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$}}
+\doxysubsubsection{\texorpdfstring{GetMesh()}{GetMesh()}}
+{\footnotesize\ttfamily template$<$class Problem , class Grid , class Matrix $>$ \\
+Grid $\ast$ \mbox{\hyperlink{classcorenc_1_1method_1_1FEMethodZero}{corenc\+::method\+::\+FEMethod\+Zero}}$<$ Problem, Grid, Matrix $>$\+::\+Get\+Mesh (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classcorenc_1_1method_1_1FEMethodZero_a377d3d94bdbae6740f6b739d5e5ef767}\label{classcorenc_1_1method_1_1FEMethodZero_a377d3d94bdbae6740f6b739d5e5ef767}} 
+\index{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$@{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$}!GetRightVector@{GetRightVector}}
+\index{GetRightVector@{GetRightVector}!corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$@{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$}}
+\doxysubsubsection{\texorpdfstring{GetRightVector()}{GetRightVector()}}
+{\footnotesize\ttfamily template$<$class Problem , class Grid , class Matrix $>$ \\
+const std\+::vector$<$ double $>$ \mbox{\hyperlink{classcorenc_1_1method_1_1FEMethodZero}{corenc\+::method\+::\+FEMethod\+Zero}}$<$ Problem, Grid, Matrix $>$\+::\+Get\+Right\+Vector}
+
+\mbox{\Hypertarget{classcorenc_1_1method_1_1FEMethodZero_a96f8dbb133d1af792f75a6ec874a9f05}\label{classcorenc_1_1method_1_1FEMethodZero_a96f8dbb133d1af792f75a6ec874a9f05}} 
+\index{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$@{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$}!GetSolution@{GetSolution}}
+\index{GetSolution@{GetSolution}!corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$@{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$}}
+\doxysubsubsection{\texorpdfstring{GetSolution()}{GetSolution()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$class Problem , class Grid , class Matrix $>$ \\
+const double \mbox{\hyperlink{classcorenc_1_1method_1_1FEMethodZero}{corenc\+::method\+::\+FEMethod\+Zero}}$<$ Problem, Grid, Matrix $>$\+::\+Get\+Solution (\begin{DoxyParamCaption}\item[{const Grid \&}]{g,  }\item[{const std\+::vector$<$ double $>$ \&}]{weights,  }\item[{const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh\+::\+Point}} \&}]{p }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{classcorenc_1_1method_1_1FEMethodZero_ab1537c8c6240126ad3e6efb0bd6c3530}\label{classcorenc_1_1method_1_1FEMethodZero_ab1537c8c6240126ad3e6efb0bd6c3530}} 
+\index{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$@{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$}!GetSolution@{GetSolution}}
+\index{GetSolution@{GetSolution}!corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$@{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$}}
+\doxysubsubsection{\texorpdfstring{GetSolution()}{GetSolution()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$class Problem , class Grid , class Matrix $>$ \\
+const double \mbox{\hyperlink{classcorenc_1_1method_1_1FEMethodZero}{corenc\+::method\+::\+FEMethod\+Zero}}$<$ Problem, Grid, Matrix $>$\+::\+Get\+Solution (\begin{DoxyParamCaption}\item[{const Grid \&}]{g,  }\item[{const std\+::vector$<$ double $>$ \&}]{weights,  }\item[{const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh\+::\+Point}} \&}]{p,  }\item[{const int}]{nfem }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{classcorenc_1_1method_1_1FEMethodZero_a80d494891a70eb68f111897ba4b64eec}\label{classcorenc_1_1method_1_1FEMethodZero_a80d494891a70eb68f111897ba4b64eec}} 
+\index{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$@{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$}!GetSolution@{GetSolution}}
+\index{GetSolution@{GetSolution}!corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$@{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$}}
+\doxysubsubsection{\texorpdfstring{GetSolution()}{GetSolution()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$class Problem , class Grid , class Matrix $>$ \\
+void \mbox{\hyperlink{classcorenc_1_1method_1_1FEMethodZero}{corenc\+::method\+::\+FEMethod\+Zero}}$<$ Problem, Grid, Matrix $>$\+::\+Get\+Solution (\begin{DoxyParamCaption}\item[{std\+::vector$<$ double $>$ \&}]{vec }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classcorenc_1_1method_1_1FEMethodZero_adbab15f62e549adf53466fb03913b71b}\label{classcorenc_1_1method_1_1FEMethodZero_adbab15f62e549adf53466fb03913b71b}} 
+\index{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$@{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$}!GetValue@{GetValue}}
+\index{GetValue@{GetValue}!corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$@{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$}}
+\doxysubsubsection{\texorpdfstring{GetValue()}{GetValue()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$class Problem , class Grid , class Matrix $>$ \\
+const double \mbox{\hyperlink{classcorenc_1_1method_1_1FEMethodZero}{corenc\+::method\+::\+FEMethod\+Zero}}$<$ Problem, Grid, Matrix $>$\+::\+Get\+Value (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh\+::\+Point}} \&}]{p }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classcorenc_1_1method_1_1FEMethodZero_a345b7813782a4e76caf923a3ff0a7352}\label{classcorenc_1_1method_1_1FEMethodZero_a345b7813782a4e76caf923a3ff0a7352}} 
+\index{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$@{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$}!GetValue@{GetValue}}
+\index{GetValue@{GetValue}!corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$@{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$}}
+\doxysubsubsection{\texorpdfstring{GetValue()}{GetValue()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$class Problem , class Grid , class Matrix $>$ \\
+const double \mbox{\hyperlink{classcorenc_1_1method_1_1FEMethodZero}{corenc\+::method\+::\+FEMethod\+Zero}}$<$ Problem, Grid, Matrix $>$\+::\+Get\+Value (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh\+::\+Point}} \&}]{p,  }\item[{const std\+::vector$<$ double $>$ \&}]{vec }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classcorenc_1_1method_1_1FEMethodZero_af562869677aa251e0a94a30378f5509b}\label{classcorenc_1_1method_1_1FEMethodZero_af562869677aa251e0a94a30378f5509b}} 
+\index{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$@{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$}!GetValue@{GetValue}}
+\index{GetValue@{GetValue}!corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$@{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$}}
+\doxysubsubsection{\texorpdfstring{GetValue()}{GetValue()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$class Problem , class Grid , class Matrix $>$ \\
+const double \mbox{\hyperlink{classcorenc_1_1method_1_1FEMethodZero}{corenc\+::method\+::\+FEMethod\+Zero}}$<$ Problem, Grid, Matrix $>$\+::\+Get\+Value (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh\+::\+Point}} \&}]{p,  }\item[{const std\+::vector$<$ double $>$ \&}]{vec,  }\item[{const int}]{num }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classcorenc_1_1method_1_1FEMethodZero_a43afd3230ff310cba4d4992d530b3976}\label{classcorenc_1_1method_1_1FEMethodZero_a43afd3230ff310cba4d4992d530b3976}} 
+\index{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$@{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$}!LoadSolution@{LoadSolution}}
+\index{LoadSolution@{LoadSolution}!corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$@{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$}}
+\doxysubsubsection{\texorpdfstring{LoadSolution()}{LoadSolution()}}
+{\footnotesize\ttfamily template$<$class Problem , class Grid , class Matrix $>$ \\
+void \mbox{\hyperlink{classcorenc_1_1method_1_1FEMethodZero}{corenc\+::method\+::\+FEMethod\+Zero}}$<$ Problem, Grid, Matrix $>$\+::\+Load\+Solution (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ double $>$ \&}]{vec }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classcorenc_1_1method_1_1FEMethodZero_a2f3682858f2e1ceaa302db7277d58732}\label{classcorenc_1_1method_1_1FEMethodZero_a2f3682858f2e1ceaa302db7277d58732}} 
+\index{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$@{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$}!OutDatFormat@{OutDatFormat}}
+\index{OutDatFormat@{OutDatFormat}!corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$@{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$}}
+\doxysubsubsection{\texorpdfstring{OutDatFormat()}{OutDatFormat()}}
+{\footnotesize\ttfamily template$<$class Problem , class Grid , class Matrix $>$ \\
+void \mbox{\hyperlink{classcorenc_1_1method_1_1FEMethodZero}{corenc\+::method\+::\+FEMethod\+Zero}}$<$ Problem, Grid, Matrix $>$\+::\+Out\+Dat\+Format (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh\+::\+Point}} \&}]{min,  }\item[{const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh\+::\+Point}} \&}]{max,  }\item[{const std\+::string \&}]{file\+\_\+name,  }\item[{const std\+::vector$<$ double $>$ \&}]{vec }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classcorenc_1_1method_1_1FEMethodZero_a7abb3b918bae993c533d1b48e2519ee0}\label{classcorenc_1_1method_1_1FEMethodZero_a7abb3b918bae993c533d1b48e2519ee0}} 
+\index{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$@{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$}!OutMeshFormat@{OutMeshFormat}}
+\index{OutMeshFormat@{OutMeshFormat}!corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$@{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$}}
+\doxysubsubsection{\texorpdfstring{OutMeshFormat()}{OutMeshFormat()}}
+{\footnotesize\ttfamily template$<$class Problem , class Grid , class Matrix $>$ \\
+void \mbox{\hyperlink{classcorenc_1_1method_1_1FEMethodZero}{corenc\+::method\+::\+FEMethod\+Zero}}$<$ Problem, Grid, Matrix $>$\+::\+Out\+Mesh\+Format (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{file\+\_\+name,  }\item[{const std\+::vector$<$ double $>$ \&}]{vec }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classcorenc_1_1method_1_1FEMethodZero_aaafa84c4105971722fc55d94b01f70f5}\label{classcorenc_1_1method_1_1FEMethodZero_aaafa84c4105971722fc55d94b01f70f5}} 
+\index{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$@{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$}!OutMeshTimeFormat@{OutMeshTimeFormat}}
+\index{OutMeshTimeFormat@{OutMeshTimeFormat}!corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$@{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$}}
+\doxysubsubsection{\texorpdfstring{OutMeshTimeFormat()}{OutMeshTimeFormat()}}
+{\footnotesize\ttfamily template$<$class Problem , class Grid , class Matrix $>$ \\
+void \mbox{\hyperlink{classcorenc_1_1method_1_1FEMethodZero}{corenc\+::method\+::\+FEMethod\+Zero}}$<$ Problem, Grid, Matrix $>$\+::\+Out\+Mesh\+Time\+Format (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{file\+\_\+name,  }\item[{const std\+::vector$<$ double $>$ \&}]{vec }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classcorenc_1_1method_1_1FEMethodZero_aab39defd5f7dee848368c5ce9209745f}\label{classcorenc_1_1method_1_1FEMethodZero_aab39defd5f7dee848368c5ce9209745f}} 
+\index{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$@{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$}!ProjectSolution@{ProjectSolution}}
+\index{ProjectSolution@{ProjectSolution}!corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$@{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$}}
+\doxysubsubsection{\texorpdfstring{ProjectSolution()}{ProjectSolution()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Problem , class Grid , class Matrix $>$ \\
+void \mbox{\hyperlink{classcorenc_1_1method_1_1FEMethodZero}{corenc\+::method\+::\+FEMethod\+Zero}}$<$ Problem, Grid, Matrix $>$\+::\+Project\+Solution (\begin{DoxyParamCaption}\item[{std\+::vector$<$ double $>$ \&}]{sol,  }\item[{std\+::function$<$ const double(const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh\+::\+Point}} \&, const std\+::vector$<$ double $>$ \&)$>$}]{Get\+Value,  }\item[{std\+::vector$<$ double $>$ \&}]{sol,  }\item[{const int}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classcorenc_1_1method_1_1FEMethodZero_aeaddd875e327ab03b8cf0e9e6351a918}\label{classcorenc_1_1method_1_1FEMethodZero_aeaddd875e327ab03b8cf0e9e6351a918}} 
+\index{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$@{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$}!ProjectSolution@{ProjectSolution}}
+\index{ProjectSolution@{ProjectSolution}!corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$@{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$}}
+\doxysubsubsection{\texorpdfstring{ProjectSolution()}{ProjectSolution()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Problem , class Grid , class Matrix $>$ \\
+void \mbox{\hyperlink{classcorenc_1_1method_1_1FEMethodZero}{corenc\+::method\+::\+FEMethod\+Zero}}$<$ Problem, Grid, Matrix $>$\+::\+Project\+Solution (\begin{DoxyParamCaption}\item[{std\+::vector$<$ double $>$ \&}]{sol,  }\item[{std\+::function$<$ const double(const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh\+::\+Point}} \&, const std\+::vector$<$ double $>$ \&, const int)$>$}]{Get\+Value,  }\item[{std\+::vector$<$ double $>$ \&}]{sol }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classcorenc_1_1method_1_1FEMethodZero_aeb0d62b554a42ac372453dee08547173}\label{classcorenc_1_1method_1_1FEMethodZero_aeb0d62b554a42ac372453dee08547173}} 
+\index{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$@{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$}!Rediscretization@{Rediscretization}}
+\index{Rediscretization@{Rediscretization}!corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$@{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$}}
+\doxysubsubsection{\texorpdfstring{Rediscretization()}{Rediscretization()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Problem , class Grid , class Matrix $>$ \\
+void \mbox{\hyperlink{classcorenc_1_1method_1_1FEMethodZero}{corenc\+::method\+::\+FEMethod\+Zero}}$<$ Problem, Grid, Matrix $>$\+::\+Rediscretization}
+
+\mbox{\Hypertarget{classcorenc_1_1method_1_1FEMethodZero_a9e1e337e07ad0dfd16a2995583d855fb}\label{classcorenc_1_1method_1_1FEMethodZero_a9e1e337e07ad0dfd16a2995583d855fb}} 
+\index{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$@{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$}!Rediscretization@{Rediscretization}}
+\index{Rediscretization@{Rediscretization}!corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$@{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$}}
+\doxysubsubsection{\texorpdfstring{Rediscretization()}{Rediscretization()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Problem , class Grid , class Matrix $>$ \\
+void \mbox{\hyperlink{classcorenc_1_1method_1_1FEMethodZero}{corenc\+::method\+::\+FEMethod\+Zero}}$<$ Problem, Grid, Matrix $>$\+::\+Rediscretization (\begin{DoxyParamCaption}\item[{const std\+::shared\+\_\+ptr$<$ Grid $>$ \&}]{grid }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classcorenc_1_1method_1_1FEMethodZero_aeec36e8b838d791c61675f43926937e1}\label{classcorenc_1_1method_1_1FEMethodZero_aeec36e8b838d791c61675f43926937e1}} 
+\index{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$@{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$}!SetSolution@{SetSolution}}
+\index{SetSolution@{SetSolution}!corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$@{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$}}
+\doxysubsubsection{\texorpdfstring{SetSolution()}{SetSolution()}}
+{\footnotesize\ttfamily template$<$class Problem , class Grid , class Matrix $>$ \\
+const std\+::vector$<$ double $>$ \mbox{\hyperlink{classcorenc_1_1method_1_1FEMethodZero}{corenc\+::method\+::\+FEMethod\+Zero}}$<$ Problem, Grid, Matrix $>$\+::\+Set\+Solution (\begin{DoxyParamCaption}\item[{const int}]{sol,  }\item[{const int}]{liq,  }\item[{const double}]{s,  }\item[{const double}]{l,  }\item[{const double}]{m }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classcorenc_1_1method_1_1FEMethodZero_ad01d2754470e2f83cf13e79764e6f062}\label{classcorenc_1_1method_1_1FEMethodZero_ad01d2754470e2f83cf13e79764e6f062}} 
+\index{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$@{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$}!SetTimeStep@{SetTimeStep}}
+\index{SetTimeStep@{SetTimeStep}!corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$@{corenc::method::FEMethodZero$<$ Problem, Grid, Matrix $>$}}
+\doxysubsubsection{\texorpdfstring{SetTimeStep()}{SetTimeStep()}}
+{\footnotesize\ttfamily template$<$class Problem , class Grid , class Matrix $>$ \\
+void \mbox{\hyperlink{classcorenc_1_1method_1_1FEMethodZero}{corenc\+::method\+::\+FEMethod\+Zero}}$<$ Problem, Grid, Matrix $>$\+::\+Set\+Time\+Step (\begin{DoxyParamCaption}\item[{const double \&}]{step }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Core\+NCFEM/\+Methods/\mbox{\hyperlink{FEMethodZero_8h}{FEMethod\+Zero.\+h}}\end{DoxyCompactItemize}

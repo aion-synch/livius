@@ -1,0 +1,74 @@
+\hypertarget{FEAnalysis_8h_source}{}\doxysection{FEAnalysis.\+h}
+\label{FEAnalysis_8h_source}\index{CoreNCFEM/Methods/FEAnalysis.h@{CoreNCFEM/Methods/FEAnalysis.h}}
+\mbox{\hyperlink{FEAnalysis_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#ifndef CORENC\_METHODS\_FEANALYSIS\_H\_}}
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#define CORENC\_METHODS\_FEANALYSIS\_H\_}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include "{}../Point.h"{}}}
+\DoxyCodeLine{6 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacecorenc}{corenc}}}
+\DoxyCodeLine{7 \{}
+\DoxyCodeLine{8     \textcolor{keyword}{namespace }method}
+\DoxyCodeLine{9     \{}
+\DoxyCodeLine{10         \textcolor{keyword}{template}<\textcolor{keyword}{class} Method1, \textcolor{keyword}{class} Method2, \textcolor{keyword}{class} Mesh1, \textcolor{keyword}{class} Mesh2>}
+\DoxyCodeLine{11         \textcolor{keyword}{class }\mbox{\hyperlink{classcorenc_1_1method_1_1FEAnalysis}{FEAnalysis}}}
+\DoxyCodeLine{12         \{}
+\DoxyCodeLine{13         \textcolor{keyword}{public}:}
+\DoxyCodeLine{14             \mbox{\hyperlink{classcorenc_1_1method_1_1FEAnalysis_af6f09df31bfd8175c85ea7b33be52fcf}{FEAnalysis}}() \{\};}
+\DoxyCodeLine{15             \mbox{\hyperlink{classcorenc_1_1method_1_1FEAnalysis_aa898ffa14685546695f3e4f27b5a4bf0}{\string~FEAnalysis}}() \{\};}
+\DoxyCodeLine{16             \textcolor{keyword}{const} \textcolor{keywordtype}{double}                    \mbox{\hyperlink{classcorenc_1_1method_1_1FEAnalysis_a37857abaefbba6f3d2e4c2a300e4e6a2}{L2Norm}}(   \textcolor{keyword}{const} Method1\& method1, }
+\DoxyCodeLine{17                                                     \textcolor{keyword}{const} Method2\& method2, }
+\DoxyCodeLine{18                                                     \textcolor{keyword}{const} Mesh1\& mesh1, }
+\DoxyCodeLine{19                                                     \textcolor{keyword}{const} Mesh2\& mesh2, }
+\DoxyCodeLine{20                                                     \textcolor{keyword}{const} std::vector<double>\& w1,}
+\DoxyCodeLine{21                                                     \textcolor{keyword}{const} std::vector<double>\& w2) \textcolor{keyword}{const};}
+\DoxyCodeLine{22         \};}
+\DoxyCodeLine{23         \textcolor{keyword}{template}<\textcolor{keyword}{class} Method1, \textcolor{keyword}{class} Method2, \textcolor{keyword}{class} Mesh1, \textcolor{keyword}{class} Mesh2>}
+\DoxyCodeLine{24         \textcolor{keyword}{const} \textcolor{keywordtype}{double} \mbox{\hyperlink{classcorenc_1_1method_1_1FEAnalysis_a37857abaefbba6f3d2e4c2a300e4e6a2}{FEAnalysis<Method1, Method2, Mesh1, Mesh2>::L2Norm}}(}
+\DoxyCodeLine{25             \textcolor{keyword}{const} Method1\& method1, }
+\DoxyCodeLine{26             \textcolor{keyword}{const} Method2\& method2, }
+\DoxyCodeLine{27             \textcolor{keyword}{const} Mesh1\& mesh1, }
+\DoxyCodeLine{28             \textcolor{keyword}{const} Mesh2\& mesh2, }
+\DoxyCodeLine{29             \textcolor{keyword}{const} std::vector<double>\& w1,}
+\DoxyCodeLine{30             \textcolor{keyword}{const} std::vector<double>\& w2)\textcolor{keyword}{ const}}
+\DoxyCodeLine{31 \textcolor{keyword}{        }\{}
+\DoxyCodeLine{32             \textcolor{keywordtype}{double} sum\{ 0 \}, sum2\{0\};}
+\DoxyCodeLine{33             \textcolor{keywordtype}{double} res, res2;}
+\DoxyCodeLine{34             \textcolor{keywordtype}{int} j;}
+\DoxyCodeLine{35             std::vector<int> dofs;}
+\DoxyCodeLine{36             \textcolor{keywordtype}{int} order = mesh1.GetElement(0)-\/>GetDoFs();}
+\DoxyCodeLine{37             dofs.resize(order);}
+\DoxyCodeLine{38             std::vector<Mesh::Point> points(order);}
+\DoxyCodeLine{39             \textcolor{keyword}{auto} sub = [\&](\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh::Point}}\& p)}
+\DoxyCodeLine{40             \{}
+\DoxyCodeLine{41                 \textcolor{keywordflow}{return} (method1.GetValue(p, w1) -\/ method2.GetValue(p, w2)) * (method1.GetValue(p, w1) -\/ method2.GetValue(p, w2));}
+\DoxyCodeLine{42             \};}
+\DoxyCodeLine{43             \textcolor{keyword}{auto} r = [\&](\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh::Point}}\& p)}
+\DoxyCodeLine{44             \{}
+\DoxyCodeLine{45                 \textcolor{keywordflow}{return} method1.GetValue(p, w1);}
+\DoxyCodeLine{46             \};}
+\DoxyCodeLine{47             \textcolor{keyword}{const} \textcolor{keywordtype}{int} n = (int)mesh1.GetNumberOfElements();}
+\DoxyCodeLine{48             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < n; ++i)}
+\DoxyCodeLine{49             \{}
+\DoxyCodeLine{50                 \textcolor{keyword}{const} \textcolor{keyword}{auto}\& elem = mesh1.GetElement(i);}
+\DoxyCodeLine{51                 \textcolor{keywordflow}{for} (j = 0; j < order; ++j)}
+\DoxyCodeLine{52                     points[j] = mesh1.GetNode(elem-\/>GetNode(j));}
+\DoxyCodeLine{53                 res = elem-\/>Integrate(sub, points);}
+\DoxyCodeLine{54                 res2 = elem-\/>Integrate(r, points);}
+\DoxyCodeLine{55                 sum += res;}
+\DoxyCodeLine{56                 sum2 += res2;}
+\DoxyCodeLine{57             \}}
+\DoxyCodeLine{58             \textcolor{keywordflow}{if} (dofs.size() > 0)}
+\DoxyCodeLine{59                 std::vector<int>().swap(dofs);}
+\DoxyCodeLine{60             \textcolor{keywordflow}{if} (points.size() > 0)}
+\DoxyCodeLine{61                 std::vector<Mesh::Point>().swap(points);}
+\DoxyCodeLine{62             \textcolor{keywordflow}{return} sqrt(sum/sum2);}
+\DoxyCodeLine{63         \}}
+\DoxyCodeLine{64     \}}
+\DoxyCodeLine{65 \}}
+\DoxyCodeLine{66 }
+\DoxyCodeLine{67 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// !CORENC\_METHODS\_FEANALYSIS\_H\_}}
+\DoxyCodeLine{68 }
+
+\end{DoxyCode}

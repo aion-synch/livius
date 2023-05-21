@@ -1,0 +1,48 @@
+\hypertarget{Shape_8h_source}{}\doxysection{Shape.\+h}
+\label{Shape_8h_source}\index{CoreNCFEM/FiniteElements/Shape.h@{CoreNCFEM/FiniteElements/Shape.h}}
+\mbox{\hyperlink{Shape_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef CORENC\_MESH\_Shape\_h}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define CORENC\_MESH\_Shape\_h}}
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include <functional>}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include "{}../Point.h"{}}}
+\DoxyCodeLine{6 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacecorenc}{corenc}}}
+\DoxyCodeLine{7 \{}
+\DoxyCodeLine{8     \textcolor{keyword}{using }\mbox{\hyperlink{namespacecorenc_abc502e4067a2e66d2fb5fe938255ddd6}{scalar\_func}} = std::function<\textcolor{keyword}{const} double(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh::Point}}\&)>;}
+\DoxyCodeLine{9     \textcolor{keyword}{using }\mbox{\hyperlink{namespacecorenc_aa65dce54630955e13ac41f161126f7d9}{vector\_func}} = std::function<\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh::Point}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh::Point}}\&)>;}
+\DoxyCodeLine{10     \textcolor{keyword}{namespace }Mesh}
+\DoxyCodeLine{11     \{}
+\DoxyCodeLine{12         \textcolor{comment}{//class Point;}}
+\DoxyCodeLine{13         \textcolor{keyword}{enum class} \mbox{\hyperlink{namespacecorenc_1_1Mesh_ac50e77ee39c11765e81daf606c1cbc05}{NODES}}}
+\DoxyCodeLine{14         \{}
+\DoxyCodeLine{15             \mbox{\hyperlink{namespacecorenc_1_1Mesh_ac50e77ee39c11765e81daf606c1cbc05a2c2624a5059934a947d6e25fe8332ade}{FIRST}},}
+\DoxyCodeLine{16             \mbox{\hyperlink{namespacecorenc_1_1Mesh_ac50e77ee39c11765e81daf606c1cbc05af447f5c03508de4d88e340390ba7c78f}{LAST}}}
+\DoxyCodeLine{17         \};}
+\DoxyCodeLine{18         \textcolor{keyword}{class }\mbox{\hyperlink{classcorenc_1_1Mesh_1_1CShape}{CShape}}}
+\DoxyCodeLine{19         \{}
+\DoxyCodeLine{20         \textcolor{keyword}{public}:}
+\DoxyCodeLine{21             \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CShape_a2794ca77407fa7dfb78deaf623808394}{CShape}}() \{\}}
+\DoxyCodeLine{22             \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CShape_ad60e4f91125352febd13da7ac895d29f}{CShape}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int}*) \{\}}
+\DoxyCodeLine{23             \textcolor{keyword}{virtual} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CShape_aaac51241c6ed72fa404011a91a2c742b}{\string~CShape}}() \{\}}
+\DoxyCodeLine{24             \textcolor{keyword}{virtual} \textcolor{keyword}{const} \textcolor{keywordtype}{int}                   \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CShape_a1180a1826c034d38149d0f76a5b364dc}{GetNumberOfNodes}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} 0; \};}
+\DoxyCodeLine{25             \textcolor{keyword}{virtual} \textcolor{keyword}{const} \textcolor{keywordtype}{int}                   \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CShape_aa8d49737b9a099208f2e871dfb6ec846}{GetNumberOfEdges}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} 0; \};}
+\DoxyCodeLine{26             \textcolor{keyword}{virtual} \textcolor{keyword}{const} \textcolor{keywordtype}{int}                   \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CShape_a2618b54b025564697adf1b5dad1898e8}{GetNumberOfFacets}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} 0; \};}
+\DoxyCodeLine{27             \textcolor{keyword}{virtual} \textcolor{keyword}{const} \textcolor{keywordtype}{int}                   \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CShape_aad28580dcd5977402ec947c2ada0e441}{GetNode}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int})\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} 1; \};}
+\DoxyCodeLine{28             \textcolor{keyword}{virtual} \textcolor{keyword}{const} \textcolor{keywordtype}{int}                   \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CShape_ac3c4c10066ac77758c554bba94bb8ba1}{GetNode}}(\textcolor{keyword}{const} \mbox{\hyperlink{namespacecorenc_1_1Mesh_ac50e77ee39c11765e81daf606c1cbc05}{NODES}}\&)\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} 1; \};}
+\DoxyCodeLine{29             \textcolor{keyword}{virtual} \textcolor{keyword}{const} \textcolor{keywordtype}{int}                   \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CShape_a24e29783260d0fd7ade39b20cfe81c56}{GetEdge}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int})\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} -\/1; \};}
+\DoxyCodeLine{30             \textcolor{keyword}{virtual} \textcolor{keyword}{const} \textcolor{keywordtype}{int}                   \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CShape_a7390cb82dab0b9f10fbac2f5dedf8822}{GetFacet}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int})\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} -\/1; \};}
+\DoxyCodeLine{31             \textcolor{keyword}{virtual} \textcolor{keyword}{const} \textcolor{keywordtype}{double}                \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CShape_a0a5a8eea4156b527ed7e498afbeb1bb1}{Integrate}}(\textcolor{keyword}{const} \mbox{\hyperlink{namespacecorenc_abc502e4067a2e66d2fb5fe938255ddd6}{scalar\_func}}\&, \textcolor{keyword}{const} std::vector<Point>\&) \textcolor{keyword}{const} = 0;}
+\DoxyCodeLine{32             \textcolor{keyword}{virtual} \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}                \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CShape_a7aa050953394f69d74ec241776b6c546}{Integrate}}(\textcolor{keyword}{const} \mbox{\hyperlink{namespacecorenc_aa65dce54630955e13ac41f161126f7d9}{vector\_func}}\&, \textcolor{keyword}{const} std::vector<Point>\&) \textcolor{keyword}{const} = 0;}
+\DoxyCodeLine{33             \textcolor{keyword}{virtual} \textcolor{keyword}{const} std::vector<double>   \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CShape_a33c47e38a5533ba192941cda8cc0ab0d}{Integrate}}(\textcolor{keyword}{const} std::function<\textcolor{keyword}{const} std::vector<double>(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}\&)>\&, \textcolor{keyword}{const} std::vector<Point>\&) \textcolor{keyword}{const} = 0;}
+\DoxyCodeLine{34             \textcolor{keyword}{virtual} \textcolor{keywordtype}{void}                        \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CShape_a9fadcf61c9edeecbdfcd35dc7c92d4b6}{SetNode}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int}, \textcolor{keyword}{const} \textcolor{keywordtype}{int}) = 0;}
+\DoxyCodeLine{35             \textcolor{keyword}{virtual} \textcolor{keywordtype}{void}                        \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CShape_a58eeb04142e4a925a043f5b0a074d1d3}{SetEdge}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int}, \textcolor{keyword}{const} \textcolor{keywordtype}{int}) \{\};}
+\DoxyCodeLine{36             \textcolor{keyword}{virtual} \textcolor{keywordtype}{void}                        \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CShape_a32727f961710f3dc8d6cd03be83bde91}{SetFacet}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int}, \textcolor{keyword}{const} \textcolor{keywordtype}{int}) \{\};}
+\DoxyCodeLine{37             \textcolor{comment}{//virtual std::istream\&         operator>>(std::istream\&) = 0;}}
+\DoxyCodeLine{38         \};}
+\DoxyCodeLine{39     \}}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41 \}}
+\DoxyCodeLine{42 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* CORENC\_MESH\_Shape\_h */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

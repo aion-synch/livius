@@ -1,0 +1,110 @@
+\hypertarget{classcorenc_1_1solvers_1_1fem__solver}{}\doxysection{corenc\+::solvers\+::fem\+\_\+solver\texorpdfstring{$<$}{<} \+\_\+\+Problem, \+\_\+\+Mesh, \+\_\+\+Result \texorpdfstring{$>$}{>} Class Template Reference}
+\label{classcorenc_1_1solvers_1_1fem__solver}\index{corenc::solvers::fem\_solver$<$ \_Problem, \_Mesh, \_Result $>$@{corenc::solvers::fem\_solver$<$ \_Problem, \_Mesh, \_Result $>$}}
+
+
+{\ttfamily \#include $<$fem\+\_\+solver.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcorenc_1_1solvers_1_1fem__solver_ad73094346634b584a3d583ac71dcd947}{fem\+\_\+solver}} ()
+\item 
+\mbox{\hyperlink{classcorenc_1_1solvers_1_1fem__solver_a10a19640c8afd9e0dd9b209326b926dc}{$\sim$fem\+\_\+solver}} ()
+\item 
+const int \mbox{\hyperlink{classcorenc_1_1solvers_1_1fem__solver_a8752fdbceef2b44ad0ba3f5dc344486b}{elliptic\+\_\+solver}} (\+\_\+\+Problem $\ast$, \+\_\+\+Mesh $\ast$, \+\_\+\+Result $\ast$)
+\item 
+const int \mbox{\hyperlink{classcorenc_1_1solvers_1_1fem__solver_a94d2da99463faf8548df265f0942a1b3}{elliptic\+\_\+solver\+\_\+gauss}} (\+\_\+\+Problem $\ast$, \+\_\+\+Mesh $\ast$, \+\_\+\+Result $\ast$)
+\item 
+const double \mbox{\hyperlink{classcorenc_1_1solvers_1_1fem__solver_acb9f4de2e3ccedcbd63605e468203613}{get\+\_\+value}} (const \+\_\+\+Mesh \&, const \+\_\+\+Result \&, const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh\+::\+Point}} \&p) const
+\item 
+const double \mbox{\hyperlink{classcorenc_1_1solvers_1_1fem__solver_a36a93178d875af6a4963be86d327620e}{get\+\_\+value}} (const \mbox{\hyperlink{classcorenc_1_1method_1_1FEMethod}{\+\_\+\+Method2}} $\ast$, const \+\_\+\+Mesh \&, const \+\_\+\+Result \&, const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh\+::\+Point}} \&p) const
+\item 
+const double \mbox{\hyperlink{classcorenc_1_1solvers_1_1fem__solver_af08ec1483ce4384b483aa3e0287ee7b9}{get\+\_\+value}} (const \mbox{\hyperlink{classcorenc_1_1method_1_1FEMethod}{\+\_\+\+Method}} $\ast$, const \+\_\+\+Mesh \&, const \+\_\+\+Result \&, const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh\+::\+Point}} \&p) const
+\item 
+const double \mbox{\hyperlink{classcorenc_1_1solvers_1_1fem__solver_a61a6c5a1f4a433b28f02f2b5490f6f7d}{get\+\_\+value}} (const \+\_\+\+Mesh \&, const \+\_\+\+Result \&, const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh\+::\+Point}} \&p, const int i) const
+\item 
+const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh\+::\+Point}} \mbox{\hyperlink{classcorenc_1_1solvers_1_1fem__solver_a886876ece3c5f999943affbe55572742}{get\+\_\+gradvalue}} (const \+\_\+\+Mesh \&, const \+\_\+\+Result \&, const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh\+::\+Point}} \&p) const
+\item 
+const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh\+::\+Point}} \mbox{\hyperlink{classcorenc_1_1solvers_1_1fem__solver_a484faae8e22566a2991633612adb3a1b}{get\+\_\+gradvalue}} (const \+\_\+\+Mesh \&, const \+\_\+\+Result \&, const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh\+::\+Point}} \&p, const int i) const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classcorenc_1_1solvers_1_1fem__solver_ad73094346634b584a3d583ac71dcd947}\label{classcorenc_1_1solvers_1_1fem__solver_ad73094346634b584a3d583ac71dcd947}} 
+\index{corenc::solvers::fem\_solver$<$ \_Problem, \_Mesh, \_Result $>$@{corenc::solvers::fem\_solver$<$ \_Problem, \_Mesh, \_Result $>$}!fem\_solver@{fem\_solver}}
+\index{fem\_solver@{fem\_solver}!corenc::solvers::fem\_solver$<$ \_Problem, \_Mesh, \_Result $>$@{corenc::solvers::fem\_solver$<$ \_Problem, \_Mesh, \_Result $>$}}
+\doxysubsubsection{\texorpdfstring{fem\_solver()}{fem\_solver()}}
+{\footnotesize\ttfamily template$<$class \+\_\+\+Problem , class \+\_\+\+Mesh , class \+\_\+\+Result $>$ \\
+\mbox{\hyperlink{classcorenc_1_1solvers_1_1fem__solver}{corenc\+::solvers\+::fem\+\_\+solver}}$<$ \+\_\+\+Problem, \+\_\+\+Mesh, \+\_\+\+Result $>$\+::fem\+\_\+solver (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classcorenc_1_1solvers_1_1fem__solver_a10a19640c8afd9e0dd9b209326b926dc}\label{classcorenc_1_1solvers_1_1fem__solver_a10a19640c8afd9e0dd9b209326b926dc}} 
+\index{corenc::solvers::fem\_solver$<$ \_Problem, \_Mesh, \_Result $>$@{corenc::solvers::fem\_solver$<$ \_Problem, \_Mesh, \_Result $>$}!````~fem\_solver@{$\sim$fem\_solver}}
+\index{````~fem\_solver@{$\sim$fem\_solver}!corenc::solvers::fem\_solver$<$ \_Problem, \_Mesh, \_Result $>$@{corenc::solvers::fem\_solver$<$ \_Problem, \_Mesh, \_Result $>$}}
+\doxysubsubsection{\texorpdfstring{$\sim$fem\_solver()}{~fem\_solver()}}
+{\footnotesize\ttfamily template$<$class \+\_\+\+Problem , class \+\_\+\+Mesh , class \+\_\+\+Result $>$ \\
+\mbox{\hyperlink{classcorenc_1_1solvers_1_1fem__solver}{corenc\+::solvers\+::fem\+\_\+solver}}$<$ \+\_\+\+Problem, \+\_\+\+Mesh, \+\_\+\+Result $>$\+::$\sim$\mbox{\hyperlink{classcorenc_1_1solvers_1_1fem__solver}{fem\+\_\+solver}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classcorenc_1_1solvers_1_1fem__solver_a8752fdbceef2b44ad0ba3f5dc344486b}\label{classcorenc_1_1solvers_1_1fem__solver_a8752fdbceef2b44ad0ba3f5dc344486b}} 
+\index{corenc::solvers::fem\_solver$<$ \_Problem, \_Mesh, \_Result $>$@{corenc::solvers::fem\_solver$<$ \_Problem, \_Mesh, \_Result $>$}!elliptic\_solver@{elliptic\_solver}}
+\index{elliptic\_solver@{elliptic\_solver}!corenc::solvers::fem\_solver$<$ \_Problem, \_Mesh, \_Result $>$@{corenc::solvers::fem\_solver$<$ \_Problem, \_Mesh, \_Result $>$}}
+\doxysubsubsection{\texorpdfstring{elliptic\_solver()}{elliptic\_solver()}}
+{\footnotesize\ttfamily template$<$class \+\_\+\+Problem , class \+\_\+\+Mesh , class \+\_\+\+Result $>$ \\
+const int \mbox{\hyperlink{classcorenc_1_1solvers_1_1fem__solver}{corenc\+::solvers\+::fem\+\_\+solver}}$<$ \+\_\+\+Problem, \+\_\+\+Mesh, \+\_\+\+Result $>$\+::elliptic\+\_\+solver (\begin{DoxyParamCaption}\item[{\+\_\+\+Problem $\ast$}]{problem,  }\item[{\+\_\+\+Mesh $\ast$}]{mesh,  }\item[{\+\_\+\+Result $\ast$}]{result }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classcorenc_1_1solvers_1_1fem__solver_a94d2da99463faf8548df265f0942a1b3}\label{classcorenc_1_1solvers_1_1fem__solver_a94d2da99463faf8548df265f0942a1b3}} 
+\index{corenc::solvers::fem\_solver$<$ \_Problem, \_Mesh, \_Result $>$@{corenc::solvers::fem\_solver$<$ \_Problem, \_Mesh, \_Result $>$}!elliptic\_solver\_gauss@{elliptic\_solver\_gauss}}
+\index{elliptic\_solver\_gauss@{elliptic\_solver\_gauss}!corenc::solvers::fem\_solver$<$ \_Problem, \_Mesh, \_Result $>$@{corenc::solvers::fem\_solver$<$ \_Problem, \_Mesh, \_Result $>$}}
+\doxysubsubsection{\texorpdfstring{elliptic\_solver\_gauss()}{elliptic\_solver\_gauss()}}
+{\footnotesize\ttfamily template$<$class \+\_\+\+Problem , class \+\_\+\+Mesh , class \+\_\+\+Result $>$ \\
+const int \mbox{\hyperlink{classcorenc_1_1solvers_1_1fem__solver}{corenc\+::solvers\+::fem\+\_\+solver}}$<$ \+\_\+\+Problem, \+\_\+\+Mesh, \+\_\+\+Result $>$\+::elliptic\+\_\+solver\+\_\+gauss (\begin{DoxyParamCaption}\item[{\+\_\+\+Problem $\ast$}]{problem,  }\item[{\+\_\+\+Mesh $\ast$}]{mesh,  }\item[{\+\_\+\+Result $\ast$}]{result }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classcorenc_1_1solvers_1_1fem__solver_a886876ece3c5f999943affbe55572742}\label{classcorenc_1_1solvers_1_1fem__solver_a886876ece3c5f999943affbe55572742}} 
+\index{corenc::solvers::fem\_solver$<$ \_Problem, \_Mesh, \_Result $>$@{corenc::solvers::fem\_solver$<$ \_Problem, \_Mesh, \_Result $>$}!get\_gradvalue@{get\_gradvalue}}
+\index{get\_gradvalue@{get\_gradvalue}!corenc::solvers::fem\_solver$<$ \_Problem, \_Mesh, \_Result $>$@{corenc::solvers::fem\_solver$<$ \_Problem, \_Mesh, \_Result $>$}}
+\doxysubsubsection{\texorpdfstring{get\_gradvalue()}{get\_gradvalue()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class \+\_\+\+Problem , class \+\_\+\+Mesh , class \+\_\+\+Result $>$ \\
+const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh\+::\+Point}} \mbox{\hyperlink{classcorenc_1_1solvers_1_1fem__solver}{corenc\+::solvers\+::fem\+\_\+solver}}$<$ \+\_\+\+Problem, \+\_\+\+Mesh, \+\_\+\+Result $>$\+::get\+\_\+gradvalue (\begin{DoxyParamCaption}\item[{const \+\_\+\+Mesh \&}]{mesh,  }\item[{const \+\_\+\+Result \&}]{res,  }\item[{const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh\+::\+Point}} \&}]{p }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classcorenc_1_1solvers_1_1fem__solver_a484faae8e22566a2991633612adb3a1b}\label{classcorenc_1_1solvers_1_1fem__solver_a484faae8e22566a2991633612adb3a1b}} 
+\index{corenc::solvers::fem\_solver$<$ \_Problem, \_Mesh, \_Result $>$@{corenc::solvers::fem\_solver$<$ \_Problem, \_Mesh, \_Result $>$}!get\_gradvalue@{get\_gradvalue}}
+\index{get\_gradvalue@{get\_gradvalue}!corenc::solvers::fem\_solver$<$ \_Problem, \_Mesh, \_Result $>$@{corenc::solvers::fem\_solver$<$ \_Problem, \_Mesh, \_Result $>$}}
+\doxysubsubsection{\texorpdfstring{get\_gradvalue()}{get\_gradvalue()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class \+\_\+\+Problem , class \+\_\+\+Mesh , class \+\_\+\+Result $>$ \\
+const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh\+::\+Point}} \mbox{\hyperlink{classcorenc_1_1solvers_1_1fem__solver}{corenc\+::solvers\+::fem\+\_\+solver}}$<$ \+\_\+\+Problem, \+\_\+\+Mesh, \+\_\+\+Result $>$\+::get\+\_\+gradvalue (\begin{DoxyParamCaption}\item[{const \+\_\+\+Mesh \&}]{mesh,  }\item[{const \+\_\+\+Result \&}]{res,  }\item[{const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh\+::\+Point}} \&}]{p,  }\item[{const int}]{i }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classcorenc_1_1solvers_1_1fem__solver_acb9f4de2e3ccedcbd63605e468203613}\label{classcorenc_1_1solvers_1_1fem__solver_acb9f4de2e3ccedcbd63605e468203613}} 
+\index{corenc::solvers::fem\_solver$<$ \_Problem, \_Mesh, \_Result $>$@{corenc::solvers::fem\_solver$<$ \_Problem, \_Mesh, \_Result $>$}!get\_value@{get\_value}}
+\index{get\_value@{get\_value}!corenc::solvers::fem\_solver$<$ \_Problem, \_Mesh, \_Result $>$@{corenc::solvers::fem\_solver$<$ \_Problem, \_Mesh, \_Result $>$}}
+\doxysubsubsection{\texorpdfstring{get\_value()}{get\_value()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily template$<$class \+\_\+\+Problem , class \+\_\+\+Mesh , class \+\_\+\+Result $>$ \\
+const double \mbox{\hyperlink{classcorenc_1_1solvers_1_1fem__solver}{corenc\+::solvers\+::fem\+\_\+solver}}$<$ \+\_\+\+Problem, \+\_\+\+Mesh, \+\_\+\+Result $>$\+::get\+\_\+value (\begin{DoxyParamCaption}\item[{const \+\_\+\+Mesh \&}]{mesh,  }\item[{const \+\_\+\+Result \&}]{res,  }\item[{const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh\+::\+Point}} \&}]{p }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classcorenc_1_1solvers_1_1fem__solver_a61a6c5a1f4a433b28f02f2b5490f6f7d}\label{classcorenc_1_1solvers_1_1fem__solver_a61a6c5a1f4a433b28f02f2b5490f6f7d}} 
+\index{corenc::solvers::fem\_solver$<$ \_Problem, \_Mesh, \_Result $>$@{corenc::solvers::fem\_solver$<$ \_Problem, \_Mesh, \_Result $>$}!get\_value@{get\_value}}
+\index{get\_value@{get\_value}!corenc::solvers::fem\_solver$<$ \_Problem, \_Mesh, \_Result $>$@{corenc::solvers::fem\_solver$<$ \_Problem, \_Mesh, \_Result $>$}}
+\doxysubsubsection{\texorpdfstring{get\_value()}{get\_value()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily template$<$class \+\_\+\+Problem , class \+\_\+\+Mesh , class \+\_\+\+Result $>$ \\
+const double \mbox{\hyperlink{classcorenc_1_1solvers_1_1fem__solver}{corenc\+::solvers\+::fem\+\_\+solver}}$<$ \+\_\+\+Problem, \+\_\+\+Mesh, \+\_\+\+Result $>$\+::get\+\_\+value (\begin{DoxyParamCaption}\item[{const \+\_\+\+Mesh \&}]{mesh,  }\item[{const \+\_\+\+Result \&}]{res,  }\item[{const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh\+::\+Point}} \&}]{p,  }\item[{const int}]{i }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classcorenc_1_1solvers_1_1fem__solver_af08ec1483ce4384b483aa3e0287ee7b9}\label{classcorenc_1_1solvers_1_1fem__solver_af08ec1483ce4384b483aa3e0287ee7b9}} 
+\index{corenc::solvers::fem\_solver$<$ \_Problem, \_Mesh, \_Result $>$@{corenc::solvers::fem\_solver$<$ \_Problem, \_Mesh, \_Result $>$}!get\_value@{get\_value}}
+\index{get\_value@{get\_value}!corenc::solvers::fem\_solver$<$ \_Problem, \_Mesh, \_Result $>$@{corenc::solvers::fem\_solver$<$ \_Problem, \_Mesh, \_Result $>$}}
+\doxysubsubsection{\texorpdfstring{get\_value()}{get\_value()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily template$<$class \+\_\+\+Problem , class \+\_\+\+Mesh , class \+\_\+\+Result $>$ \\
+const double \mbox{\hyperlink{classcorenc_1_1solvers_1_1fem__solver}{corenc\+::solvers\+::fem\+\_\+solver}}$<$ \+\_\+\+Problem, \+\_\+\+Mesh, \+\_\+\+Result $>$\+::get\+\_\+value (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcorenc_1_1method_1_1FEMethod}{\+\_\+\+Method}} $\ast$}]{,  }\item[{const \+\_\+\+Mesh \&}]{,  }\item[{const \+\_\+\+Result \&}]{,  }\item[{const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh\+::\+Point}} \&}]{p }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classcorenc_1_1solvers_1_1fem__solver_a36a93178d875af6a4963be86d327620e}\label{classcorenc_1_1solvers_1_1fem__solver_a36a93178d875af6a4963be86d327620e}} 
+\index{corenc::solvers::fem\_solver$<$ \_Problem, \_Mesh, \_Result $>$@{corenc::solvers::fem\_solver$<$ \_Problem, \_Mesh, \_Result $>$}!get\_value@{get\_value}}
+\index{get\_value@{get\_value}!corenc::solvers::fem\_solver$<$ \_Problem, \_Mesh, \_Result $>$@{corenc::solvers::fem\_solver$<$ \_Problem, \_Mesh, \_Result $>$}}
+\doxysubsubsection{\texorpdfstring{get\_value()}{get\_value()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily template$<$class \+\_\+\+Problem , class \+\_\+\+Mesh , class \+\_\+\+Result $>$ \\
+const double \mbox{\hyperlink{classcorenc_1_1solvers_1_1fem__solver}{corenc\+::solvers\+::fem\+\_\+solver}}$<$ \+\_\+\+Problem, \+\_\+\+Mesh, \+\_\+\+Result $>$\+::get\+\_\+value (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcorenc_1_1method_1_1FEMethod}{\+\_\+\+Method2}} $\ast$}]{method2,  }\item[{const \+\_\+\+Mesh \&}]{mesh,  }\item[{const \+\_\+\+Result \&}]{res,  }\item[{const \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh\+::\+Point}} \&}]{p }\end{DoxyParamCaption}) const}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Solvers/\mbox{\hyperlink{fem__solver_8h}{fem\+\_\+solver.\+h}}\end{DoxyCompactItemize}

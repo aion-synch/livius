@@ -1,0 +1,944 @@
+\hypertarget{FiniteElement_8h_source}{}\doxysection{Finite\+Element.\+h}
+\label{FiniteElement_8h_source}\index{CoreNCFEM/FiniteElements/FiniteElement.h@{CoreNCFEM/FiniteElements/FiniteElement.h}}
+\mbox{\hyperlink{FiniteElement_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef CORENC\_MESH\_FINITEELEMENT\_H\_}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define CORENC\_MESH\_FINITEELEMENT\_H\_}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <functional>}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include "{}../Point.h"{}}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include "{}../FESolution.h"{}}}
+\DoxyCodeLine{9 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacecorenc}{corenc}}}
+\DoxyCodeLine{10 \{}
+\DoxyCodeLine{11     \textcolor{keyword}{namespace }Mesh}
+\DoxyCodeLine{12     \{}
+\DoxyCodeLine{13         \textcolor{keyword}{using }\mbox{\hyperlink{namespacecorenc_1_1Mesh_adeeb6b9f25865139c6f15459a5f09438}{function\_dp}} = std::function<\textcolor{keyword}{const} double(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}\&)>;}
+\DoxyCodeLine{14         \textcolor{keyword}{enum} \mbox{\hyperlink{namespacecorenc_1_1Mesh_ade663ef62361abc52180c80e173479ee}{Elements}}}
+\DoxyCodeLine{15         \{}
+\DoxyCodeLine{16             \mbox{\hyperlink{namespacecorenc_1_1Mesh_ade663ef62361abc52180c80e173479eea5225153c2c6b43e461a400d68cde5fd6}{Interval}} = 0,}
+\DoxyCodeLine{17             \mbox{\hyperlink{namespacecorenc_1_1Mesh_ade663ef62361abc52180c80e173479eeaa0663fd6a2d6ebe882669b2574a8536c}{Triangle}} = 1,}
+\DoxyCodeLine{18             \mbox{\hyperlink{namespacecorenc_1_1Mesh_ade663ef62361abc52180c80e173479eea5e96309fa7b3bf2f76e86671a04f97f4}{Rectangle}} = 2,}
+\DoxyCodeLine{19             \mbox{\hyperlink{namespacecorenc_1_1Mesh_ade663ef62361abc52180c80e173479eeae74c66bd369b3becc3a7358d73b1a4bb}{Tetrahedron}} = 3,}
+\DoxyCodeLine{20             \mbox{\hyperlink{namespacecorenc_1_1Mesh_ade663ef62361abc52180c80e173479eeab2b2235b20551774c7c28e5742ea2937}{Cube}} = 4}
+\DoxyCodeLine{21         \};}
+\DoxyCodeLine{22         }
+\DoxyCodeLine{23         \textcolor{keyword}{template}<\textcolor{keyword}{class} T = \textcolor{keywordtype}{bool}>}
+\DoxyCodeLine{24         \textcolor{keyword}{class }CElement;}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26         \textcolor{keyword}{template}<>}
+\DoxyCodeLine{27         \textcolor{keyword}{class }\mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement}{CElement}}<bool>}
+\DoxyCodeLine{28         \{}
+\DoxyCodeLine{29         \textcolor{keyword}{public}:}
+\DoxyCodeLine{30             \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_a5960ae4b21fe00df8c4932b1a761160f}{CElement}}() \{\}}
+\DoxyCodeLine{31             \textcolor{keyword}{virtual} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_afcb506d3f81442e261cabb31c7e87138}{\string~CElement}}() \{\}}
+\DoxyCodeLine{32             \textcolor{keyword}{virtual} \textcolor{keyword}{const} \textcolor{keywordtype}{int}                                   \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_aaa98a9ec578a8fe19631f233b235323c}{GetType}}() \textcolor{keyword}{const} = 0;}
+\DoxyCodeLine{33             \textcolor{keyword}{virtual} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement}{CElement<>}}*                                   \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_a2eb704d0f3477fd9ede8f7d01fb37007}{Clone}}() \textcolor{keyword}{const} = 0;}
+\DoxyCodeLine{34             \textcolor{keyword}{virtual} \textcolor{keyword}{const} \textcolor{keywordtype}{int}                                   \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_acb7fc9acc2be3c7d450ae666cac3e56f}{GetDoFs}}() \textcolor{keyword}{const} = 0;}
+\DoxyCodeLine{35             \textcolor{keyword}{virtual} \textcolor{keyword}{const} \textcolor{keywordtype}{int}                                   \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_ac4be4bb008f39364b6cc9813672fcead}{GetNode}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int}) \textcolor{keyword}{const} = 0;}
+\DoxyCodeLine{36             \textcolor{keyword}{virtual} \textcolor{keyword}{const} \textcolor{keywordtype}{int}                                   \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_acbd9aa5430c2a1013206629c168545c9}{GetNeighbour}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int}) \textcolor{keyword}{const} = 0;}
+\DoxyCodeLine{37             \textcolor{keyword}{virtual} \textcolor{keywordtype}{void}                                        \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_adb30f904b7b007f3978d144d59b0a94b}{SetNeighbour}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} k, \textcolor{keyword}{const} \textcolor{keywordtype}{int} elem) = 0;}
+\DoxyCodeLine{38             \textcolor{keyword}{virtual} \textcolor{keywordtype}{void}                                        \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_a8acfd116f86f2722e7908fcb89307335}{SetType}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int}) = 0;}
+\DoxyCodeLine{39             \textcolor{keyword}{virtual} \textcolor{keywordtype}{void}                                        \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_a3837efeda55c3c4fb93b132fb31de7a5}{SetNode}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int}, \textcolor{keyword}{const} \textcolor{keywordtype}{int}) = 0;}
+\DoxyCodeLine{40             \textcolor{keyword}{virtual} \textcolor{keyword}{const} \textcolor{keywordtype}{int}                                   \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_ac3c62fdf5243488ad882fb70219fe26a}{GetNumberOfNodes}}() \textcolor{keyword}{const} = 0;}
+\DoxyCodeLine{41             \textcolor{comment}{//virtual void            SetShapeFunction(const unsigned int, const std::function<const DiffForm(const Point\&)>\&) = 0;}}
+\DoxyCodeLine{42             \textcolor{comment}{//virtual const DiffForm* GetShapeFunction(const int, const Point\&) const = 0;}}
+\DoxyCodeLine{43             \textcolor{comment}{//virtual const double                              GetShapeFunction(const unsigned int, const std::vector<double>\&) const = 0;}}
+\DoxyCodeLine{44             \textcolor{keyword}{virtual} \textcolor{keyword}{const} \textcolor{keywordtype}{double}                                \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_ac11a26cec1f97384da288ea36728a02b}{GetShapeFunction}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int}, \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}\&) \textcolor{keyword}{const} = 0;}
+\DoxyCodeLine{45             \textcolor{keyword}{virtual} \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}                                    \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_a3b05d8213dd1487f2527e4ff329762ff}{GetGradShapeFunction}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int}, \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}\&) \textcolor{keyword}{const} = 0;}
+\DoxyCodeLine{46             \textcolor{comment}{//virtual const std::vector<double>                 GetGradShapeFunction(const unsigned int, const std::vector<double>\&) const = 0;}}
+\DoxyCodeLine{47             \textcolor{keyword}{virtual} \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}                                    \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_a777fb68730aafe054b1daf65a986b8fa}{GetNormal}}() \textcolor{keyword}{const} = 0;}
+\DoxyCodeLine{48             \textcolor{comment}{//virtual const std::vector<double>                 GetNormal() const = 0;}}
+\DoxyCodeLine{49             \textcolor{keyword}{virtual} \textcolor{keywordtype}{void}                                        \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_a28776b7ba2afc7f16ce5bc43ab4b8c35}{ReverseNormal}}() = 0;}
+\DoxyCodeLine{50             \textcolor{keyword}{virtual} \textcolor{keyword}{const} \textcolor{keywordtype}{double}                                \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_a8c13cd1046e2dde21a067f7c05035711}{Integrate}}(\textcolor{keyword}{const} \mbox{\hyperlink{namespacecorenc_1_1Mesh_adeeb6b9f25865139c6f15459a5f09438}{function\_dp}}\&, \textcolor{keyword}{const} std::vector<Point>\& v) \textcolor{keyword}{const} = 0;}
+\DoxyCodeLine{51             \textcolor{comment}{//virtual const double                              Integrate(const std::function<const double(const std::vector<double>\&)>\&, const std::vector<std::vector<double>>\& v) const = 0;}}
+\DoxyCodeLine{52             \textcolor{keyword}{virtual} \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}                                    \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_a459c607a68b7a01dc41dacca76cfeffb}{Integrate}}(\textcolor{keyword}{const} std::function<\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}\&)>\&, \textcolor{keyword}{const} std::vector<Point>\& v) \textcolor{keyword}{const} = 0;}
+\DoxyCodeLine{53             \textcolor{comment}{//virtual const std::vector<double>                 Integrate(const std::function<const std::vector<double>(const std::vector<double>\&)>\&, const std::vector<std::vector<double>>\& v) const = 0;}}
+\DoxyCodeLine{54             \textcolor{keyword}{virtual} \textcolor{keyword}{const} std::vector<double>                   \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_aae8b9f193e2d4d6a27bbec0501f1ee75}{Integrate}}(\textcolor{keyword}{const} std::function<\textcolor{keyword}{const} std::vector<double>(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}\&)>\&, \textcolor{keyword}{const} std::vector<Point>\&) \textcolor{keyword}{const} = 0;}
+\DoxyCodeLine{55             \textcolor{keyword}{virtual} \textcolor{keyword}{const} \textcolor{keywordtype}{double}                                \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_a8564472647a28d339c4dc295a13b1586}{GetWeight}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int}, \textcolor{keyword}{const} std::vector<Point>\& verts, \textcolor{keyword}{const} \mbox{\hyperlink{namespacecorenc_1_1Mesh_adeeb6b9f25865139c6f15459a5f09438}{function\_dp}}\& f) \textcolor{keyword}{const} = 0;}
+\DoxyCodeLine{56             \textcolor{comment}{//virtual const Type                                    GetValue(const unsigned number) const = 0;}}
+\DoxyCodeLine{57             \textcolor{comment}{//virtual const Type                                    GetValue(const Mesh::Point\&) const = 0;}}
+\DoxyCodeLine{58             \textcolor{comment}{//virtual const int                                 SetValue(const unsigned int number, const Type\& value) = 0;}}
+\DoxyCodeLine{59             \textcolor{comment}{//virtual const int                                 SetValue(const int number, CSolution* value) = 0;}}
+\DoxyCodeLine{60             \textcolor{comment}{//virtual CSolution*                                    GetValue(const int) = 0;}}
+\DoxyCodeLine{61             \textcolor{keyword}{virtual} \textcolor{keyword}{const} \textcolor{keywordtype}{int}                                   \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_aec5c324fdbe36d71af7ecdfac8caccdd}{IncreaseOrder}}() = 0;}
+\DoxyCodeLine{62             \textcolor{keyword}{virtual} \textcolor{keyword}{const} \textcolor{keywordtype}{double}                                \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement_3_01bool_01_4_a9da62a2dbfdc92f6fa71c4249459ba4c}{GetMeasure}}() \textcolor{keyword}{const} = 0;}
+\DoxyCodeLine{63             \textcolor{comment}{//virtual const std::vector<double>                 Integrate(const std::function<const std::vector<double>(const std::vector<double>\&)>\&, const std::vector<std::vector<double>>\&) const = 0;}}
+\DoxyCodeLine{64             \textcolor{comment}{//virtual std::function<const DiffForm(const Point\&)> GetShapeFunction(const int) = 0;}}
+\DoxyCodeLine{65             \textcolor{comment}{//virtual const double  GetShapeFunction(const int, const Point\&) const = 0;}}
+\DoxyCodeLine{66         \};}
+\DoxyCodeLine{67         \textcolor{keyword}{template}<\textcolor{keyword}{class} T>}
+\DoxyCodeLine{68         \textcolor{keyword}{class }\mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement}{CElement}}}
+\DoxyCodeLine{69         \{}
+\DoxyCodeLine{70         \textcolor{keyword}{public}:}
+\DoxyCodeLine{71             \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement_a2d4baf16dc9c459f05ae93010c2eb504}{CElement}}() \{\}}
+\DoxyCodeLine{72             \textcolor{keyword}{virtual} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement_a24f3f19eb3c39664c6349eb66cd24411}{\string~CElement}}() \{\}}
+\DoxyCodeLine{73             \textcolor{keyword}{virtual} \textcolor{keyword}{const} \textcolor{keywordtype}{int}                                   \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement_a23a2ed1ee61bd1a5b6f26d35c154ebed}{GetType}}() \textcolor{keyword}{const} = 0;}
+\DoxyCodeLine{74             \textcolor{keyword}{virtual} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement}{CElement}}*                                   \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement_a376ed5e22c1e73cf9d86c82e90c03dc1}{Clone}}() \textcolor{keyword}{const} = 0;}
+\DoxyCodeLine{75             \textcolor{keyword}{virtual} \textcolor{keyword}{const} \textcolor{keywordtype}{int}                                   \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement_ae3f4188fa9b4e8c17f9ee763472326ad}{GetDoFs}}() \textcolor{keyword}{const} = 0;}
+\DoxyCodeLine{76             \textcolor{keyword}{virtual} \textcolor{keyword}{const} \textcolor{keywordtype}{int}                                   \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement_a8112dff52c637be402d2e9c4b0e37ff5}{GetNode}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int}) \textcolor{keyword}{const} = 0;}
+\DoxyCodeLine{77             \textcolor{keyword}{virtual} \textcolor{keyword}{const} \textcolor{keywordtype}{int}                                   \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement_aa61908ffef4ef02f588c243f612a7640}{GetNeighbour}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int}) \textcolor{keyword}{const} = 0;}
+\DoxyCodeLine{78             \textcolor{keyword}{virtual} \textcolor{keywordtype}{void}                                        \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement_ac3072ea8212754d7820a6b732c47e94b}{SetNeighbour}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} k, \textcolor{keyword}{const} \textcolor{keywordtype}{int} elem) = 0;}
+\DoxyCodeLine{79             \textcolor{keyword}{virtual} \textcolor{keywordtype}{void}                                        \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement_a838b1a40be6f8125a6df689eb8249b50}{SetType}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int}) = 0;}
+\DoxyCodeLine{80             \textcolor{keyword}{virtual} \textcolor{keywordtype}{void}                                        \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement_aeb3372ebd6bd9012bded63064e7abac0}{SetNode}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int}, \textcolor{keyword}{const} \textcolor{keywordtype}{int}) = 0;}
+\DoxyCodeLine{81             \textcolor{keyword}{virtual} \textcolor{keyword}{const} \textcolor{keywordtype}{int}                                   \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement_ae436e252d52403ead1e6315e2cb39584}{GetNumberOfNodes}}() \textcolor{keyword}{const} = 0;}
+\DoxyCodeLine{82             \textcolor{comment}{//virtual void            SetShapeFunction(const unsigned int, const std::function<const DiffForm(const Point\&)>\&) = 0;}}
+\DoxyCodeLine{83             \textcolor{comment}{//virtual const DiffForm* GetShapeFunction(const int, const Point\&) const = 0;}}
+\DoxyCodeLine{84             \textcolor{comment}{//virtual const double                              GetShapeFunction(const unsigned int, const std::vector<double>\&) const = 0;}}
+\DoxyCodeLine{85             \textcolor{keyword}{virtual} \textcolor{keyword}{const} \textcolor{keywordtype}{double}                                \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement_afe216d7f01744a0e1d3654be969f51b3}{GetShapeFunction}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int}, \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}\&) \textcolor{keyword}{const} = 0;}
+\DoxyCodeLine{86             \textcolor{keyword}{virtual} \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}                                    \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement_ab8a4231b13ecf51ba3b681452fcd907f}{GetGradShapeFunction}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int}, \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}\&) \textcolor{keyword}{const} = 0;}
+\DoxyCodeLine{87             \textcolor{comment}{//virtual const std::vector<double>                 GetGradShapeFunction(const unsigned int, const std::vector<double>\&) const = 0;}}
+\DoxyCodeLine{88             \textcolor{keyword}{virtual} \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}                                    \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement_ad2f8addcea312aed7caaf5c7b208aaea}{GetNormal}}() \textcolor{keyword}{const} = 0;}
+\DoxyCodeLine{89             \textcolor{comment}{//virtual const std::vector<double>                 GetNormal() const = 0;}}
+\DoxyCodeLine{90             \textcolor{keyword}{virtual} \textcolor{keywordtype}{void}                                        \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement_a8ca9b48ce08c735c10fda64afa7482e8}{ReverseNormal}}() = 0;}
+\DoxyCodeLine{91             \textcolor{keyword}{virtual} \textcolor{keyword}{const} \textcolor{keywordtype}{int}                                   \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement_ae1652caeaea8463b56f340df74a7ce75}{IncreaseOrder}}() = 0;}
+\DoxyCodeLine{92             \textcolor{keyword}{virtual} \textcolor{keyword}{const} \textcolor{keywordtype}{double}                                \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement_a87bf8d5ae1d7799b5b1d45a4cece312a}{Integrate}}(\textcolor{keyword}{const} std::function<\textcolor{keyword}{const} \textcolor{keywordtype}{double}(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}\&)>\&, \textcolor{keyword}{const} std::vector<Point>\& v) \textcolor{keyword}{const} = 0;}
+\DoxyCodeLine{93             \textcolor{comment}{//virtual const double                              Integrate(const std::function<const double(const std::vector<double>\&)>\&, const std::vector<std::vector<double>>\& v) const = 0;}}
+\DoxyCodeLine{94             \textcolor{keyword}{virtual} \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}                                    \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement_ac5658ca9fbb1e34e0e930426e1d0aa12}{Integrate}}(\textcolor{keyword}{const} std::function<\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}\&)>\&, \textcolor{keyword}{const} std::vector<Point>\& v) \textcolor{keyword}{const} = 0;}
+\DoxyCodeLine{95             \textcolor{comment}{//virtual const std::vector<double>                 Integrate(const std::function<const std::vector<double>(const std::vector<double>\&)>\&, const std::vector<std::vector<double>>\& v) const = 0;}}
+\DoxyCodeLine{96             \textcolor{keyword}{virtual} \textcolor{keyword}{const} std::vector<double>                   \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement_a867bd3412e9438e656b8c852e3da3942}{Integrate}}(\textcolor{keyword}{const} std::function<\textcolor{keyword}{const} std::vector<double>(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}\&)>\&, \textcolor{keyword}{const} std::vector<Point>\&) \textcolor{keyword}{const} = 0;}
+\DoxyCodeLine{97             \textcolor{comment}{//virtual const Type                                    GetValue(const unsigned number) const = 0;}}
+\DoxyCodeLine{98             \textcolor{comment}{//virtual const Type                                    GetValue(const Mesh::Point\&) const = 0;}}
+\DoxyCodeLine{99             \textcolor{comment}{//virtual const int                                 SetValue(const unsigned int number, const Type\& value) = 0;}}
+\DoxyCodeLine{100             \textcolor{comment}{//virtual const int                                 SetValue(const unsigned int number, CSolution* value) = 0;}}
+\DoxyCodeLine{101             \textcolor{comment}{//virtual CSolution*                            GetValue(const unsigned int) = 0;}}
+\DoxyCodeLine{102             \textcolor{keyword}{virtual} \textcolor{keyword}{const} \textcolor{keywordtype}{double}                                \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement_aa344f5c1306a307389f75ab98ed12959}{GetMeasure}}() \textcolor{keyword}{const} = 0;}
+\DoxyCodeLine{103             \textcolor{keyword}{virtual} \textcolor{keyword}{const} \textcolor{keywordtype}{double}                                \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement_ad118fa212356a7fb195cd3fd7d05041d}{GetWeight}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int}, \textcolor{keyword}{const} std::vector<Point>\& verts, \textcolor{keyword}{const} std::function<\textcolor{keyword}{const} \textcolor{keywordtype}{double}(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}\&)>\& f) \textcolor{keyword}{const} = 0;}
+\DoxyCodeLine{104             \textcolor{comment}{//virtual const T                                       GetValue(const int number) const = 0;}}
+\DoxyCodeLine{105             \textcolor{comment}{//virtual const T                                       GetValue(const Point\& p) const = 0;}}
+\DoxyCodeLine{106             \textcolor{comment}{//virtual const int                                 SetValue(const int number, const T\& value) = 0;}}
+\DoxyCodeLine{107             \textcolor{comment}{//virtual const std::vector<double>                 Integrate(const std::function<const std::vector<double>(const std::vector<double>\&)>\&, const std::vector<std::vector<double>>\&) const = 0;}}
+\DoxyCodeLine{108             \textcolor{comment}{//virtual std::function<const DiffForm(const Point\&)> GetShapeFunction(const int) = 0;}}
+\DoxyCodeLine{109             \textcolor{comment}{//virtual const double  GetShapeFunction(const int, const Point\&) const = 0;}}
+\DoxyCodeLine{110         \};}
+\DoxyCodeLine{111 }
+\DoxyCodeLine{112 }
+\DoxyCodeLine{113 }
+\DoxyCodeLine{114 }
+\DoxyCodeLine{115         \textcolor{comment}{// Set of nodes}}
+\DoxyCodeLine{116         \textcolor{comment}{// Set of shape function}}
+\DoxyCodeLine{117         \textcolor{comment}{// Set of degrees of freedom ; don't use pls}}
+\DoxyCodeLine{118         \textcolor{comment}{// Type of the weights aligned with the degrees of freedom}}
+\DoxyCodeLine{119         \textcolor{comment}{// The weights should be inside of the set of shape functions and the types should be same}}
+\DoxyCodeLine{120         \textcolor{keyword}{template}<\textcolor{keyword}{class} Shape, \textcolor{keyword}{class} ShapeFunction, \textcolor{keyword}{class} DoF = \textcolor{keywordtype}{bool}, \textcolor{keyword}{class} T = \textcolor{keywordtype}{bool}>}
+\DoxyCodeLine{121         \textcolor{keyword}{class }\mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement}{CFiniteElement}};}
+\DoxyCodeLine{122         \textcolor{keyword}{template}<\textcolor{keyword}{class} Shape, \textcolor{keyword}{class} ShapeFunction, \textcolor{keyword}{class} DoF, \textcolor{keyword}{class} T>}
+\DoxyCodeLine{123         \textcolor{keyword}{class }\mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement}{CFiniteElement}}: \textcolor{keyword}{public} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement}{CElement}}<T>}
+\DoxyCodeLine{124         \{}
+\DoxyCodeLine{125         \textcolor{keyword}{public}:}
+\DoxyCodeLine{126             \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a00cb5ecd367013bd2c81fee14b2ac9f7}{CFiniteElement}}() \{\}}
+\DoxyCodeLine{127             \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a94516a047d03bc64dcbf4215a8b4bfd8}{CFiniteElement}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int}* nodes, \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}* points, \textcolor{keyword}{const} \textcolor{keywordtype}{int} dofs) :}
+\DoxyCodeLine{128                 m\_shape\{ nodes \},}
+\DoxyCodeLine{129                 m\_shapefunctions\{ points \},}
+\DoxyCodeLine{130                 m\_dofs\{ dofs \},}
+\DoxyCodeLine{131                 m\_type\{ -\/1 \} \{}
+\DoxyCodeLine{132                 m\_neighbours[0] = -\/1; m\_neighbours[1] = -\/1;}
+\DoxyCodeLine{133             \};}
+\DoxyCodeLine{134             \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a9abda507590b46539565a5c7b705df2c}{CFiniteElement}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int}* nodes, \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}* points) :}
+\DoxyCodeLine{135                 m\_shape\{ nodes \},}
+\DoxyCodeLine{136                 m\_shapefunctions\{ points \},}
+\DoxyCodeLine{137                 m\_dofs\{ 0 \},}
+\DoxyCodeLine{138                 m\_type\{ -\/1 \} \{}
+\DoxyCodeLine{139                 m\_neighbours[0] = -\/1; m\_neighbours[1] = -\/1;}
+\DoxyCodeLine{140             \};}
+\DoxyCodeLine{141             \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a32c349d5bc189ec11852835833f29038}{CFiniteElement}}(\textcolor{keyword}{const} Shape\& shape, \textcolor{keyword}{const} ShapeFunction\& f, \textcolor{keyword}{const} DoF\& d) :}
+\DoxyCodeLine{142                 m\_shape\{ shape \},}
+\DoxyCodeLine{143                 m\_shapefunctions\{ f \},}
+\DoxyCodeLine{144                 m\_dofs\{ d \},}
+\DoxyCodeLine{145                 m\_type\{ -\/1 \} \{}
+\DoxyCodeLine{146                 m\_neighbours[0] = -\/1; m\_neighbours[1] = -\/1;}
+\DoxyCodeLine{147             \};}
+\DoxyCodeLine{148             \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a213948dbd89ada288001e09011cbb44c}{CFiniteElement}}(\textcolor{keyword}{const} Shape\& shape, \textcolor{keyword}{const} ShapeFunction\& shfunc, \textcolor{keyword}{const} DoF\& dofs, \textcolor{keyword}{const} \textcolor{keywordtype}{int} type) :}
+\DoxyCodeLine{149                 m\_shape\{ shape \},}
+\DoxyCodeLine{150                 m\_shapefunctions\{ shfunc \},}
+\DoxyCodeLine{151                 m\_dofs\{ dofs \},}
+\DoxyCodeLine{152                 m\_type\{ type \} \{}
+\DoxyCodeLine{153                 m\_neighbours[0] = -\/1; m\_neighbours[1] = -\/1;}
+\DoxyCodeLine{154             \};}
+\DoxyCodeLine{155                         \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a9506fa75c2cf428792eb5ac06b267510}{CFiniteElement}}(\textcolor{keyword}{const} Shape\& shape, \textcolor{keyword}{const} ShapeFunction\& shfunc, \textcolor{keyword}{const} DoF\& dofs, \textcolor{keyword}{const} \textcolor{keywordtype}{int} type, \textcolor{keyword}{const} \textcolor{keywordtype}{int}* neigs) :}
+\DoxyCodeLine{156                                 m\_shape\{ shape \},}
+\DoxyCodeLine{157                                 m\_shapefunctions\{ shfunc \},}
+\DoxyCodeLine{158                                 m\_dofs\{ dofs \},}
+\DoxyCodeLine{159                                 m\_type\{ type \} \{}
+\DoxyCodeLine{160                                 m\_neighbours[0] = neigs[0]; m\_neighbours[1] = neigs[1];}
+\DoxyCodeLine{161                         \};}
+\DoxyCodeLine{162             \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a6aeeceb8a7a302b1c0e0f3657d79c1f6}{CFiniteElement}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement}{CFiniteElement<Shape, ShapeFunction, DoF>}}\& e) :}
+\DoxyCodeLine{163                 m\_shape\{ e.m\_shape \},}
+\DoxyCodeLine{164                 m\_shapefunctions\{ e.m\_shapefunctions \},}
+\DoxyCodeLine{165                 m\_dofs\{ e.m\_dofs \},}
+\DoxyCodeLine{166                 m\_type\{ e.m\_type \} \{}
+\DoxyCodeLine{167                 m\_neighbours[0] = e.m\_neighbours[0]; m\_neighbours[1] = e.m\_neighbours[1];}
+\DoxyCodeLine{168             \};}
+\DoxyCodeLine{169             \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement}{CElement<T>}}*         \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a01fabe3b7030d8fd976aca5ed0307675}{Clone}}()\textcolor{keyword}{ const}}
+\DoxyCodeLine{170 \textcolor{keyword}{            }\{}
+\DoxyCodeLine{171                                 \textcolor{keywordflow}{return} \textcolor{keyword}{new} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement}{CFiniteElement<Shape, ShapeFunction, DoF, T>}}(m\_shape, m\_shapefunctions, m\_dofs, m\_type, m\_neighbours);}
+\DoxyCodeLine{172             \};}
+\DoxyCodeLine{173             \textcolor{keyword}{friend} \textcolor{keyword}{const} \textcolor{keywordtype}{bool}       \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a9dbe97ecd1071903f8c1777e8fcf1426}{operator==}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement}{CFiniteElement}}\& e1, \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement}{CFiniteElement}}\& e2)}
+\DoxyCodeLine{174             \{}
+\DoxyCodeLine{175                 \textcolor{keywordflow}{if} (e1.m\_shape == e2.m\_shape)}
+\DoxyCodeLine{176                     \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{177                 \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{178             \}}
+\DoxyCodeLine{179             \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a31cac6e1388c3eef5ffe0b03aa38f4bd}{\string~CFiniteElement}}() \{\}}
+\DoxyCodeLine{180             \textcolor{keyword}{const} \textcolor{keywordtype}{int}               \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_af815b05d5b5b239ae0573a51743eba4a}{GetType}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{181             \textcolor{keyword}{const} \textcolor{keywordtype}{int}               \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a85e1005f8f85eda16f8876d31f87453b}{GetNode}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int}) \textcolor{keyword}{const};}
+\DoxyCodeLine{182             \textcolor{keyword}{const} \textcolor{keywordtype}{int}               \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a9b6729c557ace9bdf1fbc5573b0f0351}{GetNeighbour}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int}) \textcolor{keyword}{const};}
+\DoxyCodeLine{183             \textcolor{keyword}{const} Shape             \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_adb9245c414f80a872941fd082548aaf8}{GetShape}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{184             \textcolor{keyword}{const} ShapeFunction     \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_ab8a44b9a4a0d0fd52957a0285ed0f08f}{GetShapeFunctions}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{185             \textcolor{keyword}{const} DoF               \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a2dd169fd1124a975a7232727d14f8d4a}{GetDoF}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{186             \textcolor{keyword}{const} \textcolor{keywordtype}{int}               \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_ab436db8b7d155ca97378563905797a9b}{GetDoFs}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{187             \textcolor{keywordtype}{void}                    \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a987f64f67ee69474373fa7ada12ea433}{SetNeighbour}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} k, \textcolor{keyword}{const} \textcolor{keywordtype}{int} elem);}
+\DoxyCodeLine{188             \textcolor{keywordtype}{void}                    \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a1a59e7f47222e9e71b06493f0b61b320}{SetType}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int});}
+\DoxyCodeLine{189             \textcolor{keywordtype}{void}                    \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a4399cd0ecd0c8b38ef67ff223ba1aa5f}{SetShapeFunction}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int}, \textcolor{keyword}{const} ShapeFunction\&);}
+\DoxyCodeLine{190             \textcolor{keywordtype}{void}                    \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a0035f56f0613f4ec373ec24085c7406d}{SetDoF}}(\textcolor{keyword}{const} DoF\&);}
+\DoxyCodeLine{191             \textcolor{keywordtype}{void}                    \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a3720cb22e0aaf9f59b8865987d469c09}{SetShape}}(\textcolor{keyword}{const} Shape\&);}
+\DoxyCodeLine{192             \textcolor{keyword}{const} \textcolor{keywordtype}{int}               \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a99d8f352cd76d677cd79ca7deda493a4}{IncreaseOrder}}();}
+\DoxyCodeLine{193             \textcolor{keywordtype}{void}                    \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_ab30642c08e739bcfc36d446ac0dd34e9}{SetNode}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int}, \textcolor{keyword}{const} \textcolor{keywordtype}{int});}
+\DoxyCodeLine{194             \textcolor{keyword}{const} \textcolor{keywordtype}{int}               \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_adb6a37032eb5313e18feb596c0bb358f}{GetNumberOfNodes}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{195             \textcolor{comment}{//const int             SetValue(const int number, CSolution* value);}}
+\DoxyCodeLine{196             \textcolor{keyword}{const} \textcolor{keywordtype}{double}            \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a337c102baf4fbca61578e00c4a56ae81}{GetMeasure}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{197             \textcolor{comment}{//CSolution*                GetValue(const int);}}
+\DoxyCodeLine{198             \textcolor{comment}{//void                    SetShapeFunction(const int, const std::function<const DiffForm(const Point\&)>\&);}}
+\DoxyCodeLine{199             \textcolor{keyword}{const} \textcolor{keywordtype}{double}            \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a1608040a27141e1c55a8b20b5c95d8f5}{Integrate}}(\textcolor{keyword}{const} std::function<\textcolor{keyword}{const} \textcolor{keywordtype}{double}(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}\&)>\&, \textcolor{keyword}{const} std::vector<Point>\& v) \textcolor{keyword}{const};}
+\DoxyCodeLine{200             \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}                \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a1608040a27141e1c55a8b20b5c95d8f5}{Integrate}}(\textcolor{keyword}{const} std::function<\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}\&)>\&, \textcolor{keyword}{const} std::vector<Point>\& v) \textcolor{keyword}{const};}
+\DoxyCodeLine{201             \textcolor{keyword}{const} std::vector<double>   \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a1608040a27141e1c55a8b20b5c95d8f5}{Integrate}}(\textcolor{keyword}{const} std::function<\textcolor{keyword}{const} std::vector<double>(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}\&)>\&, \textcolor{keyword}{const} std::vector<Point>\&) \textcolor{keyword}{const};}
+\DoxyCodeLine{202             \textcolor{comment}{//const std::function<const DiffForm(const Point\&)>          GetShapeFunction(const int) const;}}
+\DoxyCodeLine{203             \textcolor{comment}{//const DiffForm*           GetShapeFunction(const int, const Point\&);}}
+\DoxyCodeLine{204             \textcolor{keyword}{const} \textcolor{keywordtype}{double}            \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a7b95d5a282a52e7e226d9d961ae7a4bf}{GetShapeFunction}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int}, \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}\&) \textcolor{keyword}{const};}
+\DoxyCodeLine{205             \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}                \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_aa039ffa1703c68bb0f70a368355fd2a6}{GetGradShapeFunction}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int}, \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}\&) \textcolor{keyword}{const};}
+\DoxyCodeLine{206             \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}                \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_aad676f6effd7cbd764c7298385a04d78}{GetNormal}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{207             \textcolor{keywordtype}{void}                    \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a72f941bad8c4b470116cf49d9905bb0a}{ReverseNormal}}();}
+\DoxyCodeLine{208             \textcolor{keyword}{const} \textcolor{keywordtype}{double}            \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_aba3b05e47db9c84aa762c51115a12ee3}{GetWeight}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int}, \textcolor{keyword}{const} std::vector<Point>\& verts, \textcolor{keyword}{const} std::function<\textcolor{keyword}{const} \textcolor{keywordtype}{double}(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}\&)>\& f) \textcolor{keyword}{const};}
+\DoxyCodeLine{209             \textcolor{comment}{//const T                   GetValue(const int number) const;}}
+\DoxyCodeLine{210             \textcolor{comment}{//const T                   GetValue(const Point\& p) const;}}
+\DoxyCodeLine{211             \textcolor{comment}{//const int             SetValue(const int number, const T\& value);}}
+\DoxyCodeLine{212             \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement}{CFiniteElement}}\&         \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_ac924dfef820ce6f940154095aea3872a}{operator=}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement}{CFiniteElement}}\& e)}
+\DoxyCodeLine{213             \{}
+\DoxyCodeLine{214                 m\_shape = e.m\_shape;}
+\DoxyCodeLine{215                 m\_shapefunctions = e.m\_shapefunctions;}
+\DoxyCodeLine{216                 m\_dofs = e.m\_dofs;}
+\DoxyCodeLine{217                 m\_type = e.m\_type;}
+\DoxyCodeLine{218                 \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{219             \}}
+\DoxyCodeLine{220             \textcolor{keyword}{friend} std::istream\&    \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a425a6272218dd076dff460f37af23192}{operator>>}}(std::istream\& is, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement}{CFiniteElement}}\& k)}
+\DoxyCodeLine{221             \{}
+\DoxyCodeLine{222                 is >> k.m\_shape;}
+\DoxyCodeLine{223                 \textcolor{keywordflow}{return} is;}
+\DoxyCodeLine{224             \}}
+\DoxyCodeLine{225             \textcolor{comment}{//const DiffForm          GetDShapeFunction(const int, const Point\&);}}
+\DoxyCodeLine{226         \textcolor{keyword}{private}:}
+\DoxyCodeLine{227             Shape                   m\_shape;}
+\DoxyCodeLine{228             ShapeFunction           m\_shapefunctions;}
+\DoxyCodeLine{229             DoF                     m\_dofs;}
+\DoxyCodeLine{230             \textcolor{keywordtype}{int}                     m\_type;}
+\DoxyCodeLine{231             \textcolor{keywordtype}{int}                     m\_neighbours[2];}
+\DoxyCodeLine{232         \};}
+\DoxyCodeLine{233 }
+\DoxyCodeLine{234         \textcolor{keyword}{template}<\textcolor{keyword}{class} Shape, \textcolor{keyword}{class} ShapeFunction, \textcolor{keyword}{class} DoF>}
+\DoxyCodeLine{235         \textcolor{keyword}{class }\mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement}{CFiniteElement}}<Shape, ShapeFunction, DoF, bool> : \textcolor{keyword}{public} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement}{CElement}}<>}
+\DoxyCodeLine{236         \{}
+\DoxyCodeLine{237         \textcolor{keyword}{public}:}
+\DoxyCodeLine{238             \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_3_01Shape_00_01ShapeFunction_00_01DoF_00_01bool_01_4_af98cc08167c2f9f154c7a26f3a3feb83}{CFiniteElement}}() \{\}}
+\DoxyCodeLine{239             \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_3_01Shape_00_01ShapeFunction_00_01DoF_00_01bool_01_4_affd19d68d3563156a2f06ee8871576f8}{CFiniteElement}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int}* nodes, \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}* points, \textcolor{keyword}{const} \textcolor{keywordtype}{int} dofs) :}
+\DoxyCodeLine{240                 m\_shape\{ nodes \},}
+\DoxyCodeLine{241                 m\_shapefunctions\{ points \},}
+\DoxyCodeLine{242                 m\_dofs\{ dofs \},}
+\DoxyCodeLine{243                 m\_type\{ -\/1 \} \{}
+\DoxyCodeLine{244                 m\_neighbours[0] = -\/1; m\_neighbours[1] = -\/1;}
+\DoxyCodeLine{245             \};}
+\DoxyCodeLine{246             \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_3_01Shape_00_01ShapeFunction_00_01DoF_00_01bool_01_4_adc382d31e439b08457384575431d9049}{CFiniteElement}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int}* nodes, \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}* points) :}
+\DoxyCodeLine{247                 m\_shape\{ nodes \},}
+\DoxyCodeLine{248                 m\_shapefunctions\{ points \},}
+\DoxyCodeLine{249                 m\_dofs\{ 0 \},}
+\DoxyCodeLine{250                 m\_type\{ -\/1 \} \{}
+\DoxyCodeLine{251                 m\_neighbours[0] = -\/1; m\_neighbours[1] = -\/1;}
+\DoxyCodeLine{252             \};}
+\DoxyCodeLine{253             \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_3_01Shape_00_01ShapeFunction_00_01DoF_00_01bool_01_4_add39d85b5dee7901377064bff792e467}{CFiniteElement}}(\textcolor{keyword}{const} Shape\& shape, \textcolor{keyword}{const} ShapeFunction\& f, \textcolor{keyword}{const} DoF\& d) :}
+\DoxyCodeLine{254                 m\_shape\{ shape \},}
+\DoxyCodeLine{255                 m\_shapefunctions\{ f \},}
+\DoxyCodeLine{256                 m\_dofs\{ d \},}
+\DoxyCodeLine{257                 m\_type\{ -\/1 \} \{}
+\DoxyCodeLine{258                 m\_neighbours[0] = -\/1; m\_neighbours[1] = -\/1;}
+\DoxyCodeLine{259             \};}
+\DoxyCodeLine{260             \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_3_01Shape_00_01ShapeFunction_00_01DoF_00_01bool_01_4_ae5ce89e743ee5942ffbaa858cbba1c32}{CFiniteElement}}(\textcolor{keyword}{const} Shape\& shape, \textcolor{keyword}{const} ShapeFunction\& shfunc, \textcolor{keyword}{const} DoF\& dofs, \textcolor{keyword}{const} \textcolor{keywordtype}{int} type) :}
+\DoxyCodeLine{261                 m\_shape\{ shape \},}
+\DoxyCodeLine{262                 m\_shapefunctions\{ shfunc \},}
+\DoxyCodeLine{263                 m\_dofs\{ dofs \},}
+\DoxyCodeLine{264                 m\_type\{ type \} \{}
+\DoxyCodeLine{265                 m\_neighbours[0] = -\/1; m\_neighbours[1] = -\/1;}
+\DoxyCodeLine{266             \};}
+\DoxyCodeLine{267             \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_3_01Shape_00_01ShapeFunction_00_01DoF_00_01bool_01_4_a2ac13e827f3304dddcee646ab24562b7}{CFiniteElement}}(\textcolor{keyword}{const} Shape\& shape, \textcolor{keyword}{const} ShapeFunction\& shfunc, \textcolor{keyword}{const} DoF\& dofs, \textcolor{keyword}{const} \textcolor{keywordtype}{int} type, \textcolor{keyword}{const} \textcolor{keywordtype}{int}* neigh) :}
+\DoxyCodeLine{268                 m\_shape\{ shape \},}
+\DoxyCodeLine{269                 m\_shapefunctions\{ shfunc \},}
+\DoxyCodeLine{270                 m\_dofs\{ dofs \},}
+\DoxyCodeLine{271                 m\_type\{ type \} \{}
+\DoxyCodeLine{272                 m\_neighbours[0] = neigh[0]; m\_neighbours[1] = neigh[1];}
+\DoxyCodeLine{273             \};}
+\DoxyCodeLine{274             \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_3_01Shape_00_01ShapeFunction_00_01DoF_00_01bool_01_4_a770060dc4a2af2da2fca23ca03134d64}{CFiniteElement}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement}{CFiniteElement<Shape, ShapeFunction, DoF>}}\& e) :}
+\DoxyCodeLine{275                 m\_shape\{ e.m\_shape \},}
+\DoxyCodeLine{276                 m\_shapefunctions\{ e.m\_shapefunctions \},}
+\DoxyCodeLine{277                 m\_dofs\{ e.m\_dofs \},}
+\DoxyCodeLine{278                 m\_type\{ e.m\_type \} \{}
+\DoxyCodeLine{279                 m\_neighbours[0] = e.m\_neighbours[0]; m\_neighbours[1] = e.m\_neighbours[1];}
+\DoxyCodeLine{280             \};}
+\DoxyCodeLine{281             \textcolor{keyword}{friend} \textcolor{keyword}{const} \textcolor{keywordtype}{bool}       \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_3_01Shape_00_01ShapeFunction_00_01DoF_00_01bool_01_4_a9dbe97ecd1071903f8c1777e8fcf1426}{operator==}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement}{CFiniteElement}}\& e1, \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement}{CFiniteElement}}\& e2)}
+\DoxyCodeLine{282             \{}
+\DoxyCodeLine{283                 \textcolor{keywordflow}{if} (e1.m\_shape == e2.m\_shape)}
+\DoxyCodeLine{284                     \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{285                 \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{286             \}}
+\DoxyCodeLine{287             \textcolor{comment}{// don't forget to delete after the call}}
+\DoxyCodeLine{288             \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement}{CElement<>}}*           \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_3_01Shape_00_01ShapeFunction_00_01DoF_00_01bool_01_4_aa0cf66842b2baafd06466edf2404e39c}{Clone}}()\textcolor{keyword}{ const}}
+\DoxyCodeLine{289 \textcolor{keyword}{            }\{}
+\DoxyCodeLine{290                 \textcolor{keywordflow}{return} \textcolor{keyword}{new} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement}{CFiniteElement<Shape, ShapeFunction, DoF>}}(m\_shape, m\_shapefunctions, m\_dofs, m\_type, m\_neighbours);}
+\DoxyCodeLine{291             \};}
+\DoxyCodeLine{292             \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_3_01Shape_00_01ShapeFunction_00_01DoF_00_01bool_01_4_a11d41aa9e7550b3dbd6da7a286aeb4ea}{\string~CFiniteElement}}() \{\}}
+\DoxyCodeLine{293             \textcolor{keyword}{const} \textcolor{keywordtype}{int}               \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_af815b05d5b5b239ae0573a51743eba4a}{GetType}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{294             \textcolor{keyword}{const} \textcolor{keywordtype}{int}               \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a85e1005f8f85eda16f8876d31f87453b}{GetNode}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int}) \textcolor{keyword}{const};}
+\DoxyCodeLine{295             \textcolor{keyword}{const} \textcolor{keywordtype}{int}               \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a9b6729c557ace9bdf1fbc5573b0f0351}{GetNeighbour}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int}) \textcolor{keyword}{const};}
+\DoxyCodeLine{296             \textcolor{keyword}{const} Shape             \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_adb9245c414f80a872941fd082548aaf8}{GetShape}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{297             \textcolor{keyword}{const} ShapeFunction     \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_ab8a44b9a4a0d0fd52957a0285ed0f08f}{GetShapeFunctions}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{298             \textcolor{keyword}{const} DoF               \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a2dd169fd1124a975a7232727d14f8d4a}{GetDoF}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{299             \textcolor{keyword}{const} \textcolor{keywordtype}{int}               \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_ab436db8b7d155ca97378563905797a9b}{GetDoFs}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{300             \textcolor{keywordtype}{void}                    \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a987f64f67ee69474373fa7ada12ea433}{SetNeighbour}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} k, \textcolor{keyword}{const} \textcolor{keywordtype}{int} elem);}
+\DoxyCodeLine{301             \textcolor{keywordtype}{void}                    \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a1a59e7f47222e9e71b06493f0b61b320}{SetType}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int});}
+\DoxyCodeLine{302             \textcolor{keywordtype}{void}                    \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a4399cd0ecd0c8b38ef67ff223ba1aa5f}{SetShapeFunction}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int}, \textcolor{keyword}{const} ShapeFunction\&);}
+\DoxyCodeLine{303             \textcolor{keywordtype}{void}                    \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a0035f56f0613f4ec373ec24085c7406d}{SetDoF}}(\textcolor{keyword}{const} DoF\&);}
+\DoxyCodeLine{304             \textcolor{keywordtype}{void}                    \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a3720cb22e0aaf9f59b8865987d469c09}{SetShape}}(\textcolor{keyword}{const} Shape\&);}
+\DoxyCodeLine{305             \textcolor{keywordtype}{void}                    \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_ab30642c08e739bcfc36d446ac0dd34e9}{SetNode}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int}, \textcolor{keyword}{const} \textcolor{keywordtype}{int});}
+\DoxyCodeLine{306             \textcolor{keyword}{const} \textcolor{keywordtype}{int}               \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_adb6a37032eb5313e18feb596c0bb358f}{GetNumberOfNodes}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{307             \textcolor{comment}{//const int             SetValue(const int number, CSolution* value);}}
+\DoxyCodeLine{308             \textcolor{keyword}{const} \textcolor{keywordtype}{int}               \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a99d8f352cd76d677cd79ca7deda493a4}{IncreaseOrder}}();}
+\DoxyCodeLine{309             \textcolor{keyword}{const} \textcolor{keywordtype}{double}            \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a337c102baf4fbca61578e00c4a56ae81}{GetMeasure}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{310             \textcolor{comment}{//CSolution*                GetValue(const int);}}
+\DoxyCodeLine{311             \textcolor{comment}{//void                    SetShapeFunction(const int, const std::function<const DiffForm(const Point\&)>\&);}}
+\DoxyCodeLine{312             \textcolor{keyword}{const} \textcolor{keywordtype}{double}            \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a1608040a27141e1c55a8b20b5c95d8f5}{Integrate}}(\textcolor{keyword}{const} std::function<\textcolor{keyword}{const} \textcolor{keywordtype}{double}(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}\&)>\&, \textcolor{keyword}{const} std::vector<Point>\& v) \textcolor{keyword}{const};}
+\DoxyCodeLine{313             \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}                \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a1608040a27141e1c55a8b20b5c95d8f5}{Integrate}}(\textcolor{keyword}{const} std::function<\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}\&)>\&, \textcolor{keyword}{const} std::vector<Point>\& v) \textcolor{keyword}{const};}
+\DoxyCodeLine{314             \textcolor{keyword}{const} std::vector<double>   \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a1608040a27141e1c55a8b20b5c95d8f5}{Integrate}}(\textcolor{keyword}{const} std::function<\textcolor{keyword}{const} std::vector<double>(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}\&)>\&, \textcolor{keyword}{const} std::vector<Point>\&) \textcolor{keyword}{const};}
+\DoxyCodeLine{315             \textcolor{comment}{//const std::function<const DiffForm(const Point\&)>          GetShapeFunction(const int) const;}}
+\DoxyCodeLine{316             \textcolor{comment}{//const DiffForm*           GetShapeFunction(const int, const Point\&);}}
+\DoxyCodeLine{317             \textcolor{keyword}{const} \textcolor{keywordtype}{double}            \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_3_01Shape_00_01ShapeFunction_00_01DoF_00_01bool_01_4_adf1d13b7adde20fa962777a95b0558af}{GetShapeFunction}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int}, \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}\&) \textcolor{keyword}{const};}
+\DoxyCodeLine{318             \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}                \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_aa039ffa1703c68bb0f70a368355fd2a6}{GetGradShapeFunction}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int}, \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}\&) \textcolor{keyword}{const};}
+\DoxyCodeLine{319             \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}                \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_aad676f6effd7cbd764c7298385a04d78}{GetNormal}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{320             \textcolor{keywordtype}{void}                    \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a72f941bad8c4b470116cf49d9905bb0a}{ReverseNormal}}();}
+\DoxyCodeLine{321             \textcolor{keyword}{const} \textcolor{keywordtype}{double}            \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_3_01Shape_00_01ShapeFunction_00_01DoF_00_01bool_01_4_aa14c1255dd67993764827421e861f4a3}{GetWeight}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int}, \textcolor{keyword}{const} std::vector<Point>\& verts, \textcolor{keyword}{const} std::function<\textcolor{keyword}{const} \textcolor{keywordtype}{double}(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}\&)>\& f) \textcolor{keyword}{const};}
+\DoxyCodeLine{322             \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement}{CFiniteElement}}\&         \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_3_01Shape_00_01ShapeFunction_00_01DoF_00_01bool_01_4_a207bad586523b5d30705b4ac4e2642d8}{operator=}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement}{CFiniteElement}}\& e)}
+\DoxyCodeLine{323             \{}
+\DoxyCodeLine{324                 m\_shape = e.m\_shape;}
+\DoxyCodeLine{325                 m\_shapefunctions = e.m\_shapefunctions;}
+\DoxyCodeLine{326                 m\_dofs = e.m\_dofs;}
+\DoxyCodeLine{327                 m\_type = e.m\_type;}
+\DoxyCodeLine{328                 \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{329             \}}
+\DoxyCodeLine{330             \textcolor{keyword}{friend} std::istream\&    \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_3_01Shape_00_01ShapeFunction_00_01DoF_00_01bool_01_4_a425a6272218dd076dff460f37af23192}{operator>>}}(std::istream\& is, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement}{CFiniteElement}}\& k)}
+\DoxyCodeLine{331             \{}
+\DoxyCodeLine{332                 is >> k.m\_shape;}
+\DoxyCodeLine{333                 \textcolor{keywordflow}{return} is;}
+\DoxyCodeLine{334             \}}
+\DoxyCodeLine{335             \textcolor{comment}{//const DiffForm          GetDShapeFunction(const int, const Point\&);}}
+\DoxyCodeLine{336         \textcolor{keyword}{private}:}
+\DoxyCodeLine{337             Shape                   m\_shape;}
+\DoxyCodeLine{338             ShapeFunction           m\_shapefunctions;}
+\DoxyCodeLine{339             DoF                     m\_dofs;}
+\DoxyCodeLine{340             \textcolor{keywordtype}{int}                     m\_type;}
+\DoxyCodeLine{341             \textcolor{keywordtype}{int}                     m\_neighbours[2];}
+\DoxyCodeLine{342         \};}
+\DoxyCodeLine{343 }
+\DoxyCodeLine{344 }
+\DoxyCodeLine{345         \textcolor{keyword}{template}<\textcolor{keyword}{class} Shape, \textcolor{keyword}{class} ShapeFunction>}
+\DoxyCodeLine{346         \textcolor{keyword}{class }\mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement}{CFiniteElement}}<Shape, ShapeFunction, bool, bool> : \textcolor{keyword}{public} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement}{CElement}}<>}
+\DoxyCodeLine{347         \{}
+\DoxyCodeLine{348         \textcolor{keyword}{public}:}
+\DoxyCodeLine{349             \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_3_01Shape_00_01ShapeFunction_00_01bool_00_01bool_01_4_abfe67dd94b17663cb0f85159d0d393d9}{CFiniteElement}}() \{\}}
+\DoxyCodeLine{350             \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_3_01Shape_00_01ShapeFunction_00_01bool_00_01bool_01_4_a4b4602250120bc1425ec30502326d8fd}{CFiniteElement}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int}* nodes, \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}* points, \textcolor{keyword}{const} \textcolor{keywordtype}{int} dofs) :}
+\DoxyCodeLine{351                 m\_shape\{ nodes \},}
+\DoxyCodeLine{352                 m\_shapefunctions\{ points, dofs \},}
+\DoxyCodeLine{353                 m\_type\{ -\/1 \} \{}
+\DoxyCodeLine{354                 m\_neighbours[0] = -\/1; m\_neighbours[1] = -\/1;}
+\DoxyCodeLine{355             \};}
+\DoxyCodeLine{356             \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_3_01Shape_00_01ShapeFunction_00_01bool_00_01bool_01_4_a99a3ee7723f00cf1c3b4ff819ca554c6}{CFiniteElement}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int}* nodes, \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}* points, \textcolor{keyword}{const} \textcolor{keywordtype}{int} dofs, \textcolor{keyword}{const} \textcolor{keywordtype}{int} type) :}
+\DoxyCodeLine{357                 m\_shape\{ nodes, dofs \},}
+\DoxyCodeLine{358                 m\_shapefunctions\{ points, dofs \},}
+\DoxyCodeLine{359                 m\_type\{ type \} \{}
+\DoxyCodeLine{360                 m\_neighbours[0] = -\/1; m\_neighbours[1] = -\/1;}
+\DoxyCodeLine{361             \};}
+\DoxyCodeLine{362             \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_3_01Shape_00_01ShapeFunction_00_01bool_00_01bool_01_4_ae4ed67e0d31fe80d837fafc58c0b1b8e}{CFiniteElement}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int}* nodes, \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}* points) :}
+\DoxyCodeLine{363                 m\_shape\{ nodes \},}
+\DoxyCodeLine{364                 m\_shapefunctions\{ points \},}
+\DoxyCodeLine{365                 m\_type\{ -\/1 \} \{}
+\DoxyCodeLine{366                 m\_neighbours[0] = -\/1; m\_neighbours[1] = -\/1;}
+\DoxyCodeLine{367             \};}
+\DoxyCodeLine{368             \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_3_01Shape_00_01ShapeFunction_00_01bool_00_01bool_01_4_a66e54050dc2629329f0e07ff93201787}{CFiniteElement}}(\textcolor{keyword}{const} Shape\& shape, \textcolor{keyword}{const} ShapeFunction\& f) :}
+\DoxyCodeLine{369                 m\_shape\{ shape \},}
+\DoxyCodeLine{370                 m\_shapefunctions\{ f \},}
+\DoxyCodeLine{371                 m\_type\{ -\/1 \} \{}
+\DoxyCodeLine{372                 m\_neighbours[0] = -\/1; m\_neighbours[1] = -\/1;}
+\DoxyCodeLine{373             \};}
+\DoxyCodeLine{374             \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_3_01Shape_00_01ShapeFunction_00_01bool_00_01bool_01_4_a3aa25874ee4075f81f9eb97ff90c9aea}{CFiniteElement}}(\textcolor{keyword}{const} Shape\& shape, \textcolor{keyword}{const} ShapeFunction\& shfunc, \textcolor{keyword}{const} \textcolor{keywordtype}{int} type) :}
+\DoxyCodeLine{375                 m\_shape\{ shape \},}
+\DoxyCodeLine{376                 m\_shapefunctions\{ shfunc \},}
+\DoxyCodeLine{377                 m\_type\{ type \} \{}
+\DoxyCodeLine{378                 m\_neighbours[0] = -\/1; m\_neighbours[1] = -\/1;}
+\DoxyCodeLine{379             \};}
+\DoxyCodeLine{380                         \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_3_01Shape_00_01ShapeFunction_00_01bool_00_01bool_01_4_a5b11dfab070e7d030576212901019e48}{CFiniteElement}}(\textcolor{keyword}{const} Shape\& shape, \textcolor{keyword}{const} ShapeFunction\& shfunc, \textcolor{keyword}{const} \textcolor{keywordtype}{int} type, \textcolor{keyword}{const} \textcolor{keywordtype}{int}* neigs) :}
+\DoxyCodeLine{381                                 m\_shape\{ shape \},}
+\DoxyCodeLine{382                                 m\_shapefunctions\{ shfunc \},}
+\DoxyCodeLine{383                                 m\_type\{ type \} \{}
+\DoxyCodeLine{384                                 m\_neighbours[0] = neigs[0]; m\_neighbours[1] = neigs[1];}
+\DoxyCodeLine{385                         \};}
+\DoxyCodeLine{386             \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_3_01Shape_00_01ShapeFunction_00_01bool_00_01bool_01_4_a5448ba55b07197f2caed9a1838eb43c2}{CFiniteElement}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement}{CFiniteElement<Shape, ShapeFunction>}}\&e) :}
+\DoxyCodeLine{387                 m\_shape\{ e.m\_shape \},}
+\DoxyCodeLine{388                 m\_shapefunctions\{ e.m\_shapefunctions \},}
+\DoxyCodeLine{389                 m\_type\{ e.m\_type \} \{}
+\DoxyCodeLine{390                 m\_neighbours[0] = e.m\_neighbours[0]; m\_neighbours[1] = e.m\_neighbours[1];}
+\DoxyCodeLine{391             \};}
+\DoxyCodeLine{392             \textcolor{keyword}{friend} \textcolor{keyword}{const} \textcolor{keywordtype}{bool}       \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_3_01Shape_00_01ShapeFunction_00_01bool_00_01bool_01_4_a9dbe97ecd1071903f8c1777e8fcf1426}{operator==}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement}{CFiniteElement}}\& e1, \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement}{CFiniteElement}}\& e2)}
+\DoxyCodeLine{393             \{}
+\DoxyCodeLine{394                 \textcolor{keywordflow}{if} (e1.m\_shape == e2.m\_shape)}
+\DoxyCodeLine{395                     \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{396                 \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{397             \}}
+\DoxyCodeLine{398             \textcolor{comment}{// don't forget to delete after the call}}
+\DoxyCodeLine{399             \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CElement}{CElement<>}}*           \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_3_01Shape_00_01ShapeFunction_00_01bool_00_01bool_01_4_a3f05259074608156137f0f670129fbe9}{Clone}}()\textcolor{keyword}{ const}}
+\DoxyCodeLine{400 \textcolor{keyword}{            }\{}
+\DoxyCodeLine{401                                 \textcolor{keywordflow}{return} \textcolor{keyword}{new} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement}{CFiniteElement<Shape, ShapeFunction>}}(m\_shape, m\_shapefunctions, m\_type, m\_neighbours);}
+\DoxyCodeLine{402             \};}
+\DoxyCodeLine{403             \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_3_01Shape_00_01ShapeFunction_00_01bool_00_01bool_01_4_a6210cbbdd481c95c0894b7b0e9e57bd6}{\string~CFiniteElement}}() \{\}}
+\DoxyCodeLine{404             \textcolor{keyword}{const} \textcolor{keywordtype}{int}               \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_af815b05d5b5b239ae0573a51743eba4a}{GetType}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{405             \textcolor{keyword}{const} \textcolor{keywordtype}{int}               \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a85e1005f8f85eda16f8876d31f87453b}{GetNode}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int}) \textcolor{keyword}{const};}
+\DoxyCodeLine{406             \textcolor{keyword}{const} \textcolor{keywordtype}{int}               \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a9b6729c557ace9bdf1fbc5573b0f0351}{GetNeighbour}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int}) \textcolor{keyword}{const};}
+\DoxyCodeLine{407             \textcolor{keyword}{const} Shape             \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_adb9245c414f80a872941fd082548aaf8}{GetShape}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{408             \textcolor{keyword}{const} ShapeFunction     \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_ab8a44b9a4a0d0fd52957a0285ed0f08f}{GetShapeFunctions}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{409             \textcolor{keyword}{const} \textcolor{keywordtype}{int}               \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_ab436db8b7d155ca97378563905797a9b}{GetDoFs}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{410             \textcolor{keywordtype}{void}                    \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a987f64f67ee69474373fa7ada12ea433}{SetNeighbour}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} k, \textcolor{keyword}{const} \textcolor{keywordtype}{int} elem);}
+\DoxyCodeLine{411             \textcolor{keywordtype}{void}                    \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a1a59e7f47222e9e71b06493f0b61b320}{SetType}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int});}
+\DoxyCodeLine{412             \textcolor{keywordtype}{void}                    \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a4399cd0ecd0c8b38ef67ff223ba1aa5f}{SetShapeFunction}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int}, \textcolor{keyword}{const} ShapeFunction\&);}
+\DoxyCodeLine{413             \textcolor{keywordtype}{void}                    \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a3720cb22e0aaf9f59b8865987d469c09}{SetShape}}(\textcolor{keyword}{const} Shape\&);}
+\DoxyCodeLine{414             \textcolor{keywordtype}{void}                    \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_ab30642c08e739bcfc36d446ac0dd34e9}{SetNode}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int}, \textcolor{keyword}{const} \textcolor{keywordtype}{int});}
+\DoxyCodeLine{415             \textcolor{keyword}{const} \textcolor{keywordtype}{int}               \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_adb6a37032eb5313e18feb596c0bb358f}{GetNumberOfNodes}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{416             \textcolor{comment}{//const int             SetValue(const int number, CSolution* value);}}
+\DoxyCodeLine{417             \textcolor{keyword}{const} \textcolor{keywordtype}{int}               \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a99d8f352cd76d677cd79ca7deda493a4}{IncreaseOrder}}();}
+\DoxyCodeLine{418             \textcolor{keyword}{const} \textcolor{keywordtype}{double}            \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a337c102baf4fbca61578e00c4a56ae81}{GetMeasure}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{419             \textcolor{comment}{//CSolution*                GetValue(const int);}}
+\DoxyCodeLine{420             \textcolor{comment}{//void                    SetShapeFunction(const int, const std::function<const DiffForm(const Point\&)>\&);}}
+\DoxyCodeLine{421             \textcolor{keyword}{const} \textcolor{keywordtype}{double}            \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a1608040a27141e1c55a8b20b5c95d8f5}{Integrate}}(\textcolor{keyword}{const} std::function<\textcolor{keyword}{const} \textcolor{keywordtype}{double}(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}\&)>\&, \textcolor{keyword}{const} std::vector<Point>\& v) \textcolor{keyword}{const};}
+\DoxyCodeLine{422             \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}                \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a1608040a27141e1c55a8b20b5c95d8f5}{Integrate}}(\textcolor{keyword}{const} std::function<\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}\&)>\&, \textcolor{keyword}{const} std::vector<Point>\& v) \textcolor{keyword}{const};}
+\DoxyCodeLine{423             \textcolor{keyword}{const} std::vector<double>   \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a1608040a27141e1c55a8b20b5c95d8f5}{Integrate}}(\textcolor{keyword}{const} std::function<\textcolor{keyword}{const} std::vector<double>(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}\&)>\&, \textcolor{keyword}{const} std::vector<Point>\&) \textcolor{keyword}{const};}
+\DoxyCodeLine{424             \textcolor{comment}{//const std::function<const DiffForm(const Point\&)>          GetShapeFunction(const int) const;}}
+\DoxyCodeLine{425             \textcolor{comment}{//const DiffForm*           GetShapeFunction(const int, const Point\&);}}
+\DoxyCodeLine{426             \textcolor{keyword}{const} \textcolor{keywordtype}{double}            \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a7b95d5a282a52e7e226d9d961ae7a4bf}{GetShapeFunction}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int}, \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}\&) \textcolor{keyword}{const};}
+\DoxyCodeLine{427             \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}                \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_aa039ffa1703c68bb0f70a368355fd2a6}{GetGradShapeFunction}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int}, \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}\&) \textcolor{keyword}{const};}
+\DoxyCodeLine{428             \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}                \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_aad676f6effd7cbd764c7298385a04d78}{GetNormal}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{429             \textcolor{keywordtype}{void}                    \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a72f941bad8c4b470116cf49d9905bb0a}{ReverseNormal}}();}
+\DoxyCodeLine{430             \textcolor{keyword}{const} \textcolor{keywordtype}{double}            \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_aba3b05e47db9c84aa762c51115a12ee3}{GetWeight}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int}, \textcolor{keyword}{const} std::vector<Point>\& verts, \textcolor{keyword}{const} std::function<\textcolor{keyword}{const} \textcolor{keywordtype}{double}(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}\&)>\& f) \textcolor{keyword}{const};}
+\DoxyCodeLine{431             \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement}{CFiniteElement}}\&         \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_3_01Shape_00_01ShapeFunction_00_01bool_00_01bool_01_4_a42b05b1965343008f172ccda2ea42522}{operator=}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement}{CFiniteElement}}\& e)}
+\DoxyCodeLine{432             \{}
+\DoxyCodeLine{433                 m\_shape = e.m\_shape;}
+\DoxyCodeLine{434                 m\_shapefunctions = e.m\_shapefunctions;}
+\DoxyCodeLine{435                 m\_type = e.m\_type;}
+\DoxyCodeLine{436                 \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{437             \}}
+\DoxyCodeLine{438             \textcolor{keyword}{friend} std::istream\&    \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_3_01Shape_00_01ShapeFunction_00_01bool_00_01bool_01_4_a425a6272218dd076dff460f37af23192}{operator>>}}(std::istream\& is, \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement}{CFiniteElement}}\& k)}
+\DoxyCodeLine{439             \{}
+\DoxyCodeLine{440                 is >> k.m\_shape;}
+\DoxyCodeLine{441                 \textcolor{keywordflow}{return} is;}
+\DoxyCodeLine{442             \}}
+\DoxyCodeLine{443             \textcolor{comment}{//const DiffForm          GetDShapeFunction(const int, const Point\&);}}
+\DoxyCodeLine{444         \textcolor{keyword}{private}:}
+\DoxyCodeLine{445             Shape                   m\_shape;}
+\DoxyCodeLine{446             ShapeFunction           m\_shapefunctions;}
+\DoxyCodeLine{447             \textcolor{keywordtype}{int}                     m\_type;}
+\DoxyCodeLine{448             \textcolor{keywordtype}{int}                     m\_neighbours[2];}
+\DoxyCodeLine{449         \};}
+\DoxyCodeLine{450 }
+\DoxyCodeLine{451 }
+\DoxyCodeLine{452 }
+\DoxyCodeLine{453 }
+\DoxyCodeLine{454 }
+\DoxyCodeLine{455         \textcolor{comment}{// implementation template<class Shape, class ShapeFunction, class DoF>}}
+\DoxyCodeLine{456         \textcolor{comment}{// CFiniteElement<Shape, ShapeFunction, DoF>}}
+\DoxyCodeLine{457         \textcolor{keyword}{template}<\textcolor{keyword}{class} Shape, \textcolor{keyword}{class} ShapeFunction, \textcolor{keyword}{class} DoF>}
+\DoxyCodeLine{458         \textcolor{keyword}{const} \textcolor{keywordtype}{int} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_af815b05d5b5b239ae0573a51743eba4a}{CFiniteElement<Shape, ShapeFunction, DoF, bool>::GetType}}()\textcolor{keyword}{ const}}
+\DoxyCodeLine{459 \textcolor{keyword}{        }\{}
+\DoxyCodeLine{460             \textcolor{keywordflow}{return} m\_type;}
+\DoxyCodeLine{461         \}}
+\DoxyCodeLine{462         \textcolor{comment}{//template<class Shape, class ShapeFunction, class DoF>}}
+\DoxyCodeLine{463         \textcolor{comment}{//const int CFiniteElement<Shape, ShapeFunction, DoF, bool>::SetValue(const int number, CSolution* value)}}
+\DoxyCodeLine{464         \textcolor{comment}{//\{}}
+\DoxyCodeLine{465         \textcolor{comment}{//  return m\_shapefunctions.SetValue(number, value);}}
+\DoxyCodeLine{466         \textcolor{comment}{//\}}}
+\DoxyCodeLine{467         \textcolor{comment}{//template<class Shape, class ShapeFunction, class DoF>}}
+\DoxyCodeLine{468         \textcolor{comment}{//CSolution* CFiniteElement<Shape, ShapeFunction, DoF, bool>::GetValue(const int p)}}
+\DoxyCodeLine{469         \textcolor{comment}{//\{}}
+\DoxyCodeLine{470         \textcolor{comment}{//  auto\&\& val = m\_shapefunctions.GetValue(p);}}
+\DoxyCodeLine{471         \textcolor{comment}{//  return const\_cast<CSolution*>(static\_cast<const CSolution*>(\&val));;}}
+\DoxyCodeLine{472         \textcolor{comment}{//\}}}
+\DoxyCodeLine{473         \textcolor{keyword}{template}<\textcolor{keyword}{class} Shape, \textcolor{keyword}{class} ShapeFunction, \textcolor{keyword}{class} DoF>}
+\DoxyCodeLine{474         \textcolor{keyword}{const} \textcolor{keywordtype}{int} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a85e1005f8f85eda16f8876d31f87453b}{CFiniteElement<Shape, ShapeFunction, DoF, bool>::GetNode}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} k)\textcolor{keyword}{ const}}
+\DoxyCodeLine{475 \textcolor{keyword}{        }\{}
+\DoxyCodeLine{476             \textcolor{keywordflow}{return} m\_shape.GetNode(k);}
+\DoxyCodeLine{477         \}}
+\DoxyCodeLine{478         \textcolor{keyword}{template}<\textcolor{keyword}{class} Shape, \textcolor{keyword}{class} ShapeFunction, \textcolor{keyword}{class} DoF>}
+\DoxyCodeLine{479         \textcolor{keyword}{const} \textcolor{keywordtype}{double} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a1608040a27141e1c55a8b20b5c95d8f5}{CFiniteElement<Shape, ShapeFunction, DoF, bool>::Integrate}}(\textcolor{keyword}{const} std::function<\textcolor{keyword}{const} \textcolor{keywordtype}{double}(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}\&)>\&f, \textcolor{keyword}{const} std::vector<Point>\& v)\textcolor{keyword}{ const}}
+\DoxyCodeLine{480 \textcolor{keyword}{        }\{}
+\DoxyCodeLine{481             \textcolor{keywordflow}{return} m\_shape.Integrate(f, v);}
+\DoxyCodeLine{482         \}}
+\DoxyCodeLine{483 }
+\DoxyCodeLine{484         \textcolor{keyword}{template}<\textcolor{keyword}{class} Shape, \textcolor{keyword}{class} ShapeFunction, \textcolor{keyword}{class} DoF>}
+\DoxyCodeLine{485         \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a1608040a27141e1c55a8b20b5c95d8f5}{CFiniteElement<Shape, ShapeFunction, DoF, bool>::Integrate}}(\textcolor{keyword}{const} std::function<\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}\&)>\&f, \textcolor{keyword}{const} std::vector<Point>\& v)\textcolor{keyword}{ const}}
+\DoxyCodeLine{486 \textcolor{keyword}{        }\{}
+\DoxyCodeLine{487             \textcolor{keywordflow}{return} m\_shape.Integrate(f, v);}
+\DoxyCodeLine{488         \}}
+\DoxyCodeLine{489 }
+\DoxyCodeLine{490         \textcolor{keyword}{template}<\textcolor{keyword}{class} Shape, \textcolor{keyword}{class} ShapeFunction, \textcolor{keyword}{class} DoF>}
+\DoxyCodeLine{491         \textcolor{keyword}{const} std::vector<double> \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a1608040a27141e1c55a8b20b5c95d8f5}{CFiniteElement<Shape, ShapeFunction, DoF, bool>::Integrate}}(\textcolor{keyword}{const} std::function<\textcolor{keyword}{const} std::vector<double>(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}\&)>\&f, \textcolor{keyword}{const} std::vector<Point>\& v)\textcolor{keyword}{ const}}
+\DoxyCodeLine{492 \textcolor{keyword}{        }\{}
+\DoxyCodeLine{493             \textcolor{keywordflow}{return} m\_shape.Integrate(f, v);}
+\DoxyCodeLine{494         \}}
+\DoxyCodeLine{495         \textcolor{keyword}{template}<\textcolor{keyword}{class} Shape, \textcolor{keyword}{class} ShapeFunction, \textcolor{keyword}{class} DoF>}
+\DoxyCodeLine{496         \textcolor{keyword}{const} \textcolor{keywordtype}{int} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a9b6729c557ace9bdf1fbc5573b0f0351}{CFiniteElement<Shape, ShapeFunction, DoF, bool>::GetNeighbour}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} k)\textcolor{keyword}{ const}}
+\DoxyCodeLine{497 \textcolor{keyword}{        }\{}
+\DoxyCodeLine{498             \textcolor{keywordflow}{return} m\_neighbours[k];}
+\DoxyCodeLine{499         \}}
+\DoxyCodeLine{500 }
+\DoxyCodeLine{501         \textcolor{keyword}{template}<\textcolor{keyword}{class} Shape, \textcolor{keyword}{class} ShapeFunction, \textcolor{keyword}{class} DoF>}
+\DoxyCodeLine{502         \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_aad676f6effd7cbd764c7298385a04d78}{CFiniteElement<Shape, ShapeFunction, DoF, bool>::GetNormal}}()\textcolor{keyword}{ const}}
+\DoxyCodeLine{503 \textcolor{keyword}{        }\{}
+\DoxyCodeLine{504             \textcolor{keywordflow}{return} m\_shapefunctions.GetNormal();}
+\DoxyCodeLine{505         \}}
+\DoxyCodeLine{506 }
+\DoxyCodeLine{507         \textcolor{keyword}{template}<\textcolor{keyword}{class} Shape, \textcolor{keyword}{class} ShapeFunction, \textcolor{keyword}{class} DoF>}
+\DoxyCodeLine{508         \textcolor{keywordtype}{void} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a72f941bad8c4b470116cf49d9905bb0a}{CFiniteElement<Shape, ShapeFunction, DoF, bool>::ReverseNormal}}()}
+\DoxyCodeLine{509         \{}
+\DoxyCodeLine{510             m\_shapefunctions.ReverseNormal();}
+\DoxyCodeLine{511         \}}
+\DoxyCodeLine{512 }
+\DoxyCodeLine{513         \textcolor{keyword}{template}<\textcolor{keyword}{class} Shape, \textcolor{keyword}{class} ShapeFunction, \textcolor{keyword}{class} DoF>}
+\DoxyCodeLine{514         \textcolor{keyword}{const} \textcolor{keywordtype}{double} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a337c102baf4fbca61578e00c4a56ae81}{CFiniteElement<Shape, ShapeFunction, DoF, bool>::GetMeasure}}()\textcolor{keyword}{ const}}
+\DoxyCodeLine{515 \textcolor{keyword}{        }\{}
+\DoxyCodeLine{516             \textcolor{keywordflow}{return} m\_shapefunctions.GetMeasure();}
+\DoxyCodeLine{517         \}}
+\DoxyCodeLine{518 }
+\DoxyCodeLine{519         \textcolor{comment}{//template<class Shape, class ShapeFunction, class DoF, class T>}}
+\DoxyCodeLine{520         \textcolor{comment}{//inline const T CFiniteElement<Shape, ShapeFunction, DoF, T>::GetValue(const int number) const}}
+\DoxyCodeLine{521         \textcolor{comment}{//\{}}
+\DoxyCodeLine{522         \textcolor{comment}{//  return m\_shapefunctions.GetValue(number);}}
+\DoxyCodeLine{523         \textcolor{comment}{//\}}}
+\DoxyCodeLine{524 }
+\DoxyCodeLine{525         \textcolor{comment}{//template<class Shape, class ShapeFunction, class DoF, class T>}}
+\DoxyCodeLine{526         \textcolor{comment}{//inline const T CFiniteElement<Shape, ShapeFunction, DoF, T>::GetValue(const Point \& p) const}}
+\DoxyCodeLine{527         \textcolor{comment}{//\{}}
+\DoxyCodeLine{528         \textcolor{comment}{//  return m\_shapefunctions.GetValue(p);}}
+\DoxyCodeLine{529         \textcolor{comment}{//\}}}
+\DoxyCodeLine{530 }
+\DoxyCodeLine{531         \textcolor{comment}{//template<class Shape, class ShapeFunction, class DoF, class T>}}
+\DoxyCodeLine{532         \textcolor{comment}{//inline const int CFiniteElement<Shape, ShapeFunction, DoF, T>::SetValue(const int number, const T \& value)}}
+\DoxyCodeLine{533         \textcolor{comment}{//\{}}
+\DoxyCodeLine{534         \textcolor{comment}{//  return m\_shapefunctions.SetValue(number, value);}}
+\DoxyCodeLine{535         \textcolor{comment}{//\}}}
+\DoxyCodeLine{536 }
+\DoxyCodeLine{537         \textcolor{keyword}{template}<\textcolor{keyword}{class} Shape, \textcolor{keyword}{class} ShapeFunction, \textcolor{keyword}{class} DoF>}
+\DoxyCodeLine{538         \textcolor{keyword}{const} Shape \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_adb9245c414f80a872941fd082548aaf8}{CFiniteElement<Shape, ShapeFunction, DoF, bool>::GetShape}}()\textcolor{keyword}{ const}}
+\DoxyCodeLine{539 \textcolor{keyword}{        }\{}
+\DoxyCodeLine{540             \textcolor{keywordflow}{return} m\_shape;}
+\DoxyCodeLine{541         \}}
+\DoxyCodeLine{542 }
+\DoxyCodeLine{543         \textcolor{keyword}{template}<\textcolor{keyword}{class} Shape, \textcolor{keyword}{class} ShapeFunction, \textcolor{keyword}{class} DoF>}
+\DoxyCodeLine{544         \textcolor{keyword}{const} ShapeFunction \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_ab8a44b9a4a0d0fd52957a0285ed0f08f}{CFiniteElement<Shape, ShapeFunction, DoF, bool>::GetShapeFunctions}}()\textcolor{keyword}{ const}}
+\DoxyCodeLine{545 \textcolor{keyword}{        }\{}
+\DoxyCodeLine{546             \textcolor{keywordflow}{return} m\_shapefunctions;}
+\DoxyCodeLine{547         \}}
+\DoxyCodeLine{548 }
+\DoxyCodeLine{549         \textcolor{keyword}{template}<\textcolor{keyword}{class} Shape, \textcolor{keyword}{class} ShapeFunction, \textcolor{keyword}{class} DoF>}
+\DoxyCodeLine{550         \textcolor{keyword}{const} DoF \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a2dd169fd1124a975a7232727d14f8d4a}{CFiniteElement<Shape, ShapeFunction, DoF, bool>::GetDoF}}()\textcolor{keyword}{ const}}
+\DoxyCodeLine{551 \textcolor{keyword}{        }\{}
+\DoxyCodeLine{552             \textcolor{keywordflow}{return} m\_dofs;}
+\DoxyCodeLine{553         \}}
+\DoxyCodeLine{554 }
+\DoxyCodeLine{555         \textcolor{keyword}{template}<\textcolor{keyword}{class} Shape, \textcolor{keyword}{class} ShapeFunction, \textcolor{keyword}{class} DoF>}
+\DoxyCodeLine{556         \textcolor{keyword}{const} \textcolor{keywordtype}{int} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_adb6a37032eb5313e18feb596c0bb358f}{CFiniteElement<Shape, ShapeFunction, DoF, bool>::GetNumberOfNodes}}()\textcolor{keyword}{ const}}
+\DoxyCodeLine{557 \textcolor{keyword}{        }\{}
+\DoxyCodeLine{558             \textcolor{keywordflow}{return} m\_shape.GetNumberOfNodes();}
+\DoxyCodeLine{559         \}}
+\DoxyCodeLine{560 }
+\DoxyCodeLine{561         \textcolor{keyword}{template}<\textcolor{keyword}{class} Shape, \textcolor{keyword}{class} ShapeFunction, \textcolor{keyword}{class} DoF>}
+\DoxyCodeLine{562         \textcolor{keyword}{const} \textcolor{keywordtype}{int} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_ab436db8b7d155ca97378563905797a9b}{CFiniteElement<Shape, ShapeFunction, DoF, bool>::GetDoFs}}()\textcolor{keyword}{ const}}
+\DoxyCodeLine{563 \textcolor{keyword}{        }\{}
+\DoxyCodeLine{564             \textcolor{keywordflow}{return} m\_shapefunctions.GetNumberOfShapeFunctions();}
+\DoxyCodeLine{565         \}}
+\DoxyCodeLine{566 }
+\DoxyCodeLine{567         \textcolor{keyword}{template}<\textcolor{keyword}{class} Shape, \textcolor{keyword}{class} ShapeFunction, \textcolor{keyword}{class} DoF>}
+\DoxyCodeLine{568         \textcolor{keywordtype}{void} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a987f64f67ee69474373fa7ada12ea433}{CFiniteElement<Shape, ShapeFunction, DoF, bool>::SetNeighbour}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} k, \textcolor{keyword}{const} \textcolor{keywordtype}{int} elem)}
+\DoxyCodeLine{569         \{}
+\DoxyCodeLine{570             m\_neighbours[k] = elem;}
+\DoxyCodeLine{571         \}}
+\DoxyCodeLine{572 }
+\DoxyCodeLine{573         \textcolor{keyword}{template}<\textcolor{keyword}{class} Shape, \textcolor{keyword}{class} ShapeFunction, \textcolor{keyword}{class} DoF>}
+\DoxyCodeLine{574         \textcolor{keywordtype}{void} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a4399cd0ecd0c8b38ef67ff223ba1aa5f}{CFiniteElement<Shape, ShapeFunction, DoF, bool>::SetShapeFunction}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} k, \textcolor{keyword}{const} ShapeFunction\& func)}
+\DoxyCodeLine{575         \{}
+\DoxyCodeLine{576             m\_shapefunctions = func;}
+\DoxyCodeLine{577         \}}
+\DoxyCodeLine{578 }
+\DoxyCodeLine{579         \textcolor{keyword}{template}<\textcolor{keyword}{class} Shape, \textcolor{keyword}{class} ShapeFunction, \textcolor{keyword}{class} DoF>}
+\DoxyCodeLine{580         \textcolor{keywordtype}{void} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a0035f56f0613f4ec373ec24085c7406d}{CFiniteElement<Shape, ShapeFunction, DoF, bool>::SetDoF}}(\textcolor{keyword}{const} DoF\& dof)}
+\DoxyCodeLine{581         \{}
+\DoxyCodeLine{582             m\_dofs = dof;}
+\DoxyCodeLine{583         \}}
+\DoxyCodeLine{584 }
+\DoxyCodeLine{585         \textcolor{keyword}{template}<\textcolor{keyword}{class} Shape, \textcolor{keyword}{class} ShapeFunction, \textcolor{keyword}{class} DoF>}
+\DoxyCodeLine{586         \textcolor{keywordtype}{void} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a3720cb22e0aaf9f59b8865987d469c09}{CFiniteElement<Shape, ShapeFunction, DoF, bool>::SetShape}}(\textcolor{keyword}{const} Shape \&shape)}
+\DoxyCodeLine{587         \{}
+\DoxyCodeLine{588             m\_shape = shape;}
+\DoxyCodeLine{589         \}}
+\DoxyCodeLine{590 }
+\DoxyCodeLine{591         \textcolor{keyword}{template}<\textcolor{keyword}{class} Shape, \textcolor{keyword}{class} ShapeFunction, \textcolor{keyword}{class} DoF>}
+\DoxyCodeLine{592         \textcolor{keywordtype}{void} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a1a59e7f47222e9e71b06493f0b61b320}{CFiniteElement<Shape, ShapeFunction, DoF, bool>::SetType}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} k)}
+\DoxyCodeLine{593         \{}
+\DoxyCodeLine{594             m\_type = k;}
+\DoxyCodeLine{595         \}}
+\DoxyCodeLine{596 }
+\DoxyCodeLine{597         \textcolor{keyword}{template}<\textcolor{keyword}{class} Shape, \textcolor{keyword}{class} ShapeFunction, \textcolor{keyword}{class} DoF>}
+\DoxyCodeLine{598         \textcolor{keywordtype}{void} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_ab30642c08e739bcfc36d446ac0dd34e9}{CFiniteElement<Shape, ShapeFunction, DoF, bool>::SetNode}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} k, \textcolor{keyword}{const} \textcolor{keywordtype}{int} node)}
+\DoxyCodeLine{599         \{}
+\DoxyCodeLine{600             m\_shape.SetNode(k, node);}
+\DoxyCodeLine{601         \}}
+\DoxyCodeLine{602         \textcolor{keyword}{template}<\textcolor{keyword}{class} Shape, \textcolor{keyword}{class} ShapeFunction, \textcolor{keyword}{class} DoF>}
+\DoxyCodeLine{603         \textcolor{keyword}{const} \textcolor{keywordtype}{double} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a7b95d5a282a52e7e226d9d961ae7a4bf}{CFiniteElement<Shape, ShapeFunction, DoF>::GetShapeFunction}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} k, \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh::Point}} \&p)\textcolor{keyword}{ const}}
+\DoxyCodeLine{604 \textcolor{keyword}{        }\{}
+\DoxyCodeLine{605             \textcolor{keywordflow}{return} m\_shapefunctions.GetShapeFunction(k, p);}
+\DoxyCodeLine{606         \}}
+\DoxyCodeLine{607 }
+\DoxyCodeLine{608         \textcolor{keyword}{template}<\textcolor{keyword}{class} Shape, \textcolor{keyword}{class} ShapeFunction, \textcolor{keyword}{class} DoF>}
+\DoxyCodeLine{609         \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_aa039ffa1703c68bb0f70a368355fd2a6}{CFiniteElement<Shape, ShapeFunction, DoF, bool>::GetGradShapeFunction}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} k, \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh::Point}} \&p)\textcolor{keyword}{ const}}
+\DoxyCodeLine{610 \textcolor{keyword}{        }\{}
+\DoxyCodeLine{611             \textcolor{keywordflow}{return} m\_shapefunctions.GetGradShapeFunction(k, p);}
+\DoxyCodeLine{612         \}}
+\DoxyCodeLine{613 }
+\DoxyCodeLine{614         \textcolor{keyword}{template}<\textcolor{keyword}{class} Shape, \textcolor{keyword}{class} ShapeFunction, \textcolor{keyword}{class} DoF>}
+\DoxyCodeLine{615         \textcolor{keyword}{const} \textcolor{keywordtype}{int} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a99d8f352cd76d677cd79ca7deda493a4}{CFiniteElement<Shape, ShapeFunction, DoF, bool>::IncreaseOrder}}()}
+\DoxyCodeLine{616         \{}
+\DoxyCodeLine{617             \textcolor{keywordflow}{if} (m\_shape.IncreaseOrder())}
+\DoxyCodeLine{618                 \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{619             \textcolor{keywordflow}{if} (m\_shapefunctions.IncreaseOrder())}
+\DoxyCodeLine{620                 \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{621             \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{622         \}}
+\DoxyCodeLine{623         \textcolor{keyword}{template}<\textcolor{keyword}{class} Shape, \textcolor{keyword}{class} ShapeFunction, \textcolor{keyword}{class} DoF>}
+\DoxyCodeLine{624         \textcolor{keyword}{const} \textcolor{keywordtype}{double} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_aba3b05e47db9c84aa762c51115a12ee3}{CFiniteElement<Shape, ShapeFunction, DoF>::GetWeight}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int}, \textcolor{keyword}{const} std::vector<Point>\& verts, \textcolor{keyword}{const} std::function<\textcolor{keyword}{const} \textcolor{keywordtype}{double}(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}\&)>\& f)\textcolor{keyword}{ const}}
+\DoxyCodeLine{625 \textcolor{keyword}{        }\{}
+\DoxyCodeLine{626             \textcolor{keywordflow}{return} 0.0;}
+\DoxyCodeLine{627         \}}
+\DoxyCodeLine{628         \textcolor{comment}{// fin.}}
+\DoxyCodeLine{629 }
+\DoxyCodeLine{630         \textcolor{comment}{// implementation template<class Shape, class ShapeFunction, class DoF, class T>}}
+\DoxyCodeLine{631         \textcolor{comment}{// CFiniteElement<Shape, ShapeFunction, DoF, T>}}
+\DoxyCodeLine{632         \textcolor{keyword}{template}<\textcolor{keyword}{class} Shape, \textcolor{keyword}{class} ShapeFunction, \textcolor{keyword}{class} DoF, \textcolor{keyword}{class} T>}
+\DoxyCodeLine{633         \textcolor{keyword}{const} \textcolor{keywordtype}{int} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_af815b05d5b5b239ae0573a51743eba4a}{CFiniteElement<Shape, ShapeFunction, DoF, T>::GetType}}()\textcolor{keyword}{ const}}
+\DoxyCodeLine{634 \textcolor{keyword}{        }\{}
+\DoxyCodeLine{635             \textcolor{keywordflow}{return} m\_type;}
+\DoxyCodeLine{636         \}}
+\DoxyCodeLine{637         \textcolor{keyword}{template}<\textcolor{keyword}{class} Shape, \textcolor{keyword}{class} ShapeFunction, \textcolor{keyword}{class} DoF, \textcolor{keyword}{class} T>}
+\DoxyCodeLine{638         \textcolor{keyword}{const} \textcolor{keywordtype}{double} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a337c102baf4fbca61578e00c4a56ae81}{CFiniteElement<Shape, ShapeFunction, DoF, T>::GetMeasure}}()\textcolor{keyword}{ const}}
+\DoxyCodeLine{639 \textcolor{keyword}{        }\{}
+\DoxyCodeLine{640             \textcolor{keywordflow}{return} m\_shapefunctions.GetMeasure();}
+\DoxyCodeLine{641         \}}
+\DoxyCodeLine{642         \textcolor{comment}{//template<class Shape, class ShapeFunction, class DoF, class T>}}
+\DoxyCodeLine{643         \textcolor{comment}{//const int CFiniteElement<Shape, ShapeFunction, DoF, T>::SetValue(const int number, CSolution* value)}}
+\DoxyCodeLine{644         \textcolor{comment}{//\{}}
+\DoxyCodeLine{645         \textcolor{comment}{//  return m\_shapefunctions.SetValue(number, value);}}
+\DoxyCodeLine{646         \textcolor{comment}{//\}}}
+\DoxyCodeLine{647         \textcolor{comment}{//template<class Shape, class ShapeFunction, class DoF, class T>}}
+\DoxyCodeLine{648         \textcolor{comment}{//CSolution* CFiniteElement<Shape, ShapeFunction, DoF, T>::GetValue(const int p)}}
+\DoxyCodeLine{649         \textcolor{comment}{//\{}}
+\DoxyCodeLine{650         \textcolor{comment}{//  auto\&\& val = m\_shapefunctions.GetValue(p);}}
+\DoxyCodeLine{651         \textcolor{comment}{//  return const\_cast<CSolution*>(static\_cast<const CSolution*>(\&val));}}
+\DoxyCodeLine{652         \textcolor{comment}{//\}}}
+\DoxyCodeLine{653         \textcolor{keyword}{template}<\textcolor{keyword}{class} Shape, \textcolor{keyword}{class} ShapeFunction, \textcolor{keyword}{class} DoF, \textcolor{keyword}{class} T>}
+\DoxyCodeLine{654         \textcolor{keyword}{const} \textcolor{keywordtype}{int} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a85e1005f8f85eda16f8876d31f87453b}{CFiniteElement<Shape, ShapeFunction, DoF, T>::GetNode}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} k)\textcolor{keyword}{ const}}
+\DoxyCodeLine{655 \textcolor{keyword}{        }\{}
+\DoxyCodeLine{656             \textcolor{keywordflow}{return} m\_shape.GetNode(k);}
+\DoxyCodeLine{657         \}}
+\DoxyCodeLine{658         \textcolor{keyword}{template}<\textcolor{keyword}{class} Shape, \textcolor{keyword}{class} ShapeFunction, \textcolor{keyword}{class} DoF, \textcolor{keyword}{class} T>}
+\DoxyCodeLine{659         \textcolor{keyword}{const} \textcolor{keywordtype}{double} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a1608040a27141e1c55a8b20b5c95d8f5}{CFiniteElement<Shape, ShapeFunction, DoF, T>::Integrate}}(\textcolor{keyword}{const} std::function<\textcolor{keyword}{const} \textcolor{keywordtype}{double}(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}\&)>\&f, \textcolor{keyword}{const} std::vector<Point>\& v)\textcolor{keyword}{ const}}
+\DoxyCodeLine{660 \textcolor{keyword}{        }\{}
+\DoxyCodeLine{661             \textcolor{keywordflow}{return} m\_shape.Integrate(f, v);}
+\DoxyCodeLine{662         \}}
+\DoxyCodeLine{663 }
+\DoxyCodeLine{664         \textcolor{keyword}{template}<\textcolor{keyword}{class} Shape, \textcolor{keyword}{class} ShapeFunction, \textcolor{keyword}{class} DoF, \textcolor{keyword}{class} T>}
+\DoxyCodeLine{665         \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a1608040a27141e1c55a8b20b5c95d8f5}{CFiniteElement<Shape, ShapeFunction, DoF, T>::Integrate}}(\textcolor{keyword}{const} std::function<\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}\&)>\&f, \textcolor{keyword}{const} std::vector<Point>\& v)\textcolor{keyword}{ const}}
+\DoxyCodeLine{666 \textcolor{keyword}{        }\{}
+\DoxyCodeLine{667             \textcolor{keywordflow}{return} m\_shape.Integrate(f, v);}
+\DoxyCodeLine{668         \}}
+\DoxyCodeLine{669 }
+\DoxyCodeLine{670         \textcolor{keyword}{template}<\textcolor{keyword}{class} Shape, \textcolor{keyword}{class} ShapeFunction, \textcolor{keyword}{class} DoF, \textcolor{keyword}{class} T>}
+\DoxyCodeLine{671         \textcolor{keyword}{const} std::vector<double> \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a1608040a27141e1c55a8b20b5c95d8f5}{CFiniteElement<Shape, ShapeFunction, DoF, T>::Integrate}}(\textcolor{keyword}{const} std::function<\textcolor{keyword}{const} std::vector<double>(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}\&)>\&f, \textcolor{keyword}{const} std::vector<Point>\& v)\textcolor{keyword}{ const}}
+\DoxyCodeLine{672 \textcolor{keyword}{        }\{}
+\DoxyCodeLine{673             \textcolor{keywordflow}{return} m\_shape.Integrate(f, v);}
+\DoxyCodeLine{674         \}}
+\DoxyCodeLine{675         \textcolor{keyword}{template}<\textcolor{keyword}{class} Shape, \textcolor{keyword}{class} ShapeFunction, \textcolor{keyword}{class} DoF, \textcolor{keyword}{class} T>}
+\DoxyCodeLine{676         \textcolor{keyword}{const} \textcolor{keywordtype}{int} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a9b6729c557ace9bdf1fbc5573b0f0351}{CFiniteElement<Shape, ShapeFunction, DoF, T>::GetNeighbour}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} k)\textcolor{keyword}{ const}}
+\DoxyCodeLine{677 \textcolor{keyword}{        }\{}
+\DoxyCodeLine{678             \textcolor{keywordflow}{return} m\_neighbours[k];}
+\DoxyCodeLine{679         \}}
+\DoxyCodeLine{680 }
+\DoxyCodeLine{681         \textcolor{keyword}{template}<\textcolor{keyword}{class} Shape, \textcolor{keyword}{class} ShapeFunction, \textcolor{keyword}{class} DoF, \textcolor{keyword}{class} T>}
+\DoxyCodeLine{682         \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_aad676f6effd7cbd764c7298385a04d78}{CFiniteElement<Shape, ShapeFunction, DoF, T>::GetNormal}}()\textcolor{keyword}{ const}}
+\DoxyCodeLine{683 \textcolor{keyword}{        }\{}
+\DoxyCodeLine{684             \textcolor{keywordflow}{return} m\_shapefunctions.GetNormal();}
+\DoxyCodeLine{685         \}}
+\DoxyCodeLine{686 }
+\DoxyCodeLine{687         \textcolor{keyword}{template}<\textcolor{keyword}{class} Shape, \textcolor{keyword}{class} ShapeFunction, \textcolor{keyword}{class} DoF, \textcolor{keyword}{class} T>}
+\DoxyCodeLine{688         \textcolor{keywordtype}{void} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a72f941bad8c4b470116cf49d9905bb0a}{CFiniteElement<Shape, ShapeFunction, DoF, T>::ReverseNormal}}()}
+\DoxyCodeLine{689         \{}
+\DoxyCodeLine{690             m\_shapefunctions.ReverseNormal();}
+\DoxyCodeLine{691         \}}
+\DoxyCodeLine{692 }
+\DoxyCodeLine{693         \textcolor{keyword}{template}<\textcolor{keyword}{class} Shape, \textcolor{keyword}{class} ShapeFunction, \textcolor{keyword}{class} DoF, \textcolor{keyword}{class} T>}
+\DoxyCodeLine{694                 \textcolor{keyword}{const} \textcolor{keywordtype}{double} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_aba3b05e47db9c84aa762c51115a12ee3}{CFiniteElement<Shape, ShapeFunction, DoF, T>::GetWeight}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} node, \textcolor{keyword}{const} std::vector<Point>\& verts, \textcolor{keyword}{const} std::function<\textcolor{keyword}{const} \textcolor{keywordtype}{double}(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}\&)>\& f)\textcolor{keyword}{ const}}
+\DoxyCodeLine{695 \textcolor{keyword}{        }\{}
+\DoxyCodeLine{696                         \textcolor{keywordflow}{return} m\_shapefunctions.GetWeight(node, verts, f);}
+\DoxyCodeLine{697         \}}
+\DoxyCodeLine{698 }
+\DoxyCodeLine{699 }
+\DoxyCodeLine{700         \textcolor{keyword}{template}<\textcolor{keyword}{class} Shape, \textcolor{keyword}{class} ShapeFunction, \textcolor{keyword}{class} DoF, \textcolor{keyword}{class} T>}
+\DoxyCodeLine{701         \textcolor{keyword}{const} Shape \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_adb9245c414f80a872941fd082548aaf8}{CFiniteElement<Shape, ShapeFunction, DoF, T>::GetShape}}()\textcolor{keyword}{ const}}
+\DoxyCodeLine{702 \textcolor{keyword}{        }\{}
+\DoxyCodeLine{703             \textcolor{keywordflow}{return} m\_shape;}
+\DoxyCodeLine{704         \}}
+\DoxyCodeLine{705 }
+\DoxyCodeLine{706         \textcolor{keyword}{template}<\textcolor{keyword}{class} Shape, \textcolor{keyword}{class} ShapeFunction, \textcolor{keyword}{class} DoF, \textcolor{keyword}{class} T>}
+\DoxyCodeLine{707         \textcolor{keyword}{const} ShapeFunction \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_ab8a44b9a4a0d0fd52957a0285ed0f08f}{CFiniteElement<Shape, ShapeFunction, DoF, T>::GetShapeFunctions}}()\textcolor{keyword}{ const}}
+\DoxyCodeLine{708 \textcolor{keyword}{        }\{}
+\DoxyCodeLine{709             \textcolor{keywordflow}{return} m\_shapefunctions;}
+\DoxyCodeLine{710         \}}
+\DoxyCodeLine{711 }
+\DoxyCodeLine{712         \textcolor{keyword}{template}<\textcolor{keyword}{class} Shape, \textcolor{keyword}{class} ShapeFunction, \textcolor{keyword}{class} DoF, \textcolor{keyword}{class} T>}
+\DoxyCodeLine{713         \textcolor{keyword}{const} DoF \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a2dd169fd1124a975a7232727d14f8d4a}{CFiniteElement<Shape, ShapeFunction, DoF, T>::GetDoF}}()\textcolor{keyword}{ const}}
+\DoxyCodeLine{714 \textcolor{keyword}{        }\{}
+\DoxyCodeLine{715             \textcolor{keywordflow}{return} m\_dofs;}
+\DoxyCodeLine{716         \}}
+\DoxyCodeLine{717 }
+\DoxyCodeLine{718         \textcolor{keyword}{template}<\textcolor{keyword}{class} Shape, \textcolor{keyword}{class} ShapeFunction, \textcolor{keyword}{class} DoF, \textcolor{keyword}{class} T>}
+\DoxyCodeLine{719         \textcolor{keyword}{const} \textcolor{keywordtype}{int} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_adb6a37032eb5313e18feb596c0bb358f}{CFiniteElement<Shape, ShapeFunction, DoF, T>::GetNumberOfNodes}}()\textcolor{keyword}{ const}}
+\DoxyCodeLine{720 \textcolor{keyword}{        }\{}
+\DoxyCodeLine{721             \textcolor{keywordflow}{return} m\_shape.GetNumberOfNodes();}
+\DoxyCodeLine{722         \}}
+\DoxyCodeLine{723 }
+\DoxyCodeLine{724         \textcolor{keyword}{template}<\textcolor{keyword}{class} Shape, \textcolor{keyword}{class} ShapeFunction, \textcolor{keyword}{class} DoF, \textcolor{keyword}{class} T>}
+\DoxyCodeLine{725         \textcolor{keyword}{const} \textcolor{keywordtype}{int} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_ab436db8b7d155ca97378563905797a9b}{CFiniteElement<Shape, ShapeFunction, DoF, T>::GetDoFs}}()\textcolor{keyword}{ const}}
+\DoxyCodeLine{726 \textcolor{keyword}{        }\{}
+\DoxyCodeLine{727             \textcolor{keywordflow}{return} m\_shapefunctions.GetNumberOfShapeFunctions();}
+\DoxyCodeLine{728         \}}
+\DoxyCodeLine{729 }
+\DoxyCodeLine{730         \textcolor{keyword}{template}<\textcolor{keyword}{class} Shape, \textcolor{keyword}{class} ShapeFunction, \textcolor{keyword}{class} DoF, \textcolor{keyword}{class} T>}
+\DoxyCodeLine{731         \textcolor{keywordtype}{void} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a987f64f67ee69474373fa7ada12ea433}{CFiniteElement<Shape, ShapeFunction, DoF, T>::SetNeighbour}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} k, \textcolor{keyword}{const} \textcolor{keywordtype}{int} elem)}
+\DoxyCodeLine{732         \{}
+\DoxyCodeLine{733             m\_neighbours[k] = elem;}
+\DoxyCodeLine{734         \}}
+\DoxyCodeLine{735 }
+\DoxyCodeLine{736         \textcolor{keyword}{template}<\textcolor{keyword}{class} Shape, \textcolor{keyword}{class} ShapeFunction, \textcolor{keyword}{class} DoF, \textcolor{keyword}{class} T>}
+\DoxyCodeLine{737         \textcolor{keywordtype}{void} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a4399cd0ecd0c8b38ef67ff223ba1aa5f}{CFiniteElement<Shape, ShapeFunction, DoF, T>::SetShapeFunction}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} k, \textcolor{keyword}{const} ShapeFunction\& func)}
+\DoxyCodeLine{738         \{}
+\DoxyCodeLine{739             m\_shapefunctions = func;}
+\DoxyCodeLine{740         \}}
+\DoxyCodeLine{741 }
+\DoxyCodeLine{742         \textcolor{keyword}{template}<\textcolor{keyword}{class} Shape, \textcolor{keyword}{class} ShapeFunction, \textcolor{keyword}{class} DoF, \textcolor{keyword}{class} T>}
+\DoxyCodeLine{743         \textcolor{keywordtype}{void} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a0035f56f0613f4ec373ec24085c7406d}{CFiniteElement<Shape, ShapeFunction, DoF, T>::SetDoF}}(\textcolor{keyword}{const} DoF\& dof)}
+\DoxyCodeLine{744         \{}
+\DoxyCodeLine{745             m\_dofs = dof;}
+\DoxyCodeLine{746         \}}
+\DoxyCodeLine{747 }
+\DoxyCodeLine{748         \textcolor{keyword}{template}<\textcolor{keyword}{class} Shape, \textcolor{keyword}{class} ShapeFunction, \textcolor{keyword}{class} DoF, \textcolor{keyword}{class} T>}
+\DoxyCodeLine{749         \textcolor{keywordtype}{void} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a3720cb22e0aaf9f59b8865987d469c09}{CFiniteElement<Shape, ShapeFunction, DoF, T>::SetShape}}(\textcolor{keyword}{const} Shape \&shape)}
+\DoxyCodeLine{750         \{}
+\DoxyCodeLine{751             m\_shape = shape;}
+\DoxyCodeLine{752         \}}
+\DoxyCodeLine{753 }
+\DoxyCodeLine{754         \textcolor{keyword}{template}<\textcolor{keyword}{class} Shape, \textcolor{keyword}{class} ShapeFunction, \textcolor{keyword}{class} DoF, \textcolor{keyword}{class} T>}
+\DoxyCodeLine{755         \textcolor{keywordtype}{void} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a1a59e7f47222e9e71b06493f0b61b320}{CFiniteElement<Shape, ShapeFunction, DoF, T>::SetType}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} k)}
+\DoxyCodeLine{756         \{}
+\DoxyCodeLine{757             m\_type = k;}
+\DoxyCodeLine{758         \}}
+\DoxyCodeLine{759 }
+\DoxyCodeLine{760         \textcolor{keyword}{template}<\textcolor{keyword}{class} Shape, \textcolor{keyword}{class} ShapeFunction, \textcolor{keyword}{class} DoF, \textcolor{keyword}{class} T>}
+\DoxyCodeLine{761         \textcolor{keywordtype}{void} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_ab30642c08e739bcfc36d446ac0dd34e9}{CFiniteElement<Shape, ShapeFunction, DoF, T>::SetNode}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} k, \textcolor{keyword}{const} \textcolor{keywordtype}{int} node)}
+\DoxyCodeLine{762         \{}
+\DoxyCodeLine{763             m\_shape.SetNode(k, node);}
+\DoxyCodeLine{764         \}}
+\DoxyCodeLine{765         \textcolor{keyword}{template}<\textcolor{keyword}{class} Shape, \textcolor{keyword}{class} ShapeFunction, \textcolor{keyword}{class} DoF, \textcolor{keyword}{class} T>}
+\DoxyCodeLine{766         \textcolor{keyword}{const} \textcolor{keywordtype}{double} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a7b95d5a282a52e7e226d9d961ae7a4bf}{CFiniteElement<Shape, ShapeFunction, DoF, T>::GetShapeFunction}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} k, \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh::Point}} \&p)\textcolor{keyword}{ const}}
+\DoxyCodeLine{767 \textcolor{keyword}{        }\{}
+\DoxyCodeLine{768             \textcolor{keywordflow}{return} m\_shapefunctions.GetShapeFunction(k, p);}
+\DoxyCodeLine{769         \}}
+\DoxyCodeLine{770 }
+\DoxyCodeLine{771         \textcolor{keyword}{template}<\textcolor{keyword}{class} Shape, \textcolor{keyword}{class} ShapeFunction, \textcolor{keyword}{class} DoF, \textcolor{keyword}{class} T>}
+\DoxyCodeLine{772         \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_aa039ffa1703c68bb0f70a368355fd2a6}{CFiniteElement<Shape, ShapeFunction, DoF, T>::GetGradShapeFunction}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} k, \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh::Point}} \&p)\textcolor{keyword}{ const}}
+\DoxyCodeLine{773 \textcolor{keyword}{        }\{}
+\DoxyCodeLine{774             \textcolor{keywordflow}{return} m\_shapefunctions.GetGradShapeFunction(k, p);}
+\DoxyCodeLine{775         \}}
+\DoxyCodeLine{776         \textcolor{keyword}{template}<\textcolor{keyword}{class} Shape, \textcolor{keyword}{class} ShapeFunction, \textcolor{keyword}{class} DoF, \textcolor{keyword}{class} T>}
+\DoxyCodeLine{777         \textcolor{keyword}{const} \textcolor{keywordtype}{int} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a99d8f352cd76d677cd79ca7deda493a4}{CFiniteElement<Shape, ShapeFunction, DoF, T>::IncreaseOrder}}()}
+\DoxyCodeLine{778         \{}
+\DoxyCodeLine{779             \textcolor{keywordflow}{if} (m\_shape.IncreaseOrder())}
+\DoxyCodeLine{780                 \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{781             \textcolor{keywordflow}{if} (m\_shapefunctions.IncreaseOrder())}
+\DoxyCodeLine{782                 \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{783             \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{784         \}}
+\DoxyCodeLine{785 }
+\DoxyCodeLine{786         \textcolor{comment}{// implementation template<class Shape, class ShapeFunction>}}
+\DoxyCodeLine{787         \textcolor{comment}{// CFiniteElement<Shape, ShapeFunction>}}
+\DoxyCodeLine{788 }
+\DoxyCodeLine{789         \textcolor{keyword}{template}<\textcolor{keyword}{class} Shape, \textcolor{keyword}{class} ShapeFunction>}
+\DoxyCodeLine{790         \textcolor{keyword}{const} \textcolor{keywordtype}{int} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_af815b05d5b5b239ae0573a51743eba4a}{CFiniteElement<Shape, ShapeFunction, bool, bool>::GetType}}()\textcolor{keyword}{ const}}
+\DoxyCodeLine{791 \textcolor{keyword}{        }\{}
+\DoxyCodeLine{792             \textcolor{keywordflow}{return} m\_type;}
+\DoxyCodeLine{793         \}}
+\DoxyCodeLine{794         \textcolor{keyword}{template}<\textcolor{keyword}{class} Shape, \textcolor{keyword}{class} ShapeFunction>}
+\DoxyCodeLine{795         \textcolor{keyword}{const} \textcolor{keywordtype}{double} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a337c102baf4fbca61578e00c4a56ae81}{CFiniteElement<Shape, ShapeFunction, bool, bool>::GetMeasure}}()\textcolor{keyword}{ const}}
+\DoxyCodeLine{796 \textcolor{keyword}{        }\{}
+\DoxyCodeLine{797             \textcolor{keywordflow}{return} m\_shapefunctions.GetMeasure();}
+\DoxyCodeLine{798         \}}
+\DoxyCodeLine{799         \textcolor{comment}{//template<class Shape, class ShapeFunction>}}
+\DoxyCodeLine{800         \textcolor{comment}{//const int CFiniteElement<Shape, ShapeFunction, bool, bool>::SetValue(const int number, CSolution* value)}}
+\DoxyCodeLine{801         \textcolor{comment}{//\{}}
+\DoxyCodeLine{802         \textcolor{comment}{//  return m\_shapefunctions.SetValue(number, value);}}
+\DoxyCodeLine{803         \textcolor{comment}{//\}}}
+\DoxyCodeLine{804         \textcolor{comment}{//template<class Shape, class ShapeFunction>}}
+\DoxyCodeLine{805         \textcolor{comment}{//CSolution* CFiniteElement<Shape, ShapeFunction, bool, bool>::GetValue(const int p)}}
+\DoxyCodeLine{806         \textcolor{comment}{//\{}}
+\DoxyCodeLine{807         \textcolor{comment}{//  auto\&\& val = m\_shapefunctions.GetValue(p);}}
+\DoxyCodeLine{808         \textcolor{comment}{//  return const\_cast<CSolution*>(static\_cast<const CSolution*>(\&val));;}}
+\DoxyCodeLine{809         \textcolor{comment}{//\}}}
+\DoxyCodeLine{810         \textcolor{keyword}{template}<\textcolor{keyword}{class} Shape, \textcolor{keyword}{class} ShapeFunction>}
+\DoxyCodeLine{811         \textcolor{keyword}{const} \textcolor{keywordtype}{int} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a85e1005f8f85eda16f8876d31f87453b}{CFiniteElement<Shape, ShapeFunction, bool, bool>::GetNode}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} k)\textcolor{keyword}{ const}}
+\DoxyCodeLine{812 \textcolor{keyword}{        }\{}
+\DoxyCodeLine{813             \textcolor{keywordflow}{return} m\_shape.GetNode(k);}
+\DoxyCodeLine{814         \}}
+\DoxyCodeLine{815         \textcolor{keyword}{template}<\textcolor{keyword}{class} Shape, \textcolor{keyword}{class} ShapeFunction>}
+\DoxyCodeLine{816         \textcolor{keyword}{const} \textcolor{keywordtype}{double} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a1608040a27141e1c55a8b20b5c95d8f5}{CFiniteElement<Shape, ShapeFunction, bool, bool>::Integrate}}(\textcolor{keyword}{const} std::function<\textcolor{keyword}{const} \textcolor{keywordtype}{double}(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}\&)>\&f, \textcolor{keyword}{const} std::vector<Point>\& v)\textcolor{keyword}{ const}}
+\DoxyCodeLine{817 \textcolor{keyword}{        }\{}
+\DoxyCodeLine{818             \textcolor{keywordflow}{return} m\_shape.Integrate(f, v);}
+\DoxyCodeLine{819         \}}
+\DoxyCodeLine{820 }
+\DoxyCodeLine{821         \textcolor{keyword}{template}<\textcolor{keyword}{class} Shape, \textcolor{keyword}{class} ShapeFunction>}
+\DoxyCodeLine{822         \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a1608040a27141e1c55a8b20b5c95d8f5}{CFiniteElement<Shape, ShapeFunction, bool, bool>::Integrate}}(\textcolor{keyword}{const} std::function<\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}\&)>\&f, \textcolor{keyword}{const} std::vector<Point>\& v)\textcolor{keyword}{ const}}
+\DoxyCodeLine{823 \textcolor{keyword}{        }\{}
+\DoxyCodeLine{824             \textcolor{keywordflow}{return} m\_shape.Integrate(f, v);}
+\DoxyCodeLine{825         \}}
+\DoxyCodeLine{826 }
+\DoxyCodeLine{827         \textcolor{keyword}{template}<\textcolor{keyword}{class} Shape, \textcolor{keyword}{class} ShapeFunction>}
+\DoxyCodeLine{828         \textcolor{keyword}{const} std::vector<double> \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a1608040a27141e1c55a8b20b5c95d8f5}{CFiniteElement<Shape, ShapeFunction, bool, bool>::Integrate}}(\textcolor{keyword}{const} std::function<\textcolor{keyword}{const} std::vector<double>(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}\&)>\&f, \textcolor{keyword}{const} std::vector<Point>\& v)\textcolor{keyword}{ const}}
+\DoxyCodeLine{829 \textcolor{keyword}{        }\{}
+\DoxyCodeLine{830             \textcolor{keywordflow}{return} m\_shape.Integrate(f, v);}
+\DoxyCodeLine{831         \}}
+\DoxyCodeLine{832         \textcolor{keyword}{template}<\textcolor{keyword}{class} Shape, \textcolor{keyword}{class} ShapeFunction>}
+\DoxyCodeLine{833         \textcolor{keyword}{const} \textcolor{keywordtype}{int} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a9b6729c557ace9bdf1fbc5573b0f0351}{CFiniteElement<Shape, ShapeFunction, bool, bool>::GetNeighbour}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} k)\textcolor{keyword}{ const}}
+\DoxyCodeLine{834 \textcolor{keyword}{        }\{}
+\DoxyCodeLine{835             \textcolor{keywordflow}{return} m\_neighbours[k];}
+\DoxyCodeLine{836         \}}
+\DoxyCodeLine{837 }
+\DoxyCodeLine{838         \textcolor{keyword}{template}<\textcolor{keyword}{class} Shape, \textcolor{keyword}{class} ShapeFunction>}
+\DoxyCodeLine{839         \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_aad676f6effd7cbd764c7298385a04d78}{CFiniteElement<Shape, ShapeFunction, bool, bool>::GetNormal}}()\textcolor{keyword}{ const}}
+\DoxyCodeLine{840 \textcolor{keyword}{        }\{}
+\DoxyCodeLine{841             \textcolor{keywordflow}{return} m\_shapefunctions.GetNormal();}
+\DoxyCodeLine{842         \}}
+\DoxyCodeLine{843 }
+\DoxyCodeLine{844         \textcolor{keyword}{template}<\textcolor{keyword}{class} Shape, \textcolor{keyword}{class} ShapeFunction>}
+\DoxyCodeLine{845         \textcolor{keywordtype}{void} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a72f941bad8c4b470116cf49d9905bb0a}{CFiniteElement<Shape, ShapeFunction, bool, bool>::ReverseNormal}}()}
+\DoxyCodeLine{846         \{}
+\DoxyCodeLine{847             m\_shapefunctions.ReverseNormal();}
+\DoxyCodeLine{848         \}}
+\DoxyCodeLine{849 }
+\DoxyCodeLine{850 }
+\DoxyCodeLine{851         \textcolor{keyword}{template}<\textcolor{keyword}{class} Shape, \textcolor{keyword}{class} ShapeFunction>}
+\DoxyCodeLine{852         \textcolor{keyword}{const} Shape \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_adb9245c414f80a872941fd082548aaf8}{CFiniteElement<Shape, ShapeFunction, bool, bool>::GetShape}}()\textcolor{keyword}{ const}}
+\DoxyCodeLine{853 \textcolor{keyword}{        }\{}
+\DoxyCodeLine{854             \textcolor{keywordflow}{return} m\_shape;}
+\DoxyCodeLine{855         \}}
+\DoxyCodeLine{856 }
+\DoxyCodeLine{857         \textcolor{keyword}{template}<\textcolor{keyword}{class} Shape, \textcolor{keyword}{class} ShapeFunction>}
+\DoxyCodeLine{858         \textcolor{keyword}{const} ShapeFunction \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_ab8a44b9a4a0d0fd52957a0285ed0f08f}{CFiniteElement<Shape, ShapeFunction, bool, bool>::GetShapeFunctions}}()\textcolor{keyword}{ const}}
+\DoxyCodeLine{859 \textcolor{keyword}{        }\{}
+\DoxyCodeLine{860             \textcolor{keywordflow}{return} m\_shapefunctions;}
+\DoxyCodeLine{861         \}}
+\DoxyCodeLine{862 }
+\DoxyCodeLine{863 }
+\DoxyCodeLine{864         \textcolor{keyword}{template}<\textcolor{keyword}{class} Shape, \textcolor{keyword}{class} ShapeFunction>}
+\DoxyCodeLine{865         \textcolor{keyword}{const} \textcolor{keywordtype}{int} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_adb6a37032eb5313e18feb596c0bb358f}{CFiniteElement<Shape, ShapeFunction, bool, bool>::GetNumberOfNodes}}()\textcolor{keyword}{ const}}
+\DoxyCodeLine{866 \textcolor{keyword}{        }\{}
+\DoxyCodeLine{867             \textcolor{keywordflow}{return} m\_shape.GetNumberOfNodes();}
+\DoxyCodeLine{868         \}}
+\DoxyCodeLine{869 }
+\DoxyCodeLine{870         \textcolor{keyword}{template}<\textcolor{keyword}{class} Shape, \textcolor{keyword}{class} ShapeFunction>}
+\DoxyCodeLine{871         \textcolor{keyword}{const} \textcolor{keywordtype}{int} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_ab436db8b7d155ca97378563905797a9b}{CFiniteElement<Shape, ShapeFunction, bool, bool>::GetDoFs}}()\textcolor{keyword}{ const}}
+\DoxyCodeLine{872 \textcolor{keyword}{        }\{}
+\DoxyCodeLine{873             \textcolor{keywordflow}{return} m\_shapefunctions.GetNumberOfShapeFunctions();}
+\DoxyCodeLine{874         \}}
+\DoxyCodeLine{875 }
+\DoxyCodeLine{876         \textcolor{keyword}{template}<\textcolor{keyword}{class} Shape, \textcolor{keyword}{class} ShapeFunction>}
+\DoxyCodeLine{877         \textcolor{keywordtype}{void} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a987f64f67ee69474373fa7ada12ea433}{CFiniteElement<Shape, ShapeFunction, bool, bool>::SetNeighbour}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} k, \textcolor{keyword}{const} \textcolor{keywordtype}{int} elem)}
+\DoxyCodeLine{878         \{}
+\DoxyCodeLine{879             m\_neighbours[k] = elem;}
+\DoxyCodeLine{880         \}}
+\DoxyCodeLine{881 }
+\DoxyCodeLine{882         \textcolor{keyword}{template}<\textcolor{keyword}{class} Shape, \textcolor{keyword}{class} ShapeFunction>}
+\DoxyCodeLine{883         \textcolor{keywordtype}{void} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a4399cd0ecd0c8b38ef67ff223ba1aa5f}{CFiniteElement<Shape, ShapeFunction, bool, bool>::SetShapeFunction}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} k, \textcolor{keyword}{const} ShapeFunction\& func)}
+\DoxyCodeLine{884         \{}
+\DoxyCodeLine{885             m\_shapefunctions = func;}
+\DoxyCodeLine{886         \}}
+\DoxyCodeLine{887 }
+\DoxyCodeLine{888         \textcolor{keyword}{template}<\textcolor{keyword}{class} Shape, \textcolor{keyword}{class} ShapeFunction>}
+\DoxyCodeLine{889         \textcolor{keywordtype}{void} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a3720cb22e0aaf9f59b8865987d469c09}{CFiniteElement<Shape, ShapeFunction, bool, bool>::SetShape}}(\textcolor{keyword}{const} Shape \&shape)}
+\DoxyCodeLine{890         \{}
+\DoxyCodeLine{891             m\_shape = shape;}
+\DoxyCodeLine{892         \}}
+\DoxyCodeLine{893 }
+\DoxyCodeLine{894         \textcolor{keyword}{template}<\textcolor{keyword}{class} Shape, \textcolor{keyword}{class} ShapeFunction>}
+\DoxyCodeLine{895         \textcolor{keywordtype}{void} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a1a59e7f47222e9e71b06493f0b61b320}{CFiniteElement<Shape, ShapeFunction, bool, bool>::SetType}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} k)}
+\DoxyCodeLine{896         \{}
+\DoxyCodeLine{897             m\_type = k;}
+\DoxyCodeLine{898         \}}
+\DoxyCodeLine{899 }
+\DoxyCodeLine{900         \textcolor{keyword}{template}<\textcolor{keyword}{class} Shape, \textcolor{keyword}{class} ShapeFunction>}
+\DoxyCodeLine{901         \textcolor{keywordtype}{void} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_ab30642c08e739bcfc36d446ac0dd34e9}{CFiniteElement<Shape, ShapeFunction, bool, bool>::SetNode}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} k, \textcolor{keyword}{const} \textcolor{keywordtype}{int} node)}
+\DoxyCodeLine{902         \{}
+\DoxyCodeLine{903             m\_shape.SetNode(k, node);}
+\DoxyCodeLine{904         \}}
+\DoxyCodeLine{905         \textcolor{keyword}{template}<\textcolor{keyword}{class} Shape, \textcolor{keyword}{class} ShapeFunction>}
+\DoxyCodeLine{906         \textcolor{keyword}{const} \textcolor{keywordtype}{double} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a7b95d5a282a52e7e226d9d961ae7a4bf}{CFiniteElement<Shape, ShapeFunction, bool, bool>::GetShapeFunction}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} k, \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh::Point}} \&p)\textcolor{keyword}{ const}}
+\DoxyCodeLine{907 \textcolor{keyword}{        }\{}
+\DoxyCodeLine{908             \textcolor{keywordflow}{return} m\_shapefunctions.GetShapeFunction(k, p);}
+\DoxyCodeLine{909         \}}
+\DoxyCodeLine{910 }
+\DoxyCodeLine{911         \textcolor{keyword}{template}<\textcolor{keyword}{class} Shape, \textcolor{keyword}{class} ShapeFunction>}
+\DoxyCodeLine{912         \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_aa039ffa1703c68bb0f70a368355fd2a6}{CFiniteElement<Shape, ShapeFunction, bool, bool>::GetGradShapeFunction}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} k, \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh::Point}} \&p)\textcolor{keyword}{ const}}
+\DoxyCodeLine{913 \textcolor{keyword}{        }\{}
+\DoxyCodeLine{914             \textcolor{keywordflow}{return} m\_shapefunctions.GetGradShapeFunction(k, p);}
+\DoxyCodeLine{915         \}}
+\DoxyCodeLine{916         }
+\DoxyCodeLine{917         \textcolor{keyword}{template}<\textcolor{keyword}{class} Shape, \textcolor{keyword}{class} ShapeFunction>}
+\DoxyCodeLine{918         \textcolor{keyword}{const} \textcolor{keywordtype}{int} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_a99d8f352cd76d677cd79ca7deda493a4}{CFiniteElement<Shape, ShapeFunction, bool, bool>::IncreaseOrder}}()}
+\DoxyCodeLine{919         \{}
+\DoxyCodeLine{920             \textcolor{keywordflow}{if}(m\_shape.IncreaseOrder())}
+\DoxyCodeLine{921                 \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{922             \textcolor{keywordflow}{if} (m\_shapefunctions.IncreaseOrder())}
+\DoxyCodeLine{923                 \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{924             \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{925         \}}
+\DoxyCodeLine{926         \textcolor{keyword}{template}<\textcolor{keyword}{class} Shape, \textcolor{keyword}{class} ShapeFunction>}
+\DoxyCodeLine{927         \textcolor{keyword}{const} \textcolor{keywordtype}{double} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CFiniteElement_aba3b05e47db9c84aa762c51115a12ee3}{CFiniteElement<Shape, ShapeFunction, bool, bool>::GetWeight}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} node, \textcolor{keyword}{const} std::vector<Point>\& verts, \textcolor{keyword}{const} std::function<\textcolor{keyword}{const} \textcolor{keywordtype}{double}(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}\&)>\& f)\textcolor{keyword}{ const}}
+\DoxyCodeLine{928 \textcolor{keyword}{        }\{}
+\DoxyCodeLine{929             \textcolor{keywordflow}{return} m\_shapefunctions.GetWeight(node, verts, f);}
+\DoxyCodeLine{930         \}}
+\DoxyCodeLine{931         \textcolor{comment}{// fin.}}
+\DoxyCodeLine{932 }
+\DoxyCodeLine{933     \}}
+\DoxyCodeLine{934 }
+\DoxyCodeLine{935 \}}
+\DoxyCodeLine{936 }
+\DoxyCodeLine{937 }
+\DoxyCodeLine{938 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* CORENC\_MESH\_FINITEELEMENT\_H\_ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

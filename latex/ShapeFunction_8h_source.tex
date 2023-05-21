@@ -1,0 +1,40 @@
+\hypertarget{ShapeFunction_8h_source}{}\doxysection{Shape\+Function.\+h}
+\label{ShapeFunction_8h_source}\index{CoreNCFEM/FiniteElements/ShapeFunction.h@{CoreNCFEM/FiniteElements/ShapeFunction.h}}
+\mbox{\hyperlink{ShapeFunction_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef CORENC\_MESH\_ShapeFunction\_h}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define CORENC\_MESH\_ShapeFunction\_h}}
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include "{}../Point.h"{}}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <functional>}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include "{}../FESolution.h"{}}}
+\DoxyCodeLine{6 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacecorenc}{corenc}}}
+\DoxyCodeLine{7 \{}
+\DoxyCodeLine{8     \textcolor{keyword}{namespace }Mesh}
+\DoxyCodeLine{9     \{}
+\DoxyCodeLine{10         \textcolor{keyword}{template}<\textcolor{keyword}{class} Type>}
+\DoxyCodeLine{11         \textcolor{keyword}{class }\mbox{\hyperlink{classcorenc_1_1Mesh_1_1CShapeFunction}{CShapeFunction}}}
+\DoxyCodeLine{12         \{}
+\DoxyCodeLine{13         \textcolor{keyword}{public}:}
+\DoxyCodeLine{14             \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CShapeFunction_a712e4bbc998a3f9d8e2d6ef42fd28a5b}{CShapeFunction}}() \{\}}
+\DoxyCodeLine{15             \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CShapeFunction_ab406b4878c16ddf0f1e38a3f2b7b0bc4}{CShapeFunction}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}*) \{\}}
+\DoxyCodeLine{16             \textcolor{keyword}{virtual} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CShapeFunction_adc2503d7864395d5ef0a578145f06a3a}{\string~CShapeFunction}}() \{\}}
+\DoxyCodeLine{17             \textcolor{keyword}{virtual} \textcolor{keyword}{const} \textcolor{keywordtype}{int}               \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CShapeFunction_ac0abc38088b74000db00c16ceb3fd4dc}{GetNumberOfShapeFunctions}}() \textcolor{keyword}{const} = 0;}
+\DoxyCodeLine{18             \textcolor{comment}{//virtual const  std::function<const DiffForm*(const Point\&)> GetShapeFunction(const int) const = 0;}}
+\DoxyCodeLine{19             \textcolor{comment}{//virtual const DiffForm*  GetShapeFunction(const int) const = 0;}}
+\DoxyCodeLine{20             \textcolor{keyword}{virtual} \textcolor{keyword}{const} \textcolor{keywordtype}{double}            \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CShapeFunction_a871cda6b46ec7acce28121d0c74207f7}{GetShapeFunction}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int}, \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}\&) \textcolor{keyword}{const} = 0;}
+\DoxyCodeLine{21             \textcolor{keyword}{virtual} \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}                \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CShapeFunction_ae4e0205b8c97a3bc321b3f6f61ed7403}{GetGradShapeFunction}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int}, \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}\&) \textcolor{keyword}{const} = 0;}
+\DoxyCodeLine{22             \textcolor{keyword}{virtual} \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Point}}                \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CShapeFunction_a5d9e746494241c344efab134e2883d17}{GetNormal}}() \textcolor{keyword}{const} = 0;}
+\DoxyCodeLine{23             \textcolor{keyword}{virtual} \textcolor{keywordtype}{void}                    \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CShapeFunction_a01a0bf9991424ac553ce54f083d8d3a9}{ReverseNormal}}() = 0;}
+\DoxyCodeLine{24             \textcolor{keyword}{virtual} \textcolor{keyword}{const} \textcolor{keywordtype}{double}            \mbox{\hyperlink{classcorenc_1_1Mesh_1_1CShapeFunction_a6c850b856bd07fca32d2a55c47dee9bd}{GetMeasure}}() \textcolor{keyword}{const} = 0;}
+\DoxyCodeLine{25             \textcolor{comment}{//virtual const Type                GetValue(const Point\&) const = 0;}}
+\DoxyCodeLine{26             \textcolor{comment}{//virtual const int             SetValue(const unsigned int, const Type\& value) = 0;}}
+\DoxyCodeLine{27             \textcolor{comment}{//virtual const Type                GetValue(const unsigned int) const = 0;}}
+\DoxyCodeLine{28             \textcolor{comment}{//virtual const int             SetValue(const )}}
+\DoxyCodeLine{29             \textcolor{comment}{//virtual CSolution*        GetValue(const unsigned int) = 0;}}
+\DoxyCodeLine{30             \textcolor{comment}{//virtual const int             SetValue(const int, CSolution*) = 0;}}
+\DoxyCodeLine{31         \};}
+\DoxyCodeLine{32     \}}
+\DoxyCodeLine{33 \}}
+\DoxyCodeLine{34 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* CORENC\_MESH\_ShapeFunction\_h */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

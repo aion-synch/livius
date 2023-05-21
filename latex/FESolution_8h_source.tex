@@ -1,0 +1,135 @@
+\hypertarget{FESolution_8h_source}{}\doxysection{FESolution.\+h}
+\label{FESolution_8h_source}\index{CoreNCFEM/FESolution.h@{CoreNCFEM/FESolution.h}}
+\mbox{\hyperlink{FESolution_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef CORENC\_FESOLUTION\_H}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define CORENC\_FESOLUTION\_H}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{Point_8h}{Point.h}}"{}}}
+\DoxyCodeLine{11 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacecorenc}{corenc}}}
+\DoxyCodeLine{12 \{}
+\DoxyCodeLine{13     \textcolor{keyword}{class }\mbox{\hyperlink{classcorenc_1_1CSolution}{CSolution}}}
+\DoxyCodeLine{14     \{}
+\DoxyCodeLine{15     \textcolor{keyword}{public}:}
+\DoxyCodeLine{16         \mbox{\hyperlink{classcorenc_1_1CSolution_a27e4a944b20cf83ccfad088b646f6e30}{CSolution}}() \{\};}
+\DoxyCodeLine{17         \textcolor{keyword}{virtual} \mbox{\hyperlink{classcorenc_1_1CSolution_a48f09a115b50bcb72902bc8cee9a411c}{\string~CSolution}}() \{\};}
+\DoxyCodeLine{18     \};}
+\DoxyCodeLine{19     }
+\DoxyCodeLine{20     \textcolor{keyword}{class }\mbox{\hyperlink{classcorenc_1_1CFESolution}{CFESolution}} :\textcolor{keyword}{public} \mbox{\hyperlink{classcorenc_1_1CSolution}{CSolution}}}
+\DoxyCodeLine{21     \{}
+\DoxyCodeLine{22     \textcolor{keyword}{public}:}
+\DoxyCodeLine{23         \mbox{\hyperlink{classcorenc_1_1CFESolution_a7a7e16aac957f244bc7ad56b5c28d64d}{CFESolution}}() :m\_w\{ 0 \} \{\};}
+\DoxyCodeLine{24         \mbox{\hyperlink{classcorenc_1_1CFESolution_ae12ca697af90754c36885ada7c289b3b}{\string~CFESolution}}() \{\}}
+\DoxyCodeLine{25         \mbox{\hyperlink{classcorenc_1_1CFESolution}{CFESolution}}\& \mbox{\hyperlink{classcorenc_1_1CFESolution_ac9667a10ce9453141a97cf54aee38a8a}{operator=}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1CFESolution}{CFESolution}}\& fe)}
+\DoxyCodeLine{26         \{}
+\DoxyCodeLine{27             m\_w = fe.m\_w;}
+\DoxyCodeLine{28             \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{29         \}}
+\DoxyCodeLine{30         \mbox{\hyperlink{classcorenc_1_1CFESolution}{CFESolution}}\& \mbox{\hyperlink{classcorenc_1_1CFESolution_a68697b5d3fd4f5017da3b6f9271202c9}{operator=}}(\textcolor{keyword}{const} \textcolor{keywordtype}{double} fe)}
+\DoxyCodeLine{31         \{}
+\DoxyCodeLine{32             m\_w = fe;}
+\DoxyCodeLine{33             \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{34         \}}
+\DoxyCodeLine{35         \mbox{\hyperlink{classcorenc_1_1CFESolution_a9b3cbaa8118db89fe4e9e038d45c98f9}{CFESolution}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1CFESolution}{CFESolution}}\& fe) :m\_w\{ fe.m\_w \} \{\}}
+\DoxyCodeLine{36         \mbox{\hyperlink{classcorenc_1_1CFESolution_aae8b3961b0b129240d4e75b60f04d059}{CFESolution}}(\textcolor{keyword}{const} \textcolor{keywordtype}{double}\& fe) : m\_w\{ fe \} \{\}}
+\DoxyCodeLine{37         \textcolor{keyword}{operator} double()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} m\_w; \}}
+\DoxyCodeLine{38         \textcolor{comment}{/*double\& operator=(const double fe)}}
+\DoxyCodeLine{39 \textcolor{comment}{        \{}}
+\DoxyCodeLine{40 \textcolor{comment}{            m\_w = fe;}}
+\DoxyCodeLine{41 \textcolor{comment}{            return m\_w;}}
+\DoxyCodeLine{42 \textcolor{comment}{        \}*/}}
+\DoxyCodeLine{43         \textcolor{keyword}{const} \textcolor{keywordtype}{bool} \mbox{\hyperlink{classcorenc_1_1CFESolution_af895a7c2c20251d8c78d94a3cd9e0f5b}{operator==}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1CFESolution}{CFESolution}}\& fe)}
+\DoxyCodeLine{44         \{}
+\DoxyCodeLine{45             \textcolor{keywordflow}{if} (fe.m\_w == m\_w)}
+\DoxyCodeLine{46                 \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{47             \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{48         \}}
+\DoxyCodeLine{49         \textcolor{keyword}{const} \textcolor{keywordtype}{bool} \mbox{\hyperlink{classcorenc_1_1CFESolution_a660d688efeb1a529ca7cedfe3fceda63}{operator!=}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1CFESolution}{CFESolution}}\& fe)}
+\DoxyCodeLine{50         \{}
+\DoxyCodeLine{51             \textcolor{keywordflow}{if} (fe.m\_w != m\_w)}
+\DoxyCodeLine{52                 \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{53             \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{54         \}}
+\DoxyCodeLine{55         \mbox{\hyperlink{classcorenc_1_1CFESolution}{CFESolution}}\& \mbox{\hyperlink{classcorenc_1_1CFESolution_a2cd6187d12135d8e8011eeac7ac630f4}{operator+=}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1CFESolution}{CFESolution}}\& fe)}
+\DoxyCodeLine{56         \{}
+\DoxyCodeLine{57             m\_w += fe.m\_w;}
+\DoxyCodeLine{58             \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{59         \}}
+\DoxyCodeLine{60         \mbox{\hyperlink{classcorenc_1_1CFESolution}{CFESolution}}\& \mbox{\hyperlink{classcorenc_1_1CFESolution_a8568748077624896c0ffef1e68aec548}{operator-\/=}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1CFESolution}{CFESolution}}\& fe)}
+\DoxyCodeLine{61         \{}
+\DoxyCodeLine{62             m\_w -\/= fe.m\_w;}
+\DoxyCodeLine{63             \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{64         \}}
+\DoxyCodeLine{65         \mbox{\hyperlink{classcorenc_1_1CFESolution}{CFESolution}}\& \mbox{\hyperlink{classcorenc_1_1CFESolution_a661a3fbf8476d4a0a94aaf655229eb66}{operator*=}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1CFESolution}{CFESolution}}\& fe)}
+\DoxyCodeLine{66         \{}
+\DoxyCodeLine{67             m\_w *= fe.m\_w;}
+\DoxyCodeLine{68             \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{69         \}}
+\DoxyCodeLine{70         \mbox{\hyperlink{classcorenc_1_1CFESolution}{CFESolution}}\& \mbox{\hyperlink{classcorenc_1_1CFESolution_ad5021047a4075a5a9774fda8dca558c6}{operator/=}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1CFESolution}{CFESolution}}\& fe)}
+\DoxyCodeLine{71         \{}
+\DoxyCodeLine{72             m\_w /= fe.m\_w;}
+\DoxyCodeLine{73             \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{74         \}}
+\DoxyCodeLine{75         \textcolor{keyword}{friend} \textcolor{keyword}{const} \textcolor{keywordtype}{double} \mbox{\hyperlink{classcorenc_1_1CFESolution_a7e5945ec5f6e6223774cc440237a81c5}{operator*}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1CFESolution}{CFESolution}}\& lhs, \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1CFESolution}{CFESolution}}\& rhs)}
+\DoxyCodeLine{76         \{}
+\DoxyCodeLine{77             \textcolor{keywordflow}{return} lhs.m\_w * rhs.m\_w;}
+\DoxyCodeLine{78         \}}
+\DoxyCodeLine{79         \textcolor{keyword}{friend} \textcolor{keyword}{const} \textcolor{keywordtype}{double} \mbox{\hyperlink{classcorenc_1_1CFESolution_a7aaba55c8cefb1a2683966bfc7b4cc3a}{operator*}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1CFESolution}{CFESolution}}\& lhs, \textcolor{keyword}{const} \textcolor{keywordtype}{double} rhs)}
+\DoxyCodeLine{80         \{}
+\DoxyCodeLine{81             \textcolor{keywordflow}{return} lhs.m\_w * rhs;}
+\DoxyCodeLine{82         \}}
+\DoxyCodeLine{83         \textcolor{keyword}{friend} \textcolor{keyword}{const} \textcolor{keywordtype}{double} \mbox{\hyperlink{classcorenc_1_1CFESolution_a24e386552f37bc49a6d43121f6fa3ee3}{operator*}}(\textcolor{keyword}{const} \textcolor{keywordtype}{double} lhs, \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1CFESolution}{CFESolution}}\& rhs)}
+\DoxyCodeLine{84         \{}
+\DoxyCodeLine{85             \textcolor{keywordflow}{return} lhs * rhs.m\_w;}
+\DoxyCodeLine{86         \}}
+\DoxyCodeLine{87         \textcolor{keyword}{friend} \textcolor{keyword}{const} \textcolor{keywordtype}{double} \mbox{\hyperlink{classcorenc_1_1CFESolution_afe7949e2683829853a5694225e0db764}{operator-\/}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1CFESolution}{CFESolution}}\& lhs, \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1CFESolution}{CFESolution}}\& rhs)}
+\DoxyCodeLine{88         \{}
+\DoxyCodeLine{89             \textcolor{keywordflow}{return} lhs.m\_w -\/ rhs.m\_w;}
+\DoxyCodeLine{90         \}}
+\DoxyCodeLine{91         \textcolor{keyword}{friend} \textcolor{keyword}{const} \textcolor{keywordtype}{double} \mbox{\hyperlink{classcorenc_1_1CFESolution_ade4e507effe7910506c9d69d3ed866f9}{operator+}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1CFESolution}{CFESolution}}\& lhs, \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1CFESolution}{CFESolution}}\& rhs)}
+\DoxyCodeLine{92         \{}
+\DoxyCodeLine{93             \textcolor{keywordflow}{return} lhs.m\_w + rhs.m\_w;}
+\DoxyCodeLine{94         \}}
+\DoxyCodeLine{95         \textcolor{keyword}{friend} \textcolor{keyword}{const} \textcolor{keywordtype}{double} \mbox{\hyperlink{classcorenc_1_1CFESolution_ab448f323cde247acdd5795076b2f1d6d}{operator/}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1CFESolution}{CFESolution}}\& lhs, \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1CFESolution}{CFESolution}}\& rhs)}
+\DoxyCodeLine{96         \{}
+\DoxyCodeLine{97             \textcolor{keywordflow}{return} lhs.m\_w / rhs.m\_w;}
+\DoxyCodeLine{98         \}}
+\DoxyCodeLine{99     \textcolor{keyword}{private}:}
+\DoxyCodeLine{100         \textcolor{keywordtype}{double} m\_w;}
+\DoxyCodeLine{101     \};}
+\DoxyCodeLine{102     \textcolor{keyword}{class }\mbox{\hyperlink{classcorenc_1_1CVecSolution}{CVecSolution}} :\textcolor{keyword}{public} \mbox{\hyperlink{classcorenc_1_1CSolution}{CSolution}}}
+\DoxyCodeLine{103     \{}
+\DoxyCodeLine{104     \textcolor{keyword}{public}:}
+\DoxyCodeLine{105         \mbox{\hyperlink{classcorenc_1_1CVecSolution_a11019e877bae75a0ff7490b390a9e83d}{CVecSolution}}() :\mbox{\hyperlink{classcorenc_1_1CVecSolution_a0dece42bfae3e22d43234b1cb1b232a4}{m\_w}}\{ 0 \} \{\};}
+\DoxyCodeLine{106         \mbox{\hyperlink{classcorenc_1_1CVecSolution_a6d818f1077157713e4fde6a9c7359fff}{\string~CVecSolution}}() \{\}}
+\DoxyCodeLine{107         std::vector<double> \mbox{\hyperlink{classcorenc_1_1CVecSolution_a0dece42bfae3e22d43234b1cb1b232a4}{m\_w}};}
+\DoxyCodeLine{108     \};}
+\DoxyCodeLine{109     }
+\DoxyCodeLine{110     \textcolor{keyword}{class }\mbox{\hyperlink{classcorenc_1_1CFEweights}{CFEweights}}}
+\DoxyCodeLine{111     \{}
+\DoxyCodeLine{112     \textcolor{keyword}{public}:}
+\DoxyCodeLine{113         \mbox{\hyperlink{classcorenc_1_1CFEweights_ab176b8832cb8091de610b26c0dac82c1}{CFEweights}}() \{\};}
+\DoxyCodeLine{114         \mbox{\hyperlink{classcorenc_1_1CFEweights_aa7204eece8b0a1dcff33583ead268044}{\string~CFEweights}}()}
+\DoxyCodeLine{115         \{}
+\DoxyCodeLine{116             \textcolor{keywordflow}{if} (m\_w.size() > 0)}
+\DoxyCodeLine{117                 std::vector<CFESolution>().swap(m\_w);}
+\DoxyCodeLine{118         \};}
+\DoxyCodeLine{119         \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1CFESolution}{CFESolution}}                \mbox{\hyperlink{classcorenc_1_1CFEweights_ab87c13a9f9550547307689847ccb68b4}{getWeight}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} i)\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} m\_w[i]; \};}
+\DoxyCodeLine{120         \textcolor{keyword}{const} \textcolor{keywordtype}{int}                       \mbox{\hyperlink{classcorenc_1_1CFEweights_a67463f35962103c8ea5b406222681e2e}{updateWeight}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} i, \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1CFESolution}{CFESolution}}\& cfe) }
+\DoxyCodeLine{121         \{ }
+\DoxyCodeLine{122             \textcolor{keywordflow}{if} (i < m\_w.size())}
+\DoxyCodeLine{123             \{}
+\DoxyCodeLine{124                 m\_w[i] = cfe;}
+\DoxyCodeLine{125                 \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{126             \}}
+\DoxyCodeLine{127             \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{128         \}}
+\DoxyCodeLine{129     \textcolor{keyword}{private}:}
+\DoxyCodeLine{130         std::vector<CFESolution>        m\_w;}
+\DoxyCodeLine{131     \};}
+\DoxyCodeLine{132 \}}
+\DoxyCodeLine{133 }
+\DoxyCodeLine{134 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// !CORENC\_FESOLUTION\_H}}
+\DoxyCodeLine{135 }
+
+\end{DoxyCode}

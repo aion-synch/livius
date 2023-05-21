@@ -1,0 +1,1471 @@
+\hypertarget{DGMethod_8h_source}{}\doxysection{DGMethod.\+h}
+\label{DGMethod_8h_source}\index{CoreNCFEM/Methods/DGMethod.h@{CoreNCFEM/Methods/DGMethod.h}}
+\mbox{\hyperlink{DGMethod_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef DGMethod\_H}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define DGMethod\_H}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{comment}{// DGMethod.h describes an abstract interface and functions for a DG method with zero Dirichlet boundaries}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <functional>}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <set>}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include "{}../Point.h"{}}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include "{}../Parameter.h"{}}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{CSMethod_8h}{CSMethod.h}}"{}}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <memory>}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <cmath>}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <map>}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <algorithm>}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <fstream>}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{18 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacecorenc}{corenc}}}
+\DoxyCodeLine{19 \{}
+\DoxyCodeLine{20     \textcolor{keyword}{namespace }Mesh}
+\DoxyCodeLine{21     \{}
+\DoxyCodeLine{22         \textcolor{keyword}{class }Point;}
+\DoxyCodeLine{23     \}}
+\DoxyCodeLine{24     \textcolor{keyword}{namespace }method}
+\DoxyCodeLine{25     \{}
+\DoxyCodeLine{26         \textcolor{comment}{// class Type = Type of the solution, for ex vector or double, or even more specific}}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29         \textcolor{keyword}{template}<\textcolor{keyword}{class} Type>}
+\DoxyCodeLine{30         \textcolor{keyword}{class }\mbox{\hyperlink{classcorenc_1_1method_1_1CDGMethod}{CDGMethod}}}
+\DoxyCodeLine{31         \{}
+\DoxyCodeLine{32         \textcolor{keyword}{public}:}
+\DoxyCodeLine{33             \mbox{\hyperlink{classcorenc_1_1method_1_1CDGMethod_ad9bb1690a2ef57d7ce5dc435f0b8c5bb}{CDGMethod}}() \{\};}
+\DoxyCodeLine{34             \textcolor{keyword}{virtual} \mbox{\hyperlink{classcorenc_1_1method_1_1CDGMethod_ab21cdbf147ce52cbd925608b43e8179d}{\string~CDGMethod}}() \{\};}
+\DoxyCodeLine{35             \textcolor{keyword}{virtual} \textcolor{keyword}{const} \textcolor{keywordtype}{int}                           \mbox{\hyperlink{classcorenc_1_1method_1_1CDGMethod_ad3bcc41c2177e72366cc039aeda71d74}{Assemble}}() = 0;}
+\DoxyCodeLine{36             \textcolor{keyword}{virtual} \textcolor{keyword}{const} Type                          \mbox{\hyperlink{classcorenc_1_1method_1_1CDGMethod_aa0aa2d8a022a11c046848409e321e2d6}{GetSolution}}(\textcolor{keyword}{const} std::vector<double>\& point) \textcolor{keyword}{const} = 0;}
+\DoxyCodeLine{37             \textcolor{keyword}{virtual} \textcolor{keyword}{const} std::vector<Type>             \mbox{\hyperlink{classcorenc_1_1method_1_1CDGMethod_a74434965135bbfb036a2d13bc8c5352a}{GetSolution}}() \textcolor{keyword}{const} = 0;}
+\DoxyCodeLine{38             \textcolor{keyword}{virtual} \textcolor{keyword}{const} Type                          \mbox{\hyperlink{classcorenc_1_1method_1_1CDGMethod_a6d7a91c60ef49eabdbd06853e6f84ef9}{GetMaxSolution}}() \textcolor{keyword}{const} = 0;}
+\DoxyCodeLine{39             \textcolor{keyword}{virtual} \textcolor{keyword}{const} Type                          \mbox{\hyperlink{classcorenc_1_1method_1_1CDGMethod_abafcf893cc75e750517d77d252f4c15d}{GetMinSolution}}() \textcolor{keyword}{const} = 0;}
+\DoxyCodeLine{40         \};}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42         \textcolor{keyword}{template}<\textcolor{keyword}{class} Problem, \textcolor{keyword}{class} Gr\textcolor{keywordtype}{id}, \textcolor{keyword}{class} Matrix>}
+\DoxyCodeLine{43         \textcolor{keyword}{class }\mbox{\hyperlink{classcorenc_1_1method_1_1DGMethod}{DGMethod}}}
+\DoxyCodeLine{44         \{}
+\DoxyCodeLine{45         \textcolor{keyword}{public}:}
+\DoxyCodeLine{46             \mbox{\hyperlink{classcorenc_1_1method_1_1DGMethod_aa1f4d05ecc3a43f83d7ed53254e2f013}{DGMethod}}() :}
+\DoxyCodeLine{47                 m\_problem\{nullptr\},}
+\DoxyCodeLine{48                 m\_Grid\{nullptr\},}
+\DoxyCodeLine{49                 m\_GlobalMatrix\{nullptr\},}
+\DoxyCodeLine{50                 m\_RightMatrix\{nullptr\},}
+\DoxyCodeLine{51                 m\_rhsvector\{nullptr\}}
+\DoxyCodeLine{52             \{\}}
+\DoxyCodeLine{53             \mbox{\hyperlink{classcorenc_1_1method_1_1DGMethod_a5edb3910141f810050ff51a666d62311}{DGMethod}}(}
+\DoxyCodeLine{54                 Problem* p,}
+\DoxyCodeLine{55                 Grid* g,}
+\DoxyCodeLine{56                 Matrix* m,}
+\DoxyCodeLine{57                 std::vector<double>* rhs):}
+\DoxyCodeLine{58                 m\_problem\{ p \},}
+\DoxyCodeLine{59                 m\_Grid\{ g-\/>Clone() \},}
+\DoxyCodeLine{60                 m\_GlobalMatrix\{ m \},}
+\DoxyCodeLine{61                 m\_N\{ g-\/>GetNumberOfElements() \},}
+\DoxyCodeLine{62                 m\_Ns\{ g-\/>GetNumberOfBoundaries() \},}
+\DoxyCodeLine{63                 m\_rhsvector\{ rhs \}\{}
+\DoxyCodeLine{64                 \textcolor{comment}{//GeneratePortrait();}}
+\DoxyCodeLine{65             \}}
+\DoxyCodeLine{66             \mbox{\hyperlink{classcorenc_1_1method_1_1DGMethod_a624f62301f9549e6192748b41e56fc39}{DGMethod}}(}
+\DoxyCodeLine{67                 Problem* p,}
+\DoxyCodeLine{68                 Grid* g,}
+\DoxyCodeLine{69                 Matrix* m,}
+\DoxyCodeLine{70                 Matrix* rm,}
+\DoxyCodeLine{71                 std::vector<double>* rhs):}
+\DoxyCodeLine{72                 m\_problem\{ p \},}
+\DoxyCodeLine{73                 m\_Grid\{ g-\/>Clone() \},}
+\DoxyCodeLine{74                 m\_GlobalMatrix\{ m \},}
+\DoxyCodeLine{75                 m\_RightMatrix\{ rm \},}
+\DoxyCodeLine{76                 m\_N\{ g-\/>GetNumberOfElements() \},}
+\DoxyCodeLine{77                 m\_Ns\{ g-\/>GetNumberOfBoundaries() \},}
+\DoxyCodeLine{78                 m\_rhsvector\{ rhs \}\{}
+\DoxyCodeLine{79                 \textcolor{comment}{//GeneratePortrait();}}
+\DoxyCodeLine{80             \}}
+\DoxyCodeLine{81             \mbox{\hyperlink{classcorenc_1_1method_1_1DGMethod_a71cff1b00c965b885fa706dfca8a54a7}{DGMethod}}(\textcolor{keyword}{const} std::shared\_ptr<Grid>\& grid) :m\_Grid\{ grid-\/>Clone() \} \{\}}
+\DoxyCodeLine{82             \mbox{\hyperlink{classcorenc_1_1method_1_1DGMethod_aa3782e79728ba809c60822b541cf240e}{DGMethod}}(Grid* grid) :m\_Grid\{ grid-\/>Clone() \} \{\}}
+\DoxyCodeLine{83             \mbox{\hyperlink{classcorenc_1_1method_1_1DGMethod_a35c1e7ffedd1c115aa25768594ec1631}{DGMethod}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1method_1_1DGMethod}{DGMethod}}\& meth) :}
+\DoxyCodeLine{84                 m\_Grid\{ meth.m\_Grid-\/>Clone() \},}
+\DoxyCodeLine{85                 \textcolor{comment}{//m\_GlobalMatrix\{ meth.m\_GlobalMatrix-\/>Clone() \},}}
+\DoxyCodeLine{86                 \textcolor{comment}{//m\_rhsvector\{ meth.m\_rhsvector \},}}
+\DoxyCodeLine{87                 \textcolor{comment}{//m\_problem\{ meth.m\_problem \},}}
+\DoxyCodeLine{88                 m\_time\{ meth.m\_time \},}
+\DoxyCodeLine{89                 \textcolor{comment}{//m\_solution\{ meth.m\_solution \},}}
+\DoxyCodeLine{90                 m\_size\{ meth.m\_size \},}
+\DoxyCodeLine{91                 m\_N\{ meth.m\_N \},}
+\DoxyCodeLine{92                 m\_Ns\{ meth.m\_Ns \},}
+\DoxyCodeLine{93                 m\_nums\{ meth.m\_nums \}}
+\DoxyCodeLine{94             \{\};}
+\DoxyCodeLine{95             \textcolor{keywordtype}{void}                        \mbox{\hyperlink{classcorenc_1_1method_1_1DGMethod_a7b768c2a3869874fdbc6c942a2e2e45a}{Discretization}}();}
+\DoxyCodeLine{96             \textcolor{keyword}{const} \textcolor{keywordtype}{double}                \mbox{\hyperlink{classcorenc_1_1method_1_1DGMethod_ac3cc58633e27e4f0719c2e2131260011}{GetValue}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh::Point}}\&) \textcolor{keyword}{const};}
+\DoxyCodeLine{97             \textcolor{keyword}{const} \textcolor{keywordtype}{double}                \mbox{\hyperlink{classcorenc_1_1method_1_1DGMethod_ac3cc58633e27e4f0719c2e2131260011}{GetValue}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh::Point}}\&, \textcolor{keyword}{const} std::vector<double>\& vec) \textcolor{keyword}{const};}
+\DoxyCodeLine{98             \textcolor{keyword}{const} \textcolor{keywordtype}{double}                \mbox{\hyperlink{classcorenc_1_1method_1_1DGMethod_ac3cc58633e27e4f0719c2e2131260011}{GetValue}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh::Point}}\&, \textcolor{keyword}{const} std::vector<double>\& vec, \textcolor{keyword}{const} \textcolor{keywordtype}{int} num) \textcolor{keyword}{const};}
+\DoxyCodeLine{99             \textcolor{comment}{//const Mesh::Point         GetGradValue(const Mesh::Point\&, const std::vector<double>\& vec) const;}}
+\DoxyCodeLine{100             \textcolor{comment}{//const Mesh::Point         GetLambdaGrad(const Mesh::Point\&, const std::vector<double>\& vec) const;}}
+\DoxyCodeLine{101             \textcolor{keyword}{const} \textcolor{keywordtype}{double}                \mbox{\hyperlink{classcorenc_1_1method_1_1DGMethod_a891cabd444e39e0c9328bc51773f1bca}{GetEffective}}(\textcolor{keyword}{const} std::vector<double>\& vec) \textcolor{keyword}{const};}
+\DoxyCodeLine{102             \textcolor{keywordtype}{void}                        \mbox{\hyperlink{classcorenc_1_1method_1_1DGMethod_acd86b2542edc1fd6c14fea25430bf50f}{ProjectSolution}}(std::vector<double>\&, std::function<\textcolor{keyword}{const} \textcolor{keywordtype}{double}(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh::Point}}\&, \textcolor{keyword}{const} std::vector<double>\&, \textcolor{keyword}{const} \textcolor{keywordtype}{int})> \mbox{\hyperlink{classcorenc_1_1method_1_1DGMethod_ac3cc58633e27e4f0719c2e2131260011}{GetValue}}, std::vector<double>\& sol);}
+\DoxyCodeLine{103             \textcolor{keywordtype}{void}                        \mbox{\hyperlink{classcorenc_1_1method_1_1DGMethod_acd86b2542edc1fd6c14fea25430bf50f}{ProjectSolution}}(std::vector<double>\&, std::function<\textcolor{keyword}{const} \textcolor{keywordtype}{double}(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh::Point}}\&, \textcolor{keyword}{const} std::vector<double>\&)> \mbox{\hyperlink{classcorenc_1_1method_1_1DGMethod_ac3cc58633e27e4f0719c2e2131260011}{GetValue}}, std::vector<double>\& sol, \textcolor{keyword}{const} \textcolor{keywordtype}{int});}
+\DoxyCodeLine{104             \textcolor{keywordtype}{void}                        \mbox{\hyperlink{classcorenc_1_1method_1_1DGMethod_a44b3f094b56f9bef5c628f89c9794083}{LoadSolution}}(\textcolor{keyword}{const} std::vector<double>\& vec);}
+\DoxyCodeLine{105             \textcolor{keyword}{const} std::vector<double>   \mbox{\hyperlink{classcorenc_1_1method_1_1DGMethod_acc85a78f2d496560c983ef92db324180}{SetSolution}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} sol, \textcolor{keyword}{const} \textcolor{keywordtype}{int} liq, \textcolor{keyword}{const} \textcolor{keywordtype}{double}, \textcolor{keyword}{const} \textcolor{keywordtype}{double}, \textcolor{keyword}{const} \textcolor{keywordtype}{double});}
+\DoxyCodeLine{106             \textcolor{keywordtype}{void}                        \mbox{\hyperlink{classcorenc_1_1method_1_1DGMethod_afa9f1c995c17bdc817102e8be336578a}{GetSolution}}(std::vector<double>\& vec);}
+\DoxyCodeLine{107             \textcolor{keywordtype}{void}                        \mbox{\hyperlink{classcorenc_1_1method_1_1DGMethod_a15d2fb86313a8131f1806d17d0a1fcb3}{Rediscretization}}(\textcolor{keyword}{const} std::shared\_ptr<Grid>\&);}
+\DoxyCodeLine{108             \textcolor{keywordtype}{void}                        \mbox{\hyperlink{classcorenc_1_1method_1_1DGMethod_a15d2fb86313a8131f1806d17d0a1fcb3}{Rediscretization}}();}
+\DoxyCodeLine{109             \textcolor{keywordtype}{void}                        \mbox{\hyperlink{classcorenc_1_1method_1_1DGMethod_a173e8ea6ab26306dd1105eec45e9ab5c}{SetTimeStep}}(\textcolor{keyword}{const} \textcolor{keywordtype}{double}\& step) \{ m\_step = step; m\_time = step; \}}
+\DoxyCodeLine{110             Matrix*                     \mbox{\hyperlink{classcorenc_1_1method_1_1DGMethod_aabb6cb37e6db6b5e50fd8b18dc50bd5b}{GetGlobalMatrix}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{111             Grid*                       \mbox{\hyperlink{classcorenc_1_1method_1_1DGMethod_ad6543ad71d2436e09dd8d2fe5f60e9ec}{GetMesh}}() \{ \textcolor{keywordflow}{return} m\_Grid; \}}
+\DoxyCodeLine{112             \textcolor{keyword}{const} std::vector<double>   \mbox{\hyperlink{classcorenc_1_1method_1_1DGMethod_a117ede957cd1c882190fa0df71fef0d1}{GetRightVector}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{113             \textcolor{keywordtype}{void}                        \mbox{\hyperlink{classcorenc_1_1method_1_1DGMethod_ae535a902934ee124c8b1cbb8be573157}{OutDatFormat}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh::Point}}\& min, \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh::Point}}\& max, \textcolor{keyword}{const} std::string\& file\_name, \textcolor{keyword}{const} std::vector<double>\& vec) \textcolor{keyword}{const};}
+\DoxyCodeLine{114             \textcolor{keywordtype}{void}                        \mbox{\hyperlink{classcorenc_1_1method_1_1DGMethod_ad4abed53de365d8efaa0c23291fb69ce}{OutMeshFormat}}(\textcolor{keyword}{const} std::string\& file\_name, \textcolor{keyword}{const} std::vector<double>\& vec);}
+\DoxyCodeLine{115             \textcolor{keywordtype}{void}                        \mbox{\hyperlink{classcorenc_1_1method_1_1DGMethod_a02e3fca5445d43c5dfaaad9df6cb9747}{OutMeshTimeFormat}}(\textcolor{keyword}{const} std::string\& file\_name, \textcolor{keyword}{const} std::vector<double>\& vec);}
+\DoxyCodeLine{116             \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{double}         \mbox{\hyperlink{classcorenc_1_1method_1_1DGMethod_afa9f1c995c17bdc817102e8be336578a}{GetSolution}}(\textcolor{keyword}{const} Grid\& g, \textcolor{keyword}{const} std::vector<double> \&weights, \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh::Point}}\& p);}
+\DoxyCodeLine{117             \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{double}         \mbox{\hyperlink{classcorenc_1_1method_1_1DGMethod_afa9f1c995c17bdc817102e8be336578a}{GetSolution}}(\textcolor{keyword}{const} Grid\& g, \textcolor{keyword}{const} std::vector<double> \&weights, \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh::Point}}\& p, \textcolor{keyword}{const} \textcolor{keywordtype}{int} nfem);}
+\DoxyCodeLine{118             \textcolor{keyword}{static} \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh::Point}} \mbox{\hyperlink{classcorenc_1_1method_1_1DGMethod_aa048ec68f230b68b6ad9191d2327ce53}{GetGradSolution}}(\textcolor{keyword}{const} Grid\& g, \textcolor{keyword}{const} std::vector<double> \&weights, \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh::Point}}\& p);}
+\DoxyCodeLine{119             \textcolor{keyword}{static} \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh::Point}} \mbox{\hyperlink{classcorenc_1_1method_1_1DGMethod_aa048ec68f230b68b6ad9191d2327ce53}{GetGradSolution}}(\textcolor{keyword}{const} Grid\& g, \textcolor{keyword}{const} std::vector<double> \&weights, \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh::Point}}\& p, \textcolor{keyword}{const} \textcolor{keywordtype}{int} n);}
+\DoxyCodeLine{120             \mbox{\hyperlink{classcorenc_1_1method_1_1DGMethod_a3b283ee36086338878b9b64800956e16}{\string~DGMethod}}();}
+\DoxyCodeLine{121         \textcolor{keyword}{private}:}
+\DoxyCodeLine{122             \textcolor{keywordtype}{void}                        GeneratePortrait();}
+\DoxyCodeLine{123             \textcolor{keywordtype}{void}                        AssemblGlobal();}
+\DoxyCodeLine{124             \textcolor{keywordtype}{void}                        MainConditions();}
+\DoxyCodeLine{125             \textcolor{keywordtype}{void}                        SecondConditions();}
+\DoxyCodeLine{126             \textcolor{keywordtype}{void}                        ThirdConditions();}
+\DoxyCodeLine{127             \textcolor{keywordtype}{void}                        StefanConditions();}
+\DoxyCodeLine{128             \textcolor{keywordtype}{void}                        ApplySources();}
+\DoxyCodeLine{129             \textcolor{keyword}{const} \textcolor{keywordtype}{int}                   AssembleLocalMatrix(\textcolor{keyword}{const} \textcolor{keywordtype}{int});}
+\DoxyCodeLine{130             \textcolor{keyword}{const} \textcolor{keywordtype}{int}                   AssembleIDUDVMatrix(\textcolor{keyword}{const} \textcolor{keywordtype}{int});}
+\DoxyCodeLine{131             \textcolor{keyword}{const} \textcolor{keywordtype}{int}                   AssembleIDUVMatrix(\textcolor{keyword}{const} \textcolor{keywordtype}{int});}
+\DoxyCodeLine{132             \textcolor{keyword}{const} \textcolor{keywordtype}{int}                   AssembleIUDVMatrix(\textcolor{keyword}{const} \textcolor{keywordtype}{int});}
+\DoxyCodeLine{133             \textcolor{keyword}{const} \textcolor{keywordtype}{int}                   AssembleRUVMatrix(\textcolor{keyword}{const} \textcolor{keywordtype}{int});}
+\DoxyCodeLine{134             \textcolor{keyword}{const} \textcolor{keywordtype}{int}                   AssembleSUPGMatrix(\textcolor{keyword}{const} \textcolor{keywordtype}{int});}
+\DoxyCodeLine{135             \textcolor{keyword}{const} \textcolor{keywordtype}{int}                   AssembleLocalMatrix(\textcolor{keyword}{const} \textcolor{keywordtype}{int}, \textcolor{keyword}{const} \textcolor{keywordtype}{int});}
+\DoxyCodeLine{136             \textcolor{keyword}{const} \textcolor{keywordtype}{int}                   AssembleInter();}
+\DoxyCodeLine{137             Grid*                       m\_Grid = \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{138             Matrix*                     m\_GlobalMatrix = \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{139             Matrix*                 m\_RightMatrix = \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{140             Problem*                    m\_problem = \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{141             std::vector<double>         m\_solution;}
+\DoxyCodeLine{142             std::vector<double>*        m\_rhsvector;}
+\DoxyCodeLine{143             \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int}                m\_size;}
+\DoxyCodeLine{144             \textcolor{keywordtype}{double}                      m\_step\{ 0.1 \};}
+\DoxyCodeLine{145             \textcolor{keywordtype}{double}                      m\_time\{ 0.1 \};}
+\DoxyCodeLine{146             \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int}                m\_N;}
+\DoxyCodeLine{147             \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int}                m\_Ns;}
+\DoxyCodeLine{148             std::vector<unsigned int>   m\_nums;}
+\DoxyCodeLine{149             \textcolor{comment}{// interpolation nodes}}
+\DoxyCodeLine{150             std::vector<std::vector<int>>   m\_inums;}
+\DoxyCodeLine{151 }
+\DoxyCodeLine{152         \};}
+\DoxyCodeLine{153 }
+\DoxyCodeLine{154         \textcolor{keyword}{template}<\textcolor{keyword}{class} Problem, \textcolor{keyword}{class} Gr\textcolor{keywordtype}{id}, \textcolor{keyword}{class} Matrix>}
+\DoxyCodeLine{155         \textcolor{keywordtype}{void} \mbox{\hyperlink{classcorenc_1_1method_1_1DGMethod_a7b768c2a3869874fdbc6c942a2e2e45a}{DGMethod<Problem, Grid, Matrix>::Discretization}}()}
+\DoxyCodeLine{156         \{}
+\DoxyCodeLine{157             GeneratePortrait();}
+\DoxyCodeLine{158             AssemblGlobal();}
+\DoxyCodeLine{159             AssembleInter();}
+\DoxyCodeLine{160             \textcolor{comment}{//ApplySources();}}
+\DoxyCodeLine{161             \textcolor{comment}{//SecondConditions();}}
+\DoxyCodeLine{162             \textcolor{comment}{//ThirdConditions();}}
+\DoxyCodeLine{163             MainConditions();}
+\DoxyCodeLine{164             \textcolor{comment}{//StefanConditions();}}
+\DoxyCodeLine{165         \}}
+\DoxyCodeLine{166         \textcolor{keyword}{template}<\textcolor{keyword}{class} Problem, \textcolor{keyword}{class} Gr\textcolor{keywordtype}{id}, \textcolor{keyword}{class} Matrix>}
+\DoxyCodeLine{167         \textcolor{keywordtype}{void} \mbox{\hyperlink{classcorenc_1_1method_1_1DGMethod}{DGMethod<Problem, Grid, Matrix>::GeneratePortrait}}()}
+\DoxyCodeLine{168         \{}
+\DoxyCodeLine{169             \textcolor{keyword}{const} \textcolor{keyword}{auto}\& el = m\_Grid-\/>GetElement(0);}
+\DoxyCodeLine{170             \textcolor{keywordtype}{int} order = m\_Grid-\/>GetElement(0)-\/>GetDoFs();}
+\DoxyCodeLine{171             std::vector<std::set<unsigned int>> temp;}
+\DoxyCodeLine{172             \textcolor{comment}{//m\_Ns = m\_Grid-\/>GetNumberOfINodes();}}
+\DoxyCodeLine{173             m\_Ns = m\_Grid-\/>GetNumberOfBoundaries();}
+\DoxyCodeLine{174             m\_N = m\_Grid-\/>GetNumberOfElements();}
+\DoxyCodeLine{175             \textcolor{comment}{//temp.resize(m\_Grid-\/>GetNumberOfINodes());}}
+\DoxyCodeLine{176             \textcolor{keywordtype}{unsigned} i, j, k;}
+\DoxyCodeLine{177             m\_nums.resize(m\_N);}
+\DoxyCodeLine{178             m\_inums.resize(m\_N);}
+\DoxyCodeLine{179             \textcolor{keywordtype}{int} size;}
+\DoxyCodeLine{180             m\_size = 0;}
+\DoxyCodeLine{181             std::cout << \textcolor{stringliteral}{"{}nums"{}} << std::endl;}
+\DoxyCodeLine{182             \textcolor{keywordflow}{for} (k = 0; k < m\_N; ++k)}
+\DoxyCodeLine{183             \{}
+\DoxyCodeLine{184                 \textcolor{keyword}{const} \textcolor{keyword}{auto}\& elem\{ m\_Grid-\/>GetElement(k) \};}
+\DoxyCodeLine{185                 size = 0;}
+\DoxyCodeLine{186                 m\_inums[k].resize(order);}
+\DoxyCodeLine{187                 \textcolor{keywordflow}{for} (i = 0; i < order; ++i)}
+\DoxyCodeLine{188                 \{}
+\DoxyCodeLine{189                     \{}
+\DoxyCodeLine{190                         m\_inums[k][i] = size;}
+\DoxyCodeLine{191                         ++size;}
+\DoxyCodeLine{192                     \}}
+\DoxyCodeLine{193                 \}}
+\DoxyCodeLine{194                 m\_nums[k] = m\_size;}
+\DoxyCodeLine{195                 m\_size += size;}
+\DoxyCodeLine{196                 std::cout << k << \textcolor{stringliteral}{"{}\(\backslash\)t"{}} << m\_nums[k] << std::endl;}
+\DoxyCodeLine{197             \}}
+\DoxyCodeLine{198             \textcolor{keywordtype}{int} sz = m\_Ns;}
+\DoxyCodeLine{199             \textcolor{keywordtype}{int} nk, ne;}
+\DoxyCodeLine{200             \textcolor{keywordtype}{int} sizej = 0;}
+\DoxyCodeLine{201             \textcolor{keywordtype}{int} sizei = 0;}
+\DoxyCodeLine{202             temp.resize(m\_size);}
+\DoxyCodeLine{203             \textcolor{keywordflow}{for} (k = 0; k < sz; ++k)}
+\DoxyCodeLine{204             \{}
+\DoxyCodeLine{205                 \textcolor{keyword}{auto} bound = m\_Grid-\/>GetBoundary(k);}
+\DoxyCodeLine{206                 nk = bound-\/>GetNeighbour(0);}
+\DoxyCodeLine{207                 ne = bound-\/>GetNeighbour(1);}
+\DoxyCodeLine{208                 std::cout << nk << ne << std::endl;}
+\DoxyCodeLine{209                 sizei = 0;}
+\DoxyCodeLine{210                 sizej = 0;}
+\DoxyCodeLine{211                 \textcolor{keywordflow}{if} (ne != -\/1)}
+\DoxyCodeLine{212                 \{}
+\DoxyCodeLine{213                     \textcolor{keyword}{auto} elemk = m\_Grid-\/>GetElement(nk);}
+\DoxyCodeLine{214                     \textcolor{keyword}{auto} eleme = m\_Grid-\/>GetElement(ne);}
+\DoxyCodeLine{215                     size = 0;}
+\DoxyCodeLine{216                     \textcolor{keywordflow}{for} (i = 0; i < order; ++i)}
+\DoxyCodeLine{217                     \{}
+\DoxyCodeLine{218                             \textcolor{keywordflow}{for} (j = i + 1; j < order; ++j)}
+\DoxyCodeLine{219                             \{}
+\DoxyCodeLine{220                                 \{}
+\DoxyCodeLine{221                                     temp[m\_nums[nk] + m\_inums[nk][j]].insert(m\_nums[nk] + m\_inums[nk][i]);}
+\DoxyCodeLine{222                                 \}}
+\DoxyCodeLine{223                             \}}
+\DoxyCodeLine{224                     \}}
+\DoxyCodeLine{225                     \textcolor{keywordflow}{for} (i = 0; i < order; ++i)}
+\DoxyCodeLine{226                     \{}
+\DoxyCodeLine{227                             \textcolor{keywordflow}{for} (j = 0; j < order; ++j)}
+\DoxyCodeLine{228                             \{}
+\DoxyCodeLine{229                                 \textcolor{keywordtype}{int} jnode = m\_Grid-\/>interpolate(eleme-\/>GetNode(j));}
+\DoxyCodeLine{230                                     temp[m\_nums[ne] + m\_inums[ne][j]].insert(m\_nums[nk] + m\_inums[nk][i]);}
+\DoxyCodeLine{231                             \}}
+\DoxyCodeLine{232                     \}}
+\DoxyCodeLine{233                 \}}
+\DoxyCodeLine{234                 \textcolor{keywordflow}{else}}
+\DoxyCodeLine{235                 \{}
+\DoxyCodeLine{236                     sizei = 0;}
+\DoxyCodeLine{237                     sizej = 0;}
+\DoxyCodeLine{238                     \textcolor{keyword}{auto} elemk = m\_Grid-\/>GetElement(nk);}
+\DoxyCodeLine{239                     size = 0;}
+\DoxyCodeLine{240                     \textcolor{keywordflow}{for} (i = 0; i < order; ++i)}
+\DoxyCodeLine{241                     \{}
+\DoxyCodeLine{242                             \textcolor{keywordflow}{for} (j = i + 1; j < order; ++j)}
+\DoxyCodeLine{243                             \{}
+\DoxyCodeLine{244                                     temp[m\_nums[nk] + m\_inums[nk][j]].insert(m\_nums[nk] + m\_inums[nk][i]);}
+\DoxyCodeLine{245                                     \textcolor{comment}{//temp[m\_nums[nk] + sizej].insert(m\_nums[nk] + sizei);}}
+\DoxyCodeLine{246                             \}}
+\DoxyCodeLine{247                     \}}
+\DoxyCodeLine{248                 \}}
+\DoxyCodeLine{249             \}}
+\DoxyCodeLine{250             \textcolor{keywordflow}{if}(m\_problem-\/>findTerm(\mbox{\hyperlink{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7dad3b7f41b5ee98737009f90516d82fd4c}{Terms::RUV}}))}
+\DoxyCodeLine{251                 m\_RightMatrix-\/>Create(temp.size(), temp);}
+\DoxyCodeLine{252 }
+\DoxyCodeLine{253       \textcolor{comment}{//      for (auto \& it : temp)}}
+\DoxyCodeLine{254     \textcolor{comment}{//        \{}}
+\DoxyCodeLine{255   \textcolor{comment}{//              for (auto\& it2 : it)}}
+\DoxyCodeLine{256 \textcolor{comment}{//                    std::cout << it2 << "{}\(\backslash\)t"{};}}
+\DoxyCodeLine{257               \textcolor{comment}{//  std::cout << std::endl;}}
+\DoxyCodeLine{258             \textcolor{comment}{//\}}}
+\DoxyCodeLine{259             \textcolor{comment}{//m\_GlobalMatrix = std::shared\_ptr<Matrix>(new Matrix(m\_Grid-\/>GetNumberOfNodes(), temp));}}
+\DoxyCodeLine{260             \textcolor{comment}{//m\_rhsvector.resize(m\_Grid-\/>GetNumberOfNodes());}}
+\DoxyCodeLine{261             \textcolor{comment}{//std::cout << temp.size() << std::endl;}}
+\DoxyCodeLine{262             m\_GlobalMatrix-\/>Create(temp.size(), temp);}
+\DoxyCodeLine{263             m\_rhsvector-\/>resize(temp.size());}
+\DoxyCodeLine{264             \textcolor{comment}{//m\_solution.resize(m\_Grid-\/>GetNumberOfNodes());}}
+\DoxyCodeLine{265             \textcolor{comment}{//for (int l = 0; l < m\_Grid-\/>GetNumberOfNodes(); ++l)}}
+\DoxyCodeLine{266             \textcolor{comment}{//  m\_solution[l] = 20;}}
+\DoxyCodeLine{267         \}}
+\DoxyCodeLine{268         \textcolor{keyword}{template}<\textcolor{keyword}{class} Problem, \textcolor{keyword}{class} Gr\textcolor{keywordtype}{id}, \textcolor{keyword}{class} Matrix>}
+\DoxyCodeLine{269         \textcolor{keywordtype}{void} DGMethod<Problem, Grid, Matrix>::AssemblGlobal()}
+\DoxyCodeLine{270         \{}
+\DoxyCodeLine{271             \textcolor{keywordtype}{int} l;}
+\DoxyCodeLine{272             \textcolor{comment}{//std::vector<std::future<int>> futures;}}
+\DoxyCodeLine{273             \textcolor{keywordtype}{int} i, j, k, nodes;}
+\DoxyCodeLine{274             \textcolor{keywordtype}{double} mij;}
+\DoxyCodeLine{275             \textcolor{keyword}{const} \textcolor{keywordtype}{int} terms\{ (int)m\_problem-\/>getNumberOfTerms() \};}
+\DoxyCodeLine{276             \textcolor{keywordflow}{for} (k = 0; k < terms; ++k)}
+\DoxyCodeLine{277             \{}
+\DoxyCodeLine{278                 \textcolor{keywordflow}{switch} (m\_problem-\/>getTerm(k))}
+\DoxyCodeLine{279                 \{}
+\DoxyCodeLine{280                     \textcolor{keywordflow}{case} \mbox{\hyperlink{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7da6700bf7165821afe98b24ac1b0966758}{Terms::IDUDV}}:}
+\DoxyCodeLine{281                         \textcolor{keywordflow}{for} (l = 0; l < m\_N; ++l)}
+\DoxyCodeLine{282                         \{}
+\DoxyCodeLine{283                             AssembleIDUDVMatrix(l);}
+\DoxyCodeLine{284                         \}}
+\DoxyCodeLine{285                         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{286                     \textcolor{keywordflow}{case} \mbox{\hyperlink{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7da6cbf1e7c8586e0d3a65915638e2ae293}{Terms::IDUV}}:}
+\DoxyCodeLine{287                         \textcolor{keywordflow}{for} (l = 0; l < m\_N; ++l)}
+\DoxyCodeLine{288                             AssembleIDUVMatrix(l);}
+\DoxyCodeLine{289                         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{290                     \textcolor{keywordflow}{case} \mbox{\hyperlink{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7dab9a50fb352778c6273b307887dd2ba28}{Terms::IUDV}}:}
+\DoxyCodeLine{291                         \textcolor{keywordflow}{for} (l = 0; l < m\_N; ++l)}
+\DoxyCodeLine{292                             AssembleIUDVMatrix(l);}
+\DoxyCodeLine{293                         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{294                     \textcolor{keywordflow}{case} \mbox{\hyperlink{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7da9aa23ab26cb4db3b1e10a668eff580f2}{Terms::SUPG}}:}
+\DoxyCodeLine{295                         \textcolor{keywordflow}{for} (l = 0; l < m\_N; ++l)}
+\DoxyCodeLine{296                             AssembleSUPGMatrix(l);}
+\DoxyCodeLine{297                         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{298                     \textcolor{keywordflow}{case} \mbox{\hyperlink{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7dad3b7f41b5ee98737009f90516d82fd4c}{Terms::RUV}}:}
+\DoxyCodeLine{299                         \textcolor{keywordflow}{for} (l = 0; l < m\_N; ++l)}
+\DoxyCodeLine{300                             AssembleRUVMatrix(l);}
+\DoxyCodeLine{301                         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{302                     \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{303                         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{304                 \}}
+\DoxyCodeLine{305             \}}
+\DoxyCodeLine{306             \textcolor{comment}{//for (l = 0; l < m\_N; ++l)}}
+\DoxyCodeLine{307                 \textcolor{comment}{//futures.push\_back(async(\&DGMethod<Problem, Grid, Matrix>::AssembleLocalMatrix, this, l));}}
+\DoxyCodeLine{308              \textcolor{comment}{//   AssembleLocalMatrix(l, 0);}}
+\DoxyCodeLine{309             \textcolor{comment}{//for (auto \&it : futures)}}
+\DoxyCodeLine{310             \textcolor{comment}{//it.get();}}
+\DoxyCodeLine{311         \}}
+\DoxyCodeLine{312 }
+\DoxyCodeLine{313         \textcolor{keyword}{template}<\textcolor{keyword}{class} Problem, \textcolor{keyword}{class} Gr\textcolor{keywordtype}{id}, \textcolor{keyword}{class} Matrix>}
+\DoxyCodeLine{314         \textcolor{keyword}{const} \textcolor{keywordtype}{int} DGMethod<Problem, Grid, Matrix>::AssembleIDUDVMatrix(\textcolor{keyword}{const} \textcolor{keywordtype}{int} l)}
+\DoxyCodeLine{315         \{}
+\DoxyCodeLine{316             \textcolor{keywordtype}{int} i, j, k, nodes;}
+\DoxyCodeLine{317             \textcolor{keywordtype}{double} mij;}
+\DoxyCodeLine{318             \textcolor{keyword}{const} \textcolor{keyword}{auto}\& elem\{ m\_Grid-\/>GetElement(l) \};}
+\DoxyCodeLine{319             \textcolor{keyword}{const} \textcolor{keywordtype}{int} dofs\{ (int)elem-\/>GetDoFs() \};}
+\DoxyCodeLine{320             \textcolor{keyword}{const} \textcolor{keywordtype}{int} terms\{ (int)m\_problem-\/>getNumberOfTerms() \};}
+\DoxyCodeLine{321             nodes = elem-\/>GetNumberOfNodes();}
+\DoxyCodeLine{322             std::vector<Mesh::Point> points(nodes);}
+\DoxyCodeLine{323             \textcolor{keywordflow}{for} (i = 0; i < nodes; ++i)}
+\DoxyCodeLine{324                 points[i] = m\_Grid-\/>GetNode(elem-\/>GetNode(i));}
+\DoxyCodeLine{325             \textcolor{keywordtype}{int} sizei = 0, sizej = 0;}
+\DoxyCodeLine{326             \textcolor{keywordflow}{for} (i = 0; i < (int)dofs; ++i)}
+\DoxyCodeLine{327             \{}
+\DoxyCodeLine{328                 \textcolor{keywordflow}{for} (j = 0; j < (int)dofs; ++j)}
+\DoxyCodeLine{329                 \{}
+\DoxyCodeLine{330                     \textcolor{keyword}{auto} M = [\&](\textcolor{keyword}{const} Mesh::Point\& p)}
+\DoxyCodeLine{331                     \{}
+\DoxyCodeLine{332                         \textcolor{comment}{//auto m = elem-\/>GetGradShapeFunction(i, p) * elem-\/>GetGradShapeFunction(j, p);}}
+\DoxyCodeLine{333                         \textcolor{keywordflow}{return} m\_problem-\/>get\_parameter(\mbox{\hyperlink{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7da6700bf7165821afe98b24ac1b0966758}{Terms::IDUDV}}, l, elem-\/>GetType(), p) * elem-\/>GetGradShapeFunction(i, p) * elem-\/>GetGradShapeFunction(j, p);}
+\DoxyCodeLine{334                     \};}
+\DoxyCodeLine{335                     \textcolor{comment}{//mij = m\_Grid-\/>getParameter(Parameters::DIFFUSION, l, j) * elem-\/>Integrate(M, points);}}
+\DoxyCodeLine{336                     mij = elem-\/>Integrate(M, points);}
+\DoxyCodeLine{337                     \textcolor{comment}{//m\_GlobalMatrix-\/>AddElement(inode, jnode, mij);}}
+\DoxyCodeLine{338                     m\_GlobalMatrix-\/>AddElement(m\_nums[l] + i, m\_nums[l] + j, mij);}
+\DoxyCodeLine{339                 \}}
+\DoxyCodeLine{340             \}}
+\DoxyCodeLine{341             \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{342         \}}
+\DoxyCodeLine{343 }
+\DoxyCodeLine{344         \textcolor{keyword}{template}<\textcolor{keyword}{class} Problem, \textcolor{keyword}{class} Gr\textcolor{keywordtype}{id}, \textcolor{keyword}{class} Matrix>}
+\DoxyCodeLine{345         \textcolor{keyword}{const} \textcolor{keywordtype}{int} DGMethod<Problem, Grid, Matrix>::AssembleIDUVMatrix(\textcolor{keyword}{const} \textcolor{keywordtype}{int} l)}
+\DoxyCodeLine{346         \{}
+\DoxyCodeLine{347             \textcolor{keywordtype}{int} i, j, k, nodes;}
+\DoxyCodeLine{348             \textcolor{keywordtype}{double} mij;}
+\DoxyCodeLine{349             \textcolor{keyword}{const} \textcolor{keyword}{auto}\& elem\{ m\_Grid-\/>GetElement(l) \};}
+\DoxyCodeLine{350             \textcolor{keyword}{const} \textcolor{keywordtype}{int} dofs\{ (int)elem-\/>GetDoFs() \};}
+\DoxyCodeLine{351             \textcolor{keyword}{const} \textcolor{keywordtype}{int} terms\{ (int)m\_problem-\/>getNumberOfTerms() \};}
+\DoxyCodeLine{352             nodes = elem-\/>GetNumberOfNodes();}
+\DoxyCodeLine{353             std::vector<Mesh::Point> points(nodes);}
+\DoxyCodeLine{354             \textcolor{keywordflow}{for} (i = 0; i < nodes; ++i)}
+\DoxyCodeLine{355                 points[i] = m\_Grid-\/>GetNode(elem-\/>GetNode(i));}
+\DoxyCodeLine{356             \textcolor{keywordtype}{int} sizei = 0, sizej = 0;}
+\DoxyCodeLine{357             \textcolor{keywordflow}{for} (i = 0; i < (int)dofs; ++i)}
+\DoxyCodeLine{358             \{}
+\DoxyCodeLine{359                 \textcolor{keywordflow}{for} (j = 0; j < (int)dofs; ++j)}
+\DoxyCodeLine{360                 \{}
+\DoxyCodeLine{361                     \textcolor{keyword}{auto} M = [\&](\textcolor{keyword}{const} Mesh::Point\& p)}
+\DoxyCodeLine{362                     \{}
+\DoxyCodeLine{363                         \textcolor{keywordflow}{return} m\_problem-\/>get\_parameter(\mbox{\hyperlink{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7da6cbf1e7c8586e0d3a65915638e2ae293}{Terms::IDUV}}, l, elem-\/>GetType(), p, 0) * elem-\/>GetShapeFunction(i, p) * elem-\/>GetGradShapeFunction(j, p);}
+\DoxyCodeLine{364                     \};}
+\DoxyCodeLine{365                     \textcolor{keyword}{auto} \_mij = elem-\/>Integrate(M, points);}
+\DoxyCodeLine{366                     \textcolor{comment}{//m\_GlobalMatrix-\/>AddElement(inode, jnode, \_mij);}}
+\DoxyCodeLine{367                     m\_GlobalMatrix-\/>AddElement(m\_nums[l] + i, m\_nums[l] + j, \_mij);}
+\DoxyCodeLine{368                 \}}
+\DoxyCodeLine{369             \}}
+\DoxyCodeLine{370             \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{371         \}}
+\DoxyCodeLine{372 }
+\DoxyCodeLine{373         \textcolor{keyword}{template}<\textcolor{keyword}{class} Problem, \textcolor{keyword}{class} Gr\textcolor{keywordtype}{id}, \textcolor{keyword}{class} Matrix>}
+\DoxyCodeLine{374         \textcolor{keyword}{const} \textcolor{keywordtype}{int} DGMethod<Problem, Grid, Matrix>::AssembleIUDVMatrix(\textcolor{keyword}{const} \textcolor{keywordtype}{int} l)}
+\DoxyCodeLine{375         \{}
+\DoxyCodeLine{376             \textcolor{keywordtype}{int} i, j, k, nodes;}
+\DoxyCodeLine{377             \textcolor{keywordtype}{double} mij;}
+\DoxyCodeLine{378             \textcolor{keyword}{const} \textcolor{keyword}{auto}\& elem\{ m\_Grid-\/>GetElement(l) \};}
+\DoxyCodeLine{379             \textcolor{keyword}{const} \textcolor{keywordtype}{int} dofs\{ (int)elem-\/>GetDoFs() \};}
+\DoxyCodeLine{380             \textcolor{keyword}{const} \textcolor{keywordtype}{int} terms\{ (int)m\_problem-\/>getNumberOfTerms() \};}
+\DoxyCodeLine{381             nodes = elem-\/>GetNumberOfNodes();}
+\DoxyCodeLine{382             std::vector<Mesh::Point> points(nodes);}
+\DoxyCodeLine{383             \textcolor{keywordflow}{for} (i = 0; i < nodes; ++i)}
+\DoxyCodeLine{384                 points[i] = m\_Grid-\/>GetNode(elem-\/>GetNode(i));}
+\DoxyCodeLine{385             \textcolor{keywordtype}{int} sizei = 0, sizej = 0;}
+\DoxyCodeLine{386             \textcolor{keywordflow}{for} (i = 0; i < dofs; ++i)}
+\DoxyCodeLine{387             \{}
+\DoxyCodeLine{388                 \textcolor{keywordflow}{for} (j = 0; j < dofs; ++j)}
+\DoxyCodeLine{389                 \{}
+\DoxyCodeLine{390                     \textcolor{keyword}{auto} M = [\&](\textcolor{keyword}{const} Mesh::Point\& p)}
+\DoxyCodeLine{391                     \{}
+\DoxyCodeLine{392                         \textcolor{keywordflow}{return} elem-\/>GetGradShapeFunction(i, p) * elem-\/>GetShapeFunction(j, p);}
+\DoxyCodeLine{393                     \};}
+\DoxyCodeLine{394                     \textcolor{comment}{//mij = m\_CoarseGrid-\/>getParameter(Parameters::ADVECTION, l, j) * m\_flux(m\_CoarseGrid-\/>getSolution(l, j)) * elem-\/>Integrate(M, points).x;}}
+\DoxyCodeLine{395                     mij = elem-\/>Integrate(M, points).x;}
+\DoxyCodeLine{396                     \textcolor{comment}{//m\_GlobalMatrix-\/>AddElement(inode, jnode, mij);}}
+\DoxyCodeLine{397                     m\_GlobalMatrix-\/>AddElement(m\_nums[l] + i, m\_nums[l] + j, mij);}
+\DoxyCodeLine{398                 \}}
+\DoxyCodeLine{399             \}}
+\DoxyCodeLine{400             \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{401         \}}
+\DoxyCodeLine{402 }
+\DoxyCodeLine{403 }
+\DoxyCodeLine{404         \textcolor{keyword}{template}<\textcolor{keyword}{class} Problem, \textcolor{keyword}{class} Gr\textcolor{keywordtype}{id}, \textcolor{keyword}{class} Matrix>}
+\DoxyCodeLine{405         \textcolor{keyword}{const} \textcolor{keywordtype}{int} DGMethod<Problem, Grid, Matrix>::AssembleRUVMatrix(\textcolor{keyword}{const} \textcolor{keywordtype}{int} l)}
+\DoxyCodeLine{406         \{}
+\DoxyCodeLine{407             \textcolor{keywordtype}{int} i, j, k, nodes;}
+\DoxyCodeLine{408             \textcolor{keywordtype}{double} mij;}
+\DoxyCodeLine{409             \textcolor{keyword}{const} \textcolor{keyword}{auto}\& elem\{ m\_Grid-\/>GetElement(l) \};}
+\DoxyCodeLine{410             \textcolor{keyword}{const} \textcolor{keywordtype}{int} dofs\{ (int)elem-\/>GetDoFs() \};}
+\DoxyCodeLine{411             \textcolor{keyword}{const} \textcolor{keywordtype}{int} terms\{ (int)m\_problem-\/>getNumberOfTerms() \};}
+\DoxyCodeLine{412             nodes = elem-\/>GetNumberOfNodes();}
+\DoxyCodeLine{413             std::vector<Mesh::Point> points(nodes);}
+\DoxyCodeLine{414             \textcolor{keywordflow}{for} (i = 0; i < nodes; ++i)}
+\DoxyCodeLine{415                 points[i] = m\_Grid-\/>GetNode(elem-\/>GetNode(i));}
+\DoxyCodeLine{416             \textcolor{keywordtype}{int} sizei = 0, sizej = 0;}
+\DoxyCodeLine{417             \textcolor{keywordflow}{for} (i = 0; i < (int)dofs; ++i)}
+\DoxyCodeLine{418             \{}
+\DoxyCodeLine{419                 \textcolor{keywordflow}{for} (j = 0; j < (int)dofs; ++j)}
+\DoxyCodeLine{420                 \{}
+\DoxyCodeLine{421                     \textcolor{keyword}{auto} M = [\&](\textcolor{keyword}{const} Mesh::Point\& p)}
+\DoxyCodeLine{422                     \{}
+\DoxyCodeLine{423                         \textcolor{keywordtype}{double} vel = sqrt(m\_problem-\/>get\_parameter(\mbox{\hyperlink{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7da6cbf1e7c8586e0d3a65915638e2ae293}{Terms::IDUV}}, l, elem-\/>GetType(), p, 0) * m\_problem-\/>get\_parameter(\mbox{\hyperlink{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7da6cbf1e7c8586e0d3a65915638e2ae293}{Terms::IDUV}}, l, elem-\/>GetType(), p, 0));}
+\DoxyCodeLine{424                         \textcolor{keywordtype}{double} h = elem-\/>GetMeasure();}
+\DoxyCodeLine{425                         \textcolor{keywordtype}{double} Pe = vel * h / 6. / m\_problem-\/>get\_parameter(\mbox{\hyperlink{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7da6700bf7165821afe98b24ac1b0966758}{Terms::IDUDV}}, l, elem-\/>GetType(), p);}
+\DoxyCodeLine{426                         \textcolor{keywordtype}{double} tau = 0.;}
+\DoxyCodeLine{427                         \textcolor{comment}{//double Pe = vel * h / 2. / m\_problem-\/>get\_parameter(Terms::IDUDV, l, elem-\/>GetType(), p);}}
+\DoxyCodeLine{428 }
+\DoxyCodeLine{429                         \textcolor{keywordflow}{if} (Pe >= 1)}
+\DoxyCodeLine{430                             tau = h / 2. / vel;}
+\DoxyCodeLine{431                         \textcolor{keywordflow}{else}}
+\DoxyCodeLine{432                             tau = h * h / 12. / m\_problem-\/>get\_parameter(\mbox{\hyperlink{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7da6700bf7165821afe98b24ac1b0966758}{Terms::IDUDV}}, l, elem-\/>GetType(), p);}
+\DoxyCodeLine{433                         \textcolor{keyword}{auto} supg = tau * m\_problem-\/>get\_parameter(\mbox{\hyperlink{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7da6cbf1e7c8586e0d3a65915638e2ae293}{Terms::IDUV}}, l, elem-\/>GetType(), p, 0) * elem-\/>GetGradShapeFunction(i, p) * elem-\/>GetShapeFunction(j, p) * elem-\/>GetShapeFunction(i, p);}
+\DoxyCodeLine{434                         \textcolor{keywordflow}{return} elem-\/>GetShapeFunction(i, p) * elem-\/>GetShapeFunction(j, p);\textcolor{comment}{// + supg;}}
+\DoxyCodeLine{435                     \};}
+\DoxyCodeLine{436                     mij = elem-\/>Integrate(M, points);}
+\DoxyCodeLine{437 }
+\DoxyCodeLine{438                         m\_RightMatrix-\/>AddElement(m\_nums[l] + i, m\_nums[l] + j, mij);}
+\DoxyCodeLine{439                 \}}
+\DoxyCodeLine{440             \}}
+\DoxyCodeLine{441             \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{442         \}}
+\DoxyCodeLine{443 }
+\DoxyCodeLine{444         \textcolor{keyword}{template}<\textcolor{keyword}{class} Problem, \textcolor{keyword}{class} Gr\textcolor{keywordtype}{id}, \textcolor{keyword}{class} Matrix>}
+\DoxyCodeLine{445         \textcolor{keyword}{const} \textcolor{keywordtype}{int} DGMethod<Problem, Grid, Matrix>::AssembleSUPGMatrix(\textcolor{keyword}{const} \textcolor{keywordtype}{int} l)}
+\DoxyCodeLine{446         \{}
+\DoxyCodeLine{447             \textcolor{keywordtype}{int} i, j, k, nodes;}
+\DoxyCodeLine{448             \textcolor{keywordtype}{double} mij;}
+\DoxyCodeLine{449             \textcolor{keyword}{const} \textcolor{keyword}{auto}\& elem\{ m\_Grid-\/>GetElement(l) \};}
+\DoxyCodeLine{450             \textcolor{keyword}{const} \textcolor{keywordtype}{int} dofs\{ (int)elem-\/>GetDoFs() \};}
+\DoxyCodeLine{451             \textcolor{keyword}{const} \textcolor{keywordtype}{int} terms\{ (int)m\_problem-\/>getNumberOfTerms() \};}
+\DoxyCodeLine{452             nodes = elem-\/>GetNumberOfNodes();}
+\DoxyCodeLine{453             std::vector<Mesh::Point> points(nodes);}
+\DoxyCodeLine{454             \textcolor{keywordflow}{for} (i = 0; i < nodes; ++i)}
+\DoxyCodeLine{455                 points[i] = m\_Grid-\/>GetNode(elem-\/>GetNode(i));}
+\DoxyCodeLine{456             \textcolor{keywordflow}{for} (i = 0; i < (int)dofs; ++i)}
+\DoxyCodeLine{457             \{}
+\DoxyCodeLine{458                 \textcolor{keywordflow}{for} (j = 0; j < (int)dofs; ++j)}
+\DoxyCodeLine{459                 \{}
+\DoxyCodeLine{460                     \textcolor{keyword}{auto} M = [\&](\textcolor{keyword}{const} Mesh::Point\& p)}
+\DoxyCodeLine{461                     \{}
+\DoxyCodeLine{462                         \textcolor{keywordtype}{double} vel = sqrt(m\_problem-\/>get\_parameter(\mbox{\hyperlink{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7da6cbf1e7c8586e0d3a65915638e2ae293}{Terms::IDUV}}, l, elem-\/>GetType(), p, 0) * m\_problem-\/>get\_parameter(\mbox{\hyperlink{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7da6cbf1e7c8586e0d3a65915638e2ae293}{Terms::IDUV}}, l, elem-\/>GetType(), p, 0));}
+\DoxyCodeLine{463                         \textcolor{keywordtype}{double} h = elem-\/>GetMeasure();}
+\DoxyCodeLine{464                         \textcolor{comment}{//double Pe = vel * h / 6. / m\_problem-\/>get\_parameter(Terms::IDUDV, l, elem-\/>GetType(), p);}}
+\DoxyCodeLine{465                         \textcolor{keywordtype}{double} tau = 0.;}
+\DoxyCodeLine{466                         \textcolor{keywordtype}{double} Pe = vel * h / 2. / m\_problem-\/>get\_parameter(\mbox{\hyperlink{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7da6700bf7165821afe98b24ac1b0966758}{Terms::IDUDV}}, l, elem-\/>GetType(), p);}
+\DoxyCodeLine{467                         \textcolor{comment}{//double beta = h / 2. / vel * ((exp(2. * Pe) + 1.) / (exp(2. * Pe) -\/ 1.) -\/ 1. / Pe);}}
+\DoxyCodeLine{468                         \textcolor{comment}{//double beta = h / std::sqrt(3.) * ((exp(2. * Pe) + 1.) / (exp(2. * Pe) -\/ 1.) -\/ 1. / Pe);}}
+\DoxyCodeLine{469                         \textcolor{comment}{//double beta = h / 2. * ((exp(2. * Pe) + 1.) / (exp(2. * Pe) -\/ 1.) -\/ 1. / Pe);}}
+\DoxyCodeLine{470                         \textcolor{comment}{//double beta = h / 2. * ((exp(2. * Pe) + 1.) / (exp(2. * Pe) -\/ 1.) -\/ 1. / Pe);}}
+\DoxyCodeLine{471                         \textcolor{comment}{//beta = 0.;}}
+\DoxyCodeLine{472                         \textcolor{comment}{//for (int ii = 0; ii < (int)dofs; ++ii)}}
+\DoxyCodeLine{473                             \textcolor{comment}{//beta += m\_problem-\/>get\_parameter(Terms::IDUV, l, elem-\/>GetType(), p, 0) * elem-\/>GetGradShapeFunction(ii, p);}}
+\DoxyCodeLine{474                         \textcolor{comment}{//return beta * m\_problem-\/>get\_parameter(Terms::IDUV, l, elem-\/>GetType(), p, 0) * m\_problem-\/>get\_parameter(Terms::IDUV, l, elem-\/>GetType(), p, 0) *}}
+\DoxyCodeLine{475                         \textcolor{comment}{//        elem-\/>GetGradShapeFunction(i, p) * elem-\/>GetGradShapeFunction(j, p);}}
+\DoxyCodeLine{476                         \textcolor{keywordflow}{if} (Pe >= 1)}
+\DoxyCodeLine{477                             tau = h / 2. / vel;}
+\DoxyCodeLine{478                         \textcolor{keywordflow}{else}}
+\DoxyCodeLine{479                             tau = h * h / 12. / m\_problem-\/>get\_parameter(\mbox{\hyperlink{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7da6700bf7165821afe98b24ac1b0966758}{Terms::IDUDV}}, l, elem-\/>GetType(), p);}
+\DoxyCodeLine{480                         \textcolor{comment}{//return 0.;}}
+\DoxyCodeLine{481                         \textcolor{keywordflow}{return} tau * m\_problem-\/>get\_parameter(\mbox{\hyperlink{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7da6cbf1e7c8586e0d3a65915638e2ae293}{Terms::IDUV}}, l, elem-\/>GetType(), p, 0) * m\_problem-\/>get\_parameter(\mbox{\hyperlink{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7da6cbf1e7c8586e0d3a65915638e2ae293}{Terms::IDUV}}, l, elem-\/>GetType(), p, 0) *}
+\DoxyCodeLine{482                                 elem-\/>GetGradShapeFunction(i, p) * elem-\/>GetGradShapeFunction(j, p);}
+\DoxyCodeLine{483                     \};}
+\DoxyCodeLine{484 }
+\DoxyCodeLine{485                     \textcolor{comment}{//double tau =}}
+\DoxyCodeLine{486                     \textcolor{keyword}{auto} \_mij = elem-\/>Integrate(M, points);}
+\DoxyCodeLine{487                     m\_GlobalMatrix-\/>AddElement(m\_nums[l] + i, m\_nums[l] + j, \_mij);}
+\DoxyCodeLine{488                 \}}
+\DoxyCodeLine{489             \}}
+\DoxyCodeLine{490             \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{491         \}}
+\DoxyCodeLine{492 }
+\DoxyCodeLine{493 }
+\DoxyCodeLine{494         \textcolor{keyword}{template}<\textcolor{keyword}{class} Problem, \textcolor{keyword}{class} Gr\textcolor{keywordtype}{id}, \textcolor{keyword}{class} Matrix>}
+\DoxyCodeLine{495         \textcolor{keyword}{const} \textcolor{keywordtype}{int} DGMethod<Problem, Grid, Matrix>::AssembleInter()}
+\DoxyCodeLine{496         \{}
+\DoxyCodeLine{497             \textcolor{keyword}{const} \textcolor{keyword}{auto} mu = 1e6;}
+\DoxyCodeLine{498             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} l = 0; l < m\_Ns; ++l)}
+\DoxyCodeLine{499             \{}
+\DoxyCodeLine{500                 \textcolor{keyword}{const} \textcolor{keyword}{auto}\& bound\{ m\_Grid-\/>GetBoundary(l) \};}
+\DoxyCodeLine{501                 \textcolor{keyword}{const} \textcolor{keyword}{auto}\& nk\{ bound-\/>GetNeighbour(0) \};}
+\DoxyCodeLine{502                 \textcolor{keyword}{const} \textcolor{keyword}{auto}\& ne\{ bound-\/>GetNeighbour(1) \};}
+\DoxyCodeLine{503                 \textcolor{keyword}{const} \textcolor{keyword}{auto}\& elemk\{ m\_Grid-\/>GetElement(nk) \};}
+\DoxyCodeLine{504                 \textcolor{keyword}{const} \textcolor{keyword}{auto}\& dofs\{ bound-\/>GetDoFs() \};}
+\DoxyCodeLine{505                 \textcolor{keyword}{const} \textcolor{keyword}{auto}\& dofsk\{ elemk-\/>GetDoFs() \};}
+\DoxyCodeLine{506                 std::vector<Mesh::Point> points(dofs);}
+\DoxyCodeLine{507                 \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < dofs; ++i)}
+\DoxyCodeLine{508                 \{}
+\DoxyCodeLine{509                     points[i] = m\_Grid-\/>GetNode(bound-\/>GetNode(i));}
+\DoxyCodeLine{510                 \}}
+\DoxyCodeLine{511                 \textcolor{keywordflow}{if} (ne < 0)}
+\DoxyCodeLine{512                     \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{513                 \textcolor{keyword}{const} \textcolor{keyword}{auto}\& eleme\{ m\_Grid-\/>GetElement(ne) \};}
+\DoxyCodeLine{514                 \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < dofsk; ++i)}
+\DoxyCodeLine{515                 \{}
+\DoxyCodeLine{516                     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j = 0; j < dofsk; ++j)}
+\DoxyCodeLine{517                     \{}
+\DoxyCodeLine{518                         \textcolor{keyword}{auto} Tkk = [\&](\textcolor{keyword}{const} Mesh::Point\& p)}
+\DoxyCodeLine{519                         \{}
+\DoxyCodeLine{520                             \textcolor{keyword}{auto} kappa = m\_problem-\/>get\_parameter(\mbox{\hyperlink{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7da6700bf7165821afe98b24ac1b0966758}{Terms::IDUDV}}, l, elemk-\/>GetType(), p);}
+\DoxyCodeLine{521                             \textcolor{keyword}{auto} val1 = bound-\/>GetNormal() * elemk-\/>GetShapeFunction(j, p)  * elemk-\/>GetGradShapeFunction(i, p);}
+\DoxyCodeLine{522                             \textcolor{keyword}{auto} val2 = bound-\/>GetNormal() * elemk-\/>GetShapeFunction(i, p)  * elemk-\/>GetGradShapeFunction(j, p);}
+\DoxyCodeLine{523 }
+\DoxyCodeLine{524                             \textcolor{keyword}{auto} ip = bound-\/>GetNormal() * bound-\/>GetNormal() * elemk-\/>GetShapeFunction(j, p) * elemk-\/>GetShapeFunction(i, p);}
+\DoxyCodeLine{525                             \textcolor{keywordflow}{return} 0.5 * kappa * (val2 -\/ val1) + mu * ip;}
+\DoxyCodeLine{526                         \};}
+\DoxyCodeLine{527                         \textcolor{keyword}{auto} mj = bound-\/>Integrate(Tkk, points);}
+\DoxyCodeLine{528                         std::cout << mj << std::endl;}
+\DoxyCodeLine{529                         m\_GlobalMatrix-\/>AddElement(m\_nums[nk] + i, m\_nums[nk] + j, mj);}
+\DoxyCodeLine{530                     \}}
+\DoxyCodeLine{531                 \}}
+\DoxyCodeLine{532 }
+\DoxyCodeLine{533                 \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < dofsk; ++i)}
+\DoxyCodeLine{534                 \{}
+\DoxyCodeLine{535                     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j = 0; j < dofsk; ++j)}
+\DoxyCodeLine{536                     \{}
+\DoxyCodeLine{537                         \textcolor{keyword}{auto} Tkk = [\&](\textcolor{keyword}{const} Mesh::Point\& p)}
+\DoxyCodeLine{538                         \{}
+\DoxyCodeLine{539                             \textcolor{keyword}{auto} kappa = m\_problem-\/>get\_parameter(\mbox{\hyperlink{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7da6700bf7165821afe98b24ac1b0966758}{Terms::IDUDV}}, l, eleme-\/>GetType(), p);}
+\DoxyCodeLine{540                             \textcolor{keyword}{auto} val1 = bound-\/>GetNormal() * eleme-\/>GetShapeFunction(j, p)  * elemk-\/>GetGradShapeFunction(i, p);}
+\DoxyCodeLine{541                             \textcolor{keyword}{auto} val2 = bound-\/>GetNormal() * elemk-\/>GetShapeFunction(i, p)  * eleme-\/>GetGradShapeFunction(j, p);}
+\DoxyCodeLine{542 }
+\DoxyCodeLine{543                             \textcolor{keyword}{auto} ip = bound-\/>GetNormal() * bound-\/>GetNormal() * eleme-\/>GetShapeFunction(j, p) * elemk-\/>GetShapeFunction(i, p);}
+\DoxyCodeLine{544                             \textcolor{keywordflow}{return} 0.5 * kappa * (val2 + val1) + mu * ip;}
+\DoxyCodeLine{545                         \};}
+\DoxyCodeLine{546                         \textcolor{keyword}{auto} mj = bound-\/>Integrate(Tkk, points);}
+\DoxyCodeLine{547                         m\_GlobalMatrix-\/>AddElement(m\_nums[nk] + i, m\_nums[ne] + j, mj);}
+\DoxyCodeLine{548                     \}}
+\DoxyCodeLine{549                 \}}
+\DoxyCodeLine{550 }
+\DoxyCodeLine{551 }
+\DoxyCodeLine{552                 \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < dofsk; ++i)}
+\DoxyCodeLine{553                 \{}
+\DoxyCodeLine{554                     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j = 0; j < dofsk; ++j)}
+\DoxyCodeLine{555                     \{}
+\DoxyCodeLine{556                         \textcolor{keyword}{auto} Tkk = [\&](\textcolor{keyword}{const} Mesh::Point\& p)}
+\DoxyCodeLine{557                         \{}
+\DoxyCodeLine{558                             \textcolor{keyword}{auto} kappa = m\_problem-\/>get\_parameter(\mbox{\hyperlink{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7da6700bf7165821afe98b24ac1b0966758}{Terms::IDUDV}}, l, eleme-\/>GetType(), p);}
+\DoxyCodeLine{559                             \textcolor{keyword}{auto} val1 = bound-\/>GetNormal() * eleme-\/>GetShapeFunction(j, p)  * eleme-\/>GetGradShapeFunction(i, p);}
+\DoxyCodeLine{560                             \textcolor{keyword}{auto} val2 = bound-\/>GetNormal() * eleme-\/>GetShapeFunction(i, p)  * eleme-\/>GetGradShapeFunction(j, p);}
+\DoxyCodeLine{561 }
+\DoxyCodeLine{562                             \textcolor{keyword}{auto} ip = bound-\/>GetNormal() * bound-\/>GetNormal() * eleme-\/>GetShapeFunction(j, p) * eleme-\/>GetShapeFunction(i, p);}
+\DoxyCodeLine{563                             \textcolor{keywordflow}{return} 0.5 * kappa * (val2 -\/ val1) + mu * ip;}
+\DoxyCodeLine{564                         \};}
+\DoxyCodeLine{565                         \textcolor{keyword}{auto} mj = bound-\/>Integrate(Tkk, points);}
+\DoxyCodeLine{566                         m\_GlobalMatrix-\/>AddElement(m\_nums[ne] + i, m\_nums[ne] + j, mj);}
+\DoxyCodeLine{567                     \}}
+\DoxyCodeLine{568                 \}}
+\DoxyCodeLine{569 }
+\DoxyCodeLine{570                 \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < dofsk; ++i)}
+\DoxyCodeLine{571                 \{}
+\DoxyCodeLine{572                     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j = 0; j < dofsk; ++j)}
+\DoxyCodeLine{573                     \{}
+\DoxyCodeLine{574                         \textcolor{keyword}{auto} Tkk = [\&](\textcolor{keyword}{const} Mesh::Point\& p)}
+\DoxyCodeLine{575                         \{}
+\DoxyCodeLine{576                             \textcolor{keyword}{auto} kappa = m\_problem-\/>get\_parameter(\mbox{\hyperlink{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7da6700bf7165821afe98b24ac1b0966758}{Terms::IDUDV}}, l, elemk-\/>GetType(), p);}
+\DoxyCodeLine{577                             \textcolor{keyword}{auto} val1 = bound-\/>GetNormal() * elemk-\/>GetShapeFunction(j, p)  * eleme-\/>GetGradShapeFunction(i, p);}
+\DoxyCodeLine{578                             \textcolor{keyword}{auto} val2 = bound-\/>GetNormal() * eleme-\/>GetShapeFunction(i, p)  * elemk-\/>GetGradShapeFunction(j, p);}
+\DoxyCodeLine{579 }
+\DoxyCodeLine{580                             \textcolor{keyword}{auto} ip = bound-\/>GetNormal() * bound-\/>GetNormal() * elemk-\/>GetShapeFunction(j, p) * eleme-\/>GetShapeFunction(i, p);}
+\DoxyCodeLine{581                             \textcolor{keywordflow}{return} 0.5 * kappa * (val2 + val1) + mu * ip;}
+\DoxyCodeLine{582                         \};}
+\DoxyCodeLine{583                         \textcolor{keyword}{auto} mj = bound-\/>Integrate(Tkk, points);}
+\DoxyCodeLine{584                         m\_GlobalMatrix-\/>AddElement(m\_nums[ne] + i, m\_nums[nk] + j, mj);}
+\DoxyCodeLine{585                     \}}
+\DoxyCodeLine{586                 \}}
+\DoxyCodeLine{587             \}}
+\DoxyCodeLine{588             \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{589         \}}
+\DoxyCodeLine{590 }
+\DoxyCodeLine{591         \textcolor{keyword}{template}<\textcolor{keyword}{class} Problem, \textcolor{keyword}{class} Gr\textcolor{keywordtype}{id}, \textcolor{keyword}{class} Matrix>}
+\DoxyCodeLine{592         \textcolor{keyword}{const} \textcolor{keywordtype}{int} DGMethod<Problem, Grid, Matrix>::AssembleLocalMatrix(\textcolor{keyword}{const} \textcolor{keywordtype}{int} l, \textcolor{keyword}{const} \textcolor{keywordtype}{int} old)}
+\DoxyCodeLine{593         \{}
+\DoxyCodeLine{594             \textcolor{keywordtype}{int} i, j, k, nodes;}
+\DoxyCodeLine{595             \textcolor{keywordtype}{double} mij;}
+\DoxyCodeLine{596             \textcolor{keyword}{const} \textcolor{keyword}{auto}\& elem\{ m\_Grid-\/>GetElement(l) \};}
+\DoxyCodeLine{597             \textcolor{keyword}{const} \textcolor{keywordtype}{int} dofs\{ (int)elem-\/>GetDoFs() \};}
+\DoxyCodeLine{598             \textcolor{keyword}{const} \textcolor{keywordtype}{int} terms\{ (int)m\_problem-\/>getNumberOfTerms() \};}
+\DoxyCodeLine{599             nodes = elem-\/>GetNumberOfNodes();}
+\DoxyCodeLine{600             std::vector<Mesh::Point> points(nodes);}
+\DoxyCodeLine{601             \textcolor{keywordflow}{for} (i = 0; i < nodes; ++i)}
+\DoxyCodeLine{602                 points[i] = m\_Grid-\/>GetNode(elem-\/>GetNode(i));}
+\DoxyCodeLine{603             \textcolor{keywordflow}{for} (k = 0; k < terms; ++k)}
+\DoxyCodeLine{604             \{}
+\DoxyCodeLine{605                 \textcolor{keywordflow}{switch} (m\_problem-\/>getTerm(k))}
+\DoxyCodeLine{606                 \{}
+\DoxyCodeLine{607                 \textcolor{keywordflow}{case} \mbox{\hyperlink{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7da511236cf0a2ae58312752c309767be64}{Terms::IUV}}:}
+\DoxyCodeLine{608                     \textcolor{keywordflow}{for} (i = 0; i < (int)dofs; ++i)}
+\DoxyCodeLine{609                     \{}
+\DoxyCodeLine{610                         \textcolor{keywordflow}{for} (j = 0; j < (int)dofs; ++j)}
+\DoxyCodeLine{611                         \{}
+\DoxyCodeLine{612                             \textcolor{keyword}{auto} M = [\&](\textcolor{keyword}{const} Mesh::Point\& p)}
+\DoxyCodeLine{613                             \{}
+\DoxyCodeLine{614                                 \textcolor{keywordflow}{return} m\_problem-\/>get\_parameter(\mbox{\hyperlink{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7da511236cf0a2ae58312752c309767be64}{Terms::IUV}}, l, elem-\/>GetType(), p) * elem-\/>GetShapeFunction(i, p) * elem-\/>GetShapeFunction(j, p);}
+\DoxyCodeLine{615                             \};}
+\DoxyCodeLine{616                             mij = elem-\/>Integrate(M, points);}
+\DoxyCodeLine{617                             \textcolor{keyword}{auto} inode = m\_Grid-\/>interpolate(elem-\/>GetNode(i));}
+\DoxyCodeLine{618                             \textcolor{keyword}{auto} jnode = m\_Grid-\/>interpolate(elem-\/>GetNode(j));}
+\DoxyCodeLine{619                             \textcolor{keywordflow}{if} (inode > -\/1 \&\& jnode > -\/1)}
+\DoxyCodeLine{620                                 m\_GlobalMatrix-\/>AddElement(inode, jnode, mij);}
+\DoxyCodeLine{621                         \}}
+\DoxyCodeLine{622                     \}}
+\DoxyCodeLine{623                     \textcolor{keywordflow}{break};}
+\DoxyCodeLine{624                 \textcolor{keywordflow}{case} \mbox{\hyperlink{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7da6700bf7165821afe98b24ac1b0966758}{Terms::IDUDV}}:}
+\DoxyCodeLine{625                     \textcolor{keywordflow}{for} (i = 0; i < (int)dofs; ++i)}
+\DoxyCodeLine{626                     \{}
+\DoxyCodeLine{627                         \textcolor{keywordflow}{for} (j = 0; j < (int)dofs; ++j)}
+\DoxyCodeLine{628                         \{}
+\DoxyCodeLine{629                             \textcolor{keyword}{auto} inode = m\_Grid-\/>interpolate(elem-\/>GetNode(i));}
+\DoxyCodeLine{630                             \textcolor{keyword}{auto} jnode = m\_Grid-\/>interpolate(elem-\/>GetNode(j));}
+\DoxyCodeLine{631                             \textcolor{keywordflow}{if} (inode == -\/1 || jnode == -\/1)}
+\DoxyCodeLine{632                                 \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{633                             \textcolor{keyword}{auto} M = [\&](\textcolor{keyword}{const} Mesh::Point\& p)}
+\DoxyCodeLine{634                             \{}
+\DoxyCodeLine{635                                 \textcolor{comment}{//auto m = elem-\/>GetGradShapeFunction(i, p) * elem-\/>GetGradShapeFunction(j, p);}}
+\DoxyCodeLine{636                                 \textcolor{keywordflow}{return} m\_problem-\/>get\_parameter(\mbox{\hyperlink{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7da6700bf7165821afe98b24ac1b0966758}{Terms::IDUDV}}, l, elem-\/>GetType(), p) * elem-\/>GetGradShapeFunction(i, p) * elem-\/>GetGradShapeFunction(j, p);}
+\DoxyCodeLine{637                             \};}
+\DoxyCodeLine{638                             \textcolor{comment}{//mij = m\_Grid-\/>getParameter(Parameters::DIFFUSION, l, j) * elem-\/>Integrate(M, points);}}
+\DoxyCodeLine{639                             mij = elem-\/>Integrate(M, points);}
+\DoxyCodeLine{640                             m\_GlobalMatrix-\/>AddElement(inode, jnode, mij);}
+\DoxyCodeLine{641                         \}}
+\DoxyCodeLine{642                     \}}
+\DoxyCodeLine{643                     \textcolor{keywordflow}{break};}
+\DoxyCodeLine{644                 \textcolor{keywordflow}{case} \mbox{\hyperlink{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7da6cbf1e7c8586e0d3a65915638e2ae293}{Terms::IDUV}}:}
+\DoxyCodeLine{645                     \textcolor{keywordflow}{for} (i = 0; i < (int)dofs; ++i)}
+\DoxyCodeLine{646                     \{}
+\DoxyCodeLine{647                         \textcolor{keywordflow}{for} (j = 0; j < (int)dofs; ++j)}
+\DoxyCodeLine{648                         \{}
+\DoxyCodeLine{649                             \textcolor{keyword}{auto} inode = m\_Grid-\/>interpolate(elem-\/>GetNode(i));}
+\DoxyCodeLine{650                             \textcolor{keyword}{auto} jnode = m\_Grid-\/>interpolate(elem-\/>GetNode(j));}
+\DoxyCodeLine{651                             \textcolor{keywordflow}{if} (inode == -\/1 || jnode == -\/1)}
+\DoxyCodeLine{652                                 \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{653                             \textcolor{keyword}{auto} M = [\&](\textcolor{keyword}{const} Mesh::Point\& p)}
+\DoxyCodeLine{654                             \{}
+\DoxyCodeLine{655                                 \textcolor{keywordflow}{return} m\_problem-\/>get\_parameter(\mbox{\hyperlink{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7da6cbf1e7c8586e0d3a65915638e2ae293}{Terms::IDUV}}, l, elem-\/>GetType(), p, 0) * elem-\/>GetShapeFunction(i, p) * elem-\/>GetGradShapeFunction(j, p);}
+\DoxyCodeLine{656                             \};}
+\DoxyCodeLine{657                             \textcolor{keyword}{auto} \_mij = elem-\/>Integrate(M, points);}
+\DoxyCodeLine{658                             m\_GlobalMatrix-\/>AddElement(inode, jnode, \_mij);}
+\DoxyCodeLine{659                         \}}
+\DoxyCodeLine{660                     \}}
+\DoxyCodeLine{661                     \textcolor{keywordflow}{break};}
+\DoxyCodeLine{662                 \textcolor{keywordflow}{case} \mbox{\hyperlink{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7dab9a50fb352778c6273b307887dd2ba28}{Terms::IUDV}}:}
+\DoxyCodeLine{663                     \textcolor{keywordflow}{for} (i = 0; i < dofs; ++i)}
+\DoxyCodeLine{664                     \{}
+\DoxyCodeLine{665                         \textcolor{keywordflow}{for} (j = 0; j < dofs; ++j)}
+\DoxyCodeLine{666                         \{}
+\DoxyCodeLine{667                             \textcolor{keyword}{auto} inode = m\_Grid-\/>interpolate(elem-\/>GetNode(i));}
+\DoxyCodeLine{668                             \textcolor{keyword}{auto} jnode = m\_Grid-\/>interpolate(elem-\/>GetNode(j));}
+\DoxyCodeLine{669                             \textcolor{keywordflow}{if} (inode == -\/1 || jnode == -\/1)}
+\DoxyCodeLine{670                                 \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{671                             \textcolor{keyword}{auto} M = [\&](\textcolor{keyword}{const} Mesh::Point\& p)}
+\DoxyCodeLine{672                             \{}
+\DoxyCodeLine{673                                 \textcolor{keywordflow}{return} elem-\/>GetGradShapeFunction(i, p) * elem-\/>GetShapeFunction(j, p);}
+\DoxyCodeLine{674                             \};}
+\DoxyCodeLine{675                             \textcolor{comment}{//mij = m\_CoarseGrid-\/>getParameter(Parameters::ADVECTION, l, j) * m\_flux(m\_CoarseGrid-\/>getSolution(l, j)) * elem-\/>Integrate(M, points).x;}}
+\DoxyCodeLine{676                             mij = elem-\/>Integrate(M, points).x;}
+\DoxyCodeLine{677                             m\_GlobalMatrix-\/>AddElement(inode, jnode, mij);}
+\DoxyCodeLine{678                         \}}
+\DoxyCodeLine{679                     \}}
+\DoxyCodeLine{680                     \textcolor{keywordflow}{break};}
+\DoxyCodeLine{681                 \textcolor{keywordflow}{case} \mbox{\hyperlink{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7da601d1ecfe8543b457d918d636d84cc9d}{Terms::EUV}}:}
+\DoxyCodeLine{682                     \textcolor{keywordflow}{for} (i = 0; i < dofs; ++i)}
+\DoxyCodeLine{683                     \{}
+\DoxyCodeLine{684                         \textcolor{keywordflow}{for} (j = 0; j < dofs; ++j)}
+\DoxyCodeLine{685                         \{}
+\DoxyCodeLine{686                             \textcolor{keyword}{auto} M = [\&](\textcolor{keyword}{const} Mesh::Point\& p)}
+\DoxyCodeLine{687                             \{}
+\DoxyCodeLine{688                                 \textcolor{keywordflow}{return} elem-\/>GetShapeFunction(i, p) * elem-\/>GetShapeFunction(j, p);}
+\DoxyCodeLine{689                             \};}
+\DoxyCodeLine{690                             mij = elem-\/>Integrate(M, points);}
+\DoxyCodeLine{691                             m\_rhsvector-\/>operator[](elem-\/>GetNode(i)) += m\_Grid-\/>getParameter(\mbox{\hyperlink{namespacecorenc_a2902da21a64b0735c94fc4e59e25b02facb6c2c4b3c8f95f9b58ad13f0a97245d}{Parameters::MASS}}, l, j) * m\_Grid-\/>getSolution(l, j) * mij;}
+\DoxyCodeLine{692                             \textcolor{comment}{//m\_rhsvector-\/>operator[](m\_nums[l] + i) += m\_CoarseGrid-\/>getParameter(Parameters::MASS, l, points[j]) * elem-\/>GetValue(j) * mij;}}
+\DoxyCodeLine{693                         \}}
+\DoxyCodeLine{694                     \}}
+\DoxyCodeLine{695                     \textcolor{keywordflow}{break};}
+\DoxyCodeLine{696                 \textcolor{keywordflow}{case} \mbox{\hyperlink{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7dac74248d6b3ec20c4b6969c4e520b09ca}{Terms::EDUDV}}:}
+\DoxyCodeLine{697                     \textcolor{keywordflow}{for} (i = 0; i < dofs; ++i)}
+\DoxyCodeLine{698                     \{}
+\DoxyCodeLine{699                         \textcolor{keywordflow}{for} (j = 0; j < dofs; ++j)}
+\DoxyCodeLine{700                         \{}
+\DoxyCodeLine{701                             \textcolor{keyword}{auto} M = [\&](\textcolor{keyword}{const} Mesh::Point\& p)}
+\DoxyCodeLine{702                             \{}
+\DoxyCodeLine{703                                 \textcolor{keywordflow}{return} elem-\/>GetGradShapeFunction(i, p) * elem-\/>GetGradShapeFunction(j, p);}
+\DoxyCodeLine{704                             \};}
+\DoxyCodeLine{705                             mij = elem-\/>Integrate(M, points);}
+\DoxyCodeLine{706                             m\_rhsvector-\/>operator[](elem-\/>GetNode(i)) += m\_Grid-\/>getParameter(\mbox{\hyperlink{namespacecorenc_a2902da21a64b0735c94fc4e59e25b02fac9f4e4b1345e4e958a307bf67ae358a7}{Parameters::DIFFUSION}}, l, j) * m\_Grid-\/>getSolution(l, j) * mij;}
+\DoxyCodeLine{707                         \}}
+\DoxyCodeLine{708                     \}}
+\DoxyCodeLine{709                     \textcolor{keywordflow}{break};}
+\DoxyCodeLine{710                 \textcolor{keywordflow}{case} \mbox{\hyperlink{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7daa7a21a5469737f2aa8b257cce9aa27e3}{Terms::EDUV}}:}
+\DoxyCodeLine{711                     \textcolor{keywordflow}{for} (i = 0; i < dofs; ++i)}
+\DoxyCodeLine{712                     \{}
+\DoxyCodeLine{713                         \textcolor{keywordflow}{for} (j = 0; j < dofs; ++j)}
+\DoxyCodeLine{714                         \{}
+\DoxyCodeLine{715                             \textcolor{keyword}{auto} M = [\&](\textcolor{keyword}{const} Mesh::Point\& p)}
+\DoxyCodeLine{716                             \{}
+\DoxyCodeLine{717                                 \textcolor{keywordflow}{return} elem-\/>GetShapeFunction(i, p) * elem-\/>GetGradShapeFunction(j, p);}
+\DoxyCodeLine{718                             \};}
+\DoxyCodeLine{719                             mij = elem-\/>Integrate(M, points).x;}
+\DoxyCodeLine{720                             m\_rhsvector-\/>operator[](elem-\/>GetNode(i)) += m\_Grid-\/>getParameter(\mbox{\hyperlink{namespacecorenc_a2902da21a64b0735c94fc4e59e25b02fa21d5412bbfc0a49ed5cb827c133bb3fb}{Parameters::ADVECTION}}, l, j) * mij;}
+\DoxyCodeLine{721                         \}}
+\DoxyCodeLine{722                     \}}
+\DoxyCodeLine{723                     \textcolor{keywordflow}{break};}
+\DoxyCodeLine{724                 \textcolor{keywordflow}{case} \mbox{\hyperlink{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7da38f852dce31a67414f478b5626a4d118}{Terms::EUDV}}:}
+\DoxyCodeLine{725                     \textcolor{keywordflow}{for} (i = 0; i < dofs; ++i)}
+\DoxyCodeLine{726                     \{}
+\DoxyCodeLine{727                         \textcolor{keywordflow}{for} (j = 0; j < dofs; ++j)}
+\DoxyCodeLine{728                         \{}
+\DoxyCodeLine{729                             \textcolor{keyword}{auto} M = [\&](\textcolor{keyword}{const} Mesh::Point\& p)}
+\DoxyCodeLine{730                             \{}
+\DoxyCodeLine{731                                 \textcolor{keywordflow}{return} elem-\/>GetGradShapeFunction(i, p) * elem-\/>GetShapeFunction(j, p);}
+\DoxyCodeLine{732                             \};}
+\DoxyCodeLine{733                             mij = elem-\/>Integrate(M, points).x;}
+\DoxyCodeLine{734                             m\_rhsvector-\/>operator[](elem-\/>GetNode(i)) += m\_Grid-\/>getParameter(\mbox{\hyperlink{namespacecorenc_a2902da21a64b0735c94fc4e59e25b02fa21d5412bbfc0a49ed5cb827c133bb3fb}{Parameters::ADVECTION}}, l, j) * mij;\textcolor{comment}{// *mij;}}
+\DoxyCodeLine{735                         \}}
+\DoxyCodeLine{736                     \}}
+\DoxyCodeLine{737                     \textcolor{keywordflow}{break};}
+\DoxyCodeLine{738                 \textcolor{keywordflow}{case} \mbox{\hyperlink{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7da4a56e919ee256e21151e6df79babae35}{Terms::EFV}}:}
+\DoxyCodeLine{739                     \textcolor{keywordflow}{for} (i = 0; i < dofs; ++i)}
+\DoxyCodeLine{740                     \{}
+\DoxyCodeLine{741                         \textcolor{comment}{/*for (j = 0; j < dofs; ++j)}}
+\DoxyCodeLine{742 \textcolor{comment}{                        \{}}
+\DoxyCodeLine{743 \textcolor{comment}{                            auto M = [\&](const Mesh::Point\& p)}}
+\DoxyCodeLine{744 \textcolor{comment}{                            \{}}
+\DoxyCodeLine{745 \textcolor{comment}{                                return m\_problem-\/>get\_parameter(Terms::EFV, elem-\/>GetType(), l, j, p) * elem-\/>GetShapeFunction(i, p) * elem-\/>GetShapeFunction(j, p);}}
+\DoxyCodeLine{746 \textcolor{comment}{                            \};}}
+\DoxyCodeLine{747 \textcolor{comment}{                            mij = elem-\/>Integrate(M, points);}}
+\DoxyCodeLine{748 \textcolor{comment}{                            m\_rhsvector-\/>operator[](elem-\/>GetNode(i)) += mij;}}
+\DoxyCodeLine{749 \textcolor{comment}{                        \}*/}}
+\DoxyCodeLine{750                         \textcolor{keyword}{auto} M = [\&](\textcolor{keyword}{const} Mesh::Point\& p)}
+\DoxyCodeLine{751                         \{}
+\DoxyCodeLine{752                             \textcolor{keywordflow}{return} m\_problem-\/>get\_parameter(\mbox{\hyperlink{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7da4a56e919ee256e21151e6df79babae35}{Terms::EFV}}, elem-\/>GetType(), l, i, p) * elem-\/>GetShapeFunction(i, p);}
+\DoxyCodeLine{753                         \};}
+\DoxyCodeLine{754                         mij = elem-\/>Integrate(M, points);}
+\DoxyCodeLine{755                         m\_rhsvector-\/>operator[](elem-\/>GetNode(i)) += mij;}
+\DoxyCodeLine{756                     \}}
+\DoxyCodeLine{757                     \textcolor{keywordflow}{break};}
+\DoxyCodeLine{758                 \textcolor{keywordflow}{case} \mbox{\hyperlink{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7dad3b7f41b5ee98737009f90516d82fd4c}{Terms::RUV}}:}
+\DoxyCodeLine{759                     \textcolor{keywordflow}{for} (i = 0; i < (int)dofs; ++i)}
+\DoxyCodeLine{760                     \{}
+\DoxyCodeLine{761                         \textcolor{keywordflow}{for} (j = 0; j < (int)dofs; ++j)}
+\DoxyCodeLine{762                         \{}
+\DoxyCodeLine{763                             \textcolor{keyword}{auto} M = [\&](\textcolor{keyword}{const} Mesh::Point\& p)}
+\DoxyCodeLine{764                             \{}
+\DoxyCodeLine{765                                 \textcolor{keywordflow}{return} elem-\/>GetShapeFunction(i, p) * elem-\/>GetShapeFunction(j, p);}
+\DoxyCodeLine{766                             \};}
+\DoxyCodeLine{767                             mij = elem-\/>Integrate(M, points);}
+\DoxyCodeLine{768                             \textcolor{keyword}{auto} inode = m\_Grid-\/>interpolate(elem-\/>GetNode(i));}
+\DoxyCodeLine{769                             \textcolor{keyword}{auto} jnode = m\_Grid-\/>interpolate(elem-\/>GetNode(j));}
+\DoxyCodeLine{770                             \textcolor{keywordflow}{if} (inode > -\/1 \&\& jnode > -\/1)}
+\DoxyCodeLine{771                                 m\_RightMatrix-\/>AddElement(inode, jnode, mij);}
+\DoxyCodeLine{772                         \}}
+\DoxyCodeLine{773                     \}}
+\DoxyCodeLine{774                     \textcolor{keywordflow}{break};}
+\DoxyCodeLine{775                 \textcolor{keywordflow}{case} \mbox{\hyperlink{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7da9aa23ab26cb4db3b1e10a668eff580f2}{Terms::SUPG}}:}
+\DoxyCodeLine{776                     \textcolor{keywordflow}{for} (i = 0; i < (int)dofs; ++i)}
+\DoxyCodeLine{777                     \{}
+\DoxyCodeLine{778                         \textcolor{keywordflow}{for} (j = 0; j < (int)dofs; ++j)}
+\DoxyCodeLine{779                         \{}
+\DoxyCodeLine{780                             \textcolor{keyword}{auto} inode = m\_Grid-\/>interpolate(elem-\/>GetNode(i));}
+\DoxyCodeLine{781                             \textcolor{keyword}{auto} jnode = m\_Grid-\/>interpolate(elem-\/>GetNode(j));}
+\DoxyCodeLine{782                             \textcolor{keywordflow}{if} (inode == -\/1 || jnode == -\/1)}
+\DoxyCodeLine{783                                 \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{784                             \textcolor{keyword}{auto} M = [\&](\textcolor{keyword}{const} Mesh::Point\& p)}
+\DoxyCodeLine{785                             \{}
+\DoxyCodeLine{786                                 \textcolor{keywordtype}{double} vel = sqrt(m\_problem-\/>get\_parameter(\mbox{\hyperlink{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7da6cbf1e7c8586e0d3a65915638e2ae293}{Terms::IDUV}}, l, elem-\/>GetType(), p, 0) * m\_problem-\/>get\_parameter(\mbox{\hyperlink{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7da6cbf1e7c8586e0d3a65915638e2ae293}{Terms::IDUV}}, l, elem-\/>GetType(), p, 0));}
+\DoxyCodeLine{787                                 \textcolor{keywordtype}{double} h = elem-\/>GetMeasure();}
+\DoxyCodeLine{788                                 \textcolor{comment}{//double Pe = vel * h / 6. / m\_problem-\/>get\_parameter(Terms::IDUDV, l, elem-\/>GetType(), p);}}
+\DoxyCodeLine{789                                 \textcolor{keywordtype}{double} tau = 0.;}
+\DoxyCodeLine{790                                 \textcolor{keywordtype}{double} Pe = vel * h / 2. / m\_problem-\/>get\_parameter(\mbox{\hyperlink{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7da6700bf7165821afe98b24ac1b0966758}{Terms::IDUDV}}, l, elem-\/>GetType(), p);}
+\DoxyCodeLine{791                                 \textcolor{comment}{//double beta = h / 2. / vel * ((exp(2. * Pe) + 1.) / (exp(2. * Pe) -\/ 1.) -\/ 1. / Pe);}}
+\DoxyCodeLine{792                                 \textcolor{keywordtype}{double} beta = h / std::sqrt(3.) * ((exp(2. * Pe) + 1.) / (exp(2. * Pe) -\/ 1.) -\/ 1. / Pe);}
+\DoxyCodeLine{793                                 \textcolor{comment}{//double beta = h / 2. * ((exp(2. * Pe) + 1.) / (exp(2. * Pe) -\/ 1.) -\/ 1. / Pe);}}
+\DoxyCodeLine{794                                 \textcolor{comment}{//beta = 0.;}}
+\DoxyCodeLine{795                                 \textcolor{comment}{//for (int ii = 0; ii < (int)dofs; ++ii)}}
+\DoxyCodeLine{796                                     \textcolor{comment}{//beta += m\_problem-\/>get\_parameter(Terms::IDUV, l, elem-\/>GetType(), p, 0) * elem-\/>GetGradShapeFunction(ii, p);}}
+\DoxyCodeLine{797                                 \textcolor{keywordflow}{return} beta * m\_problem-\/>get\_parameter(\mbox{\hyperlink{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7da6cbf1e7c8586e0d3a65915638e2ae293}{Terms::IDUV}}, l, elem-\/>GetType(), p, 0) * m\_problem-\/>get\_parameter(\mbox{\hyperlink{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7da6cbf1e7c8586e0d3a65915638e2ae293}{Terms::IDUV}}, l, elem-\/>GetType(), p, 0) *}
+\DoxyCodeLine{798                                         elem-\/>GetGradShapeFunction(i, p) * elem-\/>GetGradShapeFunction(j, p);}
+\DoxyCodeLine{799                                 \textcolor{keywordflow}{if} (Pe >= 1)}
+\DoxyCodeLine{800                                     tau = h / 2. / vel;}
+\DoxyCodeLine{801                                 \textcolor{keywordflow}{else}}
+\DoxyCodeLine{802                                     tau = h * h / 12. / m\_problem-\/>get\_parameter(\mbox{\hyperlink{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7da6700bf7165821afe98b24ac1b0966758}{Terms::IDUDV}}, l, elem-\/>GetType(), p);}
+\DoxyCodeLine{803                                 \textcolor{comment}{//return 0.;}}
+\DoxyCodeLine{804                                 \textcolor{keywordflow}{return} tau * m\_problem-\/>get\_parameter(\mbox{\hyperlink{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7da6cbf1e7c8586e0d3a65915638e2ae293}{Terms::IDUV}}, l, elem-\/>GetType(), p, 0) * m\_problem-\/>get\_parameter(\mbox{\hyperlink{namespacecorenc_a3e54d1f38e1565c871e70b7f4b061a7da6cbf1e7c8586e0d3a65915638e2ae293}{Terms::IDUV}}, l, elem-\/>GetType(), p, 0) *}
+\DoxyCodeLine{805                                         elem-\/>GetGradShapeFunction(i, p) * elem-\/>GetGradShapeFunction(j, p);}
+\DoxyCodeLine{806                             \};}
+\DoxyCodeLine{807 }
+\DoxyCodeLine{808                             \textcolor{comment}{//double tau =}}
+\DoxyCodeLine{809                             \textcolor{keyword}{auto} \_mij = elem-\/>Integrate(M, points);}
+\DoxyCodeLine{810                             m\_GlobalMatrix-\/>AddElement(inode, jnode, \_mij);}
+\DoxyCodeLine{811                         \}}
+\DoxyCodeLine{812                     \}}
+\DoxyCodeLine{813                     \textcolor{keywordflow}{break};}
+\DoxyCodeLine{814                 \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{815                     \textcolor{keywordflow}{break};}
+\DoxyCodeLine{816                 \}}
+\DoxyCodeLine{817             \}}
+\DoxyCodeLine{818             \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{819         \}}
+\DoxyCodeLine{820         \textcolor{keyword}{template}<\textcolor{keyword}{class} Problem, \textcolor{keyword}{class} Gr\textcolor{keywordtype}{id}, \textcolor{keyword}{class} Matrix>}
+\DoxyCodeLine{821         \textcolor{keywordtype}{void} DGMethod<Problem, Grid, Matrix>::MainConditions()}
+\DoxyCodeLine{822         \{}
+\DoxyCodeLine{823             \textcolor{keywordtype}{double} mu\{ 1e8 \};}
+\DoxyCodeLine{824             \textcolor{keyword}{const} \textcolor{keyword}{auto} n = m\_problem-\/>get\_number\_of\_boundaries();}
+\DoxyCodeLine{825             \textcolor{keyword}{const} \textcolor{keyword}{auto} m = m\_Grid-\/>GetNumberOfBoundaries();}
+\DoxyCodeLine{826             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < n; ++i)}
+\DoxyCodeLine{827             \{}
+\DoxyCodeLine{828                 \textcolor{keyword}{const} \textcolor{keyword}{auto}\& type = m\_problem-\/>get\_boundary\_type(i);}
+\DoxyCodeLine{829                 \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j = 0; j < m; ++j)}
+\DoxyCodeLine{830                 \{}
+\DoxyCodeLine{831                     \textcolor{keyword}{const} \textcolor{keyword}{auto}\& row = m\_Grid-\/>GetBoundary(j);}
+\DoxyCodeLine{832                     \textcolor{keywordflow}{if} (row-\/>GetType() == type)}
+\DoxyCodeLine{833                     \{}
+\DoxyCodeLine{834                         \textcolor{keyword}{const} \textcolor{keywordtype}{int} dofs = (int)row-\/>GetDoFs();}
+\DoxyCodeLine{835                         \textcolor{keyword}{const} \textcolor{keywordtype}{int} dofs2 = 2;}
+\DoxyCodeLine{836                         \textcolor{keyword}{const} \textcolor{keyword}{auto}\& elem\_num = row-\/>GetNeighbour(0);}
+\DoxyCodeLine{837                         \textcolor{keyword}{const} \textcolor{keyword}{auto}\& elem = m\_Grid-\/>GetElement(elem\_num);}
+\DoxyCodeLine{838                         \textcolor{keyword}{const} \textcolor{keywordtype}{int} dofs\_elem = elem-\/>GetDoFs();}
+\DoxyCodeLine{839                         std::vector<Mesh::Point> points(dofs\_elem);}
+\DoxyCodeLine{840                         std::vector<Mesh::Point> bpoints(dofs);}
+\DoxyCodeLine{841                         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} k = 0; k < dofs\_elem; ++k)}
+\DoxyCodeLine{842                             points[k] = m\_Grid-\/>GetNode(elem-\/>GetNode(k));}
+\DoxyCodeLine{843                         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} k = 0; k < dofs; ++k)}
+\DoxyCodeLine{844                             bpoints[k] = m\_Grid-\/>GetNode(row-\/>GetNode(k));}
+\DoxyCodeLine{845                         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} ii = 0; ii < dofs\_elem; ++ii)}
+\DoxyCodeLine{846                         \{}
+\DoxyCodeLine{847                             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} jj = 0; jj < dofs\_elem; ++jj)}
+\DoxyCodeLine{848                             \{}
+\DoxyCodeLine{849                                 \textcolor{keyword}{auto} M = [\&](\textcolor{keyword}{const} Mesh::Point\& p)}
+\DoxyCodeLine{850                                 \{}
+\DoxyCodeLine{851                                     \textcolor{keywordflow}{return} elem-\/>GetShapeFunction(ii, p) * elem-\/>GetShapeFunction(jj, p);\textcolor{comment}{// + supg;}}
+\DoxyCodeLine{852                                 \};}
+\DoxyCodeLine{853                                 \textcolor{keyword}{auto} mj = mu * row-\/>Integrate(M, bpoints);}
+\DoxyCodeLine{854                                 m\_GlobalMatrix-\/>AddElement(m\_nums[elem\_num] + ii, m\_nums[elem\_num] + jj, mj);}
+\DoxyCodeLine{855                             \}}
+\DoxyCodeLine{856                             \textcolor{keyword}{auto} MM = [\&](\textcolor{keyword}{const} Mesh::Point\& p)}
+\DoxyCodeLine{857                             \{}
+\DoxyCodeLine{858                                 \textcolor{keywordflow}{return} elem-\/>GetWeight(elem\_num, points, [=](\textcolor{keyword}{const} Mesh::Point\& p) \{ \textcolor{keywordflow}{return} m\_problem-\/>get\_boundary\_parameter(0, type, p); \}) * elem-\/>GetShapeFunction(ii, p);}
+\DoxyCodeLine{859                             \};}
+\DoxyCodeLine{860                             \textcolor{keyword}{auto} mij = row-\/>Integrate(MM, points);}
+\DoxyCodeLine{861                             std::cout << mij << std::endl;}
+\DoxyCodeLine{862                             m\_rhsvector-\/>operator[](m\_nums[elem\_num] + ii) += mij;}
+\DoxyCodeLine{863                         \}}
+\DoxyCodeLine{864                         \textcolor{comment}{/*for (int k = 0; k < dofs; ++k)}}
+\DoxyCodeLine{865 \textcolor{comment}{                        \{}}
+\DoxyCodeLine{866 \textcolor{comment}{                            int l = 0;}}
+\DoxyCodeLine{867 \textcolor{comment}{                            for (; l < dofs\_elem; ++l)}}
+\DoxyCodeLine{868 \textcolor{comment}{                            \{}}
+\DoxyCodeLine{869 \textcolor{comment}{                                if (elem-\/>GetNode(l) == row-\/>GetNode(k))}}
+\DoxyCodeLine{870 \textcolor{comment}{                                    break;}}
+\DoxyCodeLine{871 \textcolor{comment}{                            \}}}
+\DoxyCodeLine{872 \textcolor{comment}{}}
+\DoxyCodeLine{873 \textcolor{comment}{                            m\_GlobalMatrix-\/>NullRow(row-\/>GetNode(k));}}
+\DoxyCodeLine{874 \textcolor{comment}{                            //m\_GlobalMatrix-\/>operator()(row-\/>GetNode(k), row-\/>GetNode(k)) *= mu;}}
+\DoxyCodeLine{875 \textcolor{comment}{                            //m\_rhsvector-\/>operator[](row-\/>GetNode(k)) = m\_problem-\/>get\_boundary\_parameter(0, type, m\_Grid-\/>GetNode(row-\/>GetNode(k)));}}
+\DoxyCodeLine{876 \textcolor{comment}{                            //m\_rhsvector-\/>operator[](row-\/>GetNode(k)) = m\_problem-\/>get\_boundary\_parameter(0, type, elem\_num, l, m\_Grid-\/>GetNode(row-\/>GetNode(k)));}}
+\DoxyCodeLine{877 \textcolor{comment}{                            m\_rhsvector-\/>operator[](row-\/>GetNode(k)) = elem-\/>GetWeight(l, points, [=](const Mesh::Point\& p) \{ return m\_problem-\/>get\_boundary\_parameter(0, type, p); \});}}
+\DoxyCodeLine{878 \textcolor{comment}{                            if(m\_problem-\/>findTerm(Terms::RUV))}}
+\DoxyCodeLine{879 \textcolor{comment}{                                \{}}
+\DoxyCodeLine{880 \textcolor{comment}{                                    m\_RightMatrix-\/>NullRow(row-\/>GetNode(k));}}
+\DoxyCodeLine{881 \textcolor{comment}{                                    //m\_RightMatrix-\/>operator()(row-\/>GetNode(k), row-\/>GetNode(k)) *= mu;}}
+\DoxyCodeLine{882 \textcolor{comment}{                                \}}}
+\DoxyCodeLine{883 \textcolor{comment}{                        \}*/}}
+\DoxyCodeLine{884                         \textcolor{comment}{/*for (int k = dofs2; k < dofs; ++k)}}
+\DoxyCodeLine{885 \textcolor{comment}{                        \{}}
+\DoxyCodeLine{886 \textcolor{comment}{                            m\_GlobalMatrix-\/>NullRow(row-\/>GetNode(k));}}
+\DoxyCodeLine{887 \textcolor{comment}{                            m\_rhsvector-\/>operator[](row-\/>GetNode(k)) = 0;}}
+\DoxyCodeLine{888 \textcolor{comment}{                        \}*/}}
+\DoxyCodeLine{889                     \}}
+\DoxyCodeLine{890                 \}}
+\DoxyCodeLine{891             \}}
+\DoxyCodeLine{892             \textcolor{comment}{/*for (auto bnd : m\_Grid-\/>GetBoundaryConditions())}}
+\DoxyCodeLine{893 \textcolor{comment}{            \{}}
+\DoxyCodeLine{894 \textcolor{comment}{                if (get<0>(bnd.second) == 1)}}
+\DoxyCodeLine{895 \textcolor{comment}{                    for (auto row : m\_Grid-\/>GetBoundary())}}
+\DoxyCodeLine{896 \textcolor{comment}{                    \{}}
+\DoxyCodeLine{897 \textcolor{comment}{                        if (bnd.first == row-\/>GetType())}}
+\DoxyCodeLine{898 \textcolor{comment}{                        \{}}
+\DoxyCodeLine{899 \textcolor{comment}{                            for (int i = 0; i < row-\/>GetDoF(); ++i)}}
+\DoxyCodeLine{900 \textcolor{comment}{                            \{}}
+\DoxyCodeLine{901 \textcolor{comment}{                                m\_GlobalMatrix-\/>NullRow(row-\/>GetNodes(i));}}
+\DoxyCodeLine{902 \textcolor{comment}{                                m\_rhsvector[row-\/>GetNodes(i)] = get<1>(bnd.second)(m\_Grid-\/>GetNodes()[row-\/>GetNodes(i)]);}}
+\DoxyCodeLine{903 \textcolor{comment}{                            \}}}
+\DoxyCodeLine{904 \textcolor{comment}{                        \}}}
+\DoxyCodeLine{905 \textcolor{comment}{                    \}}}
+\DoxyCodeLine{906 \textcolor{comment}{            \}*/}}
+\DoxyCodeLine{907         \}}
+\DoxyCodeLine{908         \textcolor{keyword}{template}<\textcolor{keyword}{class} Problem, \textcolor{keyword}{class} Gr\textcolor{keywordtype}{id}, \textcolor{keyword}{class} Matrix>}
+\DoxyCodeLine{909         \textcolor{keywordtype}{void} DGMethod<Problem, Grid, Matrix>::SecondConditions()}
+\DoxyCodeLine{910         \{}
+\DoxyCodeLine{911             \textcolor{keywordtype}{double} theta = 0;}
+\DoxyCodeLine{912             \textcolor{keywordtype}{int} nfem;}
+\DoxyCodeLine{913             Mesh::Point temp[3];}
+\DoxyCodeLine{914             std::vector<int> local;}
+\DoxyCodeLine{915             \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} bnd : m\_Grid-\/>GetBoundaryConditions())}
+\DoxyCodeLine{916             \{}
+\DoxyCodeLine{917                 \textcolor{comment}{//if (get<0>(bnd.second) == 2)}}
+\DoxyCodeLine{918                 \{}
+\DoxyCodeLine{919                     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} row : m\_Grid-\/>GetBoundary())}
+\DoxyCodeLine{920                     \{}
+\DoxyCodeLine{921                         \textcolor{keywordflow}{if} (bnd.first == row-\/>GetType())}
+\DoxyCodeLine{922                         \{}
+\DoxyCodeLine{923                             local.resize(0);}
+\DoxyCodeLine{924                             \textcolor{keywordtype}{int} dofs = row-\/>GetDoF();}
+\DoxyCodeLine{925                             nfem = row-\/>GetNumberOfElement(0);}
+\DoxyCodeLine{926                             \textcolor{keyword}{auto} elem = m\_Grid-\/>GetElements()[nfem];}
+\DoxyCodeLine{927                             \textcolor{comment}{//auto GetBasis = [\&](int t, Point p)\{return elem-\/>GetBasis(t, p); \};}}
+\DoxyCodeLine{928                             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j = 0; j < dofs; ++j)}
+\DoxyCodeLine{929                             \{}
+\DoxyCodeLine{930                                 temp[j] = m\_Grid-\/>GetNodes()[row-\/>GetNodes(j)];}
+\DoxyCodeLine{931                                 \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < elem-\/>GetDoF(); ++i)}
+\DoxyCodeLine{932                                 \{}
+\DoxyCodeLine{933                                     \textcolor{keywordflow}{if} (row-\/>GetNodes(j) == elem-\/>GetNodes()[i])}
+\DoxyCodeLine{934                                     \{}
+\DoxyCodeLine{935                                         local.push\_back(i);}
+\DoxyCodeLine{936                                         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{937                                     \}}
+\DoxyCodeLine{938                                 \}}
+\DoxyCodeLine{939                             \}}
+\DoxyCodeLine{940                             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < dofs; ++i)}
+\DoxyCodeLine{941                             \{}
+\DoxyCodeLine{942                                 \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j = 0; j < dofs; ++j)}
+\DoxyCodeLine{943                                 \{}
+\DoxyCodeLine{944                                     \textcolor{comment}{//theta = get<1>(bnd.second)(m\_Grid-\/>GetNodes()[row-\/>GetNodes(i)]);}}
+\DoxyCodeLine{945                                     theta = 0;}
+\DoxyCodeLine{946                                     \textcolor{keyword}{auto} GetMass = [\&](\textcolor{keyword}{const} Mesh::Point\& p) \{\textcolor{keywordflow}{return} elem-\/>GetBasis(local[j], p) * elem-\/>GetBasis(local[i], p); \};}
+\DoxyCodeLine{947                                     \textcolor{keyword}{auto} GetBBasis = [\&](\textcolor{keyword}{const} Mesh::Point\& p) \{\textcolor{keywordflow}{return} row-\/>GetBasis(j, p)*row-\/>GetBasis(i, p); \};}
+\DoxyCodeLine{948                                     \textcolor{comment}{//if (i < 2 || j < 2)}}
+\DoxyCodeLine{949                                     m\_rhsvector[row-\/>GetNodes(i)] += theta * row-\/>Integrate(GetMass, temp);}
+\DoxyCodeLine{950 }
+\DoxyCodeLine{951                                     \textcolor{comment}{//if (i < 3 || j < 3)}}
+\DoxyCodeLine{952                                     \textcolor{comment}{//  m\_rhsvector[row[i + 1]] += theta * row-\/>Integrate(GetBBasis, temp);}}
+\DoxyCodeLine{953                                 \}}
+\DoxyCodeLine{954                             \}}
+\DoxyCodeLine{955                         \}}
+\DoxyCodeLine{956                     \}}
+\DoxyCodeLine{957                 \}}
+\DoxyCodeLine{958             \}}
+\DoxyCodeLine{959         \}}
+\DoxyCodeLine{960         \textcolor{keyword}{template}<\textcolor{keyword}{class} Problem, \textcolor{keyword}{class} Gr\textcolor{keywordtype}{id}, \textcolor{keyword}{class} Matrix>}
+\DoxyCodeLine{961         \textcolor{keywordtype}{void} DGMethod<Problem, Grid, Matrix>::StefanConditions()}
+\DoxyCodeLine{962         \{}
+\DoxyCodeLine{963             \textcolor{keywordtype}{double} dest\{ 0. \}, lat\{ 0 \};}
+\DoxyCodeLine{964             \textcolor{keywordtype}{int} nfem;}
+\DoxyCodeLine{965             Mesh::Point temp[3];}
+\DoxyCodeLine{966             std::vector<int> local;}
+\DoxyCodeLine{967             \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} bnd : m\_Grid-\/>GetBoundaryConditions())}
+\DoxyCodeLine{968             \{}
+\DoxyCodeLine{969                 \textcolor{comment}{//if (get<0>(bnd.second) == 4)}}
+\DoxyCodeLine{970                 \{}
+\DoxyCodeLine{971                     lat = 0;}
+\DoxyCodeLine{972                     \textcolor{comment}{//lat = get<2>(bnd.second);}}
+\DoxyCodeLine{973                     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} row : m\_Grid-\/>GetBoundary())}
+\DoxyCodeLine{974                     \{}
+\DoxyCodeLine{975                         \textcolor{keywordflow}{if} (bnd.first == row-\/>GetType())}
+\DoxyCodeLine{976                         \{}
+\DoxyCodeLine{977                             local.resize(0);}
+\DoxyCodeLine{978                             \textcolor{keywordtype}{int} dofs = row-\/>GetDoF();}
+\DoxyCodeLine{979                             nfem = row-\/>GetNumberOfElement(0);}
+\DoxyCodeLine{980                             \textcolor{keyword}{auto} elem = m\_Grid-\/>GetElements()[nfem];}
+\DoxyCodeLine{981                             \textcolor{comment}{//auto GetBasis = [\&](int t, Point p)\{return elem-\/>GetBasis(t, p); \};}}
+\DoxyCodeLine{982                             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j = 0; j < dofs; ++j)}
+\DoxyCodeLine{983                             \{}
+\DoxyCodeLine{984                                 temp[j] = m\_Grid-\/>GetNodes()[row-\/>GetNodes(j)];}
+\DoxyCodeLine{985                                 \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < elem-\/>GetDoF(); ++i)}
+\DoxyCodeLine{986                                 \{}
+\DoxyCodeLine{987                                     \textcolor{keywordflow}{if} (row-\/>GetNodes(j) == elem-\/>GetNodes()[i])}
+\DoxyCodeLine{988                                     \{}
+\DoxyCodeLine{989                                         local.push\_back(i);}
+\DoxyCodeLine{990                                         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{991                                     \}}
+\DoxyCodeLine{992                                 \}}
+\DoxyCodeLine{993                             \}}
+\DoxyCodeLine{994                             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < dofs; ++i)}
+\DoxyCodeLine{995                             \{}
+\DoxyCodeLine{996                                 \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j = 0; j < dofs; ++j)}
+\DoxyCodeLine{997                                 \{}
+\DoxyCodeLine{998                                     dest = 0;}
+\DoxyCodeLine{999                                     \textcolor{comment}{//dest = get<1>(bnd.second)(m\_Grid-\/>GetNodes()[row-\/>GetNodes(i)]);}}
+\DoxyCodeLine{1000                                     \textcolor{keyword}{auto} GetBBasis = [\&](\textcolor{keyword}{const} Mesh::Point\& p) \{\textcolor{keywordflow}{return} row-\/>GetBasis(j, p)*row-\/>GetBasis(i, p); \};}
+\DoxyCodeLine{1001                                     \textcolor{comment}{//if (i < 2 || j < 2)}}
+\DoxyCodeLine{1002                                     m\_rhsvector[row-\/>GetNodes(i)] += dest * lat * row-\/>Integrate(GetBBasis, temp);}
+\DoxyCodeLine{1003 }
+\DoxyCodeLine{1004                                     \textcolor{comment}{//if (i < 3 || j < 3)}}
+\DoxyCodeLine{1005                                     \textcolor{comment}{//  m\_rhsvector[row[i + 1]] += theta * row-\/>Integrate(GetBBasis, temp);}}
+\DoxyCodeLine{1006                                 \}}
+\DoxyCodeLine{1007                             \}}
+\DoxyCodeLine{1008                         \}}
+\DoxyCodeLine{1009                     \}}
+\DoxyCodeLine{1010                 \}}
+\DoxyCodeLine{1011             \}}
+\DoxyCodeLine{1012         \}}
+\DoxyCodeLine{1013         \textcolor{keyword}{template}<\textcolor{keyword}{class} Problem, \textcolor{keyword}{class} Gr\textcolor{keywordtype}{id}, \textcolor{keyword}{class} Matrix>}
+\DoxyCodeLine{1014         \textcolor{keywordtype}{void} DGMethod<Problem, Grid, Matrix>::ThirdConditions()}
+\DoxyCodeLine{1015         \{}
+\DoxyCodeLine{1016             \textcolor{keywordtype}{double} param\{ 0 \}, beta\{ 0 \};}
+\DoxyCodeLine{1017             \textcolor{keywordtype}{int} nfem;}
+\DoxyCodeLine{1018             Mesh::Point temp[6];}
+\DoxyCodeLine{1019             std::vector<int> local;}
+\DoxyCodeLine{1020             \textcolor{keyword}{auto} fxy = [\&](\textcolor{keyword}{const} Mesh::Point\& p) \{\textcolor{keywordflow}{return} (10 * p.y*m\_time + m\_time) / 10; \};}
+\DoxyCodeLine{1021             \textcolor{comment}{//auto fxy = [\&](const Point\& p)\{return 10 * p.y + 10 * m\_time; \};}}
+\DoxyCodeLine{1022             \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} bnd : m\_Grid-\/>GetBoundaryConditions())}
+\DoxyCodeLine{1023             \{}
+\DoxyCodeLine{1024                 \textcolor{comment}{//if (get<0>(bnd.second) == 3)}}
+\DoxyCodeLine{1025                 \{}
+\DoxyCodeLine{1026 }
+\DoxyCodeLine{1027                     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} row : m\_Grid-\/>GetBoundary())}
+\DoxyCodeLine{1028                     \{}
+\DoxyCodeLine{1029                         \textcolor{keywordflow}{if} (bnd.first == row-\/>GetType())}
+\DoxyCodeLine{1030                         \{}
+\DoxyCodeLine{1031                             local.resize(0);}
+\DoxyCodeLine{1032                             \textcolor{keywordtype}{int} dofs = row-\/>GetDoF();}
+\DoxyCodeLine{1033                             nfem = row-\/>GetNumberOfElement(0);}
+\DoxyCodeLine{1034                             \textcolor{keyword}{auto} elem = m\_Grid-\/>GetElements()[nfem];}
+\DoxyCodeLine{1035                             \textcolor{comment}{//auto GetBasis = [\&](int t, Point p)\{return elem-\/>GetBasis(t, p); \};}}
+\DoxyCodeLine{1036                             \textcolor{keyword}{auto} order = elem-\/>GetDoF();}
+\DoxyCodeLine{1037                             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j = 0; j < dofs; ++j)}
+\DoxyCodeLine{1038                             \{}
+\DoxyCodeLine{1039                                 temp[j] = m\_Grid-\/>GetNodes()[row-\/>GetNodes(j)];}
+\DoxyCodeLine{1040                                 \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < order; ++i)}
+\DoxyCodeLine{1041                                 \{}
+\DoxyCodeLine{1042                                     \textcolor{keywordflow}{if} (row-\/>GetNodes(j) == elem-\/>GetNodes()[i])}
+\DoxyCodeLine{1043                                     \{}
+\DoxyCodeLine{1044                                         local.push\_back(i);}
+\DoxyCodeLine{1045                                         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{1046                                     \}}
+\DoxyCodeLine{1047                                 \}}
+\DoxyCodeLine{1048                             \}}
+\DoxyCodeLine{1049                             \textcolor{keywordtype}{double} val\{ 0 \};}
+\DoxyCodeLine{1050                             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < dofs; ++i)}
+\DoxyCodeLine{1051                             \{}
+\DoxyCodeLine{1052                                 \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j = 0; j < dofs; ++j)}
+\DoxyCodeLine{1053                                 \{}
+\DoxyCodeLine{1054                                     param = 0;}
+\DoxyCodeLine{1055                                     beta = 0;}
+\DoxyCodeLine{1056                                     \textcolor{comment}{//beta = get<2>(bnd.second);}}
+\DoxyCodeLine{1057                                     \textcolor{comment}{//param = get<1>(bnd.second)(m\_Grid-\/>GetNodes()[row-\/>GetNodes(i)]);}}
+\DoxyCodeLine{1058                                     \textcolor{comment}{//param = fxy(temp[j]);}}
+\DoxyCodeLine{1059                                     \textcolor{keyword}{auto} GetBBasis = [\&](\textcolor{keyword}{const} Mesh::Point\& p) \{\textcolor{keywordflow}{return} elem-\/>GetBasis(local[j], p)*elem-\/>GetBasis(local[i], p); \};}
+\DoxyCodeLine{1060                                     \textcolor{comment}{//val = row-\/>GetElement(GetBBasis, temp);}}
+\DoxyCodeLine{1061                                     val = row-\/>Integrate(GetBBasis, temp);}
+\DoxyCodeLine{1062                                     m\_GlobalMatrix-\/>operator()(row-\/>GetNodes(i), row-\/>GetNodes(j)) += beta * val;}
+\DoxyCodeLine{1063                                     m\_rhsvector[row-\/>GetNodes(i)] += beta * param * val;}
+\DoxyCodeLine{1064                                 \}}
+\DoxyCodeLine{1065                             \}}
+\DoxyCodeLine{1066                         \}}
+\DoxyCodeLine{1067                     \}}
+\DoxyCodeLine{1068                 \}}
+\DoxyCodeLine{1069             \}}
+\DoxyCodeLine{1070         \}}
+\DoxyCodeLine{1071         \textcolor{keyword}{template}<\textcolor{keyword}{class} Problem, \textcolor{keyword}{class} Gr\textcolor{keywordtype}{id}, \textcolor{keyword}{class} Matrix>}
+\DoxyCodeLine{1072         Matrix* \mbox{\hyperlink{classcorenc_1_1method_1_1DGMethod_aabb6cb37e6db6b5e50fd8b18dc50bd5b}{DGMethod<Problem, Grid, Matrix>::GetGlobalMatrix}}()\textcolor{keyword}{ const}}
+\DoxyCodeLine{1073 \textcolor{keyword}{        }\{}
+\DoxyCodeLine{1074             \textcolor{keywordflow}{return} m\_GlobalMatrix;}
+\DoxyCodeLine{1075         \}}
+\DoxyCodeLine{1076         \textcolor{keyword}{template}<\textcolor{keyword}{class} Problem, \textcolor{keyword}{class} Gr\textcolor{keywordtype}{id}, \textcolor{keyword}{class} Matrix>}
+\DoxyCodeLine{1077         \textcolor{keyword}{const} \textcolor{keywordtype}{double} \mbox{\hyperlink{classcorenc_1_1method_1_1DGMethod_ac3cc58633e27e4f0719c2e2131260011}{DGMethod<Problem, Grid, Matrix>::GetValue}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh::Point}}\& p)\textcolor{keyword}{ const}}
+\DoxyCodeLine{1078 \textcolor{keyword}{        }\{}
+\DoxyCodeLine{1079             \textcolor{keywordflow}{if} (!m\_solution.size())}
+\DoxyCodeLine{1080                 \textcolor{keywordflow}{return} -\/1;}
+\DoxyCodeLine{1081             \textcolor{keywordtype}{double} val = 0;}
+\DoxyCodeLine{1082             \textcolor{keywordtype}{int} nfem = -\/1;}
+\DoxyCodeLine{1083             nfem = m\_Grid-\/>FindElement(p);}
+\DoxyCodeLine{1084             \textcolor{keywordflow}{if} (nfem == -\/1)}
+\DoxyCodeLine{1085                 \textcolor{keywordflow}{return} -\/1;}
+\DoxyCodeLine{1086             \textcolor{keyword}{auto} elem = m\_Grid-\/>GetElements()[nfem];}
+\DoxyCodeLine{1087             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < elem-\/>GetDoF(); ++i)}
+\DoxyCodeLine{1088                 val += m\_solution[elem-\/>GetNodes()[i]] * elem-\/>GetBasis(i, p);}
+\DoxyCodeLine{1089             \textcolor{keywordflow}{return} val;}
+\DoxyCodeLine{1090         \}}
+\DoxyCodeLine{1091         \textcolor{keyword}{template}<\textcolor{keyword}{class} Problem, \textcolor{keyword}{class} Gr\textcolor{keywordtype}{id}, \textcolor{keyword}{class} Matrix>}
+\DoxyCodeLine{1092         \textcolor{keyword}{const} \textcolor{keywordtype}{double} \mbox{\hyperlink{classcorenc_1_1method_1_1DGMethod_ac3cc58633e27e4f0719c2e2131260011}{DGMethod<Problem, Grid, Matrix>::GetValue}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh::Point}}\& p, \textcolor{keyword}{const} std::vector<double>\& vec)\textcolor{keyword}{ const}}
+\DoxyCodeLine{1093 \textcolor{keyword}{        }\{}
+\DoxyCodeLine{1094             \textcolor{keywordflow}{if} (!vec.size())}
+\DoxyCodeLine{1095                 \textcolor{keywordflow}{return} -\/1;}
+\DoxyCodeLine{1096             \textcolor{keywordtype}{double} val\{ 0 \};}
+\DoxyCodeLine{1097             \textcolor{keywordtype}{int} nfem\{ -\/1 \};}
+\DoxyCodeLine{1098             nfem = m\_Grid-\/>FindElement(p);}
+\DoxyCodeLine{1099             \textcolor{keywordflow}{if} (nfem == -\/1)}
+\DoxyCodeLine{1100                 \textcolor{keywordflow}{return} -\/1;}
+\DoxyCodeLine{1101             \textcolor{keyword}{auto} elem = m\_Grid-\/>GetElements()[nfem];}
+\DoxyCodeLine{1102             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < elem-\/>GetDoFs(); ++i)}
+\DoxyCodeLine{1103                 val += vec[elem-\/>GetNode(i)] * elem-\/>GetShapeFunction(i, p);}
+\DoxyCodeLine{1104             \textcolor{keywordflow}{return} val;}
+\DoxyCodeLine{1105         \}}
+\DoxyCodeLine{1106         \textcolor{keyword}{template}<\textcolor{keyword}{class} Problem, \textcolor{keyword}{class} Gr\textcolor{keywordtype}{id}, \textcolor{keyword}{class} Matrix>}
+\DoxyCodeLine{1107         \textcolor{keyword}{const} \textcolor{keywordtype}{double} \mbox{\hyperlink{classcorenc_1_1method_1_1DGMethod_ac3cc58633e27e4f0719c2e2131260011}{DGMethod<Problem, Grid, Matrix>::GetValue}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh::Point}}\& p, \textcolor{keyword}{const} std::vector<double>\& vec, \textcolor{keyword}{const} \textcolor{keywordtype}{int} num)\textcolor{keyword}{ const}}
+\DoxyCodeLine{1108 \textcolor{keyword}{        }\{}
+\DoxyCodeLine{1109             \textcolor{keywordflow}{if} (!vec.size() || num < 0)}
+\DoxyCodeLine{1110                 \textcolor{keywordflow}{return} -\/1;}
+\DoxyCodeLine{1111             \textcolor{keywordtype}{double} val\{ 0 \};}
+\DoxyCodeLine{1112             \textcolor{keyword}{auto} elem = m\_Grid-\/>GetElements()[num];}
+\DoxyCodeLine{1113             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < elem-\/>GetDoF(); ++i)}
+\DoxyCodeLine{1114                 val += vec[elem-\/>GetNodes()[i]] * elem-\/>GetBasis(i, p);}
+\DoxyCodeLine{1115             \textcolor{keywordflow}{return} val;}
+\DoxyCodeLine{1116         \}}
+\DoxyCodeLine{1117         \textcolor{comment}{//template<class Problem, class Grid, class Matrix>}}
+\DoxyCodeLine{1118         \textcolor{comment}{//const Mesh::Point DGMethod<Problem, Grid, Matrix>::GetGradValue(const Mesh::Point\& p, const std::vector<double>\& vec) const}}
+\DoxyCodeLine{1119         \textcolor{comment}{//\{}}
+\DoxyCodeLine{1120         \textcolor{comment}{//  Mesh::Point val\{ 0, 0 \};}}
+\DoxyCodeLine{1121         \textcolor{comment}{//  int nfem\{ -\/1 \};}}
+\DoxyCodeLine{1122         \textcolor{comment}{//  nfem = m\_Grid-\/>FindElement(p);}}
+\DoxyCodeLine{1123         \textcolor{comment}{//  if (nfem == -\/1)}}
+\DoxyCodeLine{1124         \textcolor{comment}{//      return val;}}
+\DoxyCodeLine{1125         \textcolor{comment}{//  auto elem = m\_Grid-\/>GetElements()[nfem];}}
+\DoxyCodeLine{1126         \textcolor{comment}{//  for (int i = 0; i < elem-\/>GetDoF(); ++i)}}
+\DoxyCodeLine{1127         \textcolor{comment}{//  \{}}
+\DoxyCodeLine{1128         \textcolor{comment}{//      val.x += vec[elem-\/>GetNodes()[i]] * elem-\/>GetGradBasis(i, p).x;}}
+\DoxyCodeLine{1129         \textcolor{comment}{//      val.y += vec[elem-\/>GetNodes()[i]] * elem-\/>GetGradBasis(i, p).y;}}
+\DoxyCodeLine{1130         \textcolor{comment}{//      val.z += vec[elem-\/>GetNodes()[i]] * elem-\/>GetGradBasis(i, p).z;}}
+\DoxyCodeLine{1131         \textcolor{comment}{//  \}}}
+\DoxyCodeLine{1132         \textcolor{comment}{//  return val;}}
+\DoxyCodeLine{1133         \textcolor{comment}{//\}}}
+\DoxyCodeLine{1134         \textcolor{keyword}{template}<\textcolor{keyword}{class} Problem, \textcolor{keyword}{class} Gr\textcolor{keywordtype}{id}, \textcolor{keyword}{class} Matrix>}
+\DoxyCodeLine{1135         \textcolor{keyword}{const} \textcolor{keywordtype}{double} \mbox{\hyperlink{classcorenc_1_1method_1_1DGMethod_a891cabd444e39e0c9328bc51773f1bca}{DGMethod<Problem, Grid, Matrix>::GetEffective}}(\textcolor{keyword}{const} std::vector<double>\& vec)\textcolor{keyword}{ const}}
+\DoxyCodeLine{1136 \textcolor{keyword}{        }\{}
+\DoxyCodeLine{1137             \textcolor{keywordtype}{double} sum = 0;}
+\DoxyCodeLine{1138             \textcolor{comment}{//std::vector<int> dofs;}}
+\DoxyCodeLine{1139             \textcolor{comment}{//Mesh::Point points[10];}}
+\DoxyCodeLine{1140             \textcolor{comment}{//for (int i = 0; i < m\_Grid-\/>GetElements().size(); ++i)}}
+\DoxyCodeLine{1141             \textcolor{comment}{//\{}}
+\DoxyCodeLine{1142                 \textcolor{comment}{//auto mb = [\&](const Mesh::Point\& b) \{return GetGradValue(b, vec)*GetGradValue(b, vec); \};}}
+\DoxyCodeLine{1143                 \textcolor{comment}{//dofs.resize(0);}}
+\DoxyCodeLine{1144                 \textcolor{comment}{//auto elem = m\_Grid-\/>GetElements()[i];}}
+\DoxyCodeLine{1145                 \textcolor{comment}{//int order = elem-\/>GetDoF();}}
+\DoxyCodeLine{1146                 \textcolor{comment}{//double diff = std::get<0>(m\_Grid-\/>GetDiffusion().find(elem-\/>GetType())-\/>second);}}
+\DoxyCodeLine{1147                 \textcolor{comment}{//for (int j = 0; j < order; ++j)}}
+\DoxyCodeLine{1148                 \textcolor{comment}{//\{}}
+\DoxyCodeLine{1149                     \textcolor{comment}{//dofs.push\_back(elem-\/>GetNodes()[j]);}}
+\DoxyCodeLine{1150                     \textcolor{comment}{//points[j] = m\_Grid-\/>GetNodes()[dofs[j]];}}
+\DoxyCodeLine{1151                 \textcolor{comment}{//\}}}
+\DoxyCodeLine{1152                 \textcolor{comment}{//sum += diff * elem-\/>Integrate(mb, points);}}
+\DoxyCodeLine{1153             \textcolor{comment}{//\}}}
+\DoxyCodeLine{1154             \textcolor{comment}{//std::cout << "{}Effect (local): "{} << sum << std::endl;}}
+\DoxyCodeLine{1155             \textcolor{comment}{//std::cout << "{}Effect (local) sqrt: "{} << sqrt(sum) << std::endl;}}
+\DoxyCodeLine{1156             \textcolor{keywordflow}{return} sum;}
+\DoxyCodeLine{1157         \}}
+\DoxyCodeLine{1158         \textcolor{comment}{//template<class Problem, class Grid, class Matrix>}}
+\DoxyCodeLine{1159         \textcolor{comment}{//const Mesh::Point DGMethod<Problem, Grid, Matrix>::GetLambdaGrad(const Mesh::Point\& p, const std::vector<double>\& vec) const}}
+\DoxyCodeLine{1160         \textcolor{comment}{//\{}}
+\DoxyCodeLine{1161         \textcolor{comment}{//  Mesh::Point val\{ 0, 0, 0 \};}}
+\DoxyCodeLine{1162         \textcolor{comment}{//  //double val\{ 0 \};}}
+\DoxyCodeLine{1163         \textcolor{comment}{//  double diff\{ 0 \};}}
+\DoxyCodeLine{1164         \textcolor{comment}{//  Mesh::Point temp\{ 0, 0, 0 \};}}
+\DoxyCodeLine{1165         \textcolor{comment}{//  int nfem\{ -\/1 \};}}
+\DoxyCodeLine{1166         \textcolor{comment}{//  nfem = m\_Grid-\/>FindElement(p);}}
+\DoxyCodeLine{1167         \textcolor{comment}{//  if (nfem == -\/1)}}
+\DoxyCodeLine{1168         \textcolor{comment}{//      return val;}}
+\DoxyCodeLine{1169         \textcolor{comment}{//  auto elem = m\_Grid-\/>GetElements()[nfem];}}
+\DoxyCodeLine{1170         \textcolor{comment}{//  diff = std::get<0>(m\_Grid-\/>GetDiffusion().find(elem-\/>GetType())-\/>second);}}
+\DoxyCodeLine{1171         \textcolor{comment}{//  for (int i = 0; i < elem-\/>GetDoF(); ++i)}}
+\DoxyCodeLine{1172         \textcolor{comment}{//  \{}}
+\DoxyCodeLine{1173         \textcolor{comment}{//      //val += elem-\/>GetGradBasis(i, p) * elem-\/>GetGradBasis(i, p) * vec[elem-\/>GetNodes()[i]] * vec[elem-\/>GetNodes()[i]] * diff;}}
+\DoxyCodeLine{1174         \textcolor{comment}{//      //val += elem-\/>GetBasis(i, p) * vec[elem-\/>GetNodes()[i]] * diff;}}
+\DoxyCodeLine{1175         \textcolor{comment}{//      temp = elem-\/>GetGradBasis(i, p);}}
+\DoxyCodeLine{1176         \textcolor{comment}{//      val.x += temp.x * vec[elem-\/>GetNodes()[i]] * (diff);}}
+\DoxyCodeLine{1177         \textcolor{comment}{//      val.y += temp.y * vec[elem-\/>GetNodes()[i]] * (diff);}}
+\DoxyCodeLine{1178         \textcolor{comment}{//      val.z += temp.z * vec[elem-\/>GetNodes()[i]] * (diff);}}
+\DoxyCodeLine{1179         \textcolor{comment}{//  \}}}
+\DoxyCodeLine{1180         \textcolor{comment}{//  return val;}}
+\DoxyCodeLine{1181         \textcolor{comment}{//\}}}
+\DoxyCodeLine{1182         \textcolor{keyword}{template}<\textcolor{keyword}{class} Problem, \textcolor{keyword}{class} Gr\textcolor{keywordtype}{id}, \textcolor{keyword}{class} Matrix>}
+\DoxyCodeLine{1183         \textcolor{keyword}{const} std::vector<double> \mbox{\hyperlink{classcorenc_1_1method_1_1DGMethod_a117ede957cd1c882190fa0df71fef0d1}{DGMethod<Problem, Grid, Matrix>::GetRightVector}}()\textcolor{keyword}{ const}}
+\DoxyCodeLine{1184 \textcolor{keyword}{        }\{}
+\DoxyCodeLine{1185             \textcolor{keywordflow}{return} *m\_rhsvector;}
+\DoxyCodeLine{1186         \}}
+\DoxyCodeLine{1187         \textcolor{keyword}{template}<\textcolor{keyword}{class} Problem, \textcolor{keyword}{class} Gr\textcolor{keywordtype}{id}, \textcolor{keyword}{class} Matrix>}
+\DoxyCodeLine{1188         \textcolor{keywordtype}{void} \mbox{\hyperlink{classcorenc_1_1method_1_1DGMethod_ae535a902934ee124c8b1cbb8be573157}{DGMethod<Problem, Grid, Matrix>::OutDatFormat}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh::Point}}\& mn, \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh::Point}}\& mx, \textcolor{keyword}{const} std::string\& file\_name, \textcolor{keyword}{const} std::vector<double>\& vec)\textcolor{keyword}{ const}}
+\DoxyCodeLine{1189 \textcolor{keyword}{        }\{}
+\DoxyCodeLine{1190             std::ofstream of(file\_name + \textcolor{stringliteral}{"{}z.dat"{}});}
+\DoxyCodeLine{1191             std::streambuf *buf = std::cout.rdbuf();}
+\DoxyCodeLine{1192             std::cout.rdbuf(of.rdbuf());}
+\DoxyCodeLine{1193             std::cout << \textcolor{stringliteral}{"{}TITLE = FE-\/METHOD\(\backslash\)n"{}};}
+\DoxyCodeLine{1194             std::cout << \textcolor{stringliteral}{"{}VARIABLES = \(\backslash\)"{}dx1\(\backslash\)"{}, \(\backslash\)"{}dx2\(\backslash\)"{}, \(\backslash\)"{}u\(\backslash\)"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{1195             std::cout << \textcolor{stringliteral}{"{}ZONE i=51, j=51, F=POINT\(\backslash\)n"{}};}
+\DoxyCodeLine{1196             \textcolor{keywordtype}{double} stepx = (mx.\mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point_a4a1b6340ba2c09f18d67e6c3324a960c}{x}} -\/ mn.\mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point_a4a1b6340ba2c09f18d67e6c3324a960c}{x}}) / 51;}
+\DoxyCodeLine{1197             \textcolor{keywordtype}{double} stepy = (mx.\mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point_ad284cc2cdcd57432d6667bacb0cc5ccd}{y}} -\/ mn.\mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point_ad284cc2cdcd57432d6667bacb0cc5ccd}{y}}) / 51;}
+\DoxyCodeLine{1198             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < 51; ++i)}
+\DoxyCodeLine{1199                 \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j = 0; j < 51; ++j)}
+\DoxyCodeLine{1200                     std::cout << mn.\mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point_a4a1b6340ba2c09f18d67e6c3324a960c}{x}} + j * stepx << \textcolor{stringliteral}{"{}\(\backslash\)t"{}} << mn.\mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point_ad284cc2cdcd57432d6667bacb0cc5ccd}{y}} + stepy * i << \textcolor{stringliteral}{"{}\(\backslash\)t"{}} << GetValue(\mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh::Point}}(mn.\mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point_a4a1b6340ba2c09f18d67e6c3324a960c}{x}} + j * stepx, mn.\mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point_ad284cc2cdcd57432d6667bacb0cc5ccd}{y}} + i * stepy, mn.\mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point_ab3ce06a03b41ac6c0cd96217a4f64ba0}{z}}), vec) << std::endl;}
+\DoxyCodeLine{1201             std::cout.rdbuf(buf);}
+\DoxyCodeLine{1202             of.close();}
+\DoxyCodeLine{1203             of.open(file\_name + \textcolor{stringliteral}{"{}x.dat"{}});}
+\DoxyCodeLine{1204             buf = std::cout.rdbuf();}
+\DoxyCodeLine{1205             std::cout.rdbuf(of.rdbuf());}
+\DoxyCodeLine{1206             std::cout << \textcolor{stringliteral}{"{}TITLE = FE-\/METHOD\(\backslash\)n"{}};}
+\DoxyCodeLine{1207             std::cout << \textcolor{stringliteral}{"{}VARIABLES = \(\backslash\)"{}dx1\(\backslash\)"{}, \(\backslash\)"{}dx2\(\backslash\)"{}, \(\backslash\)"{}u\(\backslash\)"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{1208             std::cout << \textcolor{stringliteral}{"{}ZONE i=51, j=51, F=POINT\(\backslash\)n"{}};}
+\DoxyCodeLine{1209             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < 51; ++i)}
+\DoxyCodeLine{1210                 \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j = 0; j < 51; ++j)}
+\DoxyCodeLine{1211                     std::cout << mn.\mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point_a4a1b6340ba2c09f18d67e6c3324a960c}{x}} + j * stepx << \textcolor{stringliteral}{"{}\(\backslash\)t"{}} << mn.\mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point_ad284cc2cdcd57432d6667bacb0cc5ccd}{y}} + stepy * i << \textcolor{stringliteral}{"{}\(\backslash\)t"{}} << GetValue(\mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh::Point}}(mn.\mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point_ab3ce06a03b41ac6c0cd96217a4f64ba0}{z}}, mn.\mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point_a4a1b6340ba2c09f18d67e6c3324a960c}{x}} + j * stepx, mn.\mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point_ad284cc2cdcd57432d6667bacb0cc5ccd}{y}} + i * stepy), vec) << std::endl;}
+\DoxyCodeLine{1212             std::cout.rdbuf(buf);}
+\DoxyCodeLine{1213             of.close();}
+\DoxyCodeLine{1214             of.open(file\_name + \textcolor{stringliteral}{"{}y.dat"{}});}
+\DoxyCodeLine{1215             buf = std::cout.rdbuf();}
+\DoxyCodeLine{1216             std::cout.rdbuf(of.rdbuf());}
+\DoxyCodeLine{1217             std::cout << \textcolor{stringliteral}{"{}TITLE = FE-\/METHOD\(\backslash\)n"{}};}
+\DoxyCodeLine{1218             std::cout << \textcolor{stringliteral}{"{}VARIABLES = \(\backslash\)"{}dx1\(\backslash\)"{}, \(\backslash\)"{}dx2\(\backslash\)"{}, \(\backslash\)"{}u\(\backslash\)"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{1219             std::cout << \textcolor{stringliteral}{"{}ZONE i=51, j=51, F=POINT\(\backslash\)n"{}};}
+\DoxyCodeLine{1220             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < 51; ++i)}
+\DoxyCodeLine{1221                 \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j = 0; j < 51; ++j)}
+\DoxyCodeLine{1222                     std::cout << mn.\mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point_a4a1b6340ba2c09f18d67e6c3324a960c}{x}} + j * stepx << \textcolor{stringliteral}{"{}\(\backslash\)t"{}} << mn.\mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point_ad284cc2cdcd57432d6667bacb0cc5ccd}{y}} + stepy * i << \textcolor{stringliteral}{"{}\(\backslash\)t"{}} << GetValue(\mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh::Point}}(mn.\mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point_a4a1b6340ba2c09f18d67e6c3324a960c}{x}} + j * stepx, mn.\mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point_ab3ce06a03b41ac6c0cd96217a4f64ba0}{z}}, mn.\mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point_ad284cc2cdcd57432d6667bacb0cc5ccd}{y}} + i * stepy), vec) << std::endl;}
+\DoxyCodeLine{1223             std::cout.rdbuf(buf);}
+\DoxyCodeLine{1224             of.close();}
+\DoxyCodeLine{1225         \}}
+\DoxyCodeLine{1226         \textcolor{keyword}{template}<\textcolor{keyword}{class} Problem, \textcolor{keyword}{class} Gr\textcolor{keywordtype}{id}, \textcolor{keyword}{class} Matrix>}
+\DoxyCodeLine{1227         \textcolor{keywordtype}{void} \mbox{\hyperlink{classcorenc_1_1method_1_1DGMethod}{DGMethod<Problem, Grid, Matrix>::ApplySources}}()}
+\DoxyCodeLine{1228         \{}
+\DoxyCodeLine{1229             \textcolor{keywordtype}{int} nfem = -\/1;}
+\DoxyCodeLine{1230             \textcolor{keyword}{auto} total = m\_problem-\/>get\_total\_sources();}
+\DoxyCodeLine{1231             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < total; ++i)}
+\DoxyCodeLine{1232             \{}
+\DoxyCodeLine{1233                 \textcolor{keyword}{auto} src = m\_problem-\/>get\_point\_source(i);}
+\DoxyCodeLine{1234                 \textcolor{keyword}{auto} point = src.get\_point();}
+\DoxyCodeLine{1235                 nfem = m\_Grid-\/>FindElement(point);}
+\DoxyCodeLine{1236                 \textcolor{keywordflow}{if} (nfem != -\/1)}
+\DoxyCodeLine{1237                 \{}
+\DoxyCodeLine{1238                     \textcolor{keyword}{auto} val = src.get\_value();}
+\DoxyCodeLine{1239                     \textcolor{keyword}{auto} elem = m\_Grid-\/>GetElement(nfem);}
+\DoxyCodeLine{1240                     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j = 0; j < 3; ++j)}
+\DoxyCodeLine{1241                         m\_rhsvector-\/>operator[](elem-\/>GetNode(j)) += val * elem-\/>GetShapeFunction(j, point);}
+\DoxyCodeLine{1242                 \}}
+\DoxyCodeLine{1243                 nfem = -\/1;}
+\DoxyCodeLine{1244             \}}
+\DoxyCodeLine{1245             \textcolor{comment}{/*for (auto srd : m\_Grid-\/>GetDottedSources())}}
+\DoxyCodeLine{1246 \textcolor{comment}{            \{}}
+\DoxyCodeLine{1247 \textcolor{comment}{                nfem = m\_Grid-\/>FindElement(srd.first);}}
+\DoxyCodeLine{1248 \textcolor{comment}{                if (nfem != -\/1)}}
+\DoxyCodeLine{1249 \textcolor{comment}{                \{}}
+\DoxyCodeLine{1250 \textcolor{comment}{                    auto elem = m\_Grid-\/>GetElements()[nfem];}}
+\DoxyCodeLine{1251 \textcolor{comment}{                    for (int i = 0; i < elem-\/>GetDoF(); ++i)}}
+\DoxyCodeLine{1252 \textcolor{comment}{                    \{}}
+\DoxyCodeLine{1253 \textcolor{comment}{                        m\_rhsvector[elem-\/>GetNodes()[i]] += srd.second * elem-\/>GetBasis(i, srd.first);}}
+\DoxyCodeLine{1254 \textcolor{comment}{                    \}}}
+\DoxyCodeLine{1255 \textcolor{comment}{                \}}}
+\DoxyCodeLine{1256 \textcolor{comment}{                nfem = -\/1;}}
+\DoxyCodeLine{1257 \textcolor{comment}{            \}*/}}
+\DoxyCodeLine{1258         \}}
+\DoxyCodeLine{1259         \textcolor{keyword}{template}<\textcolor{keyword}{class} Problem, \textcolor{keyword}{class} Gr\textcolor{keywordtype}{id}, \textcolor{keyword}{class} Matrix>}
+\DoxyCodeLine{1260         \textcolor{keywordtype}{void} \mbox{\hyperlink{classcorenc_1_1method_1_1DGMethod_a15d2fb86313a8131f1806d17d0a1fcb3}{DGMethod<Problem, Grid, Matrix>::Rediscretization}}(\textcolor{keyword}{const} std::shared\_ptr<Grid>\& grid)}
+\DoxyCodeLine{1261         \{}
+\DoxyCodeLine{1262             m\_GlobalMatrix-\/>NullMatrix();}
+\DoxyCodeLine{1263             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} i = 0; i < m\_rhsvector-\/>size(); ++i)}
+\DoxyCodeLine{1264                 (*m\_rhsvector)[i] = 0;}
+\DoxyCodeLine{1265             AssemblGlobal();}
+\DoxyCodeLine{1266             \textcolor{comment}{//SecondConditions();}}
+\DoxyCodeLine{1267             \textcolor{comment}{//ApplySources();}}
+\DoxyCodeLine{1268             \textcolor{comment}{//StefanConditions();}}
+\DoxyCodeLine{1269             MainConditions();}
+\DoxyCodeLine{1270         \}}
+\DoxyCodeLine{1271         \textcolor{keyword}{template}<\textcolor{keyword}{class} Problem, \textcolor{keyword}{class} Gr\textcolor{keywordtype}{id}, \textcolor{keyword}{class} Matrix>}
+\DoxyCodeLine{1272         \textcolor{keywordtype}{void} \mbox{\hyperlink{classcorenc_1_1method_1_1DGMethod_a15d2fb86313a8131f1806d17d0a1fcb3}{DGMethod<Problem, Grid, Matrix>::Rediscretization}}()}
+\DoxyCodeLine{1273         \{}
+\DoxyCodeLine{1274             m\_time += m\_step;}
+\DoxyCodeLine{1275             m\_GlobalMatrix-\/>NullMatrix();}
+\DoxyCodeLine{1276             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} i = 0; i < m\_rhsvector-\/>size(); ++i)}
+\DoxyCodeLine{1277                 (*m\_rhsvector)[i] = 0;}
+\DoxyCodeLine{1278             AssemblGlobal();}
+\DoxyCodeLine{1279             SecondConditions();}
+\DoxyCodeLine{1280             ThirdConditions();}
+\DoxyCodeLine{1281             StefanConditions();}
+\DoxyCodeLine{1282             \textcolor{comment}{//ApplySources();}}
+\DoxyCodeLine{1283             MainConditions();}
+\DoxyCodeLine{1284         \}}
+\DoxyCodeLine{1285         \textcolor{keyword}{template}<\textcolor{keyword}{class} Problem, \textcolor{keyword}{class} Gr\textcolor{keywordtype}{id}, \textcolor{keyword}{class} Matrix>}
+\DoxyCodeLine{1286         \textcolor{keywordtype}{void} \mbox{\hyperlink{classcorenc_1_1method_1_1DGMethod_afa9f1c995c17bdc817102e8be336578a}{DGMethod<Problem, Grid, Matrix>::GetSolution}}(std::vector<double>\& vec)}
+\DoxyCodeLine{1287         \{}
+\DoxyCodeLine{1288             \textcolor{keywordtype}{int} size = vec.size();}
+\DoxyCodeLine{1289             \textcolor{comment}{//Translation(vec);}}
+\DoxyCodeLine{1290             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < size; ++i)}
+\DoxyCodeLine{1291                 vec[i] = m\_solution[i];}
+\DoxyCodeLine{1292         \}}
+\DoxyCodeLine{1293         \textcolor{keyword}{template}<\textcolor{keyword}{class} Problem, \textcolor{keyword}{class} Gr\textcolor{keywordtype}{id}, \textcolor{keyword}{class} Matrix>}
+\DoxyCodeLine{1294         \textcolor{keyword}{const} \textcolor{keywordtype}{double} \mbox{\hyperlink{classcorenc_1_1method_1_1DGMethod_afa9f1c995c17bdc817102e8be336578a}{DGMethod<Problem, Grid, Matrix>::GetSolution}}(\textcolor{keyword}{const} Grid\& g, \textcolor{keyword}{const} std::vector<double> \&weights, \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh::Point}}\& p)}
+\DoxyCodeLine{1295         \{}
+\DoxyCodeLine{1296             \textcolor{keywordtype}{double} sum\{ 0 \};}
+\DoxyCodeLine{1297             \textcolor{keyword}{auto} nfem\{ g.FindElement(p) \};}
+\DoxyCodeLine{1298             \textcolor{keywordflow}{if} (nfem < 0)}
+\DoxyCodeLine{1299                 \textcolor{keywordflow}{return} 0.;}
+\DoxyCodeLine{1300             \textcolor{keyword}{auto} elem\{ g.GetElement(nfem) \};}
+\DoxyCodeLine{1301             \textcolor{keyword}{auto} dofs\{ elem-\/>GetDoFs() \};}
+\DoxyCodeLine{1302             \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} i\{ 0 \}; i < dofs; ++i)}
+\DoxyCodeLine{1303                 sum += weights[elem-\/>GetNode(i)] * elem-\/>GetShapeFunction(i, p);}
+\DoxyCodeLine{1304             \textcolor{keywordflow}{return} sum;}
+\DoxyCodeLine{1305         \}}
+\DoxyCodeLine{1306         \textcolor{keyword}{template}<\textcolor{keyword}{class} Problem, \textcolor{keyword}{class} Gr\textcolor{keywordtype}{id}, \textcolor{keyword}{class} Matrix>}
+\DoxyCodeLine{1307         \textcolor{keyword}{const} \textcolor{keywordtype}{double} \mbox{\hyperlink{classcorenc_1_1method_1_1DGMethod_afa9f1c995c17bdc817102e8be336578a}{DGMethod<Problem, Grid, Matrix>::GetSolution}}(\textcolor{keyword}{const} Grid\& g, \textcolor{keyword}{const} std::vector<double> \&weights, \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh::Point}}\& p, \textcolor{keyword}{const} \textcolor{keywordtype}{int} nfem)}
+\DoxyCodeLine{1308         \{}
+\DoxyCodeLine{1309             \textcolor{keywordtype}{double} sum\{ 0 \};}
+\DoxyCodeLine{1310             \textcolor{comment}{//if (nfem < 0)}}
+\DoxyCodeLine{1311             \textcolor{comment}{//    return 0.;}}
+\DoxyCodeLine{1312             \textcolor{keyword}{auto} elem\{ g.GetElement(nfem) \};}
+\DoxyCodeLine{1313             \textcolor{keyword}{auto} dofs\{ elem-\/>GetDoFs() \};}
+\DoxyCodeLine{1314             \textcolor{comment}{//std::cout << nfem << std::endl;}}
+\DoxyCodeLine{1315             \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} i\{ 0 \}; i < dofs; ++i)}
+\DoxyCodeLine{1316                 sum += weights[elem-\/>GetNode(i)] * elem-\/>GetShapeFunction(i, p);}
+\DoxyCodeLine{1317             \textcolor{keywordflow}{return} sum;}
+\DoxyCodeLine{1318         \}}
+\DoxyCodeLine{1319         \textcolor{keyword}{template}<\textcolor{keyword}{class} Problem, \textcolor{keyword}{class} Gr\textcolor{keywordtype}{id}, \textcolor{keyword}{class} Matrix>}
+\DoxyCodeLine{1320         \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh::Point}} \mbox{\hyperlink{classcorenc_1_1method_1_1DGMethod_aa048ec68f230b68b6ad9191d2327ce53}{DGMethod<Problem, Grid, Matrix>::GetGradSolution}}(\textcolor{keyword}{const} Grid\& g, \textcolor{keyword}{const} std::vector<double> \&weights, \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh::Point}}\& p)}
+\DoxyCodeLine{1321         \{}
+\DoxyCodeLine{1322             \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh::Point}} sum\{ 0, 0, 0 \};}
+\DoxyCodeLine{1323             \textcolor{keyword}{auto} nfem\{ g.FindElement(p) \};}
+\DoxyCodeLine{1324             \textcolor{keyword}{auto} elem\{ g.GetElement(nfem) \};}
+\DoxyCodeLine{1325             \textcolor{keyword}{auto} dofs\{ elem-\/>GetDoFs() \};}
+\DoxyCodeLine{1326             \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} i\{ 0 \}; i < dofs; ++i)}
+\DoxyCodeLine{1327                 sum += weights[elem-\/>GetNode(i)] * elem-\/>GetGradShapeFunction(i, p);}
+\DoxyCodeLine{1328             \textcolor{keywordflow}{return} sum;}
+\DoxyCodeLine{1329         \}}
+\DoxyCodeLine{1330         \textcolor{keyword}{template}<\textcolor{keyword}{class} Problem, \textcolor{keyword}{class} Gr\textcolor{keywordtype}{id}, \textcolor{keyword}{class} Matrix>}
+\DoxyCodeLine{1331         \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh::Point}} \mbox{\hyperlink{classcorenc_1_1method_1_1DGMethod_aa048ec68f230b68b6ad9191d2327ce53}{DGMethod<Problem, Grid, Matrix>::GetGradSolution}}(\textcolor{keyword}{const} Grid\& g, \textcolor{keyword}{const} std::vector<double> \&weights, \textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh::Point}}\& p, \textcolor{keyword}{const} \textcolor{keywordtype}{int} nfem)}
+\DoxyCodeLine{1332         \{}
+\DoxyCodeLine{1333             \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh::Point}} sum\{ 0, 0, 0 \};}
+\DoxyCodeLine{1334             \textcolor{keyword}{auto} elem\{ g.GetElement(nfem) \};}
+\DoxyCodeLine{1335             \textcolor{keyword}{auto} dofs\{ elem-\/>GetDoFs() \};}
+\DoxyCodeLine{1336             \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} i\{ 0 \}; i < dofs; ++i)}
+\DoxyCodeLine{1337                 sum += weights[elem-\/>GetNode(i)] * elem-\/>GetGradShapeFunction(i, p);}
+\DoxyCodeLine{1338             \textcolor{keywordflow}{return} sum;}
+\DoxyCodeLine{1339         \}}
+\DoxyCodeLine{1340         \textcolor{keyword}{template}<\textcolor{keyword}{class} Problem, \textcolor{keyword}{class} Gr\textcolor{keywordtype}{id}, \textcolor{keyword}{class} Matrix>}
+\DoxyCodeLine{1341         \textcolor{keywordtype}{void} \mbox{\hyperlink{classcorenc_1_1method_1_1DGMethod_a44b3f094b56f9bef5c628f89c9794083}{DGMethod<Problem, Grid, Matrix>::LoadSolution}}(\textcolor{keyword}{const} std::vector<double>\& vec)}
+\DoxyCodeLine{1342         \{}
+\DoxyCodeLine{1343             m\_solution.resize(vec.size());}
+\DoxyCodeLine{1344             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} i = 0; i < vec.size(); ++i)}
+\DoxyCodeLine{1345                 m\_solution[i] = vec[i];}
+\DoxyCodeLine{1346         \}}
+\DoxyCodeLine{1347         \textcolor{keyword}{template}<\textcolor{keyword}{class} Problem, \textcolor{keyword}{class} Gr\textcolor{keywordtype}{id}, \textcolor{keyword}{class} Matrix>}
+\DoxyCodeLine{1348         \textcolor{keywordtype}{void} \mbox{\hyperlink{classcorenc_1_1method_1_1DGMethod_ad4abed53de365d8efaa0c23291fb69ce}{DGMethod<Problem, Grid, Matrix>::OutMeshFormat}}(\textcolor{keyword}{const} std::string\& file\_name, \textcolor{keyword}{const} std::vector<double>\& vec)}
+\DoxyCodeLine{1349         \{}
+\DoxyCodeLine{1350             \textcolor{keyword}{const} \textcolor{keywordtype}{int} size\{ (int)m\_Grid-\/>GetNodes().size() \};}
+\DoxyCodeLine{1351             \textcolor{keyword}{const} \textcolor{keywordtype}{int} number\{ (int)m\_Grid-\/>GetElements().size() \};}
+\DoxyCodeLine{1352             \textcolor{comment}{//const int size\{ number * 4 \};}}
+\DoxyCodeLine{1353             std::ofstream ofs(file\_name + \textcolor{stringliteral}{"{}.dat"{}}, std::ios::out);}
+\DoxyCodeLine{1354             std::string title(\textcolor{stringliteral}{"{}TITLE = \(\backslash\)"{}Mesh data\(\backslash\)"{}\(\backslash\)n Variables = \(\backslash\)"{}X\(\backslash\)"{}, \(\backslash\)"{}Y\(\backslash\)"{}, \(\backslash\)"{}Z\(\backslash\)"{}, \(\backslash\)"{}U\(\backslash\)"{}\(\backslash\)n Zone N = "{}} + std::to\_string(size) + \textcolor{stringliteral}{"{}, E = "{}} + std::to\_string(number) + \textcolor{stringliteral}{"{}, DATAPACKING = POINT, ZONETYPE = FETETRAHEDRON\(\backslash\)n"{}});}
+\DoxyCodeLine{1355             ofs << title;}
+\DoxyCodeLine{1356             \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh::Point}} p;}
+\DoxyCodeLine{1357             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < size; ++i)}
+\DoxyCodeLine{1358             \{}
+\DoxyCodeLine{1359                 p = m\_Grid-\/>GetNodes()[i];}
+\DoxyCodeLine{1360                 ofs << p.\mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point_a4a1b6340ba2c09f18d67e6c3324a960c}{x}} << \textcolor{stringliteral}{"{}\(\backslash\)t"{}} << p.\mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point_ad284cc2cdcd57432d6667bacb0cc5ccd}{y}} << \textcolor{stringliteral}{"{}\(\backslash\)t"{}} << p.\mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point_ab3ce06a03b41ac6c0cd96217a4f64ba0}{z}} << \textcolor{stringliteral}{"{}\(\backslash\)t"{}} << GetValue(p, vec, 1) << std::endl;}
+\DoxyCodeLine{1361             \}}
+\DoxyCodeLine{1362             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < number; ++i)}
+\DoxyCodeLine{1363             \{}
+\DoxyCodeLine{1364                 \textcolor{keyword}{auto} elem = m\_Grid-\/>GetElements()[i];}
+\DoxyCodeLine{1365                 \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} k = 0; k < 4; ++k)}
+\DoxyCodeLine{1366                 \{}
+\DoxyCodeLine{1367                     ofs << elem-\/>GetNodes()[k] + 1 << \textcolor{stringliteral}{"{}\(\backslash\)t"{}};}
+\DoxyCodeLine{1368                 \}}
+\DoxyCodeLine{1369                 ofs << std::endl;}
+\DoxyCodeLine{1370             \}}
+\DoxyCodeLine{1371             ofs.close();}
+\DoxyCodeLine{1372         \}}
+\DoxyCodeLine{1373         \textcolor{keyword}{template}<\textcolor{keyword}{class} Problem, \textcolor{keyword}{class} Gr\textcolor{keywordtype}{id}, \textcolor{keyword}{class} Matrix>}
+\DoxyCodeLine{1374         \textcolor{keywordtype}{void} \mbox{\hyperlink{classcorenc_1_1method_1_1DGMethod_a02e3fca5445d43c5dfaaad9df6cb9747}{DGMethod<Problem, Grid, Matrix>::OutMeshTimeFormat}}(\textcolor{keyword}{const} std::string\& file\_name, \textcolor{keyword}{const} std::vector<double>\& vec)}
+\DoxyCodeLine{1375         \{}
+\DoxyCodeLine{1376             \textcolor{keyword}{const} \textcolor{keywordtype}{int} size\{ (int)m\_Grid-\/>GetNodes().size() \};}
+\DoxyCodeLine{1377             \textcolor{keyword}{const} \textcolor{keywordtype}{int} number\{ (int)m\_Grid-\/>GetElements().size() \};}
+\DoxyCodeLine{1378             \textcolor{comment}{//const int size\{ number * 4 \};}}
+\DoxyCodeLine{1379             std::ofstream ofs(file\_name + \textcolor{stringliteral}{"{}.dat"{}}, std::ios::out | std::ios::app);}
+\DoxyCodeLine{1380             std::string title(\textcolor{stringliteral}{"{}TITLE = \(\backslash\)"{}Mesh data\(\backslash\)"{}\(\backslash\)n Variables = \(\backslash\)"{}X\(\backslash\)"{}, \(\backslash\)"{}Y\(\backslash\)"{}, \(\backslash\)"{}Z\(\backslash\)"{}, \(\backslash\)"{}U\(\backslash\)"{}\(\backslash\)n Zone N = "{}} + std::to\_string(size) + \textcolor{stringliteral}{"{}, E = "{}} + std::to\_string(number) + \textcolor{stringliteral}{"{}, DATAPACKING = POINT, ZONETYPE = FETETRAHEDRON\(\backslash\)n"{}});}
+\DoxyCodeLine{1381             ofs << title;}
+\DoxyCodeLine{1382             \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh::Point}} p;}
+\DoxyCodeLine{1383             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < size; ++i)}
+\DoxyCodeLine{1384             \{}
+\DoxyCodeLine{1385                 p = m\_Grid-\/>GetNodes()[i];}
+\DoxyCodeLine{1386                 ofs << p.\mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point_a4a1b6340ba2c09f18d67e6c3324a960c}{x}} << \textcolor{stringliteral}{"{}\(\backslash\)t"{}} << p.\mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point_ad284cc2cdcd57432d6667bacb0cc5ccd}{y}} << \textcolor{stringliteral}{"{}\(\backslash\)t"{}} << p.\mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point_ab3ce06a03b41ac6c0cd96217a4f64ba0}{z}} << \textcolor{stringliteral}{"{}\(\backslash\)t"{}} << GetValue(p, vec, 1) << std::endl;}
+\DoxyCodeLine{1387             \}}
+\DoxyCodeLine{1388             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < number; ++i)}
+\DoxyCodeLine{1389             \{}
+\DoxyCodeLine{1390                 \textcolor{keyword}{auto} elem = m\_Grid-\/>GetElements()[i];}
+\DoxyCodeLine{1391                 \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} k = 0; k < 4; ++k)}
+\DoxyCodeLine{1392                 \{}
+\DoxyCodeLine{1393                     ofs << elem-\/>GetNodes()[k] + 1 << \textcolor{stringliteral}{"{}\(\backslash\)t"{}};}
+\DoxyCodeLine{1394                 \}}
+\DoxyCodeLine{1395                 ofs << std::endl;}
+\DoxyCodeLine{1396             \}}
+\DoxyCodeLine{1397             ofs.close();}
+\DoxyCodeLine{1398         \}}
+\DoxyCodeLine{1399         \textcolor{keyword}{template}<\textcolor{keyword}{class} Problem, \textcolor{keyword}{class} Gr\textcolor{keywordtype}{id}, \textcolor{keyword}{class} Matrix>}
+\DoxyCodeLine{1400         \textcolor{keywordtype}{void} \mbox{\hyperlink{classcorenc_1_1method_1_1DGMethod_acd86b2542edc1fd6c14fea25430bf50f}{DGMethod<Problem, Grid, Matrix>::ProjectSolution}}(std::vector<double>\& sol, std::function<\textcolor{keyword}{const} \textcolor{keywordtype}{double}(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh::Point}}\&, \textcolor{keyword}{const} std::vector<double>\&, \textcolor{keyword}{const} \textcolor{keywordtype}{int})> GetVal, std::vector<double>\& vec)}
+\DoxyCodeLine{1401         \{}
+\DoxyCodeLine{1402             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < m\_Grid-\/>GetElements().size(); ++i)}
+\DoxyCodeLine{1403             \{}
+\DoxyCodeLine{1404                 \textcolor{keyword}{auto} elem = m\_Grid-\/>GetElements()[i];}
+\DoxyCodeLine{1405                 \textcolor{keywordtype}{int} order = elem-\/>GetDoF();}
+\DoxyCodeLine{1406                 \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j = 0; j < order; ++j)}
+\DoxyCodeLine{1407                     sol[elem-\/>GetNodes(j)] = GetVal(m\_Grid-\/>GetNodes()[elem-\/>GetNodes(j)], vec, i);}
+\DoxyCodeLine{1408             \}}
+\DoxyCodeLine{1409         \}}
+\DoxyCodeLine{1410         \textcolor{keyword}{template}<\textcolor{keyword}{class} Problem, \textcolor{keyword}{class} Gr\textcolor{keywordtype}{id}, \textcolor{keyword}{class} Matrix>}
+\DoxyCodeLine{1411         \textcolor{keywordtype}{void} \mbox{\hyperlink{classcorenc_1_1method_1_1DGMethod_acd86b2542edc1fd6c14fea25430bf50f}{DGMethod<Problem, Grid, Matrix>::ProjectSolution}}(std::vector<double>\& sol, std::function<\textcolor{keyword}{const} \textcolor{keywordtype}{double}(\textcolor{keyword}{const} \mbox{\hyperlink{classcorenc_1_1Mesh_1_1Point}{Mesh::Point}}\&, \textcolor{keyword}{const} std::vector<double>\&)> GetVal, std::vector<double>\& vec, \textcolor{keyword}{const} \textcolor{keywordtype}{int})}
+\DoxyCodeLine{1412         \{}
+\DoxyCodeLine{1413             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < m\_Grid-\/>GetElements().size(); ++i)}
+\DoxyCodeLine{1414             \{}
+\DoxyCodeLine{1415                 \textcolor{keyword}{auto} elem = m\_Grid-\/>GetElements()[i];}
+\DoxyCodeLine{1416                 \textcolor{keywordtype}{int} order = elem-\/>GetDoF();}
+\DoxyCodeLine{1417                 \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j = 0; j < order; ++j)}
+\DoxyCodeLine{1418                     sol[elem-\/>GetNodes(j)] = GetVal(m\_Grid-\/>GetNodes()[elem-\/>GetNodes(j)], vec);}
+\DoxyCodeLine{1419             \}}
+\DoxyCodeLine{1420         \}}
+\DoxyCodeLine{1421         \textcolor{keyword}{template}<\textcolor{keyword}{class} Problem, \textcolor{keyword}{class} Gr\textcolor{keywordtype}{id}, \textcolor{keyword}{class} Matrix>}
+\DoxyCodeLine{1422         \textcolor{keyword}{const} std::vector<double> \mbox{\hyperlink{classcorenc_1_1method_1_1DGMethod_acc85a78f2d496560c983ef92db324180}{DGMethod<Problem, Grid, Matrix>::SetSolution}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} sol, \textcolor{keyword}{const} \textcolor{keywordtype}{int} liq, \textcolor{keyword}{const} \textcolor{keywordtype}{double} s, \textcolor{keyword}{const} \textcolor{keywordtype}{double} l, \textcolor{keyword}{const} \textcolor{keywordtype}{double} m)}
+\DoxyCodeLine{1423         \{}
+\DoxyCodeLine{1424             \textcolor{keywordtype}{int} i;}
+\DoxyCodeLine{1425             m\_solution.resize(m\_Grid-\/>GetNodes().size());}
+\DoxyCodeLine{1426             \textcolor{keywordflow}{for} (i = 0; i < m\_Grid-\/>GetElements().size(); ++i)}
+\DoxyCodeLine{1427             \{}
+\DoxyCodeLine{1428                 \textcolor{keyword}{auto} elem = m\_Grid-\/>GetElements()[i];}
+\DoxyCodeLine{1429                 \textcolor{keywordtype}{int} order = elem-\/>GetDoF();}
+\DoxyCodeLine{1430                 \textcolor{keywordflow}{if} (m\_Grid-\/>GetElements()[i]-\/>GetType() == liq)}
+\DoxyCodeLine{1431                     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j = 0; j < order; ++j)}
+\DoxyCodeLine{1432                         m\_solution[elem-\/>GetNodes()[j]] = l;}
+\DoxyCodeLine{1433                 \textcolor{keywordflow}{else}}
+\DoxyCodeLine{1434                     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j = 0; j < order; ++j)}
+\DoxyCodeLine{1435                         m\_solution[elem-\/>GetNodes()[j]] = s;}
+\DoxyCodeLine{1436             \}}
+\DoxyCodeLine{1437 }
+\DoxyCodeLine{1438             \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} bnd : m\_Grid-\/>GetBoundaryConditions())}
+\DoxyCodeLine{1439             \{}
+\DoxyCodeLine{1440                 \textcolor{comment}{//if (get<0>(bnd.second) == 4)}}
+\DoxyCodeLine{1441                 \{}
+\DoxyCodeLine{1442                     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} row : m\_Grid-\/>GetBoundary())}
+\DoxyCodeLine{1443                     \{}
+\DoxyCodeLine{1444                         \textcolor{keywordflow}{if} (bnd.first == row-\/>GetType())}
+\DoxyCodeLine{1445                         \{}
+\DoxyCodeLine{1446                             \textcolor{keywordtype}{int} dofs = row-\/>GetDoF();}
+\DoxyCodeLine{1447                             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < dofs; ++i)}
+\DoxyCodeLine{1448                             \{}
+\DoxyCodeLine{1449                                 m\_solution[row-\/>GetNodes(i)] = m;}
+\DoxyCodeLine{1450                             \}}
+\DoxyCodeLine{1451                         \}}
+\DoxyCodeLine{1452                     \}}
+\DoxyCodeLine{1453                 \}}
+\DoxyCodeLine{1454             \}}
+\DoxyCodeLine{1455             \textcolor{keywordflow}{return} m\_solution;}
+\DoxyCodeLine{1456         \}}
+\DoxyCodeLine{1457         \textcolor{keyword}{template}<\textcolor{keyword}{class} Problem, \textcolor{keyword}{class} Gr\textcolor{keywordtype}{id}, \textcolor{keyword}{class} Matrix>}
+\DoxyCodeLine{1458         \mbox{\hyperlink{classcorenc_1_1method_1_1DGMethod_a3b283ee36086338878b9b64800956e16}{DGMethod<Problem, Grid, Matrix>::\string~DGMethod}}()}
+\DoxyCodeLine{1459         \{}
+\DoxyCodeLine{1460             \textcolor{keyword}{delete} m\_Grid;}
+\DoxyCodeLine{1461         \}}
+\DoxyCodeLine{1462     \}}
+\DoxyCodeLine{1463 \}}
+\DoxyCodeLine{1464 }
+\DoxyCodeLine{1465 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// !CORENC\_METHODS\_DGMethod\_h}}
+
+\end{DoxyCode}
