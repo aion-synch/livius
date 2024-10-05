@@ -17,7 +17,7 @@ CRegularMesh mesh{ Point{0,0}, Point{1,1}, 32, 32 };
 This will create a mesh with 32x32 elements in the unit domain.
 
 ```
-	vector<double> solution;
+vector<double> solution;
 ```
 	
 
@@ -26,62 +26,62 @@ This will create a mesh with 32x32 elements in the unit domain.
 Now to declare various parameters for a problem functions in the form func(Element Material, Node Material, Point) are being used.
 
 ```
-	const auto source = [=](const int el, const int node, const Point& p)
-        {
-        	return 0.;
-    	};
-	
+const auto source = [=](const int el, const int node, const Point& p)
+{
+	return 0.;
+};
 
 
 
 
-    	const auto diffusion = [&](const int el, const int node, const Point& p)
-    	{
-        	return 1.;
-    	};
-	
+
+const auto diffusion = [&](const int el, const int node, const Point& p)
+{
+	return 1.;
+};
 
 
 
 
-    	const auto velocity = [&](const int el, const int node, const Point& p)
-    	{
-        	return Point(1, 1);
-    	};
-	
+
+const auto velocity = [&](const int el, const int node, const Point& p)
+{
+	return Point(1, 1);
+};
 
 
 
 
-    	const auto boundary = [=](const int el, const int node, const Point& p)
-    	{
-        	if (p.y < 0.2)
-            		return 1.;
-		return 0.;
-    	};
-	
+
+const auto boundary = [=](const int el, const int node, const Point& p)
+{
+	if (p.y < 0.2)
+		return 1.;
+	return 0.;
+};
 
 
 
 
-	const parameter<double> boundary_lin(boundary);
-    	const parameter<double> src(source);
-    	const parameter<double> kappa(diffusion);
-    	const parameter<Point>  vel(velocityy);
-	CDiffusionScalar problem;
-	problem.addTerm(Terms::EFV);
-	problem.add_parameter(Terms::EFV, 0, src);
-	problem.addTerm(Terms::IDUV);
-	problem.add_parameter(Terms::IDUV, 0, vel);
-	problem.add_parameter(Terms::IDUDV, 0, kappa);
-	problem.add_boundary_parameter(1, 0, boundary_lin);
-	problem.add_boundary_parameter(1, 2, boundary_lin);		
+
+const parameter<double> boundary_lin(boundary);
+const parameter<double> src(source);
+const parameter<double> kappa(diffusion);
+const parameter<Point>  vel(velocityy);
+CDiffusionScalar problem;
+problem.addTerm(Terms::EFV);
+problem.add_parameter(Terms::EFV, 0, src);
+problem.addTerm(Terms::IDUV);
+problem.add_parameter(Terms::IDUV, 0, vel);
+problem.add_parameter(Terms::IDUDV, 0, kappa);
+problem.add_boundary_parameter(1, 0, boundary_lin);
+problem.add_boundary_parameter(1, 2, boundary_lin);		
 ```
 
 Finally, to find the solution the following command is used
 
 ```
-	fem.solver_eigen(&problem, &mesh, &solution);
+fem.solver_eigen(&problem, &mesh, &solution);
 ```
 	
 
@@ -91,12 +91,12 @@ I use Matplot++ to plot the solution
 
 ```
 auto [X, Y] = matplot::meshgrid(matplot::iota(0, .01, 1), matplot::iota(0, 0.01, 1));
-    	auto Z = matplot::transform(X, Y, [&](double x, double y) {
-        	return fem.get_value(mesh, solution, Point(x, y));
-    	});
-    	matplot::surf(X, Y, Z);
-    	//matplot::fcontour(Z)->n_levels(10).filled(true);
-    	matplot::show();
+auto Z = matplot::transform(X, Y, [&](double x, double y) {
+	return fem.get_value(mesh, solution, Point(x, y));
+});
+matplot::surf(X, Y, Z);
+//matplot::fcontour(Z)->n_levels(10).filled(true);
+matplot::show();
 ```
 
 
