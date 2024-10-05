@@ -22,9 +22,6 @@ This will create a mesh with 32x32 elements in the unit domain.
 vector<double> solution;
 ```
 	
-
-
-
 Now to declare various parameters for a problem functions in the form func(Element Material, Node Material, Point) are being used.
 
 ```
@@ -33,27 +30,15 @@ const auto source = [=](const int el, const int node, const Point& p)
 	return 0.;
 };
 
-
-
-
-
 const auto diffusion = [&](const int el, const int node, const Point& p)
 {
 	return 1.;
 };
 
-
-
-
-
 const auto velocity = [&](const int el, const int node, const Point& p)
 {
 	return Point(1, 1);
 };
-
-
-
-
 
 const auto boundary = [=](const int el, const int node, const Point& p)
 {
@@ -61,10 +46,6 @@ const auto boundary = [=](const int el, const int node, const Point& p)
 		return 1.;
 	return 0.;
 };
-
-
-
-
 
 const parameter<double> boundary_lin(boundary);
 const parameter<double> src(source);
@@ -86,9 +67,6 @@ Finally, to find the solution the following command is used
 fem.solver_eigen(&problem, &mesh, &solution);
 ```
 	
-
-
-
 I use Matplot++ to plot the solution
 
 ```
@@ -100,8 +78,6 @@ matplot::surf(X, Y, Z);
 //matplot::fcontour(Z)->n_levels(10).filled(true);
 matplot::show();
 ```
-
-
 
 The full code is
 
