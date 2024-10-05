@@ -68,7 +68,7 @@ Finally, to find the solution the following command is used
 fem.solver_eigen(&problem, &mesh, &solution);
 ```
 	
-I use Matplot++ to plot the solution
+I use [Matplot++](https://github.com/alandefreitas/matplotplusplus) to plot the solution
 
 ```
 auto [X, Y] = matplot::meshgrid(matplot::iota(0, .01, 1), matplot::iota(0, 0.01, 1));
