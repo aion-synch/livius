@@ -151,4 +151,19 @@ void test()
 ```
 | ![](https://raw.githubusercontent.com/aion-synch/livius/refs/heads/master/img/velocity_field.png) | ![](https://raw.githubusercontent.com/aion-synch/livius/refs/heads/master/img/eig.png) |
 | --- | --- |
-| ![Domain](https://raw.githubusercontent.com/aion-synch/livius/refs/heads/master/img/semi.png) | ![Model results](https://raw.githubusercontent.com/aion-synch/livius/refs/heads/master/img/full005.png) |
+| ![](https://raw.githubusercontent.com/aion-synch/livius/refs/heads/master/img/semi.png) | ![](https://raw.githubusercontent.com/aion-synch/livius/refs/heads/master/img/full005.png) |
+
+<table width="100%">
+  <thead>
+  </thead>
+  <tbody>
+    <tr>
+      <td width="50%"><img src="https://raw.githubusercontent.com/aion-synch/livius/refs/heads/master/img/velocity_field.png"/></td>
+      <td width="50%"><img src="https://raw.githubusercontent.com/aion-synch/livius/refs/heads/master/img/eig.png"/></td>
+    </tr>
+<tr>
+      <td width="50%"><img src="https://raw.githubusercontent.com/aion-synch/livius/refs/heads/master/img/semi.png"/></td>
+      <td width="50%"><img src="https://raw.githubusercontent.com/aion-synch/livius/refs/heads/master/img/full005.png"/></td>
+    </tr>  
+  </tbody>
+</table>
