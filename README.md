@@ -149,9 +149,6 @@ void test()
     	matplot::show();
 }
 ```
-| ![](https://raw.githubusercontent.com/aion-synch/livius/refs/heads/master/img/velocity_field.png) | ![](https://raw.githubusercontent.com/aion-synch/livius/refs/heads/master/img/eig.png) |
-| --- | --- |
-| ![](https://raw.githubusercontent.com/aion-synch/livius/refs/heads/master/img/semi.png) | ![](https://raw.githubusercontent.com/aion-synch/livius/refs/heads/master/img/full005.png) |
 
 <table width="100%">
   <thead>
