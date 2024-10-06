@@ -164,5 +164,6 @@ void test()
     </tr>  
   </tbody>
 </table>
-# Developer
+## Developer
+
 [Stanislav Y. Polishchuk](www.drayd.com), stanislav_py at proton.me.
