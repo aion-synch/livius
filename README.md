@@ -149,6 +149,7 @@ void test()
     	matplot::show();
 }
 ```
+## Gallery
 
 <table width="100%">
   <thead>
@@ -164,6 +165,7 @@ void test()
     </tr>  
   </tbody>
 </table>
+
 ## Developer
 
 [Stanislav Y. Polishchuk](www.drayd.com), stanislav_py at proton.me.
