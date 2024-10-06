@@ -149,6 +149,6 @@ void test()
     	matplot::show();
 }
 ```
-|  |
+| | |
 | --- | --- |
-| ![FEM boundary layer](https://raw.githubusercontent.com/aion-synch/livius/refs/heads/master/plotfem.png) | ![FEM boundary layer](https://raw.githubusercontent.com/aion-synch/livius/refs/heads/master/plotfem.png) |
+| ![Domain]([https://raw.githubusercontent.com/aion-synch/livius/refs/heads/master/plotfem.png](https://raw.githubusercontent.com/aion-synch/livius/refs/heads/master/img/semi.png)) | ![Model results](https://raw.githubusercontent.com/aion-synch/livius/refs/heads/master/img/full005.png) |
