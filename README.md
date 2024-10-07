@@ -171,4 +171,4 @@ void test()
 
 ## Developer
 
-[Stanislav Y. Polishchuk](www.drayd.com), stanislav_py at proton.me.
+[Stanislav Y. Polishchuk](https://www.drayd.com), stanislav_py at proton.me.
