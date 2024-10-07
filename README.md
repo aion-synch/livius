@@ -6,7 +6,7 @@ Implementation of various finite element methods such as the discontinuous Galer
 The implementation includes working with 2D meshes (high-order triangular and rectangular elements) and 3D meshes (tetrahedral and cubical elements).
 
 1D/2D grids can be generated within while for 3D problems [Gmsh](https://gmsh.info/) is used to generate tetrahedral meshes. 
-For solving linear systems of equations the package uses [Eigen library](https://eigen.tuxfamily.org/index.php?title=Main_Page).
+For solving linear systems of equations the package uses [Eigen library](https://eigen.tuxfamily.org/index.php?title=Main_Page) as well as a built-in one.
 
 To run an eigenvalue convection-diffusion problem
 ```math	
