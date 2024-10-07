@@ -5,9 +5,9 @@
 Implementation of various finite element methods such as the discontinuous Galerkin method, the multiscale FEM and the classic FEM.
 The implementation includes working with 2D meshes (high-order triangular and rectangular elements) and 3D meshes (tetrahedral and cubical elements).
 
-To run a convection-diffusion problem
+To run an eigenvalue convection-diffusion problem
 ```math	
-  a(x)\cdot\nabla u(x) - \nabla\cdot\kappa(x)\nabla u(x) = f(x), \mspace{15mu}\text{in the unit domain }\mspace{15mu}\Omega=[0,1]
+  a(x)\cdot\nabla u(x) - \nabla\cdot\kappa(x)\nabla u(x) = \lambda u(x), \mspace{15mu}\text{in the unit domain }\mspace{15mu}\Omega=[0,1]
 ```
 with $a(x)=[1,1]$ and $\kappa(x)=1$ using the finite element method with bilinear basis functions on rectangles, you need to construct a mesh and specify the coefficients in a (cpp) file.
 ```
