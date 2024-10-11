@@ -2,7 +2,7 @@
 
 ![FEM boundary layer](https://raw.githubusercontent.com/aion-synch/livius/refs/heads/master/plotfem.png)
 
-Implementation of various finite element methods such as the discontinuous Galerkin method, the multiscale FEM and the classic FEM.
+Implementation of various finite element methods such as the discontinuous Galerkin method, the multiscale FEM, SUPG, and the classic FEM.
 The implementation includes working with 2D meshes (high-order triangular and rectangular elements) and 3D meshes (tetrahedral and cubical elements).
 
 1D/2D grids can be generated within while for 3D problems [Gmsh](https://gmsh.info/) is used to create tetrahedral meshes. 
