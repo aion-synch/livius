@@ -14,7 +14,7 @@ To run an eigenvalue convection-diffusion problem
 ```
 with $a(x)=[1,1]$ and $\kappa(x)=1$ using the finite element method with bilinear basis functions on rectangles, you need to construct a mesh and specify the coefficients in a (cpp) file.
 
-The finite element is defined as a triple $`\{K, P, \Sigma`\}$ where $K$ is a geometric shape of the element, $P$ are shape fuctions and $\Sigma$ are degrees of freedom.
+The finite element is defined as a triple $\\{K, P, \Sigma\\}$ where $K$ is a geometric shape of the element, $P$ are shape fuctions and $\Sigma$ are degrees of freedom.
 Here it corresponds to the following code:
 ```
 template<class Shape, class ShapeFunction, class DoF, class T>
